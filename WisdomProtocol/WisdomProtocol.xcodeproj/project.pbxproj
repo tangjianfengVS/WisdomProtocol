@@ -38,6 +38,7 @@
 		3EC84A16291E3D820007468E = {
 			isa = PBXGroup;
 			children = (
+				3EC84A36291E41340007468E /* Source */,
 				3EC84A21291E3D820007468E /* WisdomProtocol */,
 				3EC84A20291E3D820007468E /* Products */,
 			);
@@ -62,6 +63,14 @@
 				3EC84A30291E3D840007468E /* Info.plist */,
 			);
 			path = WisdomProtocol;
+			sourceTree = "<group>";
+		};
+		3EC84A36291E41340007468E /* Source */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Source;
+			path = ../Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
