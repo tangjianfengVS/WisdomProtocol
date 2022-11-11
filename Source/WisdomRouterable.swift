@@ -85,3 +85,33 @@ import UIKit
 //
 //    static func getConformableController(fromProtocol: Protocol?) -> (fromProtocol: Protocol, conformClass: UIViewController.Type)?
 //}
+
+
+@objc public final class SwiftableClass: NSObject {
+    
+//    let registProtocol: Protocol
+//
+//    let conformClass: AnyClass
+    
+//    public static func build(registProtocol: Protocol, conformClass: AnyClass) throws -> SwiftableClass{
+//        let key = NSStringFromProtocol(registProtocol)
+//        let value: AnyClass = conformClass
+//
+//        if !class_conformsToProtocol(conformClass, registProtocol) {
+//            print("[SwiftProtocolKit] register nonConforming: ❌"+key+" -> "+NSStringFromClass(value)+"❌")
+//            throw SwiftableError.nonConforming
+//        }
+//
+//        if SwiftProtocolConfig[key] != nil {
+//            print("[SwiftProtocolKit] register redoConforming: ❌"+key+" -> "+NSStringFromClass(value)+"❌")
+//            throw SwiftableError.redoConforming
+//        }
+//        return SwiftableClass(registProtocol: registProtocol, conformClass: conformClass)
+//    }
+    
+//    private init(registProtocol: Protocol, conformClass: AnyClass) {
+//        self.registProtocol = registProtocol
+//        self.conformClass = conformClass
+//        super.init()
+//    }
+}
