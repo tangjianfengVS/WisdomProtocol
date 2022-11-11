@@ -8,11 +8,11 @@
 import UIKit
 
 // MARK: - Regist Protocol
-//@objc public protocol SwiftRegistable {
-//
-//    static func registSwiftable()->SwiftableClass?
-//}
-//
+@objc public protocol WisdomRegisterable {
+
+    //static func registSwiftable()->SwiftableClass?
+}
+
 
 // MARK: - Router Param Protocol
 @objc public protocol WisdomRouterParamable {
