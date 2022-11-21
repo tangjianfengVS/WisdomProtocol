@@ -8,12 +8,12 @@
 import UIKit
 
 
-@objc protocol WisdomRouterProtocol {}
+@objc protocol WisdomProtocolRouterVCable {}
 
-class WisdomRouterVC: UIViewController, WisdomRegisterable, WisdomRouterProtocol {
+class WisdomProtocolRouterVC: UIViewController, WisdomRegisterable, WisdomProtocolRouterVCable {
     
     static func registerable() -> WisdomClassable {
-        return WisdomClassable(registerProtocol: WisdomRouterProtocol.self, conformClass: Self.self)
+        return WisdomClassable(registerProtocol: WisdomProtocolRouterVCable.self, conformClass: Self.self)
     }
     
     override func viewDidLoad() {
@@ -22,10 +22,9 @@ class WisdomRouterVC: UIViewController, WisdomRegisterable, WisdomRouterProtocol
         view.backgroundColor = UIColor.cyan
         // Do any additional setup after loading the view.
     }
-    
 }
 
-extension WisdomRouterVC: WisdomRouterControlable {
+extension WisdomProtocolRouterVC: WisdomRouterControlable {
     
     @discardableResult
     static func routerControlable(rootVC: UIViewController?, param: Any?) -> Self {
