@@ -45,7 +45,7 @@ struct WisdomProtocolCore {
                 for index in begin ..< end {
                     if class_conformsToProtocol(types[index], WisdomRegisterable.self) {
                         if let ableClass = (types[index] as? WisdomRegisterable.Type)?.registerable() {
-                            registerableConfig(registProtocol: ableClass.registProtocol, conformClass: ableClass.conformClass)
+                            registerableConfig(registerProtocol: ableClass.registProtocol, conformClass: ableClass.conformClass)
                         }
                     }
                 }
@@ -59,10 +59,10 @@ struct WisdomProtocolCore {
         }
     }
     
-    // MARK: regist protocol class
-    private static func registerableConfig(registProtocol: Protocol, conformClass: AnyClass) {
-        let key = NSStringFromProtocol(registProtocol)
-        if !class_conformsToProtocol(conformClass, registProtocol) {
+    // MARK: registerProtocol protocol class
+    private static func registerableConfig(registerProtocol: Protocol, conformClass: AnyClass) {
+        let key = NSStringFromProtocol(registerProtocol)
+        if !class_conformsToProtocol(conformClass, registerProtocol) {
             print("❌[WisdomProtocol] register no conforming: "+key+" -> "+NSStringFromClass(conformClass)+"❌")
             return
         }
