@@ -23,11 +23,11 @@ extension AppDelegate {
 
 struct WisdomProtocolCore {
     
-    private(set) static var WisdomProtocolConfig: [String: AnyClass] = [:]
+    private static var WisdomProtocolConfig: [String:AnyClass] = [:]
 
     fileprivate static var WisdomRegisterState: Int = 0
     
-    static func registerable() {
+    fileprivate static func registerable() {
         let start = CFAbsoluteTimeGetCurrent()
         let protocolQueue = DispatchQueue(label: "WisdomProtocolCoreQueue", attributes: DispatchQueue.Attributes.concurrent)
 
@@ -45,7 +45,7 @@ struct WisdomProtocolCore {
                 for index in begin ..< end {
                     if class_conformsToProtocol(types[index], WisdomRegisterable.self) {
                         if let ableClass = (types[index] as? WisdomRegisterable.Type)?.registerable() {
-                            registerProtocolConfig(registerClass: ableClass.conformClass, toProtocol: ableClass.registProtocol)
+                            registerableConfig(registProtocol: ableClass.registProtocol, conformClass: ableClass.conformClass)
                         }
                     }
                 }
@@ -60,9 +60,17 @@ struct WisdomProtocolCore {
     }
     
     // MARK: regist protocol class
-    private static func registerProtocolConfig(registerClass: AnyClass, toProtocol: Protocol) {
-        let key = NSStringFromProtocol(toProtocol)
-        WisdomProtocolConfig.updateValue(registerClass, forKey: key)
+    private static func registerableConfig(registProtocol: Protocol, conformClass: AnyClass) {
+        let key = NSStringFromProtocol(registProtocol)
+        if !class_conformsToProtocol(conformClass, registProtocol) {
+            print("❌[WisdomProtocol] register no conforming: "+key+" -> "+NSStringFromClass(conformClass)+"❌")
+            return
+        }
+        if WisdomProtocolConfig[key] != nil {
+            print("❌[WisdomProtocol] register redo conforming: "+key+" -> "+NSStringFromClass(conformClass)+"❌")
+            return
+        }
+        WisdomProtocolConfig.updateValue(conformClass, forKey: key)
     }
 }
 
@@ -70,7 +78,7 @@ extension WisdomProtocolCore: WisdomProtocolable {
     
     static func getClassable(fromProtocol: Protocol)->AnyClass? {
         let protocolKey = NSStringFromProtocol(fromProtocol)
-        print("getClassable: "+protocolKey)
+        print("WisdomProtocol.getClassable: "+protocolKey)
 
         if let conformClass: AnyClass = WisdomProtocolConfig[protocolKey], conformClass.conforms(to: fromProtocol) {
             return conformClass

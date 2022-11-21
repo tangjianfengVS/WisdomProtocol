@@ -10,7 +10,6 @@
 		3EBC53F32921D58500FE248C /* WisdomProtocolable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBC53F22921D58500FE248C /* WisdomProtocolable.swift */; };
 		3EBC53FC29225B8D00FE248C /* WisdomProtocolCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBC53FB29225B8D00FE248C /* WisdomProtocolCore.swift */; };
 		3EC6C265292B6688007CE81B /* WisdomProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC6C264292B6688007CE81B /* WisdomProtocol.swift */; };
-		3EC6C267292B6764007CE81B /* WisdomRegisterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC6C266292B6764007CE81B /* WisdomRegisterable.swift */; };
 		3EC6C28E292B7250007CE81B /* ConstraintMultiplierTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC6C269292B7250007CE81B /* ConstraintMultiplierTarget.swift */; };
 		3EC6C28F292B7250007CE81B /* LayoutConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC6C26A292B7250007CE81B /* LayoutConstraintItem.swift */; };
 		3EC6C290292B7250007CE81B /* ConstraintMakerPrioritizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC6C26B292B7250007CE81B /* ConstraintMakerPrioritizable.swift */; };
@@ -62,7 +61,6 @@
 		3EBC53F22921D58500FE248C /* WisdomProtocolable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomProtocolable.swift; sourceTree = "<group>"; };
 		3EBC53FB29225B8D00FE248C /* WisdomProtocolCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomProtocolCore.swift; sourceTree = "<group>"; };
 		3EC6C264292B6688007CE81B /* WisdomProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomProtocol.swift; sourceTree = "<group>"; };
-		3EC6C266292B6764007CE81B /* WisdomRegisterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRegisterable.swift; sourceTree = "<group>"; };
 		3EC6C269292B7250007CE81B /* ConstraintMultiplierTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintMultiplierTarget.swift; sourceTree = "<group>"; };
 		3EC6C26A292B7250007CE81B /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutConstraintItem.swift; sourceTree = "<group>"; };
 		3EC6C26B292B7250007CE81B /* ConstraintMakerPrioritizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintMakerPrioritizable.swift; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 			children = (
 				3EC6C264292B6688007CE81B /* WisdomProtocol.swift */,
 				3EBC53F22921D58500FE248C /* WisdomProtocolable.swift */,
-				3EC6C266292B6764007CE81B /* WisdomRegisterable.swift */,
 				3EC84A37291E42470007468E /* WisdomRouterable.swift */,
 				3EBC53FB29225B8D00FE248C /* WisdomProtocolCore.swift */,
 			);
@@ -306,7 +303,6 @@
 				3EC6C2AC292B7250007CE81B /* Debugging.swift in Sources */,
 				3EC6C28F292B7250007CE81B /* LayoutConstraintItem.swift in Sources */,
 				3EC6C2A3292B7250007CE81B /* ConstraintConstantTarget.swift in Sources */,
-				3EC6C267292B6764007CE81B /* WisdomRegisterable.swift in Sources */,
 				3EC6C2A5292B7250007CE81B /* ConstraintMakerEditable.swift in Sources */,
 				3EC6C2AE292B7250007CE81B /* LayoutConstraint.swift in Sources */,
 				3EC6C29A292B7250007CE81B /* ConstraintInsetTarget.swift in Sources */,
