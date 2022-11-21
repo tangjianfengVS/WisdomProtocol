@@ -112,13 +112,7 @@ extension ViewController: UITableViewDelegate {
 // 1. 数据/页面 路由器
 class ViewControllerCell: UITableViewCell {
 
-//    private var loadingStyle: WisdomLoadingStyle?
-//
-//    private var textPlaceStyle: WisdomTextPlaceStyle?
-
     let itemView = ViewControllerItem(frame: .zero)
-
-//    private var leftView: UIView?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -150,88 +144,6 @@ class ViewControllerCell: UITableViewCell {
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
 
-    }
-
-    func setTitle() {
-//        nextView.infoLabel.text = "\(hudStyle.self)"
-//        leftView?.removeFromSuperview()
-//        leftView = nil
-//
-//        switch hudStyle {
-//        case .succes:
-//            leftView = WisdomHUDSuccessView(size: 24, barStyle: sceneBarStyle)
-//            (leftView as? WisdomHUDSuccessView)?.beginAnimation(isRepeat: false)
-//        case .error:
-//            leftView = WisdomHUDErrorView(size: 24, barStyle: sceneBarStyle)
-//            (leftView as? WisdomHUDErrorView)?.beginAnimation(isRepeat: false)
-//        case .warning:
-//            leftView = WisdomHUDWarningView(size: 24, barStyle: sceneBarStyle)
-//            (leftView as? WisdomHUDWarningView)?.beginAnimation(isRepeat: false)
-//        default: break
-//        }
-//
-//        switch loadingStyle {
-//        case .system:
-//            nextView.infoLabel.text = "\(hudStyle.self)"+".system"
-//
-//            leftView = WisdomHUDIndicatorView(size: 24, barStyle: sceneBarStyle)
-//        case .rotate:
-//            nextView.infoLabel.text = "\(hudStyle.self)"+".rotate"
-//
-//            leftView = WisdomHUDRotateView(size: 24, barStyle: sceneBarStyle)
-//        case .progressArc:
-//            nextView.infoLabel.text = "\(hudStyle.self)"+".progressArc"
-//
-//            leftView = WisdomHUDProgressArcView(size: 24, barStyle: sceneBarStyle)
-//        case .tadpoleArc:
-//            nextView.infoLabel.text = "\(hudStyle.self)"+".tadpoleArc"
-//
-//            leftView = WisdomHUDTadpoleArcView(size: 24, barStyle: sceneBarStyle)
-//        case .chaseBall:
-//            nextView.infoLabel.text = "\(hudStyle.self)"+".chaseBall"
-//
-//            leftView = WisdomHUDChaseBallView(size: 24, barStyle: sceneBarStyle)
-//        case .pulseBall:
-//            nextView.infoLabel.text = "\(hudStyle.self)"+".pulseBall"
-//
-//            leftView = WisdomHUDPulseBallView(size: 24, barStyle: sceneBarStyle)
-//        case .pulseShape:
-//            nextView.infoLabel.text = "\(hudStyle.self)"+".pulseBall"
-//
-//            leftView = WisdomHUDPulseShapeView(size: 24, barStyle: sceneBarStyle)
-//        default: break
-//        }
-//
-//        switch sceneBarStyle {
-//        case .dark:
-//            nextView.backgroundColor = UIColor.black
-//            nextView.infoLabel.textColor = UIColor.white
-//            nextView.imageView.image = UIImage(named: "G_Next_Gray")
-//        case .light:
-//            nextView.backgroundColor = UIColor.white
-//            nextView.infoLabel.textColor = UIColor.black
-//            nextView.imageView.image = UIImage(named: "G_Next_Black")
-//        case .hide:
-//            nextView.backgroundColor = UIColor.black
-//            nextView.infoLabel.textColor = UIColor.white
-//            nextView.imageView.image = UIImage(named: "G_Next_Gray")
-//        }
-//
-//        switch textPlaceStyle {
-//        case .center: nextView.infoLabel.text = "\(hudStyle.self)"+".center"
-//        case .bottom: nextView.infoLabel.text = "\(hudStyle.self)"+".bottom"
-//        default: break
-//        }
-//
-//        if let vi = leftView {
-//            contentView.addSubview(vi)
-//
-//            vi.snp.makeConstraints({ make in
-//                make.left.equalTo(nextView).offset(35)
-//                make.centerY.equalTo(contentView)
-//                make.width.height.equalTo(24)
-//            })
-//        }
     }
 }
 
