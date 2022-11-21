@@ -7,10 +7,21 @@
 
 import UIKit
 
-// MARK: - Regist Protocol
-@objc public protocol WisdomRegisterable {
 
-    @objc static func registerable()->SwiftableClass?
+// MARK: - Router Class Protocol
+@objc public protocol WisdomRouterClassable {
+
+    // MARK: Param - Any?
+    @discardableResult
+    @objc static optional func routerClassable(param: Any?)->Self
+
+    // MARK: Param - Any?, ((Any)->Void)?
+    @discardableResult
+    @objc static optional func routerClassable(param: Any?, closure: ((Any)->Void)?)->Self
+
+    // MARK: Param - Any?, ((Any)->(Any))?
+    @discardableResult
+    @objc static optional func routerClassable(param: Any?, returnClosure: ((Any)->(Any))?)->Self
 }
 
 
@@ -18,48 +29,30 @@ import UIKit
 @objc public protocol WisdomRouterParamable {
 
     // MARK: Param - Any?
-    @discardableResult
-    @objc func routerParamable(param: Any?)->Self
+    @objc optional func routerParamable(param: Any?)
 
     // MARK: Param - Any?, ((Any)->Void)?
-    @discardableResult
-    @objc func routerParamable(param: Any?, closure: ((Any)->Void)?)->Self
+    @objc optional func routerParamable(param: Any?, closure: ((Any)->Void)?)
 
     // MARK: Param - Any?, ((Any)->(Any))?
-    @discardableResult
-    @objc func routerParamable(param: Any?, returnClosure: ((Any)->(Any))?)->Self
+    @objc optional func routerParamable(param: Any?, returnClosure: ((Any)->(Any))?)
 }
 
 
-//// MARK: - Class Param Protocol
-//@objc public protocol SwiftClassParamable {
-//
-//    // MARK: Param - Any?
-//    static func setParamable(param: Any?)
-//
-//    // MARK: Param - Any?, SwiftProtocolClosure
-//    static func setParamable(param: Any?, closure: SwiftProtocolClosure?)
-//
-//    // MARK: Param - Any?, SwiftProtocolReturnClosure
-//    static func setParamable(param: Any?, returnClosure: SwiftProtocolReturnClosure?)
-//}
-//
-
-
 // MARK: - Router UIViewController Protocol
-@objc public protocol WisdomRouterContrable where Self: UIViewController {
+@objc public protocol WisdomRouterControlable where Self: UIViewController {
 
     // MARK: Param - UIViewController?, Any?
     @discardableResult
-    @objc static func routerContrable(rootVC: UIViewController?, param: Any?)->Self
+    @objc static optional func routerControlable(rootVC: UIViewController?, param: Any?)->Self
 
     // MARK: Param - UIViewController?, Any?, ((Any)->Void)?
     @discardableResult
-    @objc static func routerContrable(rootVC: UIViewController?, param: Any?, closure: ((Any)->Void)?)->Self
+    @objc static optional func routerControlable(rootVC: UIViewController?, param: Any?, closure: ((Any)->Void)?)->Self
 
     // MARK: Param - UIViewController?, Any?, ((Any)->(Any))?
     @discardableResult
-    @objc static func routerContrable(rootVC: UIViewController?, param: Any?, returnClosure: ((Any)->(Any))?)->Self
+    @objc static optional func routerControlable(rootVC: UIViewController?, param: Any?, returnClosure: ((Any)->(Any))?)->Self
 }
 
 
@@ -68,53 +61,13 @@ import UIKit
 
     // MARK: Param - UIView?, Any?
     @discardableResult
-    @objc static func routerViewable(superview: UIView?, param: Any?)->Self
+    @objc static optional func routerViewable(superview: UIView?, param: Any?)->Self
 
     // MARK: Param - UIView?, Any?, ((Any)->Void)?
     @discardableResult
-    @objc static func routerViewable(superview: UIView?, param: Any?, closure: ((Any)->Void)?)->Self
+    @objc static optional func routerViewable(superview: UIView?, param: Any?, closure: ((Any)->Void)?)->Self
 
     // MARK: Param - UIView?, Any?, ((Any)->(Any))?
     @discardableResult
-    @objc static func routerViewable(superview: UIView?, param: Any?, returnClosure: ((Any)->(Any))?)->Self
-}
-
-
-//protocol SwiftConformable {
-//
-//    static func getConformableClass(fromProtocol: Protocol?) -> (fromProtocol: Protocol, conformClass: AnyClass)?
-//
-//    static func getConformableView(fromProtocol: Protocol?) -> (fromProtocol: Protocol, conformClass: UIView.Type)?
-//
-//    static func getConformableController(fromProtocol: Protocol?) -> (fromProtocol: Protocol, conformClass: UIViewController.Type)?
-//}
-
-
-@objc public final class SwiftableClass: NSObject {
-    
-//    let registProtocol: Protocol
-//
-//    let conformClass: AnyClass
-    
-//    public static func build(registProtocol: Protocol, conformClass: AnyClass) throws -> SwiftableClass{
-//        let key = NSStringFromProtocol(registProtocol)
-//        let value: AnyClass = conformClass
-//
-//        if !class_conformsToProtocol(conformClass, registProtocol) {
-//            print("[SwiftProtocolKit] register nonConforming: ❌"+key+" -> "+NSStringFromClass(value)+"❌")
-//            throw SwiftableError.nonConforming
-//        }
-//
-//        if SwiftProtocolConfig[key] != nil {
-//            print("[SwiftProtocolKit] register redoConforming: ❌"+key+" -> "+NSStringFromClass(value)+"❌")
-//            throw SwiftableError.redoConforming
-//        }
-//        return SwiftableClass(registProtocol: registProtocol, conformClass: conformClass)
-//    }
-    
-//    private init(registProtocol: Protocol, conformClass: AnyClass) {
-//        self.registProtocol = registProtocol
-//        self.conformClass = conformClass
-//        super.init()
-//    }
+    @objc static optional func routerViewable(superview: UIView?, param: Any?, returnClosure: ((Any)->(Any))?)->Self
 }
