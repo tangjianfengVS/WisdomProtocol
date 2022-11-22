@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var navVC = UINavigationController()
         
         // MARK: WisdomRouterControlable 路由 -> 控制器
-        let vcClass = WisdomProtocol.getRouterControlable(from: WisdomProtocolRootProtocol.self)
+        let vcClass = WisdomProtocol.getRouterControlable(from: RootProtocol.self)
         if let rootVC = vcClass?.routerControlable?(rootVC: nil, param: nil) {
             navVC = UINavigationController(rootViewController: rootVC)
         }

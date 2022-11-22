@@ -7,37 +7,29 @@
 
 import UIKit
 
-extension AppDelegate {
-    
-    override var next: UIResponder? {
-        get {
-            if WisdomProtocolCore.WisdomRegisterState == 0 {
-                WisdomProtocolCore.WisdomRegisterState = 1
-                WisdomProtocolCore.registerable()
-            }
-            return super.next
-        }
-    }
-}
-
-
 struct WisdomProtocolCore {
     
     private static var WisdomProtocolConfig: [String:AnyClass] = [:]
 
-    fileprivate static var WisdomRegisterState: Int = 0
+    private static var WisdomRegisterState: Int = 0
     
-    fileprivate static func registerable() {
+    static func registerable() {
+        if WisdomProtocolCore.WisdomRegisterState == 1 {
+            return
+        }
+        WisdomProtocolCore.WisdomRegisterState = 1
+        
         let start = CFAbsoluteTimeGetCurrent()
         let protocolQueue = DispatchQueue(label: "WisdomProtocolCoreQueue", attributes: DispatchQueue.Attributes.concurrent)
 
-        let typeCount = Int(objc_getClassList(nil, 0))
-        let types = UnsafeMutablePointer<AnyClass>.allocate(capacity: typeCount)
-        let autoreleasingTypes = AutoreleasingUnsafeMutablePointer<AnyClass>(types)
-        objc_getClassList(autoreleasingTypes, Int32(typeCount))
+        let c = Int(objc_getClassList(nil, 0))
+        let types = UnsafeMutablePointer<AnyClass>.allocate(capacity: c)
+        let autoTypes = AutoreleasingUnsafeMutablePointer<AnyClass>(types)
+        objc_getClassList(autoTypes, Int32(c))
         
-        //let list: [Int:Int] = [0: typeCount/3, typeCount/3+1: typeCount/3*2, typeCount/3*2+1: typeCount]
-        let list: [Int:Int] = [0: typeCount/2, typeCount/2+1: typeCount]
+        let list: [Int:Int] = [0: c/4, c/4+1: c/2, c/2+1: c/4*3, c/4*3+1: c]
+        //let list: [Int:Int] = [0: c/3, c/3+1: c/3*2, c/3*2+1: c]
+        //let list: [Int:Int] = [0: c/2, c/2+1: c]
         for index in list { regist(types: types, begin: index.key, end: index.value) }
         
         func regist(types: UnsafeMutablePointer<AnyClass>, begin: Int, end: Int) {

@@ -5,6 +5,12 @@
       location = "group:WisdomProtocol.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:../WisdomProtocolLeft/WisdomProtocolLeft.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../WisdomProtocolRight/WisdomProtocolRight.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

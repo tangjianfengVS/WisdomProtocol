@@ -19,6 +19,8 @@
 		3EC84A2C291E3D840007468E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EC84A2B291E3D840007468E /* Assets.xcassets */; };
 		3EC84A2F291E3D840007468E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EC84A2D291E3D840007468E /* LaunchScreen.storyboard */; };
 		3EC84A38291E42470007468E /* WisdomRouterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC84A37291E42470007468E /* WisdomRouterable.swift */; };
+		3ED0A025292C6A80001F8755 /* WisdomProtocolConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A024292C6A80001F8755 /* WisdomProtocolConfig.swift */; };
+		3ED0A029292C6D39001F8755 /* WisdomProtocolRegist.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A028292C6D39001F8755 /* WisdomProtocolRegist.m */; };
 		83F20EEE625C55A6B99C40AB /* Pods_WisdomProtocol.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0D4760B58EAD6F9AA67271C /* Pods_WisdomProtocol.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +40,9 @@
 		3EC84A2E291E3D840007468E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3EC84A30291E3D840007468E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EC84A37291E42470007468E /* WisdomRouterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterable.swift; sourceTree = "<group>"; };
+		3ED0A024292C6A80001F8755 /* WisdomProtocolConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomProtocolConfig.swift; sourceTree = "<group>"; };
+		3ED0A027292C6D39001F8755 /* WisdomProtocolRegist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WisdomProtocolRegist.h; sourceTree = "<group>"; };
+		3ED0A028292C6D39001F8755 /* WisdomProtocolRegist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WisdomProtocolRegist.m; sourceTree = "<group>"; };
 		B0D4760B58EAD6F9AA67271C /* Pods_WisdomProtocol.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WisdomProtocol.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF0DEC0EE3E3861E48580C82 /* Pods-WisdomProtocol.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocol.debug.xcconfig"; path = "Target Support Files/Pods-WisdomProtocol/Pods-WisdomProtocol.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				3EC84A22291E3D820007468E /* AppDelegate.swift */,
+				3ED0A024292C6A80001F8755 /* WisdomProtocolConfig.swift */,
 				3EC6C2B8292BB0B0007CE81B /* WisdomProtocolRootVC.swift */,
 				3EC6C2B3292B72F8007CE81B /* WisdomProtocolRouterVC.swift */,
 				3EC6C2B6292B8DBC007CE81B /* WisdomRouterParam.swift */,
@@ -105,6 +111,8 @@
 				3EBC53F22921D58500FE248C /* WisdomProtocolable.swift */,
 				3EC84A37291E42470007468E /* WisdomRouterable.swift */,
 				3EBC53FB29225B8D00FE248C /* WisdomProtocolCore.swift */,
+				3ED0A027292C6D39001F8755 /* WisdomProtocolRegist.h */,
+				3ED0A028292C6D39001F8755 /* WisdomProtocolRegist.m */,
 			);
 			name = Source;
 			path = ../Source;
@@ -152,6 +160,7 @@
 				TargetAttributes = {
 					3EC84A1E291E3D820007468E = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -235,6 +244,8 @@
 			files = (
 				3EBC53F32921D58500FE248C /* WisdomProtocolable.swift in Sources */,
 				3EC84A27291E3D820007468E /* WisdomProtocolCell.swift in Sources */,
+				3ED0A025292C6A80001F8755 /* WisdomProtocolConfig.swift in Sources */,
+				3ED0A029292C6D39001F8755 /* WisdomProtocolRegist.m in Sources */,
 				3EC6C2B7292B8DBC007CE81B /* WisdomRouterParam.swift in Sources */,
 				3EC6C2B9292BB0B0007CE81B /* WisdomProtocolRootVC.swift in Sources */,
 				3EC6C265292B6688007CE81B /* WisdomProtocol.swift in Sources */,
@@ -387,6 +398,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HFM99A4RBU;
@@ -406,6 +418,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tangjianfeng.WisdomProtocol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -417,6 +431,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HFM99A4RBU;
@@ -436,6 +451,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tangjianfeng.WisdomProtocol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

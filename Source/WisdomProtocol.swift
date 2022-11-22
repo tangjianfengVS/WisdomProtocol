@@ -11,6 +11,10 @@ import UIKit
 
     @available(*, unavailable)
     override init() {}
+    
+    @objc static func registerable(){
+        WisdomProtocolCore.registerable()
+    }
 }
 
 extension WisdomProtocol: WisdomProtocolCreateable{
