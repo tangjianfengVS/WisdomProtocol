@@ -7,9 +7,10 @@
 
 import UIKit
 import WisdomProtocol
+import WisdomProtocolLeft
 
 // 路由协议 -> Root 控制器
 let RootProtocol = WisdomProtocol.create(projectName: "WisdomProtocolDemo", protocolName: "WisdomProtocolRootProtocol")!
 
 // 路由协议 -> Left 控制器
-let LeftProtocol = WisdomProtocol.create(projectName: "WisdomProtocolLeft", protocolName: "WisdomProtocolLeftProtocol")!
+let LeftProtocol = WisdomProtocolLeft.LeftProtocol

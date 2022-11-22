@@ -11,9 +11,20 @@ import UIKit
 
     @available(*, unavailable)
     override init() {}
+}
+
+extension WisdomProtocol: WisdomProtocolRegisterable{
     
     @objc static func registerable(){
         WisdomProtocolCore.registerable()
+    }
+    
+    // MARK: Register Protocol: WisdomClassable
+    // * Need to ensure the timing of registration, the level must be the highest *
+    //   用于 手动注册 和 静态库链接引用类。用于解决 WisdomProtocol 链接注册类问题
+    @discardableResult
+    @objc public static func registerable(classable: WisdomClassable)->Protocol{
+        return WisdomProtocolCore.registerable(classable: classable)
     }
 }
 

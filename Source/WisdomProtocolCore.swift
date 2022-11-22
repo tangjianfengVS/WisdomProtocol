@@ -13,6 +13,25 @@ struct WisdomProtocolCore {
 
     private static var WisdomRegisterState: Int = 0
     
+    // MARK: registerProtocol protocol class
+    private static func registerableConfig(register Protocol: Protocol, conform Class: AnyClass)->Protocol {
+        let key = NSStringFromProtocol(Protocol)
+        if !class_conformsToProtocol(Class, Protocol) {
+            print("❌[WisdomProtocol] register no conforming: "+key+"->"+NSStringFromClass(Class)+"❌")
+            return Protocol
+        }
+        if WisdomProtocolConfig[key] != nil {
+            print("❌[WisdomProtocol] register redo conforming: "+key+"->"+NSStringFromClass(Class)+"❌")
+            return Protocol
+        }
+        WisdomProtocolConfig.updateValue(Class, forKey: key)
+        print("✅[WisdomProtocol] register successful: "+key+"->"+NSStringFromClass(Class)+"✅")
+        return Protocol
+    }
+}
+
+extension WisdomProtocolCore: WisdomProtocolRegisterable{
+    
     static func registerable() {
         if WisdomProtocolCore.WisdomRegisterState == 1 {
             return
@@ -27,6 +46,7 @@ struct WisdomProtocolCore {
         let autoTypes = AutoreleasingUnsafeMutablePointer<AnyClass>(types)
         objc_getClassList(autoTypes, Int32(c))
         
+        //let list: [Int:Int] = [0: c/5, c/5+1: c/5*2, c/5*2+1: c/5*3, c/5*3+1: c/5*4, c/5*4+1: c]
         let list: [Int:Int] = [0: c/4, c/4+1: c/2, c/2+1: c/4*3, c/4*3+1: c]
         //let list: [Int:Int] = [0: c/3, c/3+1: c/3*2, c/3*2+1: c]
         //let list: [Int:Int] = [0: c/2, c/2+1: c]
@@ -37,7 +57,7 @@ struct WisdomProtocolCore {
                 for index in begin ..< end {
                     if class_conformsToProtocol(types[index], WisdomRegisterable.self) {
                         if let ableClass = (types[index] as? WisdomRegisterable.Type)?.registerable() {
-                            registerableConfig(registerProtocol: ableClass.registerProtocol, conformClass: ableClass.conformClass)
+                            _=registerableConfig(register: ableClass.registerProtocol, conform: ableClass.conformClass)
                         }
                     }
                 }
@@ -51,19 +71,16 @@ struct WisdomProtocolCore {
         }
     }
     
-    // MARK: registerProtocol protocol class
-    private static func registerableConfig(registerProtocol: Protocol, conformClass: AnyClass) {
-        let key = NSStringFromProtocol(registerProtocol)
-        if !class_conformsToProtocol(conformClass, registerProtocol) {
-            print("❌[WisdomProtocol] register no conforming: "+key+" -> "+NSStringFromClass(conformClass)+"❌")
-            return
-        }
-        if WisdomProtocolConfig[key] != nil {
-            print("❌[WisdomProtocol] register redo conforming: "+key+" -> "+NSStringFromClass(conformClass)+"❌")
-            return
-        }
-        WisdomProtocolConfig.updateValue(conformClass, forKey: key)
+    static func registerable(classable: WisdomClassable)->Protocol{
+        return registerableConfig(register: classable.registerProtocol, conform: classable.conformClass)
     }
+    
+    //static func registerable(classables: [WisdomClassable])->[Protocol]{
+    //    let protocols = classables.compactMap { classable in
+    //        registerableConfig(register: classable.registerProtocol, conform: classable.conformClass)
+    //    }
+    //    return protocols
+    //}
 }
 
 extension WisdomProtocolCore: WisdomProtocolCreateable{

@@ -17,10 +17,10 @@ class WisdomProtocolRootVC: UIViewController, WisdomRegisterable, WisdomProtocol
         return WisdomClassable(register: WisdomProtocolRootProtocol.self, conform: Self.self)
     }
 
-    let list = [["WisdomRouterControlable 路由 -> 控制器"],
-                ["WisdomRouterViewable 路由 -> 视图"],
-                ["WisdomRouterClassable 路由 -> Class"],
-                ["WisdomRouterParamable 路由 -> 参数"]]
+    let list = [["WisdomRouterControlable 路由协议->控制器"],
+                ["WisdomRouterViewable 路由协议->视图"],
+                ["WisdomRouterClassable 路由协议->Class"],
+                ["WisdomRouterParamable 路由协议->参数"]]
     
     lazy var tableView : UITableView = {
         let tableVi = UITableView(frame: CGRect.zero, style: .grouped)
