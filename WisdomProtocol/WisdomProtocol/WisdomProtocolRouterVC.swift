@@ -13,7 +13,7 @@ import UIKit
 class WisdomProtocolRouterVC: UIViewController, WisdomRegisterable, WisdomProtocolRouterVCable {
     
     static func registerable() -> WisdomClassable {
-        return WisdomClassable(registerProtocol: WisdomProtocolRouterVCable.self, conformClass: Self.self)
+        return WisdomClassable(register: WisdomProtocolRouterVCable.self, conform: Self.self)
     }
     
     override func viewDidLoad() {
@@ -42,7 +42,7 @@ extension WisdomProtocolRouterVC: WisdomRouterControlable {
 class WisdomRouterView: UIView, WisdomRegisterable, WisdomRouterViewProtocol {
     
     static func registerable() -> WisdomClassable {
-        return WisdomClassable(registerProtocol: WisdomRouterViewProtocol.self, conformClass: Self.self)
+        return WisdomClassable(register: WisdomRouterViewProtocol.self, conform: Self.self)
     }
     
 }

@@ -13,7 +13,7 @@ import SnapKit
 class WisdomProtocolRootVC: UIViewController, WisdomRegisterable, WisdomProtocolRootProtocol {
     
     static func registerable() -> WisdomClassable {
-        return WisdomClassable(registerProtocol: WisdomProtocolRootProtocol.self, conformClass: Self.self)
+        return WisdomClassable(register: WisdomProtocolRootProtocol.self, conform: Self.self)
     }
 
     let list = [["WisdomRouterControlable 路由 -> 控制器"],
@@ -89,7 +89,7 @@ extension WisdomProtocolRootVC: UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 // MARK: WisdomRouterControlable 路由 -> 控制器 - 无参数
-                let vcClass = WisdomProtocol.getRouterControlable(fromProtocol: WisdomProtocolRouterVCable.self)
+                let vcClass = WisdomProtocol.getRouterControlable(from: WisdomProtocolRouterVCable.self)
                 _=vcClass?.routerControlable?(rootVC: self, param: nil)
             default: break
             }

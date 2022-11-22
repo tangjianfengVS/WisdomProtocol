@@ -45,7 +45,7 @@ struct WisdomProtocolCore {
                 for index in begin ..< end {
                     if class_conformsToProtocol(types[index], WisdomRegisterable.self) {
                         if let ableClass = (types[index] as? WisdomRegisterable.Type)?.registerable() {
-                            registerableConfig(registerProtocol: ableClass.registProtocol, conformClass: ableClass.conformClass)
+                            registerableConfig(registerProtocol: ableClass.registerProtocol, conformClass: ableClass.conformClass)
                         }
                     }
                 }
@@ -76,25 +76,25 @@ struct WisdomProtocolCore {
 
 extension WisdomProtocolCore: WisdomProtocolable {
     
-    static func getClassable(fromProtocol: Protocol)->AnyClass? {
-        let protocolKey = NSStringFromProtocol(fromProtocol)
+    static func getClassable(from Protocol: Protocol)->AnyClass? {
+        let protocolKey = NSStringFromProtocol(Protocol)
         print("WisdomProtocol.getClassable: "+protocolKey)
 
-        if let conformClass: AnyClass = WisdomProtocolConfig[protocolKey], conformClass.conforms(to: fromProtocol) {
+        if let conformClass: AnyClass = WisdomProtocolConfig[protocolKey], conformClass.conforms(to: Protocol) {
             return conformClass
         }
         return nil
     }
     
-    static func getViewable(fromProtocol: Protocol)->UIView.Type? {
-        if let conformClass = getClassable(fromProtocol: fromProtocol), let conformView = conformClass as? UIView.Type {
+    static func getViewable(from Protocol: Protocol)->UIView.Type? {
+        if let conformClass = getClassable(from: Protocol), let conformView = conformClass as? UIView.Type {
             return conformView
         }
         return nil
     }
     
-    static func getControlable(fromProtocol: Protocol)->UIViewController.Type? {
-        if let conformClass = getClassable(fromProtocol: fromProtocol), let conformController = conformClass as? UIViewController.Type {
+    static func getControlable(from Protocol: Protocol)->UIViewController.Type? {
+        if let conformClass = getClassable(from: Protocol), let conformController = conformClass as? UIViewController.Type {
             return conformController
         }
         return nil
@@ -103,24 +103,24 @@ extension WisdomProtocolCore: WisdomProtocolable {
 
 extension WisdomProtocolCore: WisdomProtocolRouterable{
     
-    static func getRouterClassable(fromProtocol: Protocol)->WisdomRouterClassable.Type?{
-        if let classable = Self.getClassable(fromProtocol: fromProtocol), classable.conforms(to: WisdomRouterClassable.self),
+    static func getRouterClassable(from Protocol: Protocol)->WisdomRouterClassable.Type?{
+        if let classable = Self.getClassable(from: Protocol), classable.conforms(to: WisdomRouterClassable.self),
            let paramable = classable as? WisdomRouterClassable.Type {
             return paramable
         }
         return nil
     }
 
-    static func getRouterViewable(fromProtocol: Protocol)->WisdomRouterViewable.Type?{
-        if let classable = Self.getViewable(fromProtocol: fromProtocol), classable.conforms(to: WisdomRouterViewable.self),
+    static func getRouterViewable(from Protocol: Protocol)->WisdomRouterViewable.Type?{
+        if let classable = Self.getViewable(from: Protocol), classable.conforms(to: WisdomRouterViewable.self),
            let viewable = classable as? WisdomRouterViewable.Type {
             return viewable
         }
         return nil
     }
 
-    static func getRouterControlable(fromProtocol: Protocol)->WisdomRouterControlable.Type?{
-        if let classable = Self.getControlable(fromProtocol: fromProtocol), classable.conforms(to: WisdomRouterControlable.self),
+    static func getRouterControlable(from Protocol: Protocol)->WisdomRouterControlable.Type?{
+        if let classable = Self.getControlable(from: Protocol), classable.conforms(to: WisdomRouterControlable.self),
            let controlable = classable as? WisdomRouterControlable.Type {
             return controlable
         }

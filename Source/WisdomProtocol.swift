@@ -16,35 +16,35 @@ import UIKit
 extension WisdomProtocol: WisdomProtocolable {
     
     // MARK: Get AnyClass From Protocol
-    @objc public static func getClassable(fromProtocol: Protocol)->AnyClass?{
-        return WisdomProtocolCore.getClassable(fromProtocol: fromProtocol)
+    @objc public static func getClassable(from Protocol: Protocol)->AnyClass?{
+        return WisdomProtocolCore.getClassable(from: Protocol)
     }
 
     // MARK: Get UIView.Type From Protocol
-    @objc public static func getViewable(fromProtocol: Protocol)->UIView.Type?{
-        return WisdomProtocolCore.getViewable(fromProtocol: fromProtocol)
+    @objc public static func getViewable(from Protocol: Protocol)->UIView.Type?{
+        return WisdomProtocolCore.getViewable(from: Protocol)
     }
 
     // MARK: Get UIViewController.Type From Protocol
-    @objc public static func getControlable(fromProtocol: Protocol)->UIViewController.Type?{
-        return WisdomProtocolCore.getControlable(fromProtocol: fromProtocol)
+    @objc public static func getControlable(from Protocol: Protocol)->UIViewController.Type?{
+        return WisdomProtocolCore.getControlable(from: Protocol)
     }
 }
 
 extension WisdomProtocol: WisdomProtocolRouterable {
 
     // MARK: Get Router AnyClass From Protocol
-    @objc public static func getRouterClassable(fromProtocol: Protocol)->WisdomRouterClassable.Type?{
-        return WisdomProtocolCore.getRouterClassable(fromProtocol: fromProtocol)
+    @objc public static func getRouterClassable(from Protocol: Protocol)->WisdomRouterClassable.Type?{
+        return WisdomProtocolCore.getRouterClassable(from: Protocol)
     }
 
     // MARK: Get Router UIView.Type From Protocol
-    @objc public static func getRouterViewable(fromProtocol: Protocol)->WisdomRouterViewable.Type?{
-        return WisdomProtocolCore.getRouterViewable(fromProtocol: fromProtocol)
+    @objc public static func getRouterViewable(from Protocol: Protocol)->WisdomRouterViewable.Type?{
+        return WisdomProtocolCore.getRouterViewable(from: Protocol)
     }
 
     // MARK: Get Router UIViewController.Type From Protocol
-    @objc public static func getRouterControlable(fromProtocol: Protocol)->WisdomRouterControlable.Type?{
-        return WisdomProtocolCore.getRouterControlable(fromProtocol: fromProtocol)
+    @objc public static func getRouterControlable(from Protocol: Protocol)->WisdomRouterControlable.Type?{
+        return WisdomProtocolCore.getRouterControlable(from: Protocol)
     }
 }

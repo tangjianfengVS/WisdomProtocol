@@ -7,16 +7,16 @@
 
 import UIKit
 
-// MARK: - Regist Class Protocol
+// MARK: - register Class Protocol
 @objc public final class WisdomClassable: NSObject {
     
-    let registProtocol: Protocol
+    let registerProtocol: Protocol
 
     let conformClass: AnyClass
     
-    @objc public init(registerProtocol: Protocol, conformClass: AnyClass) {
-        self.registProtocol = registerProtocol
-        self.conformClass = conformClass
+    @objc public init(register Protocol: Protocol, conform Class: AnyClass) {
+        self.registerProtocol = Protocol
+        self.conformClass = Class
         super.init()
     }
 }
@@ -30,18 +30,18 @@ import UIKit
 
 protocol WisdomProtocolable {
 
-    static func getClassable(fromProtocol: Protocol)->AnyClass?
+    static func getClassable(from Protocol: Protocol)->AnyClass?
 
-    static func getViewable(fromProtocol: Protocol)->UIView.Type?
+    static func getViewable(from Protocol: Protocol)->UIView.Type?
 
-    static func getControlable(fromProtocol: Protocol)->UIViewController.Type?
+    static func getControlable(from Protocol: Protocol)->UIViewController.Type?
 }
 
 protocol WisdomProtocolRouterable {
 
-    static func getRouterClassable(fromProtocol: Protocol)->WisdomRouterClassable.Type?
+    static func getRouterClassable(from Protocol: Protocol)->WisdomRouterClassable.Type?
 
-    static func getRouterViewable(fromProtocol: Protocol)->WisdomRouterViewable.Type?
+    static func getRouterViewable(from Protocol: Protocol)->WisdomRouterViewable.Type?
 
-    static func getRouterControlable(fromProtocol: Protocol)->WisdomRouterControlable.Type?
+    static func getRouterControlable(from Protocol: Protocol)->WisdomRouterControlable.Type?
 }

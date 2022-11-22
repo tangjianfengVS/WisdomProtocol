@@ -12,7 +12,7 @@ import UIKit
 class WisdomRouterClass: WisdomRegisterable, WisdomRouterClassProtocol {
 
     static func registerable() -> WisdomClassable {
-        return WisdomClassable(registerProtocol: WisdomRouterClassProtocol.self, conformClass: Self.self)
+        return WisdomClassable(register: WisdomRouterClassProtocol.self, conform: Self.self)
     }
     
     required init() {
