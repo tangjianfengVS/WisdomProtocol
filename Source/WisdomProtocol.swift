@@ -20,12 +20,12 @@ import UIKit
 extension WisdomProtocol: WisdomProtocolCreateable{
     
     // MARK: Create Protocol From Protocol Name: String
-    static func create(protocolName: String) -> Protocol? {
+    @objc public static func create(protocolName: String) -> Protocol? {
         return WisdomProtocolCore.create(protocolName: protocolName)
     }
     
     // MARK: Create Protocol From Project Name: String, Protocol Name: String
-    static func create(projectName: String, protocolName: String) -> Protocol? {
+    @objc public static func create(projectName: String, protocolName: String) -> Protocol? {
         return WisdomProtocolCore.create(projectName: projectName, protocolName: protocolName)
     }
 }
