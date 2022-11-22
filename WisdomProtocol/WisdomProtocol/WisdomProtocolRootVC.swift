@@ -89,7 +89,7 @@ extension WisdomProtocolRootVC: UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 // MARK: WisdomRouterControlable 路由 -> 控制器 - 无参数
-                let vcClass = WisdomProtocol.getRouterControlable(from: WisdomProtocolRouterVCable.self)
+                let vcClass = WisdomProtocol.getRouterControlable(from: LeftProtocol.self)
                 _=vcClass?.routerControlable?(rootVC: self, param: nil)
             default: break
             }
