@@ -1,0 +1,6 @@
+framework module Pods_WisdomProtocol {
+  umbrella header "Pods-WisdomProtocol-umbrella.h"
+
+  export *
+  module * { export * }
+}
