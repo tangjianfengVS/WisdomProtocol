@@ -45,3 +45,10 @@ protocol WisdomProtocolRouterable {
 
     static func getRouterControlable(from Protocol: Protocol)->WisdomRouterControlable.Type?
 }
+
+protocol WisdomProtocolCreateable {
+
+    static func create(protocolName: String)->Protocol?
+    
+    static func create(projectName: String, protocolName: String)->Protocol?
+}

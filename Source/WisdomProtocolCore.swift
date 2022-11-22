@@ -74,6 +74,18 @@ struct WisdomProtocolCore {
     }
 }
 
+extension WisdomProtocolCore: WisdomProtocolCreateable{
+    
+    static func create(protocolName: String) -> Protocol? {
+        return NSProtocolFromString(protocolName)
+    }
+    
+    static func create(projectName: String, protocolName: String) -> Protocol? {
+        let name = projectName+"."+protocolName
+        return NSProtocolFromString(name)
+    }
+}
+
 extension WisdomProtocolCore: WisdomProtocolable {
     
     static func getClassable(from Protocol: Protocol)->AnyClass? {
