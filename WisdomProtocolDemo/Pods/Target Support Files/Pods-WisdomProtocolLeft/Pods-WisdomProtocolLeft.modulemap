@@ -1,0 +1,6 @@
+module Pods_WisdomProtocolLeft {
+  umbrella header "Pods-WisdomProtocolLeft-umbrella.h"
+
+  export *
+  module * { export * }
+}

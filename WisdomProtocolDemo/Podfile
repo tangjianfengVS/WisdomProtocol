@@ -1,0 +1,28 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+workspace 'WisdomProtocolDemo.xcworkspace'
+
+target 'WisdomProtocolLeft' do
+    project '../WisdomProtocolLeft/WisdomProtocolLeft.xcodeproj'
+    
+    pod 'WisdomProtocol'
+end
+
+target 'WisdomProtocolRight' do
+    project '../WisdomProtocolRight/WisdomProtocolRight.xcodeproj'
+    
+    pod 'WisdomProtocol'
+end
+
+target 'WisdomProtocolDemo' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for WisdomProtocolDemo
+  pod 'SnapKit'
+  
+  pod 'WisdomProtocol'
+
+end
+

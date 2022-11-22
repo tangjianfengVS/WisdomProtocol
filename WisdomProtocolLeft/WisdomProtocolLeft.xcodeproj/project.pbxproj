@@ -29,8 +29,8 @@
 		3ED0A007292C67F0001F8755 /* libWisdomProtocolLeft.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libWisdomProtocolLeft.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ED0A00A292C67F0001F8755 /* WisdomProtocolLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomProtocolLeft.swift; sourceTree = "<group>"; };
 		3ED0A02A292C9ABD001F8755 /* WisdomProtocolLeftVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomProtocolLeftVC.swift; sourceTree = "<group>"; };
-		CBA9DCFB89202ECFB154CBC3 /* Pods-WisdomProtocolLeft.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocolLeft.debug.xcconfig"; path = "Target Support Files/Pods-WisdomProtocolLeft/Pods-WisdomProtocolLeft.debug.xcconfig"; sourceTree = "<group>"; };
-		F873DC8B1C2C38C056E831FC /* Pods-WisdomProtocolLeft.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocolLeft.release.xcconfig"; path = "Target Support Files/Pods-WisdomProtocolLeft/Pods-WisdomProtocolLeft.release.xcconfig"; sourceTree = "<group>"; };
+		CBA9DCFB89202ECFB154CBC3 /* Pods-WisdomProtocolLeft.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocolLeft.debug.xcconfig"; path = "../../WisdomProtocolDemo/Pods/Target Support Files/Pods-WisdomProtocolLeft/Pods-WisdomProtocolLeft.debug.xcconfig"; sourceTree = "<group>"; };
+		F873DC8B1C2C38C056E831FC /* Pods-WisdomProtocolLeft.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocolLeft.release.xcconfig"; path = "../../WisdomProtocolDemo/Pods/Target Support Files/Pods-WisdomProtocolLeft/Pods-WisdomProtocolLeft.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

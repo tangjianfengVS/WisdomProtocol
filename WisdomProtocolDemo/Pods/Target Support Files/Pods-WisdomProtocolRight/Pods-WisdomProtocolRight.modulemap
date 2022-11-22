@@ -1,0 +1,6 @@
+module Pods_WisdomProtocolRight {
+  umbrella header "Pods-WisdomProtocolRight-umbrella.h"
+
+  export *
+  module * { export * }
+}

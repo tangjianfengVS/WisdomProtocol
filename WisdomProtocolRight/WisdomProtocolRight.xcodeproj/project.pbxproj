@@ -27,8 +27,8 @@
 		205A03C4AA3E05BB35C9F03C /* libPods-WisdomProtocolRight.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WisdomProtocolRight.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ED0A01A292C685B001F8755 /* libWisdomProtocolRight.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libWisdomProtocolRight.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ED0A01D292C685B001F8755 /* WisdomProtocolRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomProtocolRight.swift; sourceTree = "<group>"; };
-		9238FAC9364E2D296C889FB4 /* Pods-WisdomProtocolRight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocolRight.debug.xcconfig"; path = "Target Support Files/Pods-WisdomProtocolRight/Pods-WisdomProtocolRight.debug.xcconfig"; sourceTree = "<group>"; };
-		DC6272FD09B8403060AEF0DE /* Pods-WisdomProtocolRight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocolRight.release.xcconfig"; path = "Target Support Files/Pods-WisdomProtocolRight/Pods-WisdomProtocolRight.release.xcconfig"; sourceTree = "<group>"; };
+		9238FAC9364E2D296C889FB4 /* Pods-WisdomProtocolRight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocolRight.debug.xcconfig"; path = "../../WisdomProtocolDemo/Pods/Target Support Files/Pods-WisdomProtocolRight/Pods-WisdomProtocolRight.debug.xcconfig"; sourceTree = "<group>"; };
+		DC6272FD09B8403060AEF0DE /* Pods-WisdomProtocolRight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocolRight.release.xcconfig"; path = "../../WisdomProtocolDemo/Pods/Target Support Files/Pods-WisdomProtocolRight/Pods-WisdomProtocolRight.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
