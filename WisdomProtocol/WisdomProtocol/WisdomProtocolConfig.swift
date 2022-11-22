@@ -7,5 +7,5 @@
 
 import UIKit
 
-// 路由 -> 控制器协议
+// 路由协议 -> Root 控制器
 let RootProtocol = WisdomProtocol.create(projectName: "WisdomProtocol", protocolName: "WisdomProtocolRootProtocol")!

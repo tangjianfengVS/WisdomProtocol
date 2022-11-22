@@ -20,7 +20,7 @@
 		3EC84A2F291E3D840007468E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EC84A2D291E3D840007468E /* LaunchScreen.storyboard */; };
 		3EC84A38291E42470007468E /* WisdomRouterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC84A37291E42470007468E /* WisdomRouterable.swift */; };
 		3ED0A025292C6A80001F8755 /* WisdomProtocolConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A024292C6A80001F8755 /* WisdomProtocolConfig.swift */; };
-		3ED0A029292C6D39001F8755 /* WisdomProtocolRegist.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A028292C6D39001F8755 /* WisdomProtocolRegist.m */; };
+		3ED0A029292C6D39001F8755 /* WisdomProtocolRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A028292C6D39001F8755 /* WisdomProtocolRegister.m */; };
 		83F20EEE625C55A6B99C40AB /* Pods_WisdomProtocol.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0D4760B58EAD6F9AA67271C /* Pods_WisdomProtocol.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,8 +41,8 @@
 		3EC84A30291E3D840007468E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EC84A37291E42470007468E /* WisdomRouterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterable.swift; sourceTree = "<group>"; };
 		3ED0A024292C6A80001F8755 /* WisdomProtocolConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomProtocolConfig.swift; sourceTree = "<group>"; };
-		3ED0A027292C6D39001F8755 /* WisdomProtocolRegist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WisdomProtocolRegist.h; sourceTree = "<group>"; };
-		3ED0A028292C6D39001F8755 /* WisdomProtocolRegist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WisdomProtocolRegist.m; sourceTree = "<group>"; };
+		3ED0A027292C6D39001F8755 /* WisdomProtocolRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WisdomProtocolRegister.h; sourceTree = "<group>"; };
+		3ED0A028292C6D39001F8755 /* WisdomProtocolRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WisdomProtocolRegister.m; sourceTree = "<group>"; };
 		B0D4760B58EAD6F9AA67271C /* Pods_WisdomProtocol.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WisdomProtocol.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF0DEC0EE3E3861E48580C82 /* Pods-WisdomProtocol.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocol.debug.xcconfig"; path = "Target Support Files/Pods-WisdomProtocol/Pods-WisdomProtocol.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,8 +111,8 @@
 				3EBC53F22921D58500FE248C /* WisdomProtocolable.swift */,
 				3EC84A37291E42470007468E /* WisdomRouterable.swift */,
 				3EBC53FB29225B8D00FE248C /* WisdomProtocolCore.swift */,
-				3ED0A027292C6D39001F8755 /* WisdomProtocolRegist.h */,
-				3ED0A028292C6D39001F8755 /* WisdomProtocolRegist.m */,
+				3ED0A027292C6D39001F8755 /* WisdomProtocolRegister.h */,
+				3ED0A028292C6D39001F8755 /* WisdomProtocolRegister.m */,
 			);
 			name = Source;
 			path = ../Source;
@@ -245,7 +245,7 @@
 				3EBC53F32921D58500FE248C /* WisdomProtocolable.swift in Sources */,
 				3EC84A27291E3D820007468E /* WisdomProtocolCell.swift in Sources */,
 				3ED0A025292C6A80001F8755 /* WisdomProtocolConfig.swift in Sources */,
-				3ED0A029292C6D39001F8755 /* WisdomProtocolRegist.m in Sources */,
+				3ED0A029292C6D39001F8755 /* WisdomProtocolRegister.m in Sources */,
 				3EC6C2B7292B8DBC007CE81B /* WisdomRouterParam.swift in Sources */,
 				3EC6C2B9292BB0B0007CE81B /* WisdomProtocolRootVC.swift in Sources */,
 				3EC6C265292B6688007CE81B /* WisdomProtocol.swift in Sources */,

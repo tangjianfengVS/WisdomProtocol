@@ -1,5 +1,5 @@
 //
-//  WisdomProtocolRegist.h
+//  WisdomProtocolRegister.h
 //  WisdomProtocol
 //
 //  Created by tangjianfeng on 2021/12/17.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WisdomProtocolRegist: NSObject
+@interface WisdomProtocolRegister: NSObject
 
 @end
 

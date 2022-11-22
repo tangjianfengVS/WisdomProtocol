@@ -1,14 +1,14 @@
 //
-//  WisdomProtocolRegist+Regist.m
+//  WisdomProtocolRegister.m
 //  WisdomProtocol
 //
 //  Created by tangjianfeng on 2021/12/17.
 //
 
-#import "WisdomProtocolRegist.h"
+#import "WisdomProtocolRegister.h"
 #import <objc/runtime.h>
 
-@implementation WisdomProtocolRegist
+@implementation WisdomProtocolRegister
 
 + (void)load {
     Class protocolCla = objc_getClass("WisdomProtocol.WisdomProtocol");
