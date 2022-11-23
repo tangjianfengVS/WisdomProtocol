@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-// 1. 数据/页面 路由器
 class WisdomProtocolCell: UITableViewCell {
 
     let itemView = WisdomProtocolItem(frame: .zero)
@@ -21,7 +19,7 @@ class WisdomProtocolCell: UITableViewCell {
         contentView.addSubview(itemView)
 
         itemView.snp.makeConstraints { make in
-            make.bottom.top.equalTo(contentView)
+            make.top.equalTo(contentView)
             make.bottom.equalTo(contentView).offset(-1)
             make.left.equalTo(contentView).offset(15)
             make.right.equalTo(contentView).offset(-15)
@@ -53,7 +51,7 @@ class WisdomProtocolItem: UIView {
     let infoLabel : UILabel = {
         let label = UILabel()
         label.text = ""
-        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = UIColor.white
         return label
     }()

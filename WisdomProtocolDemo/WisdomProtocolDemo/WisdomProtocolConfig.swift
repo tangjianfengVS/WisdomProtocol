@@ -13,4 +13,7 @@ import WisdomProtocolLeft
 let RootProtocol = WisdomProtocol.create(projectName: "WisdomProtocolDemo", protocolName: "WisdomProtocolRootProtocol")!
 
 // 路由协议 -> Left 控制器
-let LeftProtocol = WisdomProtocolLeft.LeftProtocol
+let LeftVCProtocol = WisdomProtocolLeft.LeftVCProtocol
+
+// 路由协议 -> Left UIView
+let LeftVIProtocol = WisdomProtocol.create(projectName: "WisdomProtocolLeft", protocolName: "WisdomProtocolLeftVIProtocol")!

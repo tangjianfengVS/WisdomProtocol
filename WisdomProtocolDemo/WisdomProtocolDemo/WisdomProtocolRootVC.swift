@@ -17,9 +17,9 @@ class WisdomProtocolRootVC: UIViewController, WisdomRegisterable, WisdomProtocol
         return WisdomClassable(register: WisdomProtocolRootProtocol.self, conform: Self.self)
     }
 
-    let list = [["WisdomRouterControlable 路由协议->控制器"],
-                ["WisdomRouterViewable 路由协议->视图"],
-                ["WisdomRouterClassable 路由协议->Class"],
+    let list = [["WisdomRouterControlable 控制器路由协议"],
+                ["WisdomRouterViewable UIView路由协议"],
+                ["WisdomRouterClassable Class路由协议"],
                 ["WisdomRouterParamable 路由协议->参数"]]
     
     lazy var tableView : UITableView = {
@@ -32,10 +32,13 @@ class WisdomProtocolRootVC: UIViewController, WisdomRegisterable, WisdomProtocol
         tableVi.separatorStyle = .none
         return tableVi
     }()
+    
+    private weak var viewable: UIView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+        self.edgesForExtendedLayout = UIRectEdge.bottom
         title = "WisdomProtocol"
         
         view.addSubview(tableView)
@@ -89,18 +92,19 @@ extension WisdomProtocolRootVC: UITableViewDelegate {
         case 0:
             switch indexPath.row {
             case 0:
-                // MARK: WisdomRouterControlable 路由 -> 控制器 - 无参数
-                let vcClass = WisdomProtocol.getRouterControlable(from: LeftProtocol.self)
+                // MARK: WisdomRouterControlable 路由控制器-无参数
+                let vcClass = WisdomProtocol.getRouterControlable(from: LeftVCProtocol.self)
                 _=vcClass?.routerControlable?(rootVC: self, param: nil)
             default: break
             }
-//        case 1:
-//            switch indexPath.row {
-//            case 0:
-//                let viClass = WisdomProtocol.getRouterViewable(fromProtocol: WisdomRouterViewProtocol.self)
-//                _=viClass?.routerViewable?(superview: self.view, param: nil)
-//            default: break
-//            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                // MARK: WisdomRouterViewable 路由UIView-无参数
+                let viClass = WisdomProtocol.getRouterViewable(from: LeftVIProtocol.self)
+                viewable=viClass?.routerViewable?(superview: self.view, param: nil)
+            default: break
+            }
 //        case 2:
 //            switch indexPath.row {
 //            case 0:

@@ -21,7 +21,6 @@ import UIKit
     }
 }
 
-
 // MARK: - Register Protocol
 @objc public protocol WisdomRegisterable {
 

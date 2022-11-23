@@ -14,19 +14,18 @@ struct WisdomProtocolCore {
     private static var WisdomRegisterState: Int = 0
     
     // MARK: registerProtocol protocol class
-    private static func registerableConfig(register Protocol: Protocol, conform Class: AnyClass)->Protocol {
-        let key = NSStringFromProtocol(Protocol)
-        if !class_conformsToProtocol(Class, Protocol) {
-            print("❌[WisdomProtocol] register no conforming: "+key+"->"+NSStringFromClass(Class)+"❌")
-            return Protocol
+    private static func registerableConfig(register aProtocol: Protocol, conform aClass: AnyClass)->Protocol {
+        let key = NSStringFromProtocol(aProtocol)
+        if !class_conformsToProtocol(aClass, aProtocol) {
+            print("❌[WisdomProtocol] register no conforming: "+key+"->"+NSStringFromClass(aClass)+"❌")
+            return aProtocol
         }
         if WisdomProtocolConfig[key] != nil {
-            print("❌[WisdomProtocol] register redo conforming: "+key+"->"+NSStringFromClass(Class)+"❌")
-            return Protocol
+            print("❌[WisdomProtocol] register redo conforming: "+key+"->"+NSStringFromClass(aClass)+"❌")
+            return aProtocol
         }
-        WisdomProtocolConfig.updateValue(Class, forKey: key)
-        print("✅[WisdomProtocol] register successful: "+key+"->"+NSStringFromClass(Class)+"✅")
-        return Protocol
+        WisdomProtocolConfig.updateValue(aClass, forKey: key)
+        return aProtocol
     }
 }
 
@@ -46,8 +45,9 @@ extension WisdomProtocolCore: WisdomProtocolRegisterable{
         let autoTypes = AutoreleasingUnsafeMutablePointer<AnyClass>(types)
         objc_getClassList(autoTypes, Int32(c))
         
-        //let list: [Int:Int] = [0: c/5, c/5+1: c/5*2, c/5*2+1: c/5*3, c/5*3+1: c/5*4, c/5*4+1: c]
-        let list: [Int:Int] = [0: c/4, c/4+1: c/2, c/2+1: c/4*3, c/4*3+1: c]
+        //let list: [Int:Int] = [0: c/6, c/6+1: c/6*2, c/6*2+1: c/6*3, c/6*3+1: c/6*4, c/6*4+1: c/6*5, c/6*5+1: c]
+        let list: [Int:Int] = [0: c/5, c/5+1: c/5*2, c/5*2+1: c/5*3, c/5*3+1: c/5*4, c/5*4+1: c]
+        //let list: [Int:Int] = [0: c/4, c/4+1: c/2, c/2+1: c/4*3, c/4*3+1: c]
         //let list: [Int:Int] = [0: c/3, c/3+1: c/3*2, c/3*2+1: c]
         //let list: [Int:Int] = [0: c/2, c/2+1: c]
         for index in list { regist(types: types, begin: index.key, end: index.value) }
@@ -100,6 +100,7 @@ extension WisdomProtocolCore: WisdomProtocolable {
     static func getClassable(from Protocol: Protocol)->AnyClass? {
         let protocolKey = NSStringFromProtocol(Protocol)
         print("WisdomProtocol.getClassable: "+protocolKey)
+        //print("WisdomProtocolConfig: \(WisdomProtocolConfig)"+" count: \(WisdomProtocolConfig.count)")
 
         if let conformClass: AnyClass = WisdomProtocolConfig[protocolKey], conformClass.conforms(to: Protocol) {
             return conformClass

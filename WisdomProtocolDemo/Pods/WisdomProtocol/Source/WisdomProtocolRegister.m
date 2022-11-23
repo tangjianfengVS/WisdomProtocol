@@ -18,5 +18,4 @@
     void (*func)(id, SEL) = (void *)imp;
     func(protocolCla, sel);
 }
-
 @end
