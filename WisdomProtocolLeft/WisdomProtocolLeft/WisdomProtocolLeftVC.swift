@@ -135,30 +135,30 @@ class WisdomProtocolLeftVI: UIView, WisdomRegisterable, WisdomProtocolLeftVIProt
         }
         sdkLabel.snp.makeConstraints { make in
             make.left.equalTo(self).offset(20)
-            make.top.equalTo(titleLabel.snp.bottom).offset(15)
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
         }
         vcLabel.snp.makeConstraints { make in
             make.left.equalTo(sdkLabel)
-            make.top.equalTo(sdkLabel.snp.bottom).offset(15)
+            make.top.equalTo(sdkLabel.snp.bottom).offset(10)
         }
         ableLabel.snp.makeConstraints { make in
             make.left.equalTo(sdkLabel)
-            make.top.equalTo(vcLabel.snp.bottom).offset(15)
+            make.top.equalTo(vcLabel.snp.bottom).offset(10)
         }
         descLabel.snp.makeConstraints { make in
             make.left.equalTo(sdkLabel)
             make.right.equalTo(self).offset(-10)
-            make.top.equalTo(ableLabel.snp.bottom).offset(15)
+            make.top.equalTo(ableLabel.snp.bottom).offset(10)
         }
         codeLabel.snp.makeConstraints { make in
             make.left.equalTo(self).offset(10)
             make.right.equalTo(self).offset(-10)
-            make.top.equalTo(descLabel.snp.bottom).offset(15)
+            make.top.equalTo(descLabel.snp.bottom).offset(10)
         }
         paramLabel.snp.makeConstraints { make in
             make.left.equalTo(self).offset(10)
             make.right.equalTo(self).offset(-10)
-            make.top.equalTo(codeLabel.snp.bottom).offset(15)
+            make.top.equalTo(codeLabel.snp.bottom).offset(10)
         }
         cancelButton.snp.makeConstraints { make in
             make.right.equalTo(self).offset(-10)
