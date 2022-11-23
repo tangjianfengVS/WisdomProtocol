@@ -14,8 +14,6 @@
 		3ED0A066292CD13A001F8755 /* WisdomProtocolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A061292CD139001F8755 /* WisdomProtocolCell.swift */; };
 		3ED0A067292CD13A001F8755 /* WisdomProtocolRootVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A062292CD13A001F8755 /* WisdomProtocolRootVC.swift */; };
 		3ED0A068292CD13A001F8755 /* WisdomProtocolConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A063292CD13A001F8755 /* WisdomProtocolConfig.swift */; };
-		3ED0A069292CD13A001F8755 /* WisdomProtocolRouterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A064292CD13A001F8755 /* WisdomProtocolRouterVC.swift */; };
-		3ED0A06A292CD13A001F8755 /* WisdomRouterParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A065292CD13A001F8755 /* WisdomRouterParam.swift */; };
 		3ED0A06C292CE2AD001F8755 /* libWisdomProtocolLeft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ED0A06B292CE2AD001F8755 /* libWisdomProtocolLeft.a */; };
 		6596C9D8218F6C43490D638B /* Pods_WisdomProtocolDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429AABE2760F715C2FA81DA6 /* Pods_WisdomProtocolDemo.framework */; };
 /* End PBXBuildFile section */
@@ -30,8 +28,6 @@
 		3ED0A061292CD139001F8755 /* WisdomProtocolCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WisdomProtocolCell.swift; sourceTree = "<group>"; };
 		3ED0A062292CD13A001F8755 /* WisdomProtocolRootVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WisdomProtocolRootVC.swift; sourceTree = "<group>"; };
 		3ED0A063292CD13A001F8755 /* WisdomProtocolConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WisdomProtocolConfig.swift; sourceTree = "<group>"; };
-		3ED0A064292CD13A001F8755 /* WisdomProtocolRouterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WisdomProtocolRouterVC.swift; sourceTree = "<group>"; };
-		3ED0A065292CD13A001F8755 /* WisdomRouterParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WisdomRouterParam.swift; sourceTree = "<group>"; };
 		3ED0A06B292CE2AD001F8755 /* libWisdomProtocolLeft.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libWisdomProtocolLeft.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		429AABE2760F715C2FA81DA6 /* Pods_WisdomProtocolDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WisdomProtocolDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		508893CDDD8D95A2DAEEBC3B /* Pods-WisdomProtocolDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocolDemo.release.xcconfig"; path = "Target Support Files/Pods-WisdomProtocolDemo/Pods-WisdomProtocolDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -84,9 +80,7 @@
 				3ED0A04D292CD06F001F8755 /* AppDelegate.swift */,
 				3ED0A063292CD13A001F8755 /* WisdomProtocolConfig.swift */,
 				3ED0A062292CD13A001F8755 /* WisdomProtocolRootVC.swift */,
-				3ED0A064292CD13A001F8755 /* WisdomProtocolRouterVC.swift */,
 				3ED0A061292CD139001F8755 /* WisdomProtocolCell.swift */,
-				3ED0A065292CD13A001F8755 /* WisdomRouterParam.swift */,
 				3ED0A053292CD06F001F8755 /* Main.storyboard */,
 				3ED0A056292CD070001F8755 /* Assets.xcassets */,
 				3ED0A058292CD070001F8755 /* LaunchScreen.storyboard */,
@@ -220,8 +214,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3ED0A066292CD13A001F8755 /* WisdomProtocolCell.swift in Sources */,
-				3ED0A069292CD13A001F8755 /* WisdomProtocolRouterVC.swift in Sources */,
-				3ED0A06A292CD13A001F8755 /* WisdomRouterParam.swift in Sources */,
 				3ED0A068292CD13A001F8755 /* WisdomProtocolConfig.swift in Sources */,
 				3ED0A04E292CD06F001F8755 /* AppDelegate.swift in Sources */,
 				3ED0A067292CD13A001F8755 /* WisdomProtocolRootVC.swift in Sources */,

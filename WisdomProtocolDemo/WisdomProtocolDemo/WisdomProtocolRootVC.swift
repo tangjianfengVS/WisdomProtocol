@@ -19,8 +19,8 @@ class WisdomProtocolRootVC: UIViewController, WisdomRegisterable, WisdomProtocol
 
     let list = [["WisdomRouterControlable 控制器路由协议"],
                 ["WisdomRouterViewable UIView路由协议"],
-                ["WisdomRouterClassable Class路由协议"],
-                ["WisdomRouterParamable 路由协议->参数"]]
+                //["WisdomRouterClassable Class路由协议"],
+                ["WisdomRouterParamable 参数路由协议"]]
     
     lazy var tableView : UITableView = {
         let tableVi = UITableView(frame: CGRect.zero, style: .grouped)
@@ -105,17 +105,24 @@ extension WisdomProtocolRootVC: UITableViewDelegate {
                 viewable=viClass?.routerViewable?(superview: self.view, param: nil)
             default: break
             }
-//        case 2:
-//            switch indexPath.row {
-//            case 0:
-//                let paramClass = WisdomProtocol.getRouterClassable(fromProtocol: WisdomRouterClassProtocol.self)
-//                let param = paramClass?.routerClassable?(param: [])
-//                (param as? WisdomRouterParamable)?.routerParamable?(param: [])
-//
-//                let ss = WisdomProtocol.getClassable(fromProtocol: WisdomRouterClassProtocol.self)
-//                print("")
-//            default: break
-//            }
+        case 2:
+            switch indexPath.row {
+            case 0:
+                // MARK: WisdomRouterViewable 路由UIView-无参数
+                let viClass = WisdomProtocol.getRouterViewable(from: LeftVIProtocol.self)
+                viewable=viClass?.routerViewable?(superview: self.view, param: nil)
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {[weak self] in
+                    
+                    // MARK: WisdomRouterParamable 参数路由协议
+                    let bgColor = UIColor(white: 0.2, alpha: 1)
+                    let textColor = UIColor.white
+                    let codeColor = UIColor.red
+                    let param = ["bgColor":bgColor,"textColor":textColor,"codeColor":codeColor]
+                    (self?.viewable as? WisdomRouterParamable)?.routerParamable?(param: param)
+                }
+            default: break
+            }
         default: break
         }
     }

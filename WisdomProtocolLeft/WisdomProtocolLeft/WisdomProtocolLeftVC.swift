@@ -102,6 +102,7 @@ class WisdomProtocolLeftVI: UIView, WisdomRegisterable, WisdomProtocolLeftVIProt
     let ableLabel = UILabel()
     let codeLabel = UILabel()
     let descLabel = UILabel()
+    let paramLabel = UILabel()
     
     private(set) lazy var cancelButton : UIButton = {
         let button = UIButton()
@@ -127,6 +128,7 @@ class WisdomProtocolLeftVI: UIView, WisdomRegisterable, WisdomProtocolLeftVIProt
         addSubview(descLabel)
         addSubview(codeLabel)
         addSubview(cancelButton)
+        addSubview(paramLabel)
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalTo(self)
             make.top.equalTo(self).offset(10)
@@ -153,6 +155,11 @@ class WisdomProtocolLeftVI: UIView, WisdomRegisterable, WisdomProtocolLeftVIProt
             make.right.equalTo(self).offset(-10)
             make.top.equalTo(descLabel.snp.bottom).offset(20)
         }
+        paramLabel.snp.makeConstraints { make in
+            make.left.equalTo(self).offset(10)
+            make.right.equalTo(self).offset(-10)
+            make.top.equalTo(codeLabel.snp.bottom).offset(20)
+        }
         cancelButton.snp.makeConstraints { make in
             make.right.equalTo(self).offset(-10)
             make.top.equalTo(self).offset(10)
@@ -168,8 +175,12 @@ class WisdomProtocolLeftVI: UIView, WisdomRegisterable, WisdomProtocolLeftVIProt
         codeLabel.font = UIFont.systemFont(ofSize: 14)
         codeLabel.numberOfLines = 0
         codeLabel.textColor = UIColor(red: 100/256, green: 187/256, blue: 170/256, alpha: 1)
+        paramLabel.textColor = codeLabel.textColor
         codeLabel.backgroundColor = .black
         titleLabel.textColor = UIColor.black
+        paramLabel.font = UIFont.systemFont(ofSize: 14)
+        paramLabel.numberOfLines = 0
+        paramLabel.backgroundColor = .black
         
         titleLabel.text = "WisdomProtocolLeftVI"
         sdkLabel.text = "UIView信息：\n\n1. 静态库名：WisdomProtocolLeft"
@@ -196,8 +207,8 @@ extension WisdomProtocolLeftVI: WisdomRouterViewable {
         if let supervi = superview {
             supervi.addSubview(vi)
             vi.snp.makeConstraints { make in
-                make.top.equalTo(supervi).offset(50)
-                make.bottom.equalTo(supervi).offset(-50)
+                make.top.equalTo(supervi).offset(0)
+                make.bottom.equalTo(supervi).offset(-10)
                 make.left.equalTo(supervi).offset(30)
                 make.right.equalTo(supervi).offset(-30)
             }
@@ -206,31 +217,28 @@ extension WisdomProtocolLeftVI: WisdomRouterViewable {
     }
 }
 
-
-@objc protocol WisdomProtocolLeftPamProtocol {}
-
-class WisdomProtocolLeftCls: WisdomRegisterable, WisdomProtocolLeftPamProtocol {
-
-    static func registerable() -> WisdomClassable {
-        return WisdomClassable(register: WisdomProtocolLeftPamProtocol.self, conform: Self.self)
-    }
-
-    required init() {
-
-    }
-}
-
-extension WisdomProtocolLeftCls: WisdomRouterClassable {
-
-    static func routerClassable(param: Any?) -> Self {
-        let cls = Self.init()
-        return cls
-    }
-}
-
-extension WisdomProtocolLeftCls: WisdomRouterParamable {
-
+extension WisdomProtocolLeftVI: WisdomRouterParamable{
+    
     func routerParamable(param: Any?) {
-        print("")
+        if let colorDic = param as? [String:UIColor] {
+            if let bgColor = colorDic["bgColor"] {
+                backgroundColor = bgColor
+            }
+            if let textColor = colorDic["textColor"] {
+                titleLabel.textColor = textColor
+                sdkLabel.textColor = textColor
+                vcLabel.textColor = textColor
+                ableLabel.textColor = textColor
+                descLabel.textColor = textColor
+            }
+            if let codeColor = colorDic["codeColor"] {
+                codeLabel.textColor = codeColor
+                paramLabel.textColor = codeColor
+                codeLabel.backgroundColor = .white
+                paramLabel.backgroundColor = .white
+            }
+            
+            paramLabel.text = " 6. 参数路由代码示例：\n\n (1). WisdomProtocolLeftVI 需实现协议: \n -- WisdomRouterParamable 参数路由协议\n\n // MARK: 调用 路由参数方法\n (self?.viewable as? WisdomRouterParamable)?.routerParamable?(param: param)\n"
+        }
     }
 }
