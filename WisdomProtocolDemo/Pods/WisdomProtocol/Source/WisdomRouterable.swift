@@ -13,15 +13,15 @@ import UIKit
 
     // MARK: Param - Any?
     @discardableResult
-    @objc static optional func routerClassable(param: Any?)->Self
+    @objc optional static func routerClassable(param: Any?)->Self
 
     // MARK: Param - Any?, ((Any)->Void)?
     @discardableResult
-    @objc static optional func routerClassable(param: Any?, closure: ((Any)->Void)?)->Self
+    @objc optional static func routerClassable(param: Any?, closure: ((Any)->Void)?)->Self
 
     // MARK: Param - Any?, ((Any)->(Any))?
     @discardableResult
-    @objc static optional func routerClassable(param: Any?, returnClosure: ((Any)->(Any))?)->Self
+    @objc optional static func routerClassable(param: Any?, returnClosure: ((Any)->(Any))?)->Self
 }
 
 
@@ -44,15 +44,15 @@ import UIKit
 
     // MARK: Param - UIViewController?, Any?
     @discardableResult
-    @objc static optional func routerControlable(rootVC: UIViewController?, param: Any?)->Self
+    @objc optional static func routerControlable(rootVC: UIViewController?, param: Any?)->Self
 
     // MARK: Param - UIViewController?, Any?, ((Any)->Void)?
     @discardableResult
-    @objc static optional func routerControlable(rootVC: UIViewController?, param: Any?, closure: ((Any)->Void)?)->Self
+    @objc optional static func routerControlable(rootVC: UIViewController?, param: Any?, closure: ((Any)->Void)?)->Self
 
     // MARK: Param - UIViewController?, Any?, ((Any)->(Any))?
     @discardableResult
-    @objc static optional func routerControlable(rootVC: UIViewController?, param: Any?, returnClosure: ((Any)->(Any))?)->Self
+    @objc optional static func routerControlable(rootVC: UIViewController?, param: Any?, returnClosure: ((Any)->(Any))?)->Self
 }
 
 
@@ -61,13 +61,13 @@ import UIKit
 
     // MARK: Param - UIView?, Any?
     @discardableResult
-    @objc static optional func routerViewable(superview: UIView?, param: Any?)->Self
+    @objc optional static func routerViewable(superview: UIView?, param: Any?)->Self
 
     // MARK: Param - UIView?, Any?, ((Any)->Void)?
     @discardableResult
-    @objc static optional func routerViewable(superview: UIView?, param: Any?, closure: ((Any)->Void)?)->Self
+    @objc optional static func routerViewable(superview: UIView?, param: Any?, closure: ((Any)->Void)?)->Self
 
     // MARK: Param - UIView?, Any?, ((Any)->(Any))?
     @discardableResult
-    @objc static optional func routerViewable(superview: UIView?, param: Any?, returnClosure: ((Any)->(Any))?)->Self
+    @objc optional static func routerViewable(superview: UIView?, param: Any?, returnClosure: ((Any)->(Any))?)->Self
 }

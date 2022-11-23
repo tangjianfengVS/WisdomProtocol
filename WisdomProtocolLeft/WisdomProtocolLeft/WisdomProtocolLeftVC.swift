@@ -220,20 +220,23 @@ extension WisdomProtocolLeftVI: WisdomRouterViewable {
 extension WisdomProtocolLeftVI: WisdomRouterParamable{
     
     func routerParamable(param: Any?) {
-        if let colorDic = param as? [String:UIColor] {
-            if let bgColor = colorDic["bgColor"] {
-                backgroundColor = bgColor
+        if let colorDic = param as? [String:Any] {
+            
+            let model = WisdomProtocolLeftModel.decodable(value: colorDic)
+            
+            if let bgColor = model?.bgColor {
+                backgroundColor = bgColor.uicolor()
             }
-            if let textColor = colorDic["textColor"] {
-                titleLabel.textColor = textColor
-                sdkLabel.textColor = textColor
-                vcLabel.textColor = textColor
-                ableLabel.textColor = textColor
-                descLabel.textColor = textColor
+            if let textColor = model?.textColor {
+                titleLabel.textColor = textColor.uicolor()
+                sdkLabel.textColor = textColor.uicolor()
+                vcLabel.textColor = textColor.uicolor()
+                ableLabel.textColor = textColor.uicolor()
+                descLabel.textColor = textColor.uicolor()
             }
-            if let codeColor = colorDic["codeColor"] {
-                codeLabel.textColor = codeColor
-                paramLabel.textColor = codeColor
+            if let codeColor = model?.codeColor {
+                codeLabel.textColor = codeColor.uicolor()
+                paramLabel.textColor = codeColor.uicolor()
                 codeLabel.backgroundColor = .white
                 paramLabel.backgroundColor = .white
             }

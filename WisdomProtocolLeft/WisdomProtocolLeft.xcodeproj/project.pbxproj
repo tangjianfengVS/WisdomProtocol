@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3ED0A00B292C67F0001F8755 /* WisdomProtocolLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A00A292C67F0001F8755 /* WisdomProtocolLeft.swift */; };
 		3ED0A02B292C9ABD001F8755 /* WisdomProtocolLeftVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A02A292C9ABD001F8755 /* WisdomProtocolLeftVC.swift */; };
+		3EDA45E4292E41DE002E88F6 /* WisdomProtocolLeftModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDA45E3292E41DE002E88F6 /* WisdomProtocolLeftModel.swift */; };
 		EAF38CCA175F8F5004CCD70F /* libPods-WisdomProtocolLeft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1288B9FCCD0E77E5B3E3300A /* libPods-WisdomProtocolLeft.a */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		3ED0A007292C67F0001F8755 /* libWisdomProtocolLeft.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libWisdomProtocolLeft.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ED0A00A292C67F0001F8755 /* WisdomProtocolLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomProtocolLeft.swift; sourceTree = "<group>"; };
 		3ED0A02A292C9ABD001F8755 /* WisdomProtocolLeftVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomProtocolLeftVC.swift; sourceTree = "<group>"; };
+		3EDA45E3292E41DE002E88F6 /* WisdomProtocolLeftModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomProtocolLeftModel.swift; sourceTree = "<group>"; };
 		CBA9DCFB89202ECFB154CBC3 /* Pods-WisdomProtocolLeft.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocolLeft.debug.xcconfig"; path = "../../WisdomProtocolDemo/Pods/Target Support Files/Pods-WisdomProtocolLeft/Pods-WisdomProtocolLeft.debug.xcconfig"; sourceTree = "<group>"; };
 		F873DC8B1C2C38C056E831FC /* Pods-WisdomProtocolLeft.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocolLeft.release.xcconfig"; path = "../../WisdomProtocolDemo/Pods/Target Support Files/Pods-WisdomProtocolLeft/Pods-WisdomProtocolLeft.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +80,7 @@
 			children = (
 				3ED0A00A292C67F0001F8755 /* WisdomProtocolLeft.swift */,
 				3ED0A02A292C9ABD001F8755 /* WisdomProtocolLeftVC.swift */,
+				3EDA45E3292E41DE002E88F6 /* WisdomProtocolLeftModel.swift */,
 			);
 			path = WisdomProtocolLeft;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			files = (
 				3ED0A02B292C9ABD001F8755 /* WisdomProtocolLeftVC.swift in Sources */,
 				3ED0A00B292C67F0001F8755 /* WisdomProtocolLeft.swift in Sources */,
+				3EDA45E4292E41DE002E88F6 /* WisdomProtocolLeftModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

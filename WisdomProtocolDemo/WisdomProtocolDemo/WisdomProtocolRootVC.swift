@@ -115,10 +115,7 @@ extension WisdomProtocolRootVC: UITableViewDelegate {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {[weak self] in
                     
                     // MARK: WisdomRouterParamable 参数路由协议
-                    let bgColor = UIColor(white: 0.2, alpha: 1)
-                    let textColor = UIColor.white
-                    let codeColor = UIColor.red
-                    let param = ["bgColor":bgColor,"textColor":textColor,"codeColor":codeColor]
+                    let param = ["bgColor":"708069","textColor":"FFFFFF","codeColor":"33A1C9"]
                     (self?.viewable as? WisdomRouterParamable)?.routerParamable?(param: param)
                 }
             default: break

@@ -24,6 +24,7 @@ struct WisdomProtocolCore {
             print("❌[WisdomProtocol] register redo conforming: "+key+"->"+NSStringFromClass(aClass)+"❌")
             return aProtocol
         }
+        //print("🐬[WisdomProtocol] register successful: "+key+"->"+NSStringFromClass(Class)+"🐬")
         WisdomProtocolConfig.updateValue(aClass, forKey: key)
         return aProtocol
     }
@@ -36,22 +37,27 @@ extension WisdomProtocolCore: WisdomProtocolRegisterable{
             return
         }
         WisdomProtocolCore.WisdomRegisterState = 1
-        
+    
         let start = CFAbsoluteTimeGetCurrent()
-        let protocolQueue = DispatchQueue(label: "WisdomProtocolCoreQueue", attributes: DispatchQueue.Attributes.concurrent)
-
         let c = Int(objc_getClassList(nil, 0))
         let types = UnsafeMutablePointer<AnyClass>.allocate(capacity: c)
         let autoTypes = AutoreleasingUnsafeMutablePointer<AnyClass>(types)
         objc_getClassList(autoTypes, Int32(c))
         
-        //let list: [Int:Int] = [0: c/6, c/6+1: c/6*2, c/6*2+1: c/6*3, c/6*3+1: c/6*4, c/6*4+1: c/6*5, c/6*5+1: c]
-        let list: [Int:Int] = [0: c/5, c/5+1: c/5*2, c/5*2+1: c/5*3, c/5*3+1: c/5*4, c/5*4+1: c]
-        //let list: [Int:Int] = [0: c/4, c/4+1: c/2, c/2+1: c/4*3, c/4*3+1: c]
-        //let list: [Int:Int] = [0: c/3, c/3+1: c/3*2, c/3*2+1: c]
-        //let list: [Int:Int] = [0: c/2, c/2+1: c]
-        for index in list { regist(types: types, begin: index.key, end: index.value) }
+        var list: [Int:Int] = [0: c/2, c/2+1: c]//23320-0.019
+        if c>30000 {
+            list = [0:c/6, c/6+1:c/6*2, c/6*2+1:c/6*3, c/6*3+1:c/6*4, c/6*4+1:c/6*5, c/6*5+1:c]//30616-0.065
+        }else if c>28000 {
+            list = [0:c/5, c/5+1:c/5*2, c/5*2+1:c/5*3, c/5*3+1:c/5*4, c/5*4+1:c]
+        }else if c>26000 {
+            list = [0:c/4, c/4+1:c/2, c/2+1:c/4*3, c/4*3+1:c]
+        }else if c>24000 {
+            list = [0:c/3, c/3+1:c/3*2, c/3*2+1:c]
+        }
         
+        let protocolQueue = DispatchQueue(label: "WisdomProtocolCoreQueue", attributes: DispatchQueue.Attributes.concurrent)
+        for index in list { regist(types: types, begin: index.key, end: index.value) }
+
         func regist(types: UnsafeMutablePointer<AnyClass>, begin: Int, end: Int) {
             protocolQueue.async {
                 for index in begin ..< end {
@@ -66,8 +72,7 @@ extension WisdomProtocolCore: WisdomProtocolRegisterable{
         
         protocolQueue.sync(flags: .barrier) {
             types.deallocate()
-            let diff = CFAbsoluteTimeGetCurrent() - start
-            print("WisdomProtocolCore Queue Took " + "\(diff)")
+            print("WisdomProtocol Queue Took "+"\(CFAbsoluteTimeGetCurrent() - start)")
         }
     }
     
@@ -100,7 +105,6 @@ extension WisdomProtocolCore: WisdomProtocolable {
     static func getClassable(from Protocol: Protocol)->AnyClass? {
         let protocolKey = NSStringFromProtocol(Protocol)
         print("WisdomProtocol.getClassable: "+protocolKey)
-        //print("WisdomProtocolConfig: \(WisdomProtocolConfig)"+" count: \(WisdomProtocolConfig.count)")
 
         if let conformClass: AnyClass = WisdomProtocolConfig[protocolKey], conformClass.conforms(to: Protocol) {
             return conformClass
