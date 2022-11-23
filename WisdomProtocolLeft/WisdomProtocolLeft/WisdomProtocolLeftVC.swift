@@ -135,30 +135,30 @@ class WisdomProtocolLeftVI: UIView, WisdomRegisterable, WisdomProtocolLeftVIProt
         }
         sdkLabel.snp.makeConstraints { make in
             make.left.equalTo(self).offset(20)
-            make.top.equalTo(titleLabel.snp.bottom).offset(20)
+            make.top.equalTo(titleLabel.snp.bottom).offset(15)
         }
         vcLabel.snp.makeConstraints { make in
             make.left.equalTo(sdkLabel)
-            make.top.equalTo(sdkLabel.snp.bottom).offset(20)
+            make.top.equalTo(sdkLabel.snp.bottom).offset(15)
         }
         ableLabel.snp.makeConstraints { make in
             make.left.equalTo(sdkLabel)
-            make.top.equalTo(vcLabel.snp.bottom).offset(20)
+            make.top.equalTo(vcLabel.snp.bottom).offset(15)
         }
         descLabel.snp.makeConstraints { make in
             make.left.equalTo(sdkLabel)
             make.right.equalTo(self).offset(-10)
-            make.top.equalTo(ableLabel.snp.bottom).offset(20)
+            make.top.equalTo(ableLabel.snp.bottom).offset(15)
         }
         codeLabel.snp.makeConstraints { make in
             make.left.equalTo(self).offset(10)
             make.right.equalTo(self).offset(-10)
-            make.top.equalTo(descLabel.snp.bottom).offset(20)
+            make.top.equalTo(descLabel.snp.bottom).offset(15)
         }
         paramLabel.snp.makeConstraints { make in
             make.left.equalTo(self).offset(10)
             make.right.equalTo(self).offset(-10)
-            make.top.equalTo(codeLabel.snp.bottom).offset(20)
+            make.top.equalTo(codeLabel.snp.bottom).offset(15)
         }
         cancelButton.snp.makeConstraints { make in
             make.right.equalTo(self).offset(-10)
@@ -207,8 +207,8 @@ extension WisdomProtocolLeftVI: WisdomRouterViewable {
         if let supervi = superview {
             supervi.addSubview(vi)
             vi.snp.makeConstraints { make in
-                make.top.equalTo(supervi).offset(0)
-                make.bottom.equalTo(supervi).offset(-10)
+                make.top.equalTo(supervi).offset(10)
+                make.bottom.equalTo(supervi).offset(-20)
                 make.left.equalTo(supervi).offset(30)
                 make.right.equalTo(supervi).offset(-30)
             }
@@ -238,7 +238,7 @@ extension WisdomProtocolLeftVI: WisdomRouterParamable{
                 paramLabel.backgroundColor = .white
             }
             
-            paramLabel.text = " 6. 参数路由代码示例：\n\n (1). WisdomProtocolLeftVI 需实现协议: \n -- WisdomRouterParamable 参数路由协议\n\n // MARK: 调用 路由参数方法\n (self?.viewable as? WisdomRouterParamable)?.routerParamable?(param: param)\n"
+            paramLabel.text = " 6. 参数路由代码示例：\n\n (1). WisdomProtocolLeftVI 需实现协议: \n -- WisdomRouterParamable 参数路由协议\n\n // MARK: 调用 路由参数方法\nlet param = ['bgColor':bgColor,'textColor':textColor,'codeColor':codeColor]\n (self?.viewable as? WisdomRouterParamable)?.routerParamable?(param: param)\n"
         }
     }
 }
