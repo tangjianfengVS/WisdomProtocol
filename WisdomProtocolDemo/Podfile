@@ -6,13 +6,13 @@ workspace 'WisdomProtocolDemo.xcworkspace'
 target 'WisdomProtocolLeft' do
     project '../WisdomProtocolLeft/WisdomProtocolLeft.xcodeproj'
     
-    pod 'WisdomProtocol'
+    pod 'WisdomProtocol', "~> 0.0.2"
 end
 
 target 'WisdomProtocolRight' do
     project '../WisdomProtocolRight/WisdomProtocolRight.xcodeproj'
     
-    pod 'WisdomProtocol'
+    pod 'WisdomProtocol', "~> 0.0.2"
 end
 
 target 'WisdomProtocolDemo' do
@@ -22,7 +22,7 @@ target 'WisdomProtocolDemo' do
   # Pods for WisdomProtocolDemo
   pod 'SnapKit'
   
-  pod 'WisdomProtocol'
+  pod 'WisdomProtocol', "~> 0.0.2"
 
 end
 

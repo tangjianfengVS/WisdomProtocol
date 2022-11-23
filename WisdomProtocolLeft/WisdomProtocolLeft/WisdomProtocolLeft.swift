@@ -13,6 +13,6 @@ class WisdomProtocolLeft {
 }
 
 public let LeftProtocol: Protocol = {
-    return WisdomProtocolLeftVCProtocol.self//WisdomProtocol.registerable(classable: WisdomClassable(register: WisdomProtocolLeftVCProtocol.self, conform: WisdomProtocolLeftVC.self))
+    return WisdomProtocol.registerable(classable: WisdomClassable(register: WisdomProtocolLeftVCProtocol.self, conform: WisdomProtocolLeftVC.self))
 }()
 

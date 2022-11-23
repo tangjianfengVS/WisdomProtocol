@@ -10,9 +10,9 @@ import UIKit
 // MARK: - register Class Protocol
 @objc public final class WisdomClassable: NSObject {
     
-    let registerProtocol: Protocol
+    @objc public let registerProtocol: Protocol
 
-    let conformClass: AnyClass
+    @objc public let conformClass: AnyClass
     
     @objc public init(register Protocol: Protocol, conform Class: AnyClass) {
         self.registerProtocol = Protocol
@@ -22,10 +22,17 @@ import UIKit
 }
 
 
-// MARK: - Regist Protocol
+// MARK: - Register Protocol
 @objc public protocol WisdomRegisterable {
 
     @objc static func registerable()->WisdomClassable
+}
+
+protocol WisdomProtocolRegisterable {
+
+    static func registerable()
+    
+    static func registerable(classable: WisdomClassable)->Protocol
 }
 
 protocol WisdomProtocolable {
