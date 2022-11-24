@@ -45,6 +45,8 @@ class WisdomProtocolRootVC: UIViewController, WisdomRegisterable, WisdomProtocol
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
+        
+        startDownTimer(totalTime: 10)
     }
 }
 
@@ -132,5 +134,17 @@ extension WisdomProtocolRootVC: WisdomRouterControlable {
     static func routerControlable(rootVC: UIViewController?, param: Any?) -> Self {
         let vc = Self.init()
         return vc
+    }
+}
+
+
+extension WisdomProtocolRootVC: WisdomTimerable {
+    
+    func timerDid(currentTime: NSInteger) {
+        print("timerDid: \(currentTime)")
+    }
+    
+    func timerEnd() {
+        
     }
 }

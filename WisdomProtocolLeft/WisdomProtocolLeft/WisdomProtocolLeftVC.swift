@@ -73,6 +73,8 @@ class WisdomProtocolLeftVC: UIViewController, WisdomRegisterable, WisdomProtocol
         ableLabel.text = "3. 绑定协议：WisdomProtocolLeftVCProtocol"
         descLabel.text = "4. WisdomProtocolLeftVC 需实现协议: \n\n (1) WisdomRegisterable 注册协议\n\n (2) WisdomRouterControlable 路由协议"
         codeLabel.text = " 5. 路由代码示例：\n\n // MARK: 获取 WisdomRegisterable 协议绑定的控制器\n let vcClass = WisdomProtocol.getRouterControlable(from: WisdomProtocolLeftVCProtocol.self)\n\n // MARK: 调用 WisdomRouterControlable 路由控制器方法(无参数)\n _=vcClass?.routerControlable?(rootVC: self, param: nil)\n"
+        
+        startDownTimer(totalTime: 10)
     }
 }
 
@@ -84,6 +86,17 @@ extension WisdomProtocolLeftVC: WisdomRouterControlable {
         vc.modalPresentationStyle = .fullScreen
         rootVC?.navigationController?.pushViewController(vc, animated: true)
         return vc
+    }
+}
+
+extension WisdomProtocolLeftVC: WisdomTimerable {
+    
+    func timerDid(currentTime: NSInteger) {
+        print("WisdomProtocolLeftVC timerDid: \(currentTime)")
+    }
+    
+    func timerEnd() {
+        
     }
 }
 
@@ -188,6 +201,8 @@ class WisdomProtocolLeftVI: UIView, WisdomRegisterable, WisdomProtocolLeftVIProt
         ableLabel.text = "3. 绑定协议：WisdomProtocolLeftVIProtocol"
         descLabel.text = "4. WisdomProtocolLeftVI 需实现协议: \n\n (1) WisdomRegisterable 注册协议\n\n (2) WisdomRouterViewable 路由协议"
         codeLabel.text = " 5. 路由代码示例：\n\n // MARK: 获取 WisdomRegisterable 协议绑定的UIView\n let viClass = WisdomProtocol.getRouterViewable(from: WisdomProtocolLeftVIProtocol.self)\n\n // MARK: 调用 WisdomRouterViewable 路由UIView方法(无参数)\n _=viClass?.routerViewable?(superview: self.view, param: nil)\n"
+        
+        startDownTimer(totalTime: 10)
     }
     
     required init?(coder: NSCoder) {
@@ -249,5 +264,19 @@ extension WisdomProtocolLeftVI: WisdomRouterParamable{
             
             paramLabel.text = " 6. 参数路由代码示例：\n\n (1). WisdomProtocolLeftVI 需实现协议: \n -- WisdomRouterParamable 参数路由协议\n\n // MARK: 调用 路由参数方法\nlet param = ['bgColor':bgColor,'textColor':textColor,'codeColor':codeColor]\n (self?.viewable as? WisdomRouterParamable)?.routerParamable?(param: param)\n"
         }
+        
+        startAddTimer(startTime: 99)
+    }
+}
+
+
+extension WisdomProtocolLeftVI: WisdomTimerable {
+    
+    func timerDid(currentTime: NSInteger) {
+        print("WisdomProtocolLeftVC timerDid: \(currentTime)")
+    }
+    
+    func timerEnd() {
+        
     }
 }

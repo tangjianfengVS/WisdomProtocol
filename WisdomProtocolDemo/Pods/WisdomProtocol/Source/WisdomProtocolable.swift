@@ -73,3 +73,16 @@ protocol WisdomCodingCoreable {
     
     static func ableEncod<T>(_ able: T)->[String:Any]? where T: Encodable
 }
+
+protocol WisdomTimerCoreable {
+
+    static func startAddTimer(able: WisdomTimerable, startTime: NSInteger)
+    
+    static func startDownTimer(able: WisdomTimerable, totalTime: NSInteger)
+    
+    static func suspendTimer(able: WisdomTimerable)
+    
+    static func resumeTimer(able: WisdomTimerable)
+    
+    static func destroyTimer(able: WisdomTimerable)
+}

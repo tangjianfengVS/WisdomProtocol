@@ -13,6 +13,8 @@ struct WisdomProtocolCore {
 
     private static var WisdomRegisterState: Int = 0
     
+    private static var WisdomTimerConfig: [String:WisdomTimerModel] = [:]
+    
     // MARK: registerProtocol protocol class
     private static func registerableConfig(register aProtocol: Protocol, conform aClass: AnyClass)->Protocol {
         let key = NSStringFromProtocol(aProtocol)
@@ -213,5 +215,47 @@ extension WisdomProtocolCore: WisdomCodingCoreable {
             return result
         }
         return nil
+    }
+}
+
+extension WisdomProtocolCore: WisdomTimerCoreable {
+    
+    static func startAddTimer(able: WisdomTimerable, startTime: NSInteger){
+        let key = "\(able)".replacingOccurrences(of: " ", with: "")
+        if let historyable = WisdomTimerConfig[key] {
+            historyable.destroy()
+            WisdomTimerConfig.removeValue(forKey: key)
+        }
+        
+        let timer = WisdomTimerModel(able: able, currentTime: startTime, isDown: false) {
+            WisdomTimerConfig.removeValue(forKey: key)
+        }
+        WisdomTimerConfig[key]=timer
+    }
+    
+    static func startDownTimer(able: WisdomTimerable, totalTime: NSInteger){
+        let key = "\(able)".replacingOccurrences(of: " ", with: "")
+        if let historyable = WisdomTimerConfig[key] {
+            historyable.destroy()
+            WisdomTimerConfig.removeValue(forKey: key)
+        }
+        
+        let timer = WisdomTimerModel(able: able, currentTime: totalTime, isDown: true) {
+            WisdomTimerConfig.removeValue(forKey: key)
+        }
+        print(key)
+        WisdomTimerConfig[key]=timer
+    }
+    
+    static func suspendTimer(able: WisdomTimerable){
+        
+    }
+    
+    static func resumeTimer(able: WisdomTimerable){
+        
+    }
+    
+    static func destroyTimer(able: WisdomTimerable){
+        
     }
 }
