@@ -153,3 +153,65 @@ extension WisdomProtocolCore: WisdomProtocolRouterable{
         return nil
     }
 }
+
+extension WisdomProtocolCore: WisdomCodingCoreable {
+    
+    static func decodable<T>(_ type: T.Type, value: Any)->T? where T: Decodable{
+        guard let data = try? JSONSerialization.data(withJSONObject: value) else {
+            return nil
+        }
+        let decoder = JSONDecoder()
+        decoder.nonConformingFloatDecodingStrategy = .convertFromString(positiveInfinity: "+Infinity", negativeInfinity: "-Infinity", nan: "NaN")
+        return try? decoder.decode(type, from: data)
+    }
+    
+    static func decodable<T>(_ type: T.Type, list: [[String:Any]])->[T] where T: Decodable{
+        let result: [T] = list.compactMap { value in
+            let able = Self.decodable(type, value: value)
+            assert(able==nil, "decodable failure: \(value)")
+            return able
+        }
+        return result
+    }
+    
+    static func jsonable<T>(_ type: T.Type, json: String)->T? where T: Decodable{
+        let decoder = JSONDecoder()
+        decoder.nonConformingFloatDecodingStrategy = .convertFromString(positiveInfinity: "+Infinity", negativeInfinity: "-Infinity", nan: "NaN")
+        guard let able = try? decoder.decode(type, from: json.data(using: .utf8)!) else {
+            return nil
+        }
+        return able
+    }
+    
+    static func jsonable<T>(_ type: T.Type, jsons: String)->[T] where T: Decodable{
+        guard let jsonsData = jsons.data(using: .utf8) else {
+            return []
+        }
+        guard let array = try? JSONSerialization.jsonObject(with: jsonsData, options: .mutableContainers), let result = array as? [[String:Any]] else {
+            return []
+        }
+        return decodable(type, list: result)
+    }
+    
+    static func ableJson<T>(_ able: T)->String? where T: Encodable{
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        guard let data = try? encoder.encode(able) else {
+            return nil
+        }
+        return String(data: data, encoding: .utf8)
+    }
+    
+    static func ableEncod<T>(_ able: T)->[String:Any]? where T: Encodable{
+        if let jsonString = ableJson(able){
+            guard let jsonData = jsonString.data(using: .utf8) else {
+                return nil
+            }
+            guard let dict = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers), let result = dict as? [String:Any] else {
+                return nil
+            }
+            return result
+        }
+        return nil
+    }
+}

@@ -7,61 +7,48 @@
 
 import UIKit
 
-// https://www.jianshu.com/p/a73c3874c48a?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes
 public protocol WisdomCodingable {
-
+    
 }
 
 extension WisdomCodingable where Self: Decodable {
     
     // MARK: Param - [String: Any], return - Self?
-    // Swift 字典转模型, Decodable协议
-    public static func decodable(value: Any)->Self?{
-        guard let data = try? JSONSerialization.data(withJSONObject: value) else {
-            return nil
-        }
-        let decoder = JSONDecoder()
-        decoder.nonConformingFloatDecodingStrategy = .convertFromString(positiveInfinity: "+Infinity", negativeInfinity: "-Infinity", nan: "NaN")
-        return try? decoder.decode(Self.self, from: data)
+    // swift dictionary to dictionary model, use Decodable protocol
+    public static func decodable(value: [String: Any])->Self?{
+        return WisdomProtocolCore.decodable(Self.self, value: value)
+    }
+    
+    // MARK: Param - [String: Any], return - [Self]
+    // swift dictionary list to dictionary model list, use Decodable protocol
+    public static func decodable(list: [[String: Any]])->[Self]{
+        return WisdomProtocolCore.decodable(Self.self, list: list)
     }
     
     // MARK: Param - String, return - Self?
-    // Swift Json字符串转模型, Decodable协议
+    // swift json string to model, use Decodable protocol
     public static func jsonable(json: String)->Self?{
-        let decoder = JSONDecoder()
-        decoder.nonConformingFloatDecodingStrategy = .convertFromString(positiveInfinity: "+Infinity", negativeInfinity: "-Infinity", nan: "NaN")
-        guard let able = try? decoder.decode(Self.self, from: json.data(using: .utf8)!) else {
-            return nil
-        }
-        return able
+        return WisdomProtocolCore.jsonable(Self.self, json: json)
+    }
+    
+    // MARK: Param - String, return - [Self]
+    // swift jsons string to model list, use Decodable protocol
+    public static func jsonable(jsons: String)->[Self]{
+        return WisdomProtocolCore.jsonable(Self.self, jsons: jsons)
     }
 }
 
 extension WisdomCodingable where Self: Encodable {
     
     // MARK: return - String?
-    // Swift 模型转Json字符串, Encodable协议
+    // swift model to json string, use Encodable protocol
     public func ableJson()->String?{
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        guard let data = try? encoder.encode(self) else {
-            return nil
-        }
-        return String(data: data, encoding: .utf8)
+        return WisdomProtocolCore.ableJson(self)
     }
     
     // MARK: return - [String:Any]?
-    // Swift 模型转字典, Encodable协议
-    public func ableEncod()->[String:Any]? {
-        if let jsonString = ableJson() {
-            guard let jsonData = jsonString.data(using: .utf8) else {
-                return nil
-            }
-            guard let dict = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers), let result = dict as? [String:Any] else {
-                return nil
-            }
-            return result
-        }
-        return nil
+    // swift model to dictionary, use Encodable protocol
+    public func ableEncod()->[String:Any]?{
+        return WisdomProtocolCore.ableEncod(self)
     }
 }

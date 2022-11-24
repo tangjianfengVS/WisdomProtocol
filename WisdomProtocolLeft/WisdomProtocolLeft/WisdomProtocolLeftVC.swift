@@ -224,6 +224,12 @@ extension WisdomProtocolLeftVI: WisdomRouterParamable{
             
             let model = WisdomProtocolLeftModel.decodable(value: colorDic)
             
+//            let dict = model?.ableEncod()
+//
+//            let json = model?.ableJson() ?? "{\n  \"bgColor\" : \"708069\",\n  \"codeColor\" : \"33A1C9\",\n  \"textColor\" : \"FFFFFF\"\n}"
+//            
+//            let json_model = WisdomProtocolLeftModel.jsonable(json: json)
+            
             if let bgColor = model?.bgColor {
                 backgroundColor = bgColor.uicolor()
             }

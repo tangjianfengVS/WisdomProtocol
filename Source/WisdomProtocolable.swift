@@ -58,3 +58,18 @@ protocol WisdomProtocolCreateable {
     
     static func create(projectName: String, protocolName: String)->Protocol?
 }
+
+protocol WisdomCodingCoreable {
+    
+    static func decodable<T>(_ type: T.Type, value: Any)->T? where T: Decodable
+    
+    static func decodable<T>(_ type: T.Type, list: [[String: Any]])->[T] where T: Decodable
+    
+    static func jsonable<T>(_ type: T.Type, json: String)->T? where T: Decodable
+    
+    static func jsonable<T>(_ type: T.Type, jsons: String)->[T] where T: Decodable
+    
+    static func ableJson<T>(_ able: T)->String? where T: Encodable
+    
+    static func ableEncod<T>(_ able: T)->[String:Any]? where T: Encodable
+}
