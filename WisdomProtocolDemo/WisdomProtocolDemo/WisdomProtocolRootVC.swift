@@ -46,7 +46,7 @@ class WisdomProtocolRootVC: UIViewController, WisdomRegisterable, WisdomProtocol
             make.edges.equalTo(view)
         }
         
-        startDownTimer(totalTime: 30)
+        //startDownTimer(totalTime: 30)
     }
 }
 

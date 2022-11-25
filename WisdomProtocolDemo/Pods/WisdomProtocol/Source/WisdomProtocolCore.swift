@@ -15,7 +15,9 @@ struct WisdomProtocolCore {
     
     private static var WisdomTimerConfig: [String:WisdomTimerModel] = [:]
     
-    private static var WisdomSwiftTimerConfig: [String:WisdomSwiftTimerModel] = [:]
+    private static var WisdomObjectTimerConfig: [String:WisdomObjectTimerModel] = [:]
+    
+    private static var WisdomValueTimerConfig: [String:WisdomValueTimerModel] = [:]
     
     // MARK: registerProtocol protocol class
     private static func registerableConfig(register aProtocol: Protocol, conform aClass: AnyClass)->Protocol {
@@ -42,9 +44,9 @@ struct WisdomProtocolCore {
         return key
     }
     
-    private static func getTimerableKey(swiftable: WisdomSwiftTimerable)->String {
-        let key = "\(unsafeBitCast(swiftable, to: Int64.self))"
-        assert(key.count>0, "unsafeBitCast failure: \(swiftable)")
+    private static func getTimerableKey(objectable: AnyObject)->String {
+        let key = "\(unsafeBitCast(objectable, to: Int64.self))"
+        assert(key.count>0, "unsafeBitCast failure: \(objectable)")
         return key
     }
 }
@@ -298,74 +300,73 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
 
 extension WisdomProtocolCore: WisdomSwiftTimerCoreable {
     
-    
-    static func getSwiftTimer(key: String)->WisdomSwiftTimerModel?{
-        return WisdomSwiftTimerConfig[key]
+    static func startAddTimer(objable: WisdomSwiftTimerable&AnyObject, startTime: NSInteger) {
+        let key = getTimerableKey(objectable: objable)
+        if key.count > 0 {
+            if let historyable = WisdomObjectTimerConfig[key] {
+                historyable.destroy()
+                WisdomObjectTimerConfig.removeValue(forKey: key)
+            }
+
+            let timer = WisdomObjectTimerModel(able: objable, currentTime: startTime, isDown: false) {
+                WisdomObjectTimerConfig.removeValue(forKey: key)
+            }
+            WisdomObjectTimerConfig[key]=timer
+        }
+    }
+
+    static func startDownTimer(objable: WisdomSwiftTimerable&AnyObject, totalTime: NSInteger) {
+        let key = getTimerableKey(objectable: objable)
+        if key.count > 0 {
+            if let historyable = WisdomObjectTimerConfig[key] {
+                historyable.destroy()
+                WisdomObjectTimerConfig.removeValue(forKey: key)
+            }
+
+            let timer = WisdomObjectTimerModel(able: objable, currentTime: totalTime, isDown: true) {
+                WisdomObjectTimerConfig.removeValue(forKey: key)
+            }
+            WisdomObjectTimerConfig[key]=timer
+        }
+    }
+
+    static func suspendTimer(objable: WisdomSwiftTimerable&AnyObject) {
+        let key = getTimerableKey(objectable: objable)
+        if key.count > 0 {
+            if let historyable = WisdomObjectTimerConfig[key] {
+                historyable.suspend()
+            }
+        }
+    }
+
+    static func resumeTimer(objable: WisdomSwiftTimerable&AnyObject) {
+        let key = getTimerableKey(objectable: objable)
+        if key.count > 0 {
+            if let historyable = WisdomObjectTimerConfig[key] {
+                historyable.resume()
+            }
+        }
+    }
+
+    static func destroyTimer(objable: WisdomSwiftTimerable&AnyObject) {
+        let key = getTimerableKey(objectable: objable)
+        if key.count > 0 {
+            if let historyable = WisdomObjectTimerConfig[key] {
+                historyable.destroy()
+                WisdomObjectTimerConfig.removeValue(forKey: key)
+            }
+        }
     }
     
-    static func setSwiftTimer(timer: WisdomSwiftTimerModel, key: String){
-        WisdomSwiftTimerConfig[key]=timer
+    static func getValueTimer(key: String)->WisdomValueTimerModel?{
+        return WisdomValueTimerConfig[key]
     }
     
-    static func remSwiftTimer(key: String){
-        WisdomSwiftTimerConfig.removeValue(forKey: key)
+    static func setValueTimer(timer: WisdomValueTimerModel, key: String){
+        WisdomValueTimerConfig[key]=timer
     }
     
-//    static func startAddTimer(swiftable: inout WisdomSwiftTimerable, startTime: NSInteger) {
-//        let key = getTimerableKey(swiftable: swiftable)
-//        if key.count > 0 {
-//            if let historyable = WisdomSwiftTimerConfig[key] {
-//                historyable.destroy()
-//                WisdomSwiftTimerConfig.removeValue(forKey: key)
-//            }
-//
-////            let timer = WisdomTimerModel(able: able, currentTime: startTime, isDown: false) {
-////                WisdomSwiftTimerConfig.removeValue(forKey: key)
-////            }
-////            WisdomSwiftTimerConfig[key]=timer
-//        }
-//    }
-//
-//    static func startDownTimer(swiftable: inout WisdomSwiftTimerable, totalTime: NSInteger) {
-//        let key = getTimerableKey(swiftable: swiftable)
-//        if key.count > 0 {
-//            if let historyable = WisdomSwiftTimerConfig[key] {
-//                historyable.destroy()
-//                WisdomSwiftTimerConfig.removeValue(forKey: key)
-//            }
-//
-////            let timer = WisdomTimerModel(able: able, currentTime: startTime, isDown: false) {
-////                WisdomSwiftTimerConfig.removeValue(forKey: key)
-////            }
-////            WisdomSwiftTimerConfig[key]=timer
-//        }
-//    }
-//
-//    static func suspendTimer(swiftable: inout WisdomSwiftTimerable) {
-//        let key = getTimerableKey(swiftable: swiftable)
-//        if key.count > 0 {
-//            if let historyable = WisdomSwiftTimerConfig[key] {
-//                historyable.suspend()
-//            }
-//        }
-//    }
-//
-//    static func resumeTimer(swiftable: inout WisdomSwiftTimerable) {
-//        let key = getTimerableKey(swiftable: swiftable)
-//        if key.count > 0 {
-//            if let historyable = WisdomSwiftTimerConfig[key] {
-//                historyable.resume()
-//            }
-//        }
-//    }
-//
-//    static func destroyTimer(swiftable: inout WisdomSwiftTimerable) {
-//        let key = getTimerableKey(swiftable: swiftable)
-//        if key.count > 0 {
-//            if let historyable = WisdomSwiftTimerConfig[key] {
-//                historyable.destroy()
-//                WisdomSwiftTimerConfig.removeValue(forKey: key)
-//            }
-//        }
-//    }
+    static func remValueTimer(key: String){
+        WisdomValueTimerConfig.removeValue(forKey: key)
+    }
 }

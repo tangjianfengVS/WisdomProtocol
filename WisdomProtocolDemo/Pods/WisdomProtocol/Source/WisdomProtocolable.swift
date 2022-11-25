@@ -88,20 +88,20 @@ protocol WisdomTimerCoreable {
 }
 
 protocol WisdomSwiftTimerCoreable {
-    
-    static func getSwiftTimer(key: String)->WisdomSwiftTimerModel?
-    
-    static func setSwiftTimer(timer: WisdomSwiftTimerModel, key: String)
-    
-    static func remSwiftTimer(key: String)
 
-//    static func startAddTimer(swiftable: inout WisdomSwiftTimerable, startTime: NSInteger)
-//
-//    static func startDownTimer(swiftable: inout WisdomSwiftTimerable, totalTime: NSInteger)
-//
-//    static func suspendTimer(swiftable: inout WisdomSwiftTimerable)
-//
-//    static func resumeTimer(swiftable: inout WisdomSwiftTimerable)
-//
-//    static func destroyTimer(swiftable: inout WisdomSwiftTimerable)
+    static func startAddTimer(objable: WisdomSwiftTimerable&AnyObject, startTime: NSInteger)
+
+    static func startDownTimer(objable: WisdomSwiftTimerable&AnyObject, totalTime: NSInteger)
+
+    static func suspendTimer(objable: WisdomSwiftTimerable&AnyObject)
+
+    static func resumeTimer(objable: WisdomSwiftTimerable&AnyObject)
+
+    static func destroyTimer(objable: WisdomSwiftTimerable&AnyObject)
+    
+    static func getValueTimer(key: String)->WisdomValueTimerModel?
+    
+    static func setValueTimer(timer: WisdomValueTimerModel, key: String)
+    
+    static func remValueTimer(key: String)
 }

@@ -65,75 +65,105 @@ public protocol WisdomSwiftTimerable {
     func timerable(swiftTimerDid timerable: WisdomSwiftTimerable)
 }
 
+var Key = "nsh_DescriptiveName"
+
 extension WisdomSwiftTimerable {
 
     // MARK: Param - NSInteger
     // * Start a timer task, start the timer time point
-    public func startAddTimer(startTime: NSInteger){
-        let key = "\(unsafeBitCast(self, to: Int64.self))"
-        assert(key.count>0, "unsafeBitCast failure: \(self)")
-        if key.count > 0 {
-            if let historyable = WisdomProtocolCore.getSwiftTimer(key: key) {
-                historyable.destroy()
-                WisdomProtocolCore.remSwiftTimer(key: key)
-            }
-            
-            let sss = &self
-            let timer = WisdomSwiftTimerModel(currentTime: startTime, isDown: false) { [weak self] currentTime in
-//                if let timerable = self {
-//                    timerable.timerable(swiftTimerDid: currentTime, timerable: timerable)
-//                    return true
-//                }
-                return false
-            } endClosure: {
-                
-            } destroyClosure: {
-                WisdomProtocolCore.remSwiftTimer(key: key)
-            }
-            
-            WisdomProtocolCore.setSwiftTimer(timer: timer, key: key)
+    public func startAddTimer(swiftStartTime startTime: NSInteger){
+        if let objable = self as? (WisdomSwiftTimerable&AnyObject) {
+            WisdomProtocolCore.startAddTimer(objable: objable, startTime: startTime)
         }
     }
     
     // MARK: Param - NSInteger
     // * Start a countdown task, start the total time countdown
-    public func startDownTimer(totalTime: NSInteger){
-        let key = "\(unsafeBitCast(self, to: Int64.self))"
-        assert(key.count>0, "unsafeBitCast failure: \(self)")
-        if key.count > 0 {
-            if let historyable = WisdomProtocolCore.getSwiftTimer(key: key) {
+    public func startDownTimer(swiftTotalTime totalTime: NSInteger){
+        if let objable = self as? (WisdomSwiftTimerable&AnyObject) {
+            WisdomProtocolCore.startDownTimer(objable: objable, totalTime: totalTime)
+        }else {
+            if let historyable = objc_getAssociatedObject(self, &Key) as? WisdomValueTimerModel{
                 historyable.destroy()
-                WisdomProtocolCore.remSwiftTimer(key: key)
+                objc_setAssociatedObject(self, &Key, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             }
             
-            let timer = WisdomSwiftTimerModel(currentTime: totalTime, isDown: false) { [weak self] currentTime in
-//                if let timerable = self {
-//                    timerable.timerable(swiftTimerDid: currentTime, timerable: timerable)
-//                    return true
-//                }
-                return false
-            } endClosure: {
-                
-            } destroyClosure: {
-                WisdomProtocolCore.remSwiftTimer(key: key)
-            }
-            
-            WisdomProtocolCore.setSwiftTimer(timer: timer, key: key)
+            let timer = WisdomValueTimerModel(currentTime: totalTime,
+                                              isDown: true,
+                                              didClosure: didClosure(currentTime:),
+                                              endClosure: endClosure,
+                                              destroyClosure: destroyClosure)
+            objc_setAssociatedObject(self, &Key, timer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 
     // MARK: Timer - suspend
-    public func suspendTimer(){
-//        WisdomProtocolCore.suspendTimer(swiftable: self)
+    public func suspendSwiftTimer(){
+        if let objable = self as? (WisdomSwiftTimerable&AnyObject) {
+            WisdomProtocolCore.suspendTimer(objable: objable)
+        }
     }
 
     // MARK: Timer - resume
-    public func resumeTimer(){
-//        WisdomProtocolCore.resumeTimer(swiftable: self)
+    public func resumeSwiftTimer(){
+        if let objable = self as? (WisdomSwiftTimerable&AnyObject) {
+            WisdomProtocolCore.resumeTimer(objable: objable)
+        }
     }
 
     // MARK: Timer - destroy
-    public func destroyTimer(){
-//        WisdomProtocolCore.destroyTimer(swiftable: self)
+    public func destroySwiftTimer(){
+        if let objable = self as? (WisdomSwiftTimerable&AnyObject) {
+            WisdomProtocolCore.destroyTimer(objable: objable)
+        }
+    }
+    
+    func didClosure(currentTime: NSInteger)->Bool {
+        timerable(swiftTimerDid: currentTime, timerable: self)
+        return false
+    }
+    
+    func endClosure(){
+        timerable(swiftTimerDid: 0, timerable: self)
+    }
+    
+    func destroyClosure() {
+        objc_setAssociatedObject(self, &Key, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 }
+
+
+
+
+//https://www.jianshu.com/p/4303f1fa8352
+//            var ptr = withUnsafePointer(to: &self) { UnsafeRawPointer($0) }
+//            let key = "\(ptr)"
+//            print(ptr)
+//            assert(key.count>0, "unsafeBitCast failure: \(ptr)")
+//            if key.count > 0 {
+//                if let historyable = WisdomProtocolCore.getValueTimer(key: key) {
+//                    historyable.destroy()
+//                    WisdomProtocolCore.remValueTimer(key: key)
+//                }
+//
+//                let timer = WisdomValueTimerModel(currentTime: totalTime, isDown: false) { currentTime in
+//                    return setTimerDid(currentTime: currentTime)
+//                } endClosure: {
+//    //                setTimerEnd()
+//                } destroyClosure: {
+//                    WisdomProtocolCore.remValueTimer(key: key)
+//                }
+//                WisdomProtocolCore.setValueTimer(timer: timer, key: key)
+//
+//                objc_setAssociatedObject(self, &Key, timer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+//            }
+
+//            func setTimerDid(currentTime: NSInteger)->Bool{
+//                if let ad = ptr as? WisdomSwiftTimerable {
+//                    ad.timerable(swiftTimerDid: currentTime, timerable: ad)
+//                    return true
+//                }
+//                let ad = ptr as! WisdomSwiftTimerable
+//                ad.timerable(swiftTimerDid: currentTime, timerable: ad)
+//                return true
+//            }
