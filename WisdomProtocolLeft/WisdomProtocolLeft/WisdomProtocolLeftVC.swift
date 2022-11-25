@@ -91,7 +91,7 @@ extension WisdomProtocolLeftVC: WisdomRouterControlable {
 
 extension WisdomProtocolLeftVC: WisdomTimerable {
     
-    func timerable(_ timerable: WisdomTimerable, timerDid currentTime: NSInteger){
+    func timerable(timerDid currentTime: NSInteger, timerable: WisdomTimerable){
         print("WisdomProtocolLeftVC timerDid: \(currentTime)")
     }
     
@@ -241,6 +241,10 @@ extension WisdomProtocolLeftVI: WisdomRouterParamable{
             
             model?.startDownTimer(totalTime: 20)
             
+            let rawModel = WisdomProtocolLeftRawModel.decodable(value: colorDic)
+            
+            //model?.startDownTimer(totalTime: 20)
+            
 //            let dict = model?.ableEncod()
 //
 //            let json = model?.ableJson() ?? "{\n  \"bgColor\" : \"708069\",\n  \"codeColor\" : \"33A1C9\",\n  \"textColor\" : \"FFFFFF\"\n}"
@@ -276,7 +280,7 @@ extension WisdomProtocolLeftVI: WisdomRouterParamable{
 
 extension WisdomProtocolLeftVI: WisdomTimerable {
     
-    func timerable(_ timerable: WisdomTimerable, timerDid currentTime: NSInteger){
+    func timerable(timerDid currentTime: NSInteger, timerable: WisdomTimerable){
         print("WisdomProtocolLeftVI timerDid: \(currentTime)")
     }
     

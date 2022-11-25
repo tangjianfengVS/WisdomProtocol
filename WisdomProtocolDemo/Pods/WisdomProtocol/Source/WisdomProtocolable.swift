@@ -86,3 +86,22 @@ protocol WisdomTimerCoreable {
     
     static func destroyTimer(able: WisdomTimerable)
 }
+
+protocol WisdomSwiftTimerCoreable {
+    
+    static func getSwiftTimer(key: String)->WisdomSwiftTimerModel?
+    
+    static func setSwiftTimer(timer: WisdomSwiftTimerModel, key: String)
+    
+    static func remSwiftTimer(key: String)
+
+//    static func startAddTimer(swiftable: inout WisdomSwiftTimerable, startTime: NSInteger)
+//
+//    static func startDownTimer(swiftable: inout WisdomSwiftTimerable, totalTime: NSInteger)
+//
+//    static func suspendTimer(swiftable: inout WisdomSwiftTimerable)
+//
+//    static func resumeTimer(swiftable: inout WisdomSwiftTimerable)
+//
+//    static func destroyTimer(swiftable: inout WisdomSwiftTimerable)
+}

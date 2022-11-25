@@ -19,7 +19,7 @@ class WisdomProtocolLeftModel: Codable, WisdomCodingable {
 
 extension WisdomProtocolLeftModel: WisdomTimerable {
 
-    func timerable(_ timerable: WisdomTimerable, timerDid currentTime: NSInteger){
+    func timerable(timerDid currentTime: NSInteger, timerable: WisdomTimerable){
         print("WisdomProtocolLeftModel timerDid: \(currentTime)")
     }
 
@@ -27,6 +27,28 @@ extension WisdomProtocolLeftModel: WisdomTimerable {
 
     }
 }
+
+
+struct WisdomProtocolLeftRawModel: Codable, WisdomCodingable {
+    
+    var bgColor: String?
+    
+    var textColor: String?
+    
+    var codeColor: String?
+}
+
+extension WisdomProtocolLeftRawModel: WisdomSwiftTimerable {
+    
+    func timerable(swiftTimerDid currentTime: NSInteger, timerable: WisdomSwiftTimerable) {
+        print("\(self.self) swiftTimerDid: \(currentTime)")
+    }
+    
+    func timerable(swiftTimerDid timerable: WisdomSwiftTimerable) {
+        
+    }
+}
+
 
 
 extension String {

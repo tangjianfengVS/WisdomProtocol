@@ -8,22 +8,19 @@
 import UIKit
 
 
-final class WisdomTimerModel {
+class WisdomTimerBaseModel {
     
-    private let isDown: Bool
-    
-    private weak var able: WisdomTimerable?
+    fileprivate let isDown: Bool
 
-    private var currentTime: NSInteger=0
+    fileprivate var currentTime: NSInteger=0
     
-    private let destroyClosure: ()->()
+    fileprivate let destroyClosure: ()->()
 
-    private var timer: DispatchSourceTimer?
+    fileprivate var timer: DispatchSourceTimer?
     
-    private var historyTime: CFAbsoluteTime?
+    fileprivate var historyTime: CFAbsoluteTime?
     
-    init(able: WisdomTimerable, currentTime: NSInteger, isDown: Bool, destroyClosure: @escaping ()->()){
-        self.able = able
+    init(currentTime: NSInteger, isDown: Bool, destroyClosure: @escaping ()->()){
         self.currentTime = currentTime
         self.isDown = isDown
         self.destroyClosure = destroyClosure
@@ -40,44 +37,15 @@ final class WisdomTimerModel {
         timer?.resume()
 
         NotificationCenter.default.addObserver(self, selector:#selector(becomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
-
         NotificationCenter.default.addObserver(self, selector:#selector(becomeDeath), name: UIApplication.willResignActiveNotification, object: nil)
-    }
-    
-    deinit {
-        print("")
     }
 }
 
-extension WisdomTimerModel {
+extension WisdomTimerBaseModel {
     
-    private func startAddTimer() {
-        if let timerable = able {
-            timerable.timerable(timerable, timerDid: currentTime)
-            currentTime += 1
-        }else {
-            destroy()
-            destroyClosure()
-        }
-    }
+    @objc fileprivate func startAddTimer() {}
     
-    private func startDownTimer() {
-        if let timerable = able {
-            if currentTime>0 {
-                timerable.timerable(timerable, timerDid: currentTime)
-                
-                currentTime -= 1
-            }else {
-                timerable.timerable(timerable, timerDid: 0)
-                timerable.timerable(timeEnd: timerable)
-                destroy()
-                destroyClosure()
-            }
-        }else {
-            destroy()
-            destroyClosure()
-        }
-    }
+    @objc fileprivate func startDownTimer() {}
     
     @objc private func becomeDeath(noti:Notification){
         if let sourceTimer = timer {
@@ -89,19 +57,82 @@ extension WisdomTimerModel {
         }
     }
 
-    @objc private func becomeActive(noti:Notification){
+    @objc fileprivate func becomeActive(noti:Notification){}
+    
+    @objc func suspend() {
+        
+    }
+    
+    @objc func resume() {
+        
+    }
+    
+    @objc func destroy() {
+        timer?.cancel()
+        timer = nil
+        historyTime = nil
+        NotificationCenter.default.removeObserver(self)
+    }
+}
+
+
+final class WisdomTimerModel: WisdomTimerBaseModel {
+    
+    private weak var able: WisdomTimerable?
+    
+    init(able: WisdomTimerable, currentTime: NSInteger, isDown: Bool, destroyClosure: @escaping ()->()){
+        self.able = able
+        super.init(currentTime: currentTime, isDown: isDown, destroyClosure: destroyClosure)
+    }
+    
+    deinit {
+        print("")
+    }
+}
+
+extension WisdomTimerModel {
+    
+    fileprivate override func startAddTimer() {
+        if let timerable = able {
+            timerable.timerable(timerDid: currentTime, timerable: timerable)
+            currentTime += 1
+        }else {
+            destroy()
+            destroyClosure()
+        }
+    }
+    
+    fileprivate override func startDownTimer() {
+        if let timerable = able {
+            if currentTime>0 {
+                timerable.timerable(timerDid: currentTime, timerable: timerable)
+                
+                currentTime -= 1
+            }else {
+                timerable.timerable(timerDid: 0, timerable: timerable)
+                timerable.timerable(timeEnd: timerable)
+                destroy()
+                destroyClosure()
+            }
+        }else {
+            destroy()
+            destroyClosure()
+        }
+    }
+
+    fileprivate override func becomeActive(noti:Notification){
         if let timerable = able, let sourceTimer = timer, let curTime = historyTime {
             let poor = CFAbsoluteTimeGetCurrent()-curTime
             if poor>=1 {
                 if isDown {
                     currentTime = currentTime-NSInteger(poor)
                     if currentTime<=0 {
-                        timerable.timerable(timerable, timerDid: 0)
+                        timerable.timerable(timerDid: 0, timerable: timerable)
                         timerable.timerable(timeEnd: timerable)
                         destroy()
                         destroyClosure()
                     }else {
-                        timerable.timerable(timerable, timerDid: currentTime)
+                        timerable.timerable(timerDid: currentTime, timerable: timerable)
                     }
                 }else {
                     currentTime = currentTime+NSInteger(poor)
@@ -115,19 +146,104 @@ extension WisdomTimerModel {
         }
     }
     
-    func suspend() {
+    @objc override func suspend() {
         
     }
     
-    func resume() {
+    @objc override func resume() {
         
     }
     
-    func destroy() {
-        timer?.cancel()
-        timer = nil
-        historyTime = nil
+    @objc override func destroy() {
+        super.destroy()
         able = nil
-        NotificationCenter.default.removeObserver(self)
+    }
+}
+
+
+final class WisdomSwiftTimerModel: WisdomTimerBaseModel {
+    
+    private let didClosure: (NSInteger)->(Bool)
+    
+    private let endClosure: ()->()
+    
+    init(currentTime: NSInteger,
+         isDown: Bool,
+         didClosure: @escaping (NSInteger)->(Bool),
+         endClosure: @escaping ()->(),
+         destroyClosure: @escaping ()->()){
+        self.didClosure = didClosure
+        self.endClosure = endClosure
+        super.init(currentTime: currentTime, isDown: isDown, destroyClosure: destroyClosure)
+    }
+    
+    deinit {
+        print("")
+    }
+}
+
+extension WisdomSwiftTimerModel {
+    
+    fileprivate override func startAddTimer() {
+        if didClosure(currentTime){
+            currentTime += 1
+        }else {
+            destroy()
+            destroyClosure()
+        }
+    }
+    
+    fileprivate override func startDownTimer() {
+        if currentTime>0 {
+            if didClosure(currentTime){
+                currentTime -= 1
+            }else {
+                destroy()
+                destroyClosure()
+            }
+        }else {
+            _=didClosure(0)
+            endClosure()
+            destroy()
+            destroyClosure()
+        }
+    }
+
+    fileprivate override func becomeActive(noti:Notification){
+//        if let timerable = able, let sourceTimer = timer, let curTime = historyTime {
+//            let poor = CFAbsoluteTimeGetCurrent()-curTime
+//            if poor>=1 {
+//                if isDown {
+//                    currentTime = currentTime-NSInteger(poor)
+//                    if currentTime<=0 {
+//                        timerable.timerable(swiftTimerDid: 0, timerable: timerable)
+//                        timerable.timerable(swiftTimerDid: timerable)
+//                        destroy()
+//                        destroyClosure()
+//                    }else {
+//                        timerable.timerable(swiftTimerDid: currentTime, timerable: timerable)
+//                    }
+//                }else {
+//                    currentTime = currentTime+NSInteger(poor)
+//                }
+//            }
+//            historyTime = nil
+//            sourceTimer.resume()
+//        }else {
+//            destroy()
+//            destroyClosure()
+//        }
+    }
+    
+    @objc override func suspend() {
+        
+    }
+    
+    @objc override func resume() {
+        
+    }
+    
+    @objc override func destroy() {
+        super.destroy()
     }
 }
