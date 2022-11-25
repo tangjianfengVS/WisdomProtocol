@@ -46,7 +46,7 @@ class WisdomProtocolRootVC: UIViewController, WisdomRegisterable, WisdomProtocol
             make.edges.equalTo(view)
         }
         
-        startDownTimer(totalTime: 10)
+        startDownTimer(totalTime: 30)
     }
 }
 
@@ -140,11 +140,11 @@ extension WisdomProtocolRootVC: WisdomRouterControlable {
 
 extension WisdomProtocolRootVC: WisdomTimerable {
     
-    func timerDid(currentTime: NSInteger) {
-        print("timerDid: \(currentTime)")
+    func timerable(_ timerable: WisdomTimerable, timerDid currentTime: NSInteger){
+        print("WisdomProtocolRootVC timerDid: \(currentTime)")
     }
     
-    func timerEnd() {
+    func timerable(timeEnd timerable: WisdomTimerable){
         
     }
 }

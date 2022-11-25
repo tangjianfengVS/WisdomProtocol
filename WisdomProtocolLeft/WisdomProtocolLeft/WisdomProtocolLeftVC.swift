@@ -91,11 +91,11 @@ extension WisdomProtocolLeftVC: WisdomRouterControlable {
 
 extension WisdomProtocolLeftVC: WisdomTimerable {
     
-    func timerDid(currentTime: NSInteger) {
+    func timerable(_ timerable: WisdomTimerable, timerDid currentTime: NSInteger){
         print("WisdomProtocolLeftVC timerDid: \(currentTime)")
     }
     
-    func timerEnd() {
+    func timerable(timeEnd timerable: WisdomTimerable){
         
     }
 }
@@ -239,6 +239,8 @@ extension WisdomProtocolLeftVI: WisdomRouterParamable{
             
             let model = WisdomProtocolLeftModel.decodable(value: colorDic)
             
+            model?.startDownTimer(totalTime: 20)
+            
 //            let dict = model?.ableEncod()
 //
 //            let json = model?.ableJson() ?? "{\n  \"bgColor\" : \"708069\",\n  \"codeColor\" : \"33A1C9\",\n  \"textColor\" : \"FFFFFF\"\n}"
@@ -265,6 +267,8 @@ extension WisdomProtocolLeftVI: WisdomRouterParamable{
             paramLabel.text = " 6. 参数路由代码示例：\n\n (1). WisdomProtocolLeftVI 需实现协议: \n -- WisdomRouterParamable 参数路由协议\n\n // MARK: 调用 路由参数方法\nlet param = ['bgColor':bgColor,'textColor':textColor,'codeColor':codeColor]\n (self?.viewable as? WisdomRouterParamable)?.routerParamable?(param: param)\n"
         }
         
+        destroyTimer()
+        
         startAddTimer(startTime: 99)
     }
 }
@@ -272,11 +276,11 @@ extension WisdomProtocolLeftVI: WisdomRouterParamable{
 
 extension WisdomProtocolLeftVI: WisdomTimerable {
     
-    func timerDid(currentTime: NSInteger) {
-        print("WisdomProtocolLeftVC timerDid: \(currentTime)")
+    func timerable(_ timerable: WisdomTimerable, timerDid currentTime: NSInteger){
+        print("WisdomProtocolLeftVI timerDid: \(currentTime)")
     }
     
-    func timerEnd() {
+    func timerable(timeEnd timerable: WisdomTimerable){
         
     }
 }

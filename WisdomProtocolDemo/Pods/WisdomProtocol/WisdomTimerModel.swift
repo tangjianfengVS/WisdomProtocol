@@ -39,9 +39,9 @@ final class WisdomTimerModel {
         }
         timer?.resume()
 
-//        NotificationCenter.default.addObserver(self, selector:#selector(becomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
-//
-//        NotificationCenter.default.addObserver(self, selector:#selector(becomeDeath), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(becomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector:#selector(becomeDeath), name: UIApplication.willResignActiveNotification, object: nil)
     }
     
     deinit {
@@ -53,7 +53,7 @@ extension WisdomTimerModel {
     
     private func startAddTimer() {
         if let timerable = able {
-            timerable.timerDid(currentTime: currentTime)
+            timerable.timerable(timerable, timerDid: currentTime)
             currentTime += 1
         }else {
             destroy()
@@ -64,12 +64,12 @@ extension WisdomTimerModel {
     private func startDownTimer() {
         if let timerable = able {
             if currentTime>0 {
-                timerable.timerDid(currentTime: currentTime)
+                timerable.timerable(timerable, timerDid: currentTime)
                 
                 currentTime -= 1
             }else {
-                timerable.timerDid(currentTime: 0)
-                timerable.timerEnd()
+                timerable.timerable(timerable, timerDid: 0)
+                timerable.timerable(timeEnd: timerable)
                 destroy()
                 destroyClosure()
             }
@@ -90,11 +90,19 @@ extension WisdomTimerModel {
     }
 
     @objc private func becomeActive(noti:Notification){
-        if let sourceTimer = timer, let curTime = historyTime {
+        if let timerable = able, let sourceTimer = timer, let curTime = historyTime {
             let poor = CFAbsoluteTimeGetCurrent()-curTime
             if poor>=1 {
                 if isDown {
                     currentTime = currentTime-NSInteger(poor)
+                    if currentTime<=0 {
+                        timerable.timerable(timerable, timerDid: 0)
+                        timerable.timerable(timeEnd: timerable)
+                        destroy()
+                        destroyClosure()
+                    }else {
+                        timerable.timerable(timerable, timerDid: currentTime)
+                    }
                 }else {
                     currentTime = currentTime+NSInteger(poor)
                 }
@@ -105,6 +113,14 @@ extension WisdomTimerModel {
             destroy()
             destroyClosure()
         }
+    }
+    
+    func suspend() {
+        
+    }
+    
+    func resume() {
+        
     }
     
     func destroy() {

@@ -8,13 +8,24 @@
 import UIKit
 import WisdomProtocol
 
-struct WisdomProtocolLeftModel: Codable, WisdomCodingable {
+class WisdomProtocolLeftModel: Codable, WisdomCodingable {
     
     var bgColor: String?
     
     var textColor: String?
     
     var codeColor: String?
+}
+
+extension WisdomProtocolLeftModel: WisdomTimerable {
+
+    func timerable(_ timerable: WisdomTimerable, timerDid currentTime: NSInteger){
+        print("WisdomProtocolLeftModel timerDid: \(currentTime)")
+    }
+
+    func timerable(timeEnd timerable: WisdomTimerable){
+
+    }
 }
 
 
