@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name         = "WisdomProtocol"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "A Protocol of Wisdom SDK"
-  s.description  = "A Protocol of Wisdom SDK. Support protocol routing.Support dictionary /Json, encoding/decoding, turn model."
+  s.description  = "A Protocol of Wisdom SDK. Support protocol routing.Support dictionary /Json, encoding/decoding, turn model.Support timer timer/countdown function protocol."
 
   s.homepage     = "https://github.com/tangjianfengVS/WisdomProtocol"
   s.license      = { :type => "MIT", :file => "LICENSE" }

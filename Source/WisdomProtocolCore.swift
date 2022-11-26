@@ -34,7 +34,7 @@ struct WisdomProtocolCore {
     private static func getTimerableKey(able: WisdomTimerable)->String {
         //let bit = unsafeBitCast(able, to: Int64.self)
         //let res = String.init(format: "%018p", bit)
-        let key: String = "\(unsafeBitCast(able, to: Int64.self))"
+        let key = "\(unsafeBitCast(able, to: Int64.self))"
         print(key)
         assert(key.count>0, "unsafeBitCast failure: \(able)")
         return key
@@ -262,8 +262,8 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
     static func suspendTimer(able: WisdomTimerable){
         let key = getTimerableKey(able: able)
         if key.count > 0 {
-            if let historyable = WisdomTimerConfig[key] {
-                historyable.suspend()
+            if let _ = WisdomTimerConfig[key] {
+                //historyable.suspend()
             }
         }
     }
@@ -271,8 +271,8 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
     static func resumeTimer(able: WisdomTimerable){
         let key = getTimerableKey(able: able)
         if key.count > 0 {
-            if let historyable = WisdomTimerConfig[key] {
-                historyable.resume()
+            if let _ = WisdomTimerConfig[key] {
+                //historyable.resume()
             }
         }
     }

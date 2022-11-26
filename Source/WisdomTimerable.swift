@@ -12,9 +12,9 @@ import UIKit
 // * Support for objective-c/Swift Class
 @objc public protocol WisdomTimerable {
     
-    // MARK: Class Param - WisdomTimerable, NSInteger
+    // MARK: Class Param - NSInteger, WisdomTimerable
     // * Timer task in progress, current time
-    func timerable(_ timerable: WisdomTimerable, timerDid currentTime: NSInteger)
+    func timerable(timerDid currentTime: NSInteger, timerable: WisdomTimerable)
     
     // MARK: Class Param - WisdomTimerable
     // * Example End a scheduled task
@@ -36,59 +36,17 @@ extension WisdomTimerable {
     }
     
     // MARK: Class Timer - suspend
-    public func suspendTimer(){
-        WisdomProtocolCore.suspendTimer(able: self)
-    }
+    //public func suspendTimer(){
+    //    WisdomProtocolCore.suspendTimer(able: self)
+    //}
     
     // MARK: Class Timer - resume
-    public func resumeTimer(){
-        WisdomProtocolCore.resumeTimer(able: self)
-    }
+    //public func resumeTimer(){
+    //    WisdomProtocolCore.resumeTimer(able: self)
+    //}
     
     // MARK: Class Timer - destroy
     public func destroyTimer(){
         WisdomProtocolCore.destroyTimer(able: self)
     }
 }
-
-
-//@objc public protocol WisdomTimerable {
-//
-//    // MARK: Param - WisdomTimerable, NSInteger
-//    // * Timer task in progress, current time *
-//    func timerable(_ timerable: WisdomTimerable, timerDid currentTime: NSInteger)
-//
-//    // MARK: Param - WisdomTimerable
-//    // * Example End a scheduled task *
-//    func timerableEnd(_ timerable: WisdomTimerable)
-//}
-//
-//extension WisdomTimerable {
-//
-//    // MARK: Param - NSInteger
-//    // * Start a timer task, start the timer time point *
-//    public func startAddTimer(startTime: NSInteger){
-////        WisdomProtocolCore.startAddTimer(able: self, startTime: startTime)
-//    }
-//
-//    // MARK: Param - NSInteger
-//    // * Start a countdown task, start the total time countdown *
-//    public func startDownTimer(totalTime: NSInteger){
-////        WisdomProtocolCore.startDownTimer(able: self, totalTime: totalTime)
-//    }
-//
-//    // 暂停
-//    public func suspendTimer(){
-////        WisdomProtocolCore.suspendTimer(able: self)
-//    }
-//
-//    // 继续
-//    public func resumeTimer(){
-////        WisdomProtocolCore.resumeTimer(able: self)
-//    }
-//
-//    // 摧毁
-//    public func destroyTimer(){
-////        WisdomProtocolCore.destroyTimer(able: self)
-//    }
-//}

@@ -131,7 +131,7 @@ class WisdomProtocolLeftVI: UIView, WisdomRegisterable, WisdomProtocolLeftVIProt
         removeFromSuperview()
     }
     
-    private var rawModel = WisdomProtocolLeftRawModel()
+    private var model: WisdomProtocolLeftModel? = WisdomProtocolLeftModel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -204,9 +204,7 @@ class WisdomProtocolLeftVI: UIView, WisdomRegisterable, WisdomProtocolLeftVIProt
         descLabel.text = "4. WisdomProtocolLeftVI 需实现协议: \n\n (1) WisdomRegisterable 注册协议\n\n (2) WisdomRouterViewable 路由协议"
         codeLabel.text = " 5. 路由代码示例：\n\n // MARK: 获取 WisdomRegisterable 协议绑定的UIView\n let viClass = WisdomProtocol.getRouterViewable(from: WisdomProtocolLeftVIProtocol.self)\n\n // MARK: 调用 WisdomRouterViewable 路由UIView方法(无参数)\n _=viClass?.routerViewable?(superview: self.view, param: nil)\n"
         
-        //startDownTimer(totalTime: 10)
-        
-        rawModel.startDownTimer(swiftTotalTime: 20)
+        model?.startDownTimer(totalTime: 33)
     }
     
     required init?(coder: NSCoder) {
@@ -240,21 +238,15 @@ extension WisdomProtocolLeftVI: WisdomRouterParamable{
     
     func routerParamable(param: Any?) {
         if let colorDic = param as? [String:Any] {
+            //model?.suspendTimer()
             
-            let model = WisdomProtocolLeftModel.decodable(value: colorDic)
+            //model?.resumeTimer()
+            
+            //model?.suspendTimer()
+            model = WisdomProtocolLeftModel.decodable(value: colorDic)
             
             // WisdomTimerable
-            //model?.startDownTimer(totalTime: 20)
-            
-            //var objModel = WisdomProtocolLeftObj.decodable(value: colorDic)
-            
-            // WisdomSwiftTimerable
-            //objModel?.startDownTimer(swiftTotalTime: 10)
-            
-            //rawModel = WisdomProtocolLeftRawModel.decodable(value: colorDic)
-            
-            // WisdomSwiftTimerable
-            rawModel.startDownTimer(swiftTotalTime: 20)
+            model?.startDownTimer(totalTime: 20)
             
 //            let dict = model?.ableEncod()
 //

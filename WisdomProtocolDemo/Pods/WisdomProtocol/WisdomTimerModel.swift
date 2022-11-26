@@ -15,6 +15,8 @@ class WisdomTimerBaseModel {
     fileprivate var currentTime: NSInteger=0
     
     fileprivate let destroyClosure: ()->()
+    
+    //fileprivate var isSusspended = false
 
     fileprivate var timer: DispatchSourceTimer?
     
@@ -57,15 +59,41 @@ extension WisdomTimerBaseModel {
         }
     }
 
-    @objc fileprivate func becomeActive(noti:Notification){}
-    
-    @objc func suspend() {
-        
+    @objc fileprivate func becomeActive(noti:Notification){
+        if let curTime = historyTime {
+            let poor = CFAbsoluteTimeGetCurrent()-curTime
+            if isDown {
+                currentTime = currentTime-NSInteger(poor)
+            }else {
+                currentTime = currentTime+NSInteger(poor)
+            }
+            historyTime = nil
+        }
     }
     
-    @objc func resume() {
-        
-    }
+    //@objc func suspend() {
+    //    if let sourceTimer = timer {
+    //        if !isSusspended {
+    //            sourceTimer.suspend()
+    //        }
+    //        isSusspended = true
+    //    }else {
+    //        destroy()
+    //        destroyClosure()
+    //    }
+    //}
+    
+    //@objc func resume() {
+    //    if let sourceTimer = timer {
+    //        if isSusspended {
+    //            sourceTimer.resume()
+    //            isSusspended = false
+    //        }
+    //    }else {
+    //        destroy()
+    //        destroyClosure()
+    //    }
+    //}
     
     @objc func destroy() {
         timer?.cancel()
@@ -86,7 +114,8 @@ final class WisdomTimerModel: WisdomTimerBaseModel {
     }
     
     deinit {
-        print("")
+        destroy()
+        print("\(self) deinit")
     }
 }
 
@@ -106,7 +135,6 @@ extension WisdomTimerModel {
         if let timerable = able {
             if currentTime>0 {
                 timerable.timerable(timerDid: currentTime, timerable: timerable)
-                
                 currentTime -= 1
             }else {
                 timerable.timerable(timerDid: 0, timerable: timerable)
@@ -136,6 +164,7 @@ extension WisdomTimerModel {
                     }
                 }else {
                     currentTime = currentTime+NSInteger(poor)
+                    timerable.timerable(timerDid: currentTime, timerable: timerable)
                 }
             }
             historyTime = nil
@@ -146,189 +175,8 @@ extension WisdomTimerModel {
         }
     }
     
-    @objc override func suspend() {
-        
-    }
-    
-    @objc override func resume() {
-        
-    }
-    
     @objc override func destroy() {
         super.destroy()
         able = nil
-    }
-}
-
-
-final class WisdomObjectTimerModel: WisdomTimerBaseModel {
-    
-    private weak var able: (WisdomSwiftTimerable&AnyObject)?
-    
-    init(able: WisdomSwiftTimerable&AnyObject, currentTime: NSInteger, isDown: Bool, destroyClosure: @escaping ()->()){
-        self.able = able
-        super.init(currentTime: currentTime, isDown: isDown, destroyClosure: destroyClosure)
-    }
-    
-    deinit {
-        print("")
-    }
-}
-
-extension WisdomObjectTimerModel {
-    
-    fileprivate override func startAddTimer() {
-        if let timerable = able {
-            timerable.timerable(swiftTimerDid: currentTime, timerable: timerable)
-            currentTime += 1
-        }else {
-            destroy()
-            destroyClosure()
-        }
-    }
-    
-    fileprivate override func startDownTimer() {
-        if let timerable = able {
-            if currentTime>0 {
-                timerable.timerable(swiftTimerDid: currentTime, timerable: timerable)
-                
-                currentTime -= 1
-            }else {
-                timerable.timerable(swiftTimerDid: 0, timerable: timerable)
-                timerable.timerable(swiftTimerDid: timerable)
-                destroy()
-                destroyClosure()
-            }
-        }else {
-            destroy()
-            destroyClosure()
-        }
-    }
-
-    fileprivate override func becomeActive(noti:Notification){
-        if let timerable = able, let sourceTimer = timer, let curTime = historyTime {
-            let poor = CFAbsoluteTimeGetCurrent()-curTime
-            if poor>=1 {
-                if isDown {
-                    currentTime = currentTime-NSInteger(poor)
-                    if currentTime<=0 {
-                        timerable.timerable(swiftTimerDid: 0, timerable: timerable)
-                        timerable.timerable(swiftTimerDid: timerable)
-                        destroy()
-                        destroyClosure()
-                    }else {
-                        timerable.timerable(swiftTimerDid: currentTime, timerable: timerable)
-                    }
-                }else {
-                    currentTime = currentTime+NSInteger(poor)
-                }
-            }
-            historyTime = nil
-            sourceTimer.resume()
-        }else {
-            destroy()
-            destroyClosure()
-        }
-    }
-    
-    @objc override func suspend() {
-        
-    }
-    
-    @objc override func resume() {
-        
-    }
-    
-    @objc override func destroy() {
-        super.destroy()
-        able = nil
-    }
-}
-
-
-final class WisdomValueTimerModel: WisdomTimerBaseModel {
-    
-    private let didClosure: (NSInteger)->(Bool)
-    
-    private let endClosure: ()->()
-    
-    init(currentTime: NSInteger,
-         isDown: Bool,
-         didClosure: @escaping (NSInteger)->(Bool),
-         endClosure: @escaping ()->(),
-         destroyClosure: @escaping ()->()){
-        self.didClosure = didClosure
-        self.endClosure = endClosure
-        super.init(currentTime: currentTime, isDown: isDown, destroyClosure: destroyClosure)
-    }
-    
-    deinit {
-        print("WisdomValueTimerModel deinit")
-    }
-}
-
-extension WisdomValueTimerModel {
-    
-    fileprivate override func startAddTimer() {
-        if didClosure(currentTime){
-            currentTime += 1
-        }else {
-            destroy()
-            destroyClosure()
-        }
-    }
-    
-    fileprivate override func startDownTimer() {
-        if currentTime>0 {
-            if didClosure(currentTime){
-                currentTime -= 1
-            }else {
-                destroy()
-                destroyClosure()
-            }
-        }else {
-            _=didClosure(0)
-            endClosure()
-            destroy()
-            destroyClosure()
-        }
-    }
-
-    fileprivate override func becomeActive(noti:Notification){
-//        if let timerable = able, let sourceTimer = timer, let curTime = historyTime {
-//            let poor = CFAbsoluteTimeGetCurrent()-curTime
-//            if poor>=1 {
-//                if isDown {
-//                    currentTime = currentTime-NSInteger(poor)
-//                    if currentTime<=0 {
-//                        timerable.timerable(swiftTimerDid: 0, timerable: timerable)
-//                        timerable.timerable(swiftTimerDid: timerable)
-//                        destroy()
-//                        destroyClosure()
-//                    }else {
-//                        timerable.timerable(swiftTimerDid: currentTime, timerable: timerable)
-//                    }
-//                }else {
-//                    currentTime = currentTime+NSInteger(poor)
-//                }
-//            }
-//            historyTime = nil
-//            sourceTimer.resume()
-//        }else {
-//            destroy()
-//            destroyClosure()
-//        }
-    }
-    
-    @objc override func suspend() {
-        
-    }
-    
-    @objc override func resume() {
-        
-    }
-    
-    @objc override func destroy() {
-        super.destroy()
     }
 }
