@@ -76,13 +76,13 @@ protocol WisdomCodingCoreable {
 
 protocol WisdomTimerCoreable {
 
-    static func startAddTimer(able: WisdomTimerable, startTime: NSInteger)
+    static func startAddTimer(able: WisdomTimerable&AnyObject, startTime: NSInteger)
     
-    static func startDownTimer(able: WisdomTimerable, totalTime: NSInteger)
+    static func startDownTimer(able: WisdomTimerable&AnyObject, totalTime: NSInteger)
     
-    static func suspendTimer(able: WisdomTimerable)
+    static func suspendTimer(able: WisdomTimerable&AnyObject)
     
-    static func resumeTimer(able: WisdomTimerable)
+    static func resumeTimer(able: WisdomTimerable&AnyObject)
     
-    static func destroyTimer(able: WisdomTimerable)
+    static func destroyTimer(able: WisdomTimerable&AnyObject)
 }

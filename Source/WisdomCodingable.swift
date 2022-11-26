@@ -52,3 +52,12 @@ extension WisdomCodingable where Self: Encodable {
         return WisdomProtocolCore.ableEncod(self)
     }
 }
+
+public extension Array where Element: WisdomCodingable&Encodable {
+    
+    // MARK: return - [[String:Any]]
+    // swift model list to dictionary list, use 'Encodable' protocol
+    func ableEncod()->[[String:Any]]{
+        return WisdomProtocolCore.ableEncod(ables: self)
+    }
+}

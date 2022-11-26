@@ -31,13 +31,15 @@ struct WisdomProtocolCore {
         return aProtocol
     }
     
-    private static func getTimerableKey(able: WisdomTimerable)->String {
-        //let bit = unsafeBitCast(able, to: Int64.self)
-        //let res = String.init(format: "%018p", bit)
-        let key = "\(unsafeBitCast(able, to: Int64.self))"
-        print(key)
-        assert(key.count>0, "unsafeBitCast failure: \(able)")
-        return key
+    private static func getTimerableKey(able: WisdomTimerable&AnyObject)->String {
+        let bit = "\(unsafeBitCast(able, to: Int64.self))"
+        print("[WisdomProtocol] ableKey: "+bit)
+        assert(bit.count>0, "unsafeBitCast failure: \(able)")
+
+        if let objcable = able as? NSObject {
+            return "\(objcable.classForCoder)&"+bit
+        }
+        return "\(able.self)&"+bit
     }
 }
 
@@ -83,7 +85,7 @@ extension WisdomProtocolCore: WisdomProtocolRegisterable{
         
         protocolQueue.sync(flags: .barrier) {
             types.deallocate()
-            print("WisdomProtocol Queue Took "+"\(CFAbsoluteTimeGetCurrent()-start) \(c) \(list.count)")
+            print("[WisdomProtocol] Queue Took "+"\(CFAbsoluteTimeGetCurrent()-start) \(c) \(list.count)")
         }
     }
     
@@ -115,7 +117,7 @@ extension WisdomProtocolCore: WisdomProtocolable {
     
     static func getClassable(from Protocol: Protocol)->AnyClass? {
         let protocolKey = NSStringFromProtocol(Protocol)
-        print("WisdomProtocol.getClassable: "+protocolKey)
+        print("[WisdomProtocol] getClassable: "+protocolKey)
 
         if let conformClass: AnyClass = WisdomProtocolConfig[protocolKey], conformClass.conforms(to: Protocol) {
             return conformClass
@@ -225,11 +227,20 @@ extension WisdomProtocolCore: WisdomCodingCoreable {
         }
         return nil
     }
+    
+    static func ableEncod<T>(ables: [T])->[[String:Any]] where T: Encodable{
+        let result: [[String:Any]] = ables.compactMap { able in
+            let dict = Self.ableEncod(able)
+            assert(dict != nil, "decodable failure: \(able)")
+            return dict
+        }
+        return result
+    }
 }
 
 extension WisdomProtocolCore: WisdomTimerCoreable {
     
-    static func startAddTimer(able: WisdomTimerable, startTime: NSInteger){
+    static func startAddTimer(able: WisdomTimerable&AnyObject, startTime: NSInteger){
         let key = getTimerableKey(able: able)
         if key.count > 0 {
             if let historyable = WisdomTimerConfig[key] {
@@ -244,7 +255,7 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         }
     }
     
-    static func startDownTimer(able: WisdomTimerable, totalTime: NSInteger){
+    static func startDownTimer(able: WisdomTimerable&AnyObject, totalTime: NSInteger){
         let key = getTimerableKey(able: able)
         if key.count > 0 {
             if let historyable = WisdomTimerConfig[key] {
@@ -259,7 +270,7 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         }
     }
     
-    static func suspendTimer(able: WisdomTimerable){
+    static func suspendTimer(able: WisdomTimerable&AnyObject){
         let key = getTimerableKey(able: able)
         if key.count > 0 {
             if let _ = WisdomTimerConfig[key] {
@@ -268,7 +279,7 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         }
     }
     
-    static func resumeTimer(able: WisdomTimerable){
+    static func resumeTimer(able: WisdomTimerable&AnyObject){
         let key = getTimerableKey(able: able)
         if key.count > 0 {
             if let _ = WisdomTimerConfig[key] {
@@ -277,7 +288,7 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         }
     }
     
-    static func destroyTimer(able: WisdomTimerable){
+    static func destroyTimer(able: WisdomTimerable&AnyObject){
         let key = getTimerableKey(able: able)
         if key.count > 0 {
             if let historyable = WisdomTimerConfig[key] {
