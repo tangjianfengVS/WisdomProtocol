@@ -60,15 +60,15 @@ extension WisdomTimerBaseModel {
     }
 
     @objc fileprivate func becomeActive(noti:Notification){
-        if let curTime = historyTime {
-            let poor = CFAbsoluteTimeGetCurrent()-curTime
-            if isDown {
-                currentTime = currentTime-NSInteger(poor)
-            }else {
-                currentTime = currentTime+NSInteger(poor)
-            }
-            historyTime = nil
-        }
+        //if let curTime = historyTime {
+        //    let poor = CFAbsoluteTimeGetCurrent()-curTime
+        //    if isDown {
+        //        currentTime = currentTime-NSInteger(poor)
+        //    }else {
+        //        currentTime = currentTime+NSInteger(poor)
+        //    }
+        //    historyTime = nil
+        //}
     }
     
     //@objc func suspend() {
