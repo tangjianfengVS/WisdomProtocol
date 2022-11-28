@@ -24,13 +24,13 @@ import UIKit
 extension WisdomTimerable {
     
     // MARK: Class Param - NSInteger
-    // * Start a timer task, start the timer time point
-    public func startAddTimer(startTime: NSInteger){
-        WisdomProtocolCore.startAddTimer(able: self, startTime: startTime)
+    // * Start a forward timer task, start the forward time point
+    public func startForwardTimer(startTime: NSInteger){
+        WisdomProtocolCore.startForwardTimer(able: self, startTime: startTime)
     }
     
     // MARK: Class Param - NSInteger
-    // * Start a countdown task, start the total time countdown 
+    // * Start a countdown timer task, start the total time countdown
     public func startDownTimer(totalTime: NSInteger){
         WisdomProtocolCore.startDownTimer(able: self, totalTime: totalTime)
     }
@@ -46,6 +46,7 @@ extension WisdomTimerable {
     //}
     
     // MARK: Class Timer - destroy
+    // Destruction/Release timer task
     public func destroyTimer(){
         WisdomProtocolCore.destroyTimer(able: self)
     }

@@ -240,7 +240,7 @@ extension WisdomProtocolCore: WisdomCodingCoreable {
 
 extension WisdomProtocolCore: WisdomTimerCoreable {
     
-    static func startAddTimer(able: WisdomTimerable&AnyObject, startTime: NSInteger){
+    static func startForwardTimer(able: WisdomTimerable&AnyObject, startTime: NSInteger){
         let key = getTimerableKey(able: able)
         if key.count > 0 {
             if let historyable = WisdomTimerConfig[key] {

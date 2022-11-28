@@ -76,7 +76,7 @@ protocol WisdomCodingCoreable {
 
 protocol WisdomTimerCoreable {
 
-    static func startAddTimer(able: WisdomTimerable&AnyObject, startTime: NSInteger)
+    static func startForwardTimer(able: WisdomTimerable&AnyObject, startTime: NSInteger)
     
     static func startDownTimer(able: WisdomTimerable&AnyObject, totalTime: NSInteger)
     

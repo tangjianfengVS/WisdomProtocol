@@ -26,7 +26,7 @@ extension WisdomTimerable {
     // MARK: Class Param - NSInteger
     // * Start a forward timer task, start the forward time point
     public func startForwardTimer(startTime: NSInteger){
-        WisdomProtocolCore.startAddTimer(able: self, startTime: startTime)
+        WisdomProtocolCore.startForwardTimer(able: self, startTime: startTime)
     }
     
     // MARK: Class Param - NSInteger

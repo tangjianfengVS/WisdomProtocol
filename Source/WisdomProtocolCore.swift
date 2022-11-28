@@ -69,9 +69,9 @@ extension WisdomProtocolCore: WisdomProtocolRegisterable{
         }
         
         let protocolQueue = DispatchQueue(label: "WisdomProtocolCoreQueue", attributes: DispatchQueue.Attributes.concurrent)
-        for index in list { regist(types: types, begin: index.key, end: index.value) }
+        for index in list { register(types: types, begin: index.key, end: index.value) }
 
-        func regist(types: UnsafeMutablePointer<AnyClass>, begin: Int, end: Int) {
+        func register(types: UnsafeMutablePointer<AnyClass>, begin: Int, end: Int) {
             protocolQueue.async {
                 for index in begin ..< end {
                     if class_conformsToProtocol(types[index], WisdomRegisterable.self) {
@@ -240,7 +240,7 @@ extension WisdomProtocolCore: WisdomCodingCoreable {
 
 extension WisdomProtocolCore: WisdomTimerCoreable {
     
-    static func startAddTimer(able: WisdomTimerable&AnyObject, startTime: NSInteger){
+    static func startForwardTimer(able: WisdomTimerable&AnyObject, startTime: NSInteger){
         let key = getTimerableKey(able: able)
         if key.count > 0 {
             if let historyable = WisdomTimerConfig[key] {
