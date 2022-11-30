@@ -8,14 +8,28 @@
 import UIKit
 
 
-@objc public protocol WisdomCrashable where Self: UIApplicationDelegate {
+@objc public protocol WisdomCrashingable where Self: UIApplicationDelegate {
     
-    // MARK: Catch Crash Param - String
+    // MARK: Catch Crashing Param - String
     // Swift object type, this parameter is valid in the relase environment but invalid in the debug environment
     // objective-c object type, both debug and relase environments are supported
-    @objc func catchCrashable(crash: String)
+    @objc func catchCrashing(crash: String)
 }
 
-
+@objc public protocol WisdomTrackingable where Self: UIApplicationDelegate {
+    
+    // MARK: Catch Controller Tracking Param - String, String
+    // UIViewController Catch Tracking 'viewDidAppear'
+    // - controller: UIViewController.Type
+    // - title: String
+    @objc func catchTracking(viewDidAppear controller: UIViewController.Type, title: String)
+    
+    // MARK: Catch Controller Tracking Param - String, String
+    // UIViewController Catch Tracking 'viewDidDisappear'
+    // - controller: UIViewController.Type
+    // - appearTime: NSInteger
+    // - title: String
+    @objc optional func catchTracking(viewDidDisappear controller: UIViewController.Type, appearTime: NSInteger, title: String)
+}
 
 

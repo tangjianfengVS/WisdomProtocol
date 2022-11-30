@@ -19,7 +19,7 @@ Function Description:
 
 
 # WisdomProtocol
-WisdomProtocol是一个智能的协议 sdk。
+WisdomProtocol是一个智能协议 sdk。
 
 功能描述:
 1. WisdomProtocol sdk: 支持兼容语法 'Swift/objective-c' 协议使用。

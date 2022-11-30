@@ -76,6 +76,10 @@ class WisdomProtocolLeftVC: UIViewController, WisdomRegisterable, WisdomProtocol
         
         //startDownTimer(totalTime: 10)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
 }
 
 extension WisdomProtocolLeftVC: WisdomRouterControlable {

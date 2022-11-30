@@ -32,10 +32,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-extension AppDelegate: WisdomCrashable {
+extension AppDelegate: WisdomCrashingable {
     
-    func catchCrashable(crash: String) {
+    func catchCrashing(crash: String) {
         print("[WisdomCrashable] catchCrashable\n"+crash)
     }
 }
 
+extension AppDelegate: WisdomTrackingable {
+    
+    func catchTracking(viewDidAppear controller: UIViewController.Type, title: String) {
+        print("[WisdomTrackingable] catchTracking viewDidAppear: \(controller)"+" title: "+title)
+    }
+    
+    func catchTracking(viewDidDisappear controller: UIViewController.Type, appearTime: NSInteger, title: String) {
+        print("[WisdomTrackingable] catchTracking viewDidDisappear: \(controller)"+" appearTime: \(appearTime)"+" title: "+title)
+    }
+}

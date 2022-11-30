@@ -26,7 +26,7 @@ struct WisdomProtocolCore {
             print("❌[WisdomProtocol] register redo conforming: "+key+"->"+NSStringFromClass(aClass)+"❌")
             return aProtocol
         }
-        //print("🐬[WisdomProtocol] register successful: "+key+"->"+NSStringFromClass(Class)+"🐬")
+        print("🐬[WisdomProtocol] register successful: "+key+"->"+NSStringFromClass(aClass)+"🐬")
         WisdomProtocolConfig.updateValue(aClass, forKey: key)
         return aProtocol
     }
@@ -50,6 +50,7 @@ extension WisdomProtocolCore: WisdomProtocolRegisterable{
         }
         WisdomProtocolCore.WisdomRegisterState = 1
         WisdomProtocolCrashRegister()
+        UIViewController.trackingRegister()
     
         let start = CFAbsoluteTimeGetCurrent()
         let c = Int(objc_getClassList(nil, 0))
@@ -298,20 +299,20 @@ fileprivate func WisdomProtocolCrashRegister(){
 }
 
 fileprivate func SignalHandler(signal: Int32)->Void{
-    if let crashable = UIApplication.shared.delegate as? WisdomCrashable{
+    if let crashable = UIApplication.shared.delegate as? WisdomCrashingable{
         var mstr = String()
         mstr += "Stack:\n"
         //append slide adress
         mstr = mstr.appendingFormat("slideAdress:0x%0x\r\n", wisdom_calculate())
         //append error info
         for symbol in Thread.callStackSymbols { mstr = mstr.appendingFormat("%@\r\n", symbol) }
-        crashable.catchCrashable(crash: "*SignalHandler*"+mstr)
+        crashable.catchCrashing(crash: "*SignalHandler*"+mstr)
         exit(signal)
     }
 }
 
 fileprivate func UncaughtExceptionHandler(exception: NSException) {
-    if let crashable = UIApplication.shared.delegate as? WisdomCrashable{
+    if let crashable = UIApplication.shared.delegate as? WisdomCrashingable{
         let arr = exception.callStackSymbols
         let reason = exception.reason
         let name = exception.name.rawValue
@@ -319,6 +320,58 @@ fileprivate func UncaughtExceptionHandler(exception: NSException) {
         crash += "Stack:\n"
         crash = crash.appendingFormat("slideAdress:0x%0x\r\n", wisdom_calculate())
         crash += "\r\n\r\n name:\(name) \r\n reason:\(String(describing: reason)) \r\n \(arr.joined(separator: "\r\n")) \r\n\r\n"
-        crashable.catchCrashable(crash: "*NSException*"+crash)
+        crashable.catchCrashing(crash: "*NSException*"+crash)
+    }
+}
+
+
+extension UIViewController {
+    
+    private struct WisdomController{ static var appearTime = "WisdomProtocolCore.appearTime" }
+    
+    private var wisdom_appearTime: String? {
+        set { objc_setAssociatedObject(self, &WisdomController.appearTime, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
+        get { return objc_getAssociatedObject(self, &WisdomController.appearTime) as? String }
+    }
+    
+    fileprivate static func trackingRegister() {
+        if let originMethod = class_getInstanceMethod(self, #selector(viewDidAppear(_:))),
+           let changeMethod = class_getInstanceMethod(self, #selector(wisdom_viewDidAppear(_:))){
+            method_exchangeImplementations(originMethod, changeMethod)
+        }
+        if let originMethod = class_getInstanceMethod(self, #selector(viewDidDisappear(_:))),
+           let changeMethod = class_getInstanceMethod(self, #selector(wisdom_viewDidDisappear(_:))){
+            method_exchangeImplementations(originMethod, changeMethod)
+        }
+    }
+    
+    @objc fileprivate func wisdom_viewDidAppear(_ animated: Bool) {
+        wisdom_viewDidAppear(animated)
+        if let trackingable = UIApplication.shared.delegate as? WisdomTrackingable,
+           let controller = classForCoder as? UIViewController.Type {
+            var cur_title = title ?? ""
+            if cur_title.isEmpty {
+                cur_title = navigationItem.title ?? ""
+            }
+            wisdom_appearTime = "\(NSInteger(CFAbsoluteTimeGetCurrent()))"
+            trackingable.catchTracking(viewDidAppear: controller, title: cur_title)
+        }
+    }
+    
+    @objc fileprivate func wisdom_viewDidDisappear(_ animated: Bool) {
+        wisdom_viewDidDisappear(animated)
+        if let trackingable = UIApplication.shared.delegate as? WisdomTrackingable,
+           let trackingFunc = trackingable.catchTracking,
+           let controller = classForCoder as? UIViewController.Type {
+            var cur_title = title ?? ""
+            if cur_title.isEmpty {
+                cur_title = navigationItem.title ?? ""
+            }
+            var cur_time: NSInteger = 0
+            if let time = wisdom_appearTime, let value = NSInteger(time) {
+                cur_time = NSInteger(CFAbsoluteTimeGetCurrent())-value
+            }
+            trackingFunc(controller, cur_time, cur_title)
+        }
     }
 }
