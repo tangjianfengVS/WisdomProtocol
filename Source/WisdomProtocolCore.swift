@@ -272,14 +272,14 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
     static func resumeTimer(able: WisdomTimerable&AnyObject){
         let key = getTimerableKey(able: able)
         if key.count > 0, let _ = WisdomTimerConfig[key] {
-            //historyable.suspend()
+            //historyable.resume()
         }
     }
     
     static func destroyTimer(able: WisdomTimerable&AnyObject){
         let key = getTimerableKey(able: able)
-        if key.count > 0, let _ = WisdomTimerConfig[key] {
-            //historyable.suspend()
+        if key.count > 0, let historyable = WisdomTimerConfig[key] {
+            historyable.destroy()
         }
     }
 }
