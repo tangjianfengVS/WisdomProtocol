@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "WisdomProtocol"
-  s.version      = "0.0.6"
+  s.version      = "0.0.7"
   s.summary      = "A Protocol of Wisdom SDK"
   s.description  = "A Protocol of Wisdom SDK. Support protocol routing.Support dictionary /Json, encoding/decoding, turn model.Support timer timer/countdown function protocol."
 
