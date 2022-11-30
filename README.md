@@ -1,6 +1,8 @@
 # WisdomProtocol
 WisdomProtocol is a Protocol of wisdom sdk. 
 
+github install: pod 'WisdomProtocol'
+
 Function Description:
 1. WisdomProtocol sdk: Support compatible syntax 'Swift/objective-c' protocol usage.
 
@@ -14,12 +16,17 @@ Function Description:
 4. WisdomProtocol sdk: Support object enablement 'objective-c/Swift Class' timer 'forward/countdown' task protocol. 
    - Timer life cycle/release does not require the user's concern, the use of timers is maintained/managed automatically within the WisdomProtocol sdk.
 
+5. WisdomProtocol sdk: Support for capture and tracking 'objective-c/Swift Class' when a run crash error occurs, log trace, capture protocol.
+
+5. WisdomProtocol sdk: Support statistical tracking 'UIViewController' 'viewDidAppear(_:)/viewDidDisappear(_:)' page display time and duration statistics protocol.
 
 
 
 
 # WisdomProtocol
 WisdomProtocol是一个智能协议 sdk。
+
+github 集成: pod 'WisdomProtocol'
 
 功能描述:
 1. WisdomProtocol sdk: 支持兼容语法 'Swift/objective-c' 协议使用。
@@ -33,3 +40,7 @@ WisdomProtocol是一个智能协议 sdk。
 
 4. WisdomProtocol sdk: 支持对象启用 'objective-c/Swift Class' 定时器 '前进计时/倒计时' 任务协议。
    - 计时器的 生命周期/释放时机 不需要用户关注，计时器的使用在 WisdomProtocol sdk内部，会自动 管理/维护。
+   
+5. WisdomProtocol sdk: 支持捕捉跟踪 'objective-c/Swift Class' 发生运行崩溃错误时，日志跟踪，捕捉协议。
+
+6. WisdomProtocol sdk: 支持统计跟踪 'UIViewController' 'viewDidAppear(_:)/viewDidDisappear(_:)' 页面展示时机和时长 统计协议。
