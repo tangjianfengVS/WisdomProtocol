@@ -92,13 +92,6 @@ extension WisdomProtocolCore: WisdomProtocolRegisterable{
     static func registerable(classable: WisdomClassable)->Protocol{
         return registerableConfig(register: classable.registerProtocol, conform: classable.conformClass)
     }
-    
-    //static func registerable(classables: [WisdomClassable])->[Protocol]{
-    //    let protocols = classables.compactMap { classable in
-    //        registerableConfig(register: classable.registerProtocol, conform: classable.conformClass)
-    //    }
-    //    return protocols
-    //}
 }
 
 extension WisdomProtocolCore: WisdomProtocolCreateable{
@@ -247,7 +240,6 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
                 historyable.destroy()
                 WisdomTimerConfig.removeValue(forKey: key)
             }
-            
             let timer = WisdomTimerModel(able: able, currentTime: startTime, isDown: false) {
                 WisdomTimerConfig.removeValue(forKey: key)
             }
@@ -262,7 +254,6 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
                 historyable.destroy()
                 WisdomTimerConfig.removeValue(forKey: key)
             }
-            
             let timer = WisdomTimerModel(able: able, currentTime: totalTime, isDown: true) {
                 WisdomTimerConfig.removeValue(forKey: key)
             }
@@ -272,41 +263,34 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
     
     static func suspendTimer(able: WisdomTimerable&AnyObject){
         let key = getTimerableKey(able: able)
-        if key.count > 0 {
-            if let _ = WisdomTimerConfig[key] {
-                //historyable.suspend()
-            }
+        if key.count > 0, let _ = WisdomTimerConfig[key] {
+            //historyable.suspend()
         }
     }
     
     static func resumeTimer(able: WisdomTimerable&AnyObject){
         let key = getTimerableKey(able: able)
-        if key.count > 0 {
-            if let _ = WisdomTimerConfig[key] {
-                //historyable.resume()
-            }
+        if key.count > 0, let _ = WisdomTimerConfig[key] {
+            //historyable.suspend()
         }
     }
     
     static func destroyTimer(able: WisdomTimerable&AnyObject){
         let key = getTimerableKey(able: able)
-        if key.count > 0 {
-            if let historyable = WisdomTimerConfig[key] {
-                historyable.destroy()
-                WisdomTimerConfig.removeValue(forKey: key)
-            }
+        if key.count > 0, let _ = WisdomTimerConfig[key] {
+            //historyable.suspend()
         }
     }
 }
 
-//MARK: - Catch Crash
+//MARK: - Crash Register
 fileprivate func WisdomProtocolCrashRegister(){
     signal(SIGINT,  SignalHandler)
-    signal(SIGTRAP, SignalHandler)//具有nil值的非可选类型/一个失败的强制类型转换
+    signal(SIGTRAP, SignalHandler)//nil值的非可选类型/一个失败的强制类型转换
     signal(SIGABRT, SignalHandler)//调用abort函数生成的信号
-    signal(SIGILL, SignalHandler) //执行了非法指令，通常因为可执行文件本身出席错误，或者试图执行数据段，堆栈溢出时也有可能产生这个信号。
-    signal(SIGSEGV, SignalHandler)//野指针，僵尸对象
-    signal(SIGFPE, SignalHandler) //在发生致命的算术运算错误时发出，不仅包括浮点运算错误，还包括溢出及除数为0等其他所有的算术错误。
+    signal(SIGILL, SignalHandler) //执行了非法指令，通常因为可执行文件本身出席错误，或者试图执行数据段，堆栈溢出时也有可能产生这个信号
+    signal(SIGSEGV, SignalHandler)//Wild pointer, zombie object
+    signal(SIGFPE, SignalHandler) //在发生致命的算术运算错误时发出
     signal(SIGBUS, SignalHandler) //Illegal address
     signal(SIGPIPE, SignalHandler)//write on a pipe with no one to read it
     signal(SIGKILL, SignalHandler)//Code that the CPU cannot execute

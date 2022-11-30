@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - register Class Protocol
+// MARK: - Register Class Protocol
 @objc public final class WisdomClassable: NSObject {
     
     @objc public let registerProtocol: Protocol

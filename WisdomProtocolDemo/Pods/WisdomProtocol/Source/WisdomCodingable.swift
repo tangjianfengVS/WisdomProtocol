@@ -7,9 +7,8 @@
 
 import UIKit
 
-public protocol WisdomCodingable {
-    
-}
+// MARK: Swift Class/NSObject/Value to coding/decoding Protocol
+public protocol WisdomCodingable {}
 
 extension WisdomCodingable where Self: Decodable {
     
