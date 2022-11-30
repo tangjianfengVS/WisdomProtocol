@@ -115,7 +115,7 @@ final class WisdomTimerModel: WisdomTimerBaseModel {
     
     deinit {
         destroy()
-        print("\(self) deinit")
+        print("[WisdomProtocol] \(self) deinit")
     }
 }
 
