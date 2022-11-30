@@ -245,10 +245,13 @@ extension WisdomProtocolLeftVI: WisdomRouterParamable{
             //model?.resumeTimer()
             
             //model?.suspendTimer()
-            model = WisdomProtocolLeftModel.decodable(value: colorDic)
+            //model = nil//WisdomProtocolLeftModel.decodable(value: colorDic)
             
             // WisdomTimerable
-            model?.startDownTimer(totalTime: 22)
+            //model!.startDownTimer(totalTime: 22)
+            
+            let list = NSArray(array: [1, 2])
+            let res = list[3]
             
 //            let dict = model?.ableEncod()
 //

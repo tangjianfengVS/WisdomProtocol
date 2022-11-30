@@ -33,9 +33,8 @@ struct WisdomProtocolCore {
     
     private static func getTimerableKey(able: WisdomTimerable&AnyObject)->String {
         let bit = "\(unsafeBitCast(able, to: Int64.self))"
-        print("[WisdomProtocol] ableKey: "+bit)
+        print("[WisdomProtocol] getTimerableKey: "+bit)
         assert(bit.count>0, "unsafeBitCast failure: \(able)")
-
         if let objcable = able as? NSObject {
             return "\(objcable.classForCoder)&"+bit
         }
@@ -50,6 +49,7 @@ extension WisdomProtocolCore: WisdomProtocolRegisterable{
             return
         }
         WisdomProtocolCore.WisdomRegisterState = 1
+        WisdomProtocolCrashRegister()
     
         let start = CFAbsoluteTimeGetCurrent()
         let c = Int(objc_getClassList(nil, 0))
@@ -67,7 +67,6 @@ extension WisdomProtocolCore: WisdomProtocolRegisterable{
         }else if c>24000 {
             list = [0:c/3, c/3+1:c/3*2, c/3*2+1:c]
         }
-        
         let protocolQueue = DispatchQueue(label: "WisdomProtocolCoreQueue", attributes: DispatchQueue.Attributes.concurrent)
         for index in list { register(types: types, begin: index.key, end: index.value) }
 
@@ -84,6 +83,7 @@ extension WisdomProtocolCore: WisdomProtocolRegisterable{
         }
         
         protocolQueue.sync(flags: .barrier) {
+            types.deinitialize(count: c)
             types.deallocate()
             print("[WisdomProtocol] Queue Took "+"\(CFAbsoluteTimeGetCurrent()-start) \(c) \(list.count)")
         }
@@ -296,5 +296,45 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
                 WisdomTimerConfig.removeValue(forKey: key)
             }
         }
+    }
+}
+
+//MARK: - Catch Crash
+fileprivate func WisdomProtocolCrashRegister(){
+    signal(SIGINT,  SignalHandler)
+    signal(SIGTRAP, SignalHandler)//具有nil值的非可选类型/一个失败的强制类型转换
+    signal(SIGABRT, SignalHandler)//调用abort函数生成的信号
+    signal(SIGILL, SignalHandler) //执行了非法指令，通常因为可执行文件本身出席错误，或者试图执行数据段，堆栈溢出时也有可能产生这个信号。
+    signal(SIGSEGV, SignalHandler)//野指针，僵尸对象
+    signal(SIGFPE, SignalHandler) //在发生致命的算术运算错误时发出，不仅包括浮点运算错误，还包括溢出及除数为0等其他所有的算术错误。
+    signal(SIGBUS, SignalHandler) //Illegal address
+    signal(SIGPIPE, SignalHandler)//write on a pipe with no one to read it
+    signal(SIGKILL, SignalHandler)//Code that the CPU cannot execute
+    NSSetUncaughtExceptionHandler(UncaughtExceptionHandler)
+}
+
+fileprivate func SignalHandler(signal: Int32)->Void{
+    if let crashable = UIApplication.shared.delegate as? WisdomCrashable{
+        var mstr = String()
+        mstr += "Stack:\n"
+        //append slide adress
+        mstr = mstr.appendingFormat("slideAdress:0x%0x\r\n", wisdom_calculate())
+        //append error info
+        for symbol in Thread.callStackSymbols { mstr = mstr.appendingFormat("%@\r\n", symbol) }
+        crashable.catchCrashable(crash: "*SignalHandler*"+mstr)
+        exit(signal)
+    }
+}
+
+fileprivate func UncaughtExceptionHandler(exception: NSException) {
+    if let crashable = UIApplication.shared.delegate as? WisdomCrashable{
+        let arr = exception.callStackSymbols
+        let reason = exception.reason
+        let name = exception.name.rawValue
+        var crash = String()
+        crash += "Stack:\n"
+        crash = crash.appendingFormat("slideAdress:0x%0x\r\n", wisdom_calculate())
+        crash += "\r\n\r\n name:\(name) \r\n reason:\(String(describing: reason)) \r\n \(arr.joined(separator: "\r\n")) \r\n\r\n"
+        crashable.catchCrashable(crash: "*NSException*"+crash)
     }
 }

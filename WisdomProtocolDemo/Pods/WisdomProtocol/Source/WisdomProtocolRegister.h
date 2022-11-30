@@ -13,4 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+long wisdom_calculate(void);
+
 NS_ASSUME_NONNULL_END

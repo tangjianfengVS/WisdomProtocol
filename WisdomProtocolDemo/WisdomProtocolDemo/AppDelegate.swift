@@ -32,4 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: WisdomCrashable {
+    
+    func catchCrashable(crash: String) {
+        print("[WisdomCrashable] catchCrashable\n"+crash)
+    }
+}
 

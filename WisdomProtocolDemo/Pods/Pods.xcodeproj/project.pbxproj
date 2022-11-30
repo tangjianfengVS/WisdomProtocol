@@ -43,6 +43,9 @@
 		3ADF41FF868729BB2D28FFA914DBF9B2 /* ConstraintMakerExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88848D7A96B0BC7873931245129CBD4 /* ConstraintMakerExtendable.swift */; };
 		3BC637A1B72E456CC1720AD1BB4D1243 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		3D909AB7674EE6CDF4D8751ECA859A18 /* ConstraintLayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69405ACBB8350324314B3E0C5EC3CC91 /* ConstraintLayoutSupport.swift */; };
+		3EBFFF512936040C00CAA011 /* WisdomCatchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFF502936040C00CAA011 /* WisdomCatchable.swift */; };
+		3EBFFF522936040C00CAA011 /* WisdomCatchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFF502936040C00CAA011 /* WisdomCatchable.swift */; };
+		3EBFFF532936040C00CAA011 /* WisdomCatchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFF502936040C00CAA011 /* WisdomCatchable.swift */; };
 		3F89B708D7E06F5EFEEE9D5B0E5EB751 /* ConstraintConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B443590A308074E84B2FC613E99953 /* ConstraintConfig.swift */; };
 		406DEFDD6FA410AF31497CCCA5C12B39 /* WisdomProtocol-library-iOS9.0-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FEF53F1E30D410F244A77521CCF5DE8 /* WisdomProtocol-library-iOS9.0-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		40DB1A50FC5FEE3938242B927B10F0EA /* ConstraintConstantTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8AB38308CEFAD9BB0C62C26429C81 /* ConstraintConstantTarget.swift */; };
@@ -235,6 +238,7 @@
 		3C8BC27AEF1468C78BAAD9B96A46A250 /* SnapKit-library-iOS15.5-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "SnapKit-library-iOS15.5-umbrella.h"; path = "../SnapKit-library-iOS15.5/SnapKit-library-iOS15.5-umbrella.h"; sourceTree = "<group>"; };
 		3D50AC6EC1ED0A351723C52D80D79FD3 /* SnapKit-library-iOS9.0 */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "SnapKit-library-iOS9.0"; path = "libSnapKit-library-iOS9.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EAA6D8B109AAE39423273840DD755A1 /* WisdomProtocol-library-iOS9.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "WisdomProtocol-library-iOS9.0-prefix.pch"; path = "../WisdomProtocol-library-iOS9.0/WisdomProtocol-library-iOS9.0-prefix.pch"; sourceTree = "<group>"; };
+		3EBFFF502936040C00CAA011 /* WisdomCatchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WisdomCatchable.swift; path = Source/WisdomCatchable.swift; sourceTree = "<group>"; };
 		40E77374A908C99C6E9AC93FAAB7A594 /* WisdomProtocol-framework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "WisdomProtocol-framework.release.xcconfig"; sourceTree = "<group>"; };
 		486940B2C0A110DC1A9CFC17AF3FBA02 /* SnapKit-framework-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-framework-dummy.m"; sourceTree = "<group>"; };
 		48C7FA745A6E2578FD4F51F9432A279C /* Pods-WisdomProtocolDemo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-WisdomProtocolDemo.modulemap"; sourceTree = "<group>"; };
@@ -275,7 +279,7 @@
 		95ECEDE8E16DB44D8ED6F6EF7964BFA8 /* Pods-WisdomProtocolLeft-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WisdomProtocolLeft-umbrella.h"; sourceTree = "<group>"; };
 		97C4D100481A864E8BF19DDA2CF39D0F /* Pods-WisdomProtocolDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WisdomProtocolDemo-dummy.m"; sourceTree = "<group>"; };
 		9C1BBEE0253B3DCAA0F531CF094D48BE /* WisdomProtocol-library-iOS15.5.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; name = "WisdomProtocol-library-iOS15.5.modulemap"; path = "../WisdomProtocol-library-iOS15.5/WisdomProtocol-library-iOS15.5.modulemap"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DBB9E1C8AFFA4F5DDDA6B1934852EA9 /* ConstraintView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintView.swift; path = Source/ConstraintView.swift; sourceTree = "<group>"; };
 		9DD48B94DC33199454116B5041EDD1BA /* WisdomProtocol-library-iOS9.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "WisdomProtocol-library-iOS9.0.debug.xcconfig"; path = "../WisdomProtocol-library-iOS9.0/WisdomProtocol-library-iOS9.0.debug.xcconfig"; sourceTree = "<group>"; };
 		A5BE4F7CD1905100F9A4783115E1C316 /* SnapKit-framework.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "SnapKit-framework.modulemap"; sourceTree = "<group>"; };
@@ -428,9 +432,9 @@
 				E8739CAE6C0A473E6F756FAF0A95EBF7 /* WisdomRouterable.swift */,
 				2C8FDA15F82EC177CAB87D1CF5088543 /* WisdomTimerable.swift */,
 				599CA6418271AEDBAFD60216A7259042 /* WisdomTimerModel.swift */,
+				3EBFFF502936040C00CAA011 /* WisdomCatchable.swift */,
 				D6642C4CE70BD8DF07D6B0210CABA9EF /* Support Files */,
 			);
-			name = WisdomProtocol;
 			path = WisdomProtocol;
 			sourceTree = "<group>";
 		};
@@ -473,7 +477,6 @@
 				28C37B042D3D0FA0FA1BC865A40D93B1 /* UILayoutSupport+Extensions.swift */,
 				D0331762CA2330F4B0DD0CDFC25F3F13 /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -1036,6 +1039,7 @@
 			files = (
 				CECAC6B31836BD7C368529A8052DD202 /* WisdomCodingable.swift in Sources */,
 				37B4EFAAD78AA7F3D96DF7D124943B8D /* WisdomProtocol.swift in Sources */,
+				3EBFFF512936040C00CAA011 /* WisdomCatchable.swift in Sources */,
 				DA3B875A97D9667C248A8E067D8150E6 /* WisdomProtocol-framework-dummy.m in Sources */,
 				9AD1E21F31E582D3C4C3231A988D9389 /* WisdomProtocolable.swift in Sources */,
 				2F880570ABA8DAA577A8C3C299ACB5CE /* WisdomProtocolCore.swift in Sources */,
@@ -1102,6 +1106,7 @@
 			files = (
 				FCA1C63A41E08F291850824BF6AAECF6 /* WisdomCodingable.swift in Sources */,
 				C1EEEAD6513A054F215BDB426D853212 /* WisdomProtocol.swift in Sources */,
+				3EBFFF522936040C00CAA011 /* WisdomCatchable.swift in Sources */,
 				EBAB2430E5C43B44FE72B7D18763EC1C /* WisdomProtocol-library-iOS15.5-dummy.m in Sources */,
 				5F8B3561FF43A7A5A7C3ADBF0842C11B /* WisdomProtocolable.swift in Sources */,
 				8F5591EF69FC90154CEE35C450EE296F /* WisdomProtocolCore.swift in Sources */,
@@ -1168,6 +1173,7 @@
 			files = (
 				48F9983FBD8895AAC84BF0DE9C9CF3D3 /* WisdomCodingable.swift in Sources */,
 				FC5871C5DA41D41806B04B11C54D6615 /* WisdomProtocol.swift in Sources */,
+				3EBFFF532936040C00CAA011 /* WisdomCatchable.swift in Sources */,
 				BA0DEDD03C85E944978D6800D6FD6C66 /* WisdomProtocol-library-iOS9.0-dummy.m in Sources */,
 				A5A514B29B31E4B7867B4D3A79B9C35A /* WisdomProtocolable.swift in Sources */,
 				868A98BA770B577BB050AF41CEEA76A6 /* WisdomProtocolCore.swift in Sources */,

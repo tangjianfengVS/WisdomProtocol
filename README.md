@@ -7,7 +7,7 @@ Function Description:
 2. WisdomProtocol sdk: Support sdk across 'module/project/static library/dynamic library' internal 'Class/UIViewController/UIView/Param' routing protocol.
 
 3. WisdomProtocol sdk: Support data types 'dictionary/json/model/model collection' to 'encoding/decoding' conversion protocol.
-   - 'Set class/data' to 'encoding/decoding' task, in the Debug environment, conversion failure, added the assertion processing, easy to debug phase, immediately discover data hidden dangers:
+   - 'Set class/data' to 'encoding/decoding' task, in the Debug environment, conversion failure, added the assertion processing, it is easy to find data hidden dangers during debugging:
      * assert(able != nil, "decodable failure: \(value)") *
      * assert(dict != nil, "decodable failure: \(able)") *
      
@@ -27,7 +27,7 @@ WisdomProtocol是一个智能的协议 sdk。
 2. WisdomProtocol sdk: 支持sdk跨越 '模块/项目/静态库/动态库' 内部 'Class/UIViewController/UIView/Param' 路由协议。
 
 3. WisdomProtocol sdk: 支持数据类型 '字典/字典数组/json/模型/模型数组' 的 '编码/解码' 转换协议。
-  - '集合 类/数据' 的 '编码/解码' 任务，在调试环境下，转换失败，添加了断言处理，便于调试阶段，立即发现数据隐患：
+  - '集合 类/数据' 的 '编码/解码' 任务，在调试环境下，转换失败，添加了断言处理，便于调试阶段，发现数据隐患：
     * assert(able != nil, "decodable failure: \(value)") *
     * assert(dict != nil, "decodable failure: \(able)") *
 
