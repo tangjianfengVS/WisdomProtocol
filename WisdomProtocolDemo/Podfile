@@ -16,7 +16,7 @@ target 'WisdomProtocolRight' do
     
     pod 'SnapKit'
     
-    pod 'WisdomProtocol', "~> 0.0.6"
+    pod 'WisdomProtocol', "~> 0.0.7"
 end
 
 target 'WisdomProtocolDemo' do
