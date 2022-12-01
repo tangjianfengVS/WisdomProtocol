@@ -280,6 +280,7 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         let key = getTimerableKey(able: able)
         if key.count > 0, let historyable = WisdomTimerConfig[key] {
             historyable.destroy()
+            WisdomTimerConfig.removeValue(forKey: key)
         }
     }
 }
@@ -323,7 +324,6 @@ fileprivate func UncaughtExceptionHandler(exception: NSException) {
         crashable.catchCrashing(crash: "*NSException*"+crash)
     }
 }
-
 
 extension UIViewController {
     
