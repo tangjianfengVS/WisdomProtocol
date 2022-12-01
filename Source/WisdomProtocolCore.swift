@@ -285,7 +285,7 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
     }
 }
 
-extension WisdomProtocolCore: WisdomTimerValueable {
+extension WisdomProtocolCore: WisdomProtocolTimerValueable {
     
     static func getH_M_S_Format(seconds: UInt, format: String)->String{
         let hours = seconds/3600

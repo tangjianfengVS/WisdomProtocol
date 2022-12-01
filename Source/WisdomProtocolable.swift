@@ -87,7 +87,7 @@ protocol WisdomTimerCoreable {
     static func destroyTimer(able: WisdomTimerable&AnyObject)
 }
 
-protocol WisdomTimerValueable {
+protocol WisdomProtocolTimerValueable {
     
     static func getDotFormat(seconds: UInt)->String
     
