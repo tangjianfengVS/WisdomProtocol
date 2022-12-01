@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name         = "WisdomProtocol"
-  s.version      = "0.0.8"
+  s.version      = "0.0.9"
   s.summary      = "A Protocol of Wisdom SDK"
-  s.description  = "A Protocol of Wisdom SDK. Support protocol routing.Support dictionary /Json, encoding/decoding, turn model.Support timer timer/countdown function protocol."
+  s.description  = "A Protocol of Wisdom SDK. Support Class/Param/UIViewController/UIView router protocol. Support dictionary/Json, model coding conversion. Support OC/Swift Class timer timer/countdown task protocol. Support catch tracking OC/Swift Class run crash error, log trace. Support tracking UIViewController viewDidAppear/viewDidDisappear display time duration statistics."
 
   s.homepage     = "https://github.com/tangjianfengVS/WisdomProtocol"
   s.license      = { :type => "MIT", :file => "LICENSE" }
