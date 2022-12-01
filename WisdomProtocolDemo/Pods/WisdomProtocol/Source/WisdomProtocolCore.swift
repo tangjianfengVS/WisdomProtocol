@@ -234,7 +234,7 @@ extension WisdomProtocolCore: WisdomCodingCoreable {
 
 extension WisdomProtocolCore: WisdomTimerCoreable {
     
-    static func startForwardTimer(able: WisdomTimerable&AnyObject, startTime: NSInteger){
+    static func startForwardTimer(able: WisdomTimerable&AnyObject, startTime: UInt){
         let key = getTimerableKey(able: able)
         if key.count > 0 {
             if let historyable = WisdomTimerConfig[key] {
@@ -248,7 +248,7 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         }
     }
     
-    static func startDownTimer(able: WisdomTimerable&AnyObject, totalTime: NSInteger){
+    static func startDownTimer(able: WisdomTimerable&AnyObject, totalTime: UInt){
         let key = getTimerableKey(able: able)
         if key.count > 0 {
             if let historyable = WisdomTimerConfig[key] {
@@ -282,6 +282,31 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
             historyable.destroy()
             WisdomTimerConfig.removeValue(forKey: key)
         }
+    }
+}
+
+extension WisdomProtocolCore: WisdomTimerValueable {
+    
+    static func getH_M_S_Format(seconds: UInt, format: String)->String{
+        let hours = seconds/3600
+        let minutes = seconds%3600/60
+        let second = seconds%3600%60
+        let hours_str = hours < 10 ? "0\(hours)" : "\(hours)"
+        let minutes_str = minutes < 10 ? "0\(minutes)" : "\(minutes)"
+        let second_str = second < 10 ? "0\(second)" : "\(second)"
+        return hours_str+format+minutes_str+format+second_str
+    }
+    
+    static func getDotFormat(seconds: UInt)->String{
+        return getH_M_S_Format(seconds: seconds, format: ":")
+    }
+    
+    static func getLineFormat(seconds: UInt)->String{
+        return getH_M_S_Format(seconds: seconds, format: "-")
+    }
+    
+    static func getTimeFormat(seconds: UInt, format: String)->String{
+        return getH_M_S_Format(seconds: seconds, format: format)
     }
 }
 

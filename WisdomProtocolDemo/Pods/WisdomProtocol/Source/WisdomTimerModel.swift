@@ -12,7 +12,7 @@ class WisdomTimerBaseModel {
     
     fileprivate let isDown: Bool
 
-    fileprivate var currentTime: NSInteger=0
+    fileprivate var currentTime: UInt=0
     
     fileprivate let destroyClosure: ()->()
     
@@ -22,7 +22,7 @@ class WisdomTimerBaseModel {
     
     fileprivate var historyTime: CFAbsoluteTime?
     
-    init(currentTime: NSInteger, isDown: Bool, destroyClosure: @escaping ()->()){
+    init(currentTime: UInt, isDown: Bool, destroyClosure: @escaping ()->()){
         self.currentTime = currentTime
         self.isDown = isDown
         self.destroyClosure = destroyClosure
@@ -108,7 +108,7 @@ final class WisdomTimerModel: WisdomTimerBaseModel {
     
     private weak var able: WisdomTimerable?
     
-    init(able: WisdomTimerable, currentTime: NSInteger, isDown: Bool, destroyClosure: @escaping ()->()){
+    init(able: WisdomTimerable, currentTime: UInt, isDown: Bool, destroyClosure: @escaping ()->()){
         self.able = able
         super.init(currentTime: currentTime, isDown: isDown, destroyClosure: destroyClosure)
     }
@@ -153,7 +153,7 @@ extension WisdomTimerModel {
             let poor = CFAbsoluteTimeGetCurrent()-curTime
             if poor>=1 {
                 if isDown {
-                    currentTime = currentTime-NSInteger(poor)
+                    currentTime = currentTime-UInt(poor)
                     if currentTime<=0 {
                         timerable.timerable(timerDid: 0, timerable: timerable)
                         timerable.timerable(timeEnd: timerable)
@@ -163,7 +163,7 @@ extension WisdomTimerModel {
                         timerable.timerable(timerDid: currentTime, timerable: timerable)
                     }
                 }else {
-                    currentTime = currentTime+NSInteger(poor)
+                    currentTime = currentTime+UInt(poor)
                     timerable.timerable(timerDid: currentTime, timerable: timerable)
                 }
             }

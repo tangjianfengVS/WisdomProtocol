@@ -140,7 +140,7 @@ extension WisdomProtocolRootVC: WisdomRouterControlable {
 
 extension WisdomProtocolRootVC: WisdomTimerable {
     
-    func timerable(timerDid currentTime: NSInteger, timerable: WisdomTimerable){
+    func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable){
         print("WisdomProtocolRootVC timerDid: \(currentTime)")
     }
     

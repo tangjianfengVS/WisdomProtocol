@@ -12,9 +12,9 @@ import UIKit
 // * Support for objective-c/Swift Class
 @objc public protocol WisdomTimerable {
     
-    // MARK: Class Param - NSInteger, WisdomTimerable
+    // MARK: Class Param - UInt, WisdomTimerable
     // * Timer task in progress, current time
-    func timerable(timerDid currentTime: NSInteger, timerable: WisdomTimerable)
+    func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable)
     
     // MARK: Class Param - WisdomTimerable
     // * Example End a scheduled task
@@ -25,13 +25,13 @@ extension WisdomTimerable {
     
     // MARK: Class Param - NSInteger
     // * Start a forward timer task, start the forward time point
-    public func startForwardTimer(startTime: NSInteger){
+    public func startForwardTimer(startTime: UInt){
         WisdomProtocolCore.startForwardTimer(able: self, startTime: startTime)
     }
     
     // MARK: Class Param - NSInteger
     // * Start a countdown timer task, start the total time countdown
-    public func startDownTimer(totalTime: NSInteger){
+    public func startDownTimer(totalTime: UInt){
         WisdomProtocolCore.startDownTimer(able: self, totalTime: totalTime)
     }
     

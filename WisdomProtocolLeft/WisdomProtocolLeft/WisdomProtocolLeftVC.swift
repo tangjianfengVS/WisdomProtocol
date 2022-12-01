@@ -95,7 +95,7 @@ extension WisdomProtocolLeftVC: WisdomRouterControlable {
 
 extension WisdomProtocolLeftVC: WisdomTimerable {
     
-    func timerable(timerDid currentTime: NSInteger, timerable: WisdomTimerable){
+    func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable){
         print("WisdomProtocolLeftVC timerDid: \(currentTime)")
     }
     
@@ -292,7 +292,7 @@ extension WisdomProtocolLeftVI: WisdomRouterParamable{
 
 extension WisdomProtocolLeftVI: WisdomTimerable {
     
-    func timerable(timerDid currentTime: NSInteger, timerable: WisdomTimerable){
+    func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable){
         print("WisdomProtocolLeftVI timerDid: \(currentTime)")
     }
     

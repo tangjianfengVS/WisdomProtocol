@@ -78,3 +78,26 @@ extension WisdomProtocol: WisdomProtocolRouterable {
         return WisdomProtocolCore.getRouterControlable(from: Protocol)
     }
 }
+
+extension WisdomProtocol: WisdomTimerValueable {
+    
+    // MARK: Get Time Param - UInt
+    // Time 'UInt' conversion '00:00:00'
+    static func getDotFormat(seconds: UInt)->String{
+        return WisdomProtocolCore.getDotFormat(seconds: seconds)
+    }
+    
+    // MARK: Get Time Param - UInt
+    // Time 'UInt' conversion '00-00-00'
+    static func getLineFormat(seconds: UInt)->String{
+        return WisdomProtocolCore.getLineFormat(seconds: seconds)
+    }
+    
+    // MARK: Get Time Param - UInt
+    // Time 'UInt' conversion format 'String'
+    static func getTimeFormat(seconds: UInt, format: String)->String{
+        return WisdomProtocolCore.getTimeFormat(seconds: seconds, format: format)
+    }
+}
+
+

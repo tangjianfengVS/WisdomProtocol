@@ -76,13 +76,22 @@ protocol WisdomCodingCoreable {
 
 protocol WisdomTimerCoreable {
 
-    static func startForwardTimer(able: WisdomTimerable&AnyObject, startTime: NSInteger)
+    static func startForwardTimer(able: WisdomTimerable&AnyObject, startTime: UInt)
     
-    static func startDownTimer(able: WisdomTimerable&AnyObject, totalTime: NSInteger)
+    static func startDownTimer(able: WisdomTimerable&AnyObject, totalTime: UInt)
     
     static func suspendTimer(able: WisdomTimerable&AnyObject)
     
     static func resumeTimer(able: WisdomTimerable&AnyObject)
     
     static func destroyTimer(able: WisdomTimerable&AnyObject)
+}
+
+protocol WisdomTimerValueable {
+    
+    static func getDotFormat(seconds: UInt)->String
+    
+    static func getLineFormat(seconds: UInt)->String
+    
+    static func getTimeFormat(seconds: UInt, format: String)->String
 }

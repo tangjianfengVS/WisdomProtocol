@@ -19,7 +19,7 @@ class WisdomProtocolLeftModel: Codable, WisdomCodingable {
 
 extension WisdomProtocolLeftModel: WisdomTimerable {
 
-    func timerable(timerDid currentTime: NSInteger, timerable: WisdomTimerable){
+    func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable){
         print("WisdomProtocolLeftModel timerDid: \(currentTime)")
     }
 
