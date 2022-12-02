@@ -46,25 +46,28 @@ github 集成: pod 'WisdomProtocol'
 6. WisdomProtocol sdk: 支持统计跟踪 'UIViewController' 'viewDidAppear(_:)/viewDidDisappear(_:)' 页面展示时机和时长 统计协议。
 
 
-## 路由协议篇
-## 路由协议是 WisdomProtocol 核心功能，以下为您介绍如何去使用
+## Routing Protocol/路由协议篇
+## Routing protocol is the core function of WisdomProtocol. The following describes how to use it/路由协议是 WisdomProtocol 核心功能，以下为您介绍如何去使用
 
 【**协议支持**】：跨工程/模块/动态库/静态库 中 类/UIView/UIViewController/参数 之间的交互/传递/调用功能。
+【**protocol support**】: across the project/module/dynamic library/class/UIView UIViewController/parameters in static library interaction/transfer/call function.
 
 【**注册绑定**】：路由协议在使用之前，需要实现 WisdomRegisterable 注册协议，将唯一的协议与类绑定，注册到 WisdomProtocol sdk 中，像这样：
+【**registering binding**】：Before the routing protocol is used, it is necessary to implement the WisdomRegisterable registration protocol, bind the unique protocol with the class, and register it in the WisdomProtocol sdk as follows:
 
     @objc protocol WisdomProtocolLeftVCProtocol {}
 
     class WisdomProtocolLeftVC: UIViewController, WisdomRegisterable, WisdomProtocolLeftVCProtocol {
 
-       // 这里协议与类进行注册绑定
+       // Here the protocol is registered and bound to the class/这里协议与类进行注册绑定
        static func registerable() -> WisdomClassable {
            return WisdomClassable(register: WisdomProtocolLeftVCProtocol.self, conform: Self.self)
        }
     }
 
 【**路由功能**】
- 【1】. Class 路由协议：
+【**Routing Function**】
+ 【1】. Class Routing protocol/路由协议：
  
     // MARK: - Router Class Protocol
     @objc public protocol **WisdomRouterClassable** {
@@ -82,14 +85,14 @@ github 集成: pod 'WisdomProtocol'
        @objc optional static func routerClassable(param: Any?, returnClosure: ((Any)->(Any))?)->Self
     }
 
----> **Class 路由使用案例**：
-注册绑定：
+---> **Class Route Application Case/路由使用案例**：
+Registering a binding/注册绑定：
 
     @objc protocol WisdomProtocolLeftModelable {}
 
     class WisdomProtocolLeftModel: WisdomRegisterable, WisdomProtocolLeftModelable {
 
-       // 注册绑定协议/类
+       // Register the binding protocol/class/注册绑定协议/类
        static func registerable() -> WisdomClassable {
           return WisdomClassable(register: WisdomProtocolLeftModelable.self, conform: Self.self)
        }
@@ -99,11 +102,11 @@ github 集成: pod 'WisdomProtocol'
        var codeColor: String?
     }
 
-协议实现：
+Implementation of Protocol/协议实现：
 
     extension WisdomProtocolLeftModel: WisdomRouterClassable{
 
-       // 实现路由协议
+       // Implementing Routing Protocols/实现路由协议
        static func routerClassable(param: Any?) -> Self {
            var dict: [String:Any] = [:]
            if let value = param as? [String:Any] {
@@ -114,16 +117,16 @@ github 集成: pod 'WisdomProtocol'
         }
     }
 
----> **外部开始路由**：
+---> **External start routing/外部开始路由**：
 
-    // 通过注册到协议，获取到类别
+    // Get the category by registering with the protocol/通过注册到协议，获取到类别
     let cla = WisdomProtocol.getRouterClassable(from: WisdomProtocolLeftModelable.self)
     let param = ["bgColor":"708069","textColor":"FFFFFF","codeColor":"33A1C9"]
-    // 创建对象
+    // Creating an Object/创建对象
     let objc = cla?.routerClassable?(param: param)
     print(objc)
 
- 【2】. UIViewController 路由协议：
+ 【2】. UIViewController Routing protocol/路由协议：
  
     // MARK: - Router UIViewController Protocol
     @objc public protocol WisdomRouterControlable where Self: UIViewController {
@@ -141,20 +144,20 @@ github 集成: pod 'WisdomProtocol'
        @objc optional static func routerControlable(rootVC: UIViewController?, param: Any?, returnClosure: ((Any)->(Any))?)->Self
     }
 
- --> **UIViewController 路由使用案例**：
- 注册绑定：
+ --> **UIViewController Route Application Case/路由使用案例**：
+ Registering a binding/注册绑定：
  
     @objc protocol WisdomProtocolLeftVCProtocol {}
     
     class WisdomProtocolLeftVC: UIViewController, WisdomRegisterable, WisdomProtocolLeftVCProtocol {
     
-       // 注册绑定协议/UIViewController
+       // Registering a binding protocol/注册绑定协议/UIViewController
        static func registerable() -> WisdomClassable {
            return WisdomClassable(register: WisdomProtocolLeftVCProtocol.self, conform: Self.self)
        }
     }
 
-协议实现：
+Implementation of Protocol/协议实现：
 
     extension WisdomProtocolLeftVC: WisdomRouterControlable {
     
