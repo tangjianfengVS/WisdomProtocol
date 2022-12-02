@@ -50,9 +50,11 @@ github 集成: pod 'WisdomProtocol'
 ## Routing protocol is the core function of WisdomProtocol. The following describes how to use it/路由协议是 WisdomProtocol 核心功能，以下为您介绍如何去使用
 
 【**协议支持**】：跨工程/模块/动态库/静态库 中 类/UIView/UIViewController/参数 之间的交互/传递/调用功能。
+
 【**protocol support**】: across the project/module/dynamic library/class/UIView UIViewController/parameters in static library interaction/transfer/call function.
 
 【**注册绑定**】：路由协议在使用之前，需要实现 WisdomRegisterable 注册协议，将唯一的协议与类绑定，注册到 WisdomProtocol sdk 中，像这样：
+
 【**registering binding**】：Before the routing protocol is used, it is necessary to implement the WisdomRegisterable registration protocol, bind the unique protocol with the class, and register it in the WisdomProtocol sdk as follows:
 
     @objc protocol WisdomProtocolLeftVCProtocol {}
@@ -66,7 +68,9 @@ github 集成: pod 'WisdomProtocol'
     }
 
 【**路由功能**】
+
 【**Routing Function**】
+
  【1】. Class Routing protocol/路由协议：
  
     // MARK: - Router Class Protocol
@@ -86,6 +90,7 @@ github 集成: pod 'WisdomProtocol'
     }
 
 ---> **Class Route Application Case/路由使用案例**：
+
 Registering a binding/注册绑定：
 
     @objc protocol WisdomProtocolLeftModelable {}
@@ -145,6 +150,7 @@ Implementation of Protocol/协议实现：
     }
 
  --> **UIViewController Route Application Case/路由使用案例**：
+ 
  Registering a binding/注册绑定：
  
     @objc protocol WisdomProtocolLeftVCProtocol {}
@@ -198,6 +204,7 @@ Implementation of Protocol/协议实现：
     }
 
 --> **UIView Route Application Case/路由使用案例**：
+
 Registration Agreement/注册协议：
 
     @objc protocol WisdomProtocolLeftVIProtocol {}
@@ -254,6 +261,7 @@ Implementation protocol/实现协议：
     }
 
 --> **Param Route Application Case/路由使用案例**：
+
 Implementation protocol/实现协议：
 
     extension WisdomProtocolLeftVI: WisdomRouterParamable{
@@ -282,6 +290,7 @@ Implementation protocol/实现协议：
     }
 
 ### 以上就是SDK路由核心功能介绍，完成
+
 如果您热衷于iOS/swift开发，是一位热爱学习进步的童鞋，欢迎来一起研究/讨论 开发中遇到的问题。联系QQ：497609288 。
 请给予我支持，我会继续我的创作。
 
