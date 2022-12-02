@@ -171,15 +171,15 @@ Implementation of Protocol/协议实现：
        }
     }
 
---> 外部开始路由:
+--> External start routing/外部开始路由:
 
-    // 通过注册到协议，获取到UIViewController
-    // MARK: WisdomRouterControlable 路由控制器-无参数
+    // Get the UIViewController by registering with the protocol/通过注册到协议，获取到UIViewController
+    // MARK: WisdomRouterControlable Route controller - None/WisdomRouterControlable 路由控制器-无参数
     let vcClass = WisdomProtocol.getRouterControlable(from: LeftVCProtocol.self)
-    // 创建对象
+    // Creating an Object/创建对象
     _=vcClass?.routerControlable?(rootVC: self, param: nil)
 
- 【3】. UIView 路由协议：
+ 【3】. UIView Routing protocol/路由协议：
  
     // MARK: - Router UIView Protocol
     @objc public protocol WisdomRouterViewable where Self: UIView  {
@@ -197,26 +197,26 @@ Implementation of Protocol/协议实现：
        @objc optional static func routerViewable(superview: UIView?, param: Any?, returnClosure: ((Any)->(Any))?)->Self
     }
 
---> **UIView 路由使用案例**：
-注册协议：
+--> **UIView Route Application Case/路由使用案例**：
+Registration Agreement/注册协议：
 
     @objc protocol WisdomProtocolLeftVIProtocol {}
     
     class WisdomProtocolLeftVI: UIView, WisdomRegisterable, WisdomProtocolLeftVIProtocol {
-       // 注册绑定协议/UIView
+       // Registering a binding protocol/注册绑定协议/UIView
        static func registerable() -> WisdomClassable {
            return WisdomClassable(register: WisdomProtocolLeftVIProtocol.self, conform: Self.self)
        }
     }
 
-实现协议：
+Implementation protocol/实现协议：
 
     extension WisdomProtocolLeftVI: WisdomRouterViewable {
     
-        // 实现路由协议
+        // Implementing Routing Protocols/实现路由协议
         static func routerViewable(superview: UIView?, param: Any?) -> Self {
            let vi = Self.init()
-           // 添加/布局视图
+           // Add/layout view/添加/布局视图
            if let supervi = superview {
                supervi.addSubview(vi)
                vi.snp.makeConstraints { make in
@@ -230,15 +230,15 @@ Implementation of Protocol/协议实现：
        }
     }
 
---> 外部开始路由:
+--> External start routing/外部开始路由:
 
-    // 通过注册到协议，获取到UIView
-    // MARK: WisdomRouterViewable 路由UIView-无参数
+    // You get the UIView by registering with the protocol/通过注册到协议，获取到UIView
+    // MARK: WisdomRouterViewable Route UIView- No parameter/WisdomRouterViewable 路由UIView-无参数
     let viClass = WisdomProtocol.getRouterViewable(from: LeftVIProtocol.self)
-    // 创建对象
+    // Creating an Object/创建对象
     let viewable=viClass?.routerViewable?(superview: self.view, param: nil)
 
- 【4】. Param 路由协议：
+ 【4】. Param Routing protocol/Param 路由协议：
  
     // MARK: - Router Param Protocol
     @objc public protocol WisdomRouterParamable {
@@ -253,12 +253,12 @@ Implementation of Protocol/协议实现：
        @objc optional func routerParamable(param: Any?, returnClosure: ((Any)->(Any))?)
     }
 
---> **Param 路由使用案例**：
-实现协议：
+--> **Param Route Application Case/路由使用案例**：
+Implementation protocol/实现协议：
 
     extension WisdomProtocolLeftVI: WisdomRouterParamable{
     
-       // 接收外部到路由
+       // Receive the external to route/接收外部到路由
        func routerParamable(param: Any?) {
            if let colorDic = param as? [String:Any] {
                model = WisdomProtocolLeftModel.decodable(value: colorDic)
@@ -267,22 +267,26 @@ Implementation of Protocol/协议实现：
        }
     }
 
----> 外部开始路由:
+---> External start routing/外部开始路由:
 
-    // MARK: WisdomRouterViewable 路由UIView-无参数
+    // MARK: WisdomRouterViewable Route UIView- No parameter/WisdomRouterViewable 路由UIView-无参数
     let viClass = WisdomProtocol.getRouterViewable(from: LeftVIProtocol.self)
     viewable=viClass?.routerViewable?(superview: self.view, param: nil)
                 
     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) { [weak self] in
     
-       // MARK: WisdomRouterParamable 参数路由协议
+       // MARK: WisdomRouterParamable Indicates the routing protocol/WisdomRouterParamable 参数路由协议
        let param = ["bgColor":"708069","textColor":"FFFFFF","codeColor":"33A1C9"]
-       // 可选解包，路由参数
+       // Optional unpack, route parameters/可选解包，路由参数
        (self?.viewable as? WisdomRouterParamable)?.routerParamable?(param: param)
     }
 
 ### 以上就是SDK路由核心功能介绍，完成
 如果您热衷于iOS/swift开发，是一位热爱学习进步的童鞋，欢迎来一起研究/讨论 开发中遇到的问题。联系QQ：497609288 。
 请给予我支持，我会继续我的创作。
+
+The above is the introduction of the core functions of SDK routing, finished
+If you are keen on iOS/swift development, you are a child who loves learning and progress, welcome to study/discuss the problems encountered in the development together. Contact QQ: 497609288.
+Please give me your support and I will continue my creation.
 
 
