@@ -37,7 +37,6 @@ class WisdomTimerBaseModel {
             }
         }
         timer?.resume()
-
         NotificationCenter.default.addObserver(self, selector:#selector(becomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(becomeDeath), name: UIApplication.willResignActiveNotification, object: nil)
     }
@@ -138,7 +137,7 @@ extension WisdomTimerModel {
                 currentTime -= 1
             }else {
                 timerable.timerable(timerDid: 0, timerable: timerable)
-                timerable.timerable(timeEnd: timerable)
+                timerable.timerable(timerEnd: timerable)
                 destroy()
                 destroyClosure()
             }
@@ -156,7 +155,7 @@ extension WisdomTimerModel {
                     currentTime = currentTime-UInt(poor)
                     if currentTime<=0 {
                         timerable.timerable(timerDid: 0, timerable: timerable)
-                        timerable.timerable(timeEnd: timerable)
+                        timerable.timerable(timerEnd: timerable)
                         destroy()
                         destroyClosure()
                     }else {
