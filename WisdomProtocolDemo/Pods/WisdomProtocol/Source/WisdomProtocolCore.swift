@@ -235,52 +235,87 @@ extension WisdomProtocolCore: WisdomCodingCoreable {
 extension WisdomProtocolCore: WisdomTimerCoreable {
     
     static func startForwardTimer(able: WisdomTimerable&AnyObject, startTime: UInt){
-        let key = getTimerableKey(able: able)
-        if key.count > 0 {
-            if let historyable = WisdomTimerConfig[key] {
-                historyable.destroy()
-                WisdomTimerConfig.removeValue(forKey: key)
+        if Thread.isMainThread {
+            taskTimer()
+        }else {
+            DispatchQueue.main.async { taskTimer() }
+        }
+        func taskTimer(){
+            let key = getTimerableKey(able: able)
+            if key.count > 0 {
+                if let historyable = WisdomTimerConfig[key] {
+                    historyable.destroy()
+                    WisdomTimerConfig.removeValue(forKey: key)
+                }
+                let timer = WisdomTimerModel(able: able, currentTime: startTime, isDown: false) {
+                    WisdomTimerConfig.removeValue(forKey: key)
+                }
+                WisdomTimerConfig[key]=timer
             }
-            let timer = WisdomTimerModel(able: able, currentTime: startTime, isDown: false) {
-                WisdomTimerConfig.removeValue(forKey: key)
-            }
-            WisdomTimerConfig[key]=timer
         }
     }
     
     static func startDownTimer(able: WisdomTimerable&AnyObject, totalTime: UInt){
-        let key = getTimerableKey(able: able)
-        if key.count > 0 {
-            if let historyable = WisdomTimerConfig[key] {
-                historyable.destroy()
-                WisdomTimerConfig.removeValue(forKey: key)
+        if Thread.isMainThread {
+            taskTimer()
+        }else {
+            DispatchQueue.main.async { taskTimer() }
+        }
+        func taskTimer(){
+            let key = getTimerableKey(able: able)
+            if key.count > 0 {
+                if let historyable = WisdomTimerConfig[key] {
+                    historyable.destroy()
+                    WisdomTimerConfig.removeValue(forKey: key)
+                }
+                let timer = WisdomTimerModel(able: able, currentTime: totalTime, isDown: true) {
+                    WisdomTimerConfig.removeValue(forKey: key)
+                }
+                WisdomTimerConfig[key]=timer
             }
-            let timer = WisdomTimerModel(able: able, currentTime: totalTime, isDown: true) {
-                WisdomTimerConfig.removeValue(forKey: key)
-            }
-            WisdomTimerConfig[key]=timer
         }
     }
     
     static func suspendTimer(able: WisdomTimerable&AnyObject){
-        let key = getTimerableKey(able: able)
-        if key.count > 0, let _ = WisdomTimerConfig[key] {
-            //historyable.suspend()
+        if Thread.isMainThread {
+            taskTimer()
+        }else {
+            DispatchQueue.main.async { taskTimer() }
+        }
+        func taskTimer(){
+            let key = getTimerableKey(able: able)
+            if key.count > 0, let _ = WisdomTimerConfig[key] {
+                //historyable.suspend()
+            }
         }
     }
     
     static func resumeTimer(able: WisdomTimerable&AnyObject){
-        let key = getTimerableKey(able: able)
-        if key.count > 0, let _ = WisdomTimerConfig[key] {
-            //historyable.resume()
+        if Thread.isMainThread {
+            taskTimer()
+        }else {
+            DispatchQueue.main.async { taskTimer() }
+        }
+        func taskTimer(){
+            let key = getTimerableKey(able: able)
+            if key.count > 0, let _ = WisdomTimerConfig[key] {
+                //historyable.resume()
+            }
         }
     }
     
     static func destroyTimer(able: WisdomTimerable&AnyObject){
-        let key = getTimerableKey(able: able)
-        if key.count > 0, let historyable = WisdomTimerConfig[key] {
-            historyable.destroy()
-            WisdomTimerConfig.removeValue(forKey: key)
+        if Thread.isMainThread {
+            taskTimer()
+        }else {
+            DispatchQueue.main.async { taskTimer() }
+        }
+        func taskTimer(){
+            let key = getTimerableKey(able: able)
+            if key.count > 0, let historyable = WisdomTimerConfig[key] {
+                historyable.destroy()
+                WisdomTimerConfig.removeValue(forKey: key)
+            }
         }
     }
 }

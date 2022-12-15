@@ -144,7 +144,7 @@ extension WisdomProtocolRootVC: WisdomTimerable {
         print("WisdomProtocolRootVC timerDid: \(currentTime)")
     }
     
-    func timerable(timeEnd timerable: WisdomTimerable){
+    func timerable(timerEnd timerable: WisdomTimerable){
         
     }
 }

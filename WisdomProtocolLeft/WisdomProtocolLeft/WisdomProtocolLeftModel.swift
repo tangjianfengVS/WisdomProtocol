@@ -23,7 +23,7 @@ extension WisdomProtocolLeftModel: WisdomTimerable {
         print("WisdomProtocolLeftModel timerDid: \(currentTime)")
     }
 
-    func timerable(timeEnd timerable: WisdomTimerable){
+    func timerable(timerEnd timerable: WisdomTimerable){
 
     }
 }

@@ -99,7 +99,7 @@ extension WisdomProtocolLeftVC: WisdomTimerable {
         print("WisdomProtocolLeftVC timerDid: \(currentTime)")
     }
     
-    func timerable(timeEnd timerable: WisdomTimerable){
+    func timerable(timerEnd timerable: WisdomTimerable){
         
     }
 }
@@ -296,7 +296,7 @@ extension WisdomProtocolLeftVI: WisdomTimerable {
         print("WisdomProtocolLeftVI timerDid: \(currentTime)")
     }
     
-    func timerable(timeEnd timerable: WisdomTimerable){
+    func timerable(timerEnd timerable: WisdomTimerable){
         
     }
 }

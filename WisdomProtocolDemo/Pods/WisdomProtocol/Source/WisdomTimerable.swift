@@ -18,7 +18,7 @@ import UIKit
     
     // MARK: Class Param - WisdomTimerable
     // * Example End a scheduled task
-    func timerable(timeEnd timerable: WisdomTimerable)
+    func timerable(timerEnd timerable: WisdomTimerable)
 }
 
 extension WisdomTimerable {
