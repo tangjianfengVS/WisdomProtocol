@@ -332,15 +332,15 @@ extension WisdomProtocolCore: WisdomProtocolTimerValueable {
         return hours_str+format+minutes_str+format+second_str
     }
     
-    static func getDotFormat(seconds: UInt)->String{
+    static func dotFormat(seconds: UInt)->String{
         return getH_M_S_Format(seconds: seconds, format: ":")
     }
     
-    static func getLineFormat(seconds: UInt)->String{
+    static func lineFormat(seconds: UInt)->String{
         return getH_M_S_Format(seconds: seconds, format: "-")
     }
     
-    static func getTimeFormat(seconds: UInt, format: String)->String{
+    static func timeFormat(seconds: UInt, format: String)->String{
         return getH_M_S_Format(seconds: seconds, format: format)
     }
 }

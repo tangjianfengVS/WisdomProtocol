@@ -254,8 +254,8 @@ extension WisdomProtocolLeftVI: WisdomRouterParamable{
             // WisdomTimerable
             //model!.startDownTimer(totalTime: 22)
             
-            let list = NSArray(array: [1, 2])
-            let res = list[3]
+//            let list = NSArray(array: [1, 2])
+//            let res = list[3]
             
 //            let dict = model?.ableEncod()
 //
@@ -294,6 +294,7 @@ extension WisdomProtocolLeftVI: WisdomTimerable {
     
     func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable){
         print("WisdomProtocolLeftVI timerDid: \(currentTime)")
+        print("\(String.getDotFormat(seconds: currentTime))")
     }
     
     func timerable(timerEnd timerable: WisdomTimerable){

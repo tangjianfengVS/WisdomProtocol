@@ -89,9 +89,9 @@ protocol WisdomTimerCoreable {
 
 protocol WisdomProtocolTimerValueable {
     
-    static func getDotFormat(seconds: UInt)->String
+    static func dotFormat(seconds: UInt)->String
     
-    static func getLineFormat(seconds: UInt)->String
+    static func lineFormat(seconds: UInt)->String
     
-    static func getTimeFormat(seconds: UInt, format: String)->String
+    static func timeFormat(seconds: UInt, format: String)->String
 }

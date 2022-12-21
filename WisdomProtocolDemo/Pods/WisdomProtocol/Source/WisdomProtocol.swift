@@ -79,25 +79,47 @@ extension WisdomProtocol: WisdomProtocolRouterable {
     }
 }
 
-extension WisdomProtocol: WisdomProtocolTimerValueable {
+// * NSString Timer Value *
+extension NSString: WisdomProtocolTimerValueable {
     
     // MARK: Get Time Param - UInt
     // Time 'UInt' conversion '00:00:00'
-    @objc public static func getDotFormat(seconds: UInt)->String{
-        return WisdomProtocolCore.getDotFormat(seconds: seconds)
+    @objc public static func dotFormat(seconds: UInt)->String{
+        return String.dotFormat(seconds: seconds)
     }
     
     // MARK: Get Time Param - UInt
     // Time 'UInt' conversion '00-00-00'
-    @objc public static func getLineFormat(seconds: UInt)->String{
-        return WisdomProtocolCore.getLineFormat(seconds: seconds)
+    @objc public static func lineFormat(seconds: UInt)->String{
+        return String.lineFormat(seconds: seconds)
     }
     
     // MARK: Get Time Param - UInt
     // Time 'UInt' conversion format 'String'
-    @objc public static func getTimeFormat(seconds: UInt, format: String)->String{
-        return WisdomProtocolCore.getTimeFormat(seconds: seconds, format: format)
+    @objc public static func timeFormat(seconds: UInt, format: String)->String{
+        return String.timeFormat(seconds: seconds, format: format)
     }
 }
 
+// * String Timer Value *
+extension String: WisdomProtocolTimerValueable {
+    
+    // MARK: Get Time Param - UInt
+    // Time 'UInt' conversion '00:00:00'
+    public static func dotFormat(seconds: UInt)->String{
+        return WisdomProtocolCore.dotFormat(seconds: seconds)
+    }
+    
+    // MARK: Get Time Param - UInt
+    // Time 'UInt' conversion '00-00-00'
+    public static func lineFormat(seconds: UInt)->String{
+        return WisdomProtocolCore.lineFormat(seconds: seconds)
+    }
+    
+    // MARK: Get Time Param - UInt
+    // Time 'UInt' conversion format 'String'
+    public static func timeFormat(seconds: UInt, format: String)->String{
+        return WisdomProtocolCore.timeFormat(seconds: seconds, format: format)
+    }
+}
 
