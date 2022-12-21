@@ -294,7 +294,7 @@ extension WisdomProtocolLeftVI: WisdomTimerable {
     
     func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable){
         print("WisdomProtocolLeftVI timerDid: \(currentTime)")
-        print("\(String.getDotFormat(seconds: currentTime))")
+        print("\(String.dotFormat(seconds: currentTime))")
     }
     
     func timerable(timerEnd timerable: WisdomTimerable){
