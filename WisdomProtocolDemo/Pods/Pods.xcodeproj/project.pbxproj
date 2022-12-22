@@ -49,6 +49,9 @@
 		3ADF41FF868729BB2D28FFA914DBF9B2 /* ConstraintMakerExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7BD27F4663DC20A8E3AC830CA9C13 /* ConstraintMakerExtendable.swift */; };
 		3BC637A1B72E456CC1720AD1BB4D1243 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		3D909AB7674EE6CDF4D8751ECA859A18 /* ConstraintLayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA60A1056F81363EFD869FBABF8CAFB /* ConstraintLayoutSupport.swift */; };
+		3ED25CDF2954592B00D6EE25 /* WisdomBinaryBitable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED25CDE2954592B00D6EE25 /* WisdomBinaryBitable.swift */; };
+		3ED25CE02954592B00D6EE25 /* WisdomBinaryBitable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED25CDE2954592B00D6EE25 /* WisdomBinaryBitable.swift */; };
+		3ED25CE12954592B00D6EE25 /* WisdomBinaryBitable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED25CDE2954592B00D6EE25 /* WisdomBinaryBitable.swift */; };
 		3F89B708D7E06F5EFEEE9D5B0E5EB751 /* ConstraintConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5762256AC1B45E913192FA883975A912 /* ConstraintConfig.swift */; };
 		40DB1A50FC5FEE3938242B927B10F0EA /* ConstraintConstantTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD352F3EDECA470330F8D0A302E5E883 /* ConstraintConstantTarget.swift */; };
 		415D8375F0D850933F5C6FB737657BB9 /* ConstraintPriorityTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242EB790A8E4D9DF6B871493CB09E798 /* ConstraintPriorityTarget.swift */; };
@@ -237,6 +240,7 @@
 		3C6FEBB81DC109DE94611896EB866366 /* ConstraintDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = Source/ConstraintDSL.swift; sourceTree = "<group>"; };
 		3C768BF39209D54EDED859662EA55F93 /* WisdomProtocol-library-iOS9.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "WisdomProtocol-library-iOS9.0-umbrella.h"; path = "../WisdomProtocol-library-iOS9.0/WisdomProtocol-library-iOS9.0-umbrella.h"; sourceTree = "<group>"; };
 		3D50AC6EC1ED0A351723C52D80D79FD3 /* SnapKit-library-iOS9.0 */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "SnapKit-library-iOS9.0"; path = "libSnapKit-library-iOS9.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3ED25CDE2954592B00D6EE25 /* WisdomBinaryBitable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WisdomBinaryBitable.swift; path = Source/WisdomBinaryBitable.swift; sourceTree = "<group>"; };
 		42281397F462B53C292B9BC739A1CB1D /* ConstraintPriority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriority.swift; path = Source/ConstraintPriority.swift; sourceTree = "<group>"; };
 		45EAB160F2F9AE364554F515D9041D2E /* SnapKit-library-iOS9.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "SnapKit-library-iOS9.0.debug.xcconfig"; path = "../SnapKit-library-iOS9.0/SnapKit-library-iOS9.0.debug.xcconfig"; sourceTree = "<group>"; };
 		4735AC6936BC3A95D3C2C44BD8313A29 /* SnapKit-framework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SnapKit-framework.release.xcconfig"; sourceTree = "<group>"; };
@@ -277,7 +281,7 @@
 		91B74A0842C4F5E5FB3C06880F22BC90 /* Pods-WisdomProtocolDemo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WisdomProtocolDemo-umbrella.h"; sourceTree = "<group>"; };
 		95ECEDE8E16DB44D8ED6F6EF7964BFA8 /* Pods-WisdomProtocolLeft-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WisdomProtocolLeft-umbrella.h"; sourceTree = "<group>"; };
 		97C4D100481A864E8BF19DDA2CF39D0F /* Pods-WisdomProtocolDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WisdomProtocolDemo-dummy.m"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9F14179A2C79250681CBCA21DDBEFAFB /* WisdomTimerModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WisdomTimerModel.swift; path = Source/WisdomTimerModel.swift; sourceTree = "<group>"; };
 		9F2517FC794CA936083622C576132D08 /* ConstraintView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintView+Extensions.swift"; path = "Source/ConstraintView+Extensions.swift"; sourceTree = "<group>"; };
 		A697BAA5B184AA491B722B8B133E10C8 /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraintItem.swift; path = Source/LayoutConstraintItem.swift; sourceTree = "<group>"; };
@@ -495,9 +499,9 @@
 				76CD8C644B9C2F10A3D368F2C83E0730 /* WisdomRouterable.swift */,
 				72F64DD433F5BBDE36386C750817012C /* WisdomTimerable.swift */,
 				9F14179A2C79250681CBCA21DDBEFAFB /* WisdomTimerModel.swift */,
+				3ED25CDE2954592B00D6EE25 /* WisdomBinaryBitable.swift */,
 				2A7D0F3D8316E08BF99AB396A81BE228 /* Support Files */,
 			);
-			name = WisdomProtocol;
 			path = WisdomProtocol;
 			sourceTree = "<group>";
 		};
@@ -617,7 +621,6 @@
 				BFF1E6C7FD1CAADB6A06D79995CC6E4C /* UILayoutSupport+Extensions.swift */,
 				C17B6B0563155C8A104B90779E777712 /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -1037,6 +1040,7 @@
 				010FE06E4B2926C55E86B400E1F6F259 /* WisdomProtocol-framework-dummy.m in Sources */,
 				E6AC2C56E67DC799993ED94ADBA68264 /* WisdomProtocolable.swift in Sources */,
 				6AAA32F35D969E84DDE55B31F8455936 /* WisdomProtocolCore.swift in Sources */,
+				3ED25CDF2954592B00D6EE25 /* WisdomBinaryBitable.swift in Sources */,
 				F8114234C7194637BB02F1D130AF3159 /* WisdomProtocolRegister.m in Sources */,
 				B360D4ADC76DD3B49B28C8247F42588C /* WisdomRouterable.swift in Sources */,
 				492DFCB1646099954A7B28DA74365215 /* WisdomTimerable.swift in Sources */,
@@ -1062,6 +1066,7 @@
 				ADD795EC5B779980E137A5E7235E1A19 /* WisdomProtocol-library-iOS9.0-dummy.m in Sources */,
 				441B4C1B0640B2C3A3E09ABDE9571022 /* WisdomProtocolable.swift in Sources */,
 				2F84EB85C6C8F05B49947D2B81FE36C6 /* WisdomProtocolCore.swift in Sources */,
+				3ED25CE12954592B00D6EE25 /* WisdomBinaryBitable.swift in Sources */,
 				B91958AAC54098A4ED9E6899EC111313 /* WisdomProtocolRegister.m in Sources */,
 				E31B24C894F391AC1BB442F18ECC8A27 /* WisdomRouterable.swift in Sources */,
 				EA95ECACE8B08999AF9F2D902F67ABB2 /* WisdomTimerable.swift in Sources */,
@@ -1221,6 +1226,7 @@
 				88262568A08C94485CADA6474EB2073B /* WisdomProtocol-library-iOS15.5-dummy.m in Sources */,
 				5C68A9BA284BCBE0B21EC766D454676B /* WisdomProtocolable.swift in Sources */,
 				BCE892D22750F0CC69C0E8934032484C /* WisdomProtocolCore.swift in Sources */,
+				3ED25CE02954592B00D6EE25 /* WisdomBinaryBitable.swift in Sources */,
 				6989816FA030FA91371EEBCAE815145F /* WisdomProtocolRegister.m in Sources */,
 				355964893F9BF111F54FA7B64B20807D /* WisdomRouterable.swift in Sources */,
 				8E83531FCAF14269ED1F73450D538DE0 /* WisdomTimerable.swift in Sources */,
