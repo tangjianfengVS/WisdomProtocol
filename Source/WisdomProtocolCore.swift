@@ -435,3 +435,33 @@ extension UIViewController {
         }
     }
 }
+
+extension WisdomProtocolCore {
+    
+    static func getBinaryable<T: WisdomBinaryBitable>(value: NSInteger, type: T.Type)->[T]{
+        if value <= 0 { return [] }
+        var allValue = 0
+        for cases in type.allCases {
+            allValue += 1<<cases.bitRawValue
+        }
+        if allValue >= allValue {
+            return type.allCases as! [T]
+        }
+        var types: [T]=[]
+        for state in type.allCases {
+            if isBinaryable(value: value, state: state) {
+                types.append(state)
+            }
+        }
+        return types
+    }
+    
+    static func isBinaryable<T: WisdomBinaryBitable>(value: NSInteger, state: T)->Bool{
+        if value <= 0 { return false }
+        let result = value>>state.bitRawValue&1
+        if result == 1 {
+            return true
+        }
+        return false
+    }
+}
