@@ -79,7 +79,7 @@ extension WisdomProtocol: WisdomProtocolRouterable {
     }
 }
 
-// * Binary Bit Value Protocol *
+// * Binary Bit Value(value==1) Protocol *
 extension WisdomProtocol: WisdomBinaryBitValueable {
     
     // MARK: return - [NSInteger]
