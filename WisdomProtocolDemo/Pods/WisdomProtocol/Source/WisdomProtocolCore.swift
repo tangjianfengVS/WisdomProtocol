@@ -444,7 +444,7 @@ extension WisdomProtocolCore {
         for cases in type.allCases {
             allValue += 1<<cases.bitRawValue
         }
-        if allValue >= value {
+        if value >= allValue {
             return type.allCases as! [T]
         }
         var types: [T]=[]
