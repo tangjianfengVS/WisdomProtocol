@@ -444,12 +444,12 @@ extension WisdomProtocolCore {
         for cases in type.allCases {
             allValue += 1<<cases.bitRawValue
         }
-        if allValue >= allValue {
+        if allValue >= value {
             return type.allCases as! [T]
         }
         var types: [T]=[]
         for state in type.allCases {
-            if isBinaryable(value: value, state: state) {
+            if isBinaryable(value: value, caseBitable: state.bitRawValue) {
                 types.append(state)
             }
         }
@@ -465,13 +465,6 @@ extension WisdomProtocolCore: WisdomBinaryBitValueable {
     
     static func getBinaryable(value: NSInteger, caseBitables: [NSInteger])->[NSInteger]{
         if value <= 0 { return [] }
-        var allValue = 0
-        for bit in caseBitables {
-            allValue += 1<<bit
-        }
-        if allValue >= allValue {
-            return caseBitables
-        }
         var bits: [NSInteger]=[]
         for caseBitable in caseBitables {
             if isBinaryable(value: value, caseBitable: caseBitable) {
