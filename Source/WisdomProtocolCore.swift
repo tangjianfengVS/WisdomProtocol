@@ -320,7 +320,7 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
     }
 }
 
-extension WisdomProtocolCore: WisdomProtocolTimerValueable {
+extension WisdomProtocolCore: WisdomTimerFormatable {
     
     static func getH_M_S_Format(seconds: UInt, format: String)->String{
         let hours = seconds/3600
@@ -457,8 +457,33 @@ extension WisdomProtocolCore {
     }
     
     static func isBinaryable<T: WisdomBinaryBitable>(value: NSInteger, state: T)->Bool{
+        return isBinaryable(value: value, caseBitable: state.bitRawValue)
+    }
+}
+
+extension WisdomProtocolCore: WisdomBinaryBitValueable {
+    
+    static func getBinaryable(value: NSInteger, caseBitables: [NSInteger])->[NSInteger]{
+        if value <= 0 { return [] }
+        var allValue = 0
+        for bit in caseBitables {
+            allValue += 1<<bit
+        }
+        if allValue >= allValue {
+            return caseBitables
+        }
+        var bits: [NSInteger]=[]
+        for caseBitable in caseBitables {
+            if isBinaryable(value: value, caseBitable: caseBitable) {
+                bits.append(caseBitable)
+            }
+        }
+        return bits
+    }
+
+    static func isBinaryable(value: NSInteger, caseBitable: NSInteger)->Bool{
         if value <= 0 { return false }
-        let result = value>>state.bitRawValue&1
+        let result = value>>caseBitable&1
         if result == 1 {
             return true
         }

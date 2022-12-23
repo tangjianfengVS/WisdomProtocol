@@ -87,11 +87,18 @@ protocol WisdomTimerCoreable {
     static func destroyTimer(able: WisdomTimerable&AnyObject)
 }
 
-protocol WisdomProtocolTimerValueable {
+protocol WisdomTimerFormatable {
     
     static func dotFormat(seconds: UInt)->String
     
     static func lineFormat(seconds: UInt)->String
     
     static func timeFormat(seconds: UInt, format: String)->String
+}
+
+protocol WisdomBinaryBitValueable {
+    
+    static func getBinaryable(value: NSInteger, caseBitables: [NSInteger])->[NSInteger]
+
+    static func isBinaryable(value: NSInteger, caseBitable: NSInteger)->Bool
 }

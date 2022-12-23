@@ -79,8 +79,30 @@ extension WisdomProtocol: WisdomProtocolRouterable {
     }
 }
 
+// * Binary Bit Value Protocol *
+extension WisdomProtocol: WisdomBinaryBitValueable {
+    
+    // MARK: return - [NSInteger]
+    // get Binarierable list bit values when value==1 width: NSInteger, [NSInteger]
+    // example: 'let res = WisdomProtocol.getBinaryable(value: 31, caseBitables: [0,1,2,3,4,5])'
+    //          'res = [0,1,2,3,4]'
+    @objc public static func getBinaryable(value: NSInteger, caseBitables: [NSInteger])->[NSInteger]{
+        return WisdomProtocolCore.getBinaryable(value: value, caseBitables: caseBitables)
+    }
+
+    // MARK: return - Bool
+    // get Binarierable a bit value when value==1 width: NSInteger, NSInteger
+    // example: 'let res = WisdomProtocol.isBinaryable(value: 31, caseBitable: 3])'
+    //          'res = ture'
+    // example: 'let res = WisdomProtocol.isBinaryable(value: 31, caseBitable: 5])'
+    //          'res = false'
+    @objc public static func isBinaryable(value: NSInteger, caseBitable: NSInteger)->Bool{
+        return WisdomProtocolCore.isBinaryable(value: value, caseBitable: caseBitable)
+    }
+}
+
 // * NSString Timer Value *
-extension NSString: WisdomProtocolTimerValueable {
+extension NSString: WisdomTimerFormatable {
     
     // MARK: Get Time Param - UInt
     // Time 'UInt' conversion '00:00:00'
@@ -102,7 +124,7 @@ extension NSString: WisdomProtocolTimerValueable {
 }
 
 // * String Timer Value *
-extension String: WisdomProtocolTimerValueable {
+extension String: WisdomTimerFormatable {
     
     // MARK: Get Time Param - UInt
     // Time 'UInt' conversion '00:00:00'
