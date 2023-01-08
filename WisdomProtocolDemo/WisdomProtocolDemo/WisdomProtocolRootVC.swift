@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 import WisdomProtocol
+import WisdomProtocolRight
+
 
 @objc protocol WisdomProtocolRootProtocol {}
 
@@ -20,7 +22,8 @@ class WisdomProtocolRootVC: UIViewController, WisdomRegisterable, WisdomProtocol
     let list = [["WisdomRouterControlable 控制器路由协议"],
                 ["WisdomRouterViewable UIView路由协议"],
                 //["WisdomRouterClassable Class路由协议"],
-                ["WisdomRouterParamable 参数路由协议"]]
+                ["WisdomRouterParamable 参数路由协议"],
+                ["WisdomRouterImageable UIImage路由协议"]]
     
     lazy var tableView : UITableView = {
         let tableVi = UITableView(frame: CGRect.zero, style: .grouped)
@@ -122,6 +125,14 @@ extension WisdomProtocolRootVC: UITableViewDelegate {
                 }
             default: break
             }
+        case 3:
+            switch indexPath.row {
+            case 0:
+                // MARK: WisdomRouterControlable 路由控制器-无参数
+                let vcClass = WisdomProtocol.getRouterControlable(from: RightVCProtocol.self)
+                _=vcClass?.routerControlable?(rootVC: self, param: nil)
+            default: break
+            }
         default: break
         }
     }
@@ -146,5 +157,20 @@ extension WisdomProtocolRootVC: WisdomTimerable {
     
     func timerable(timerEnd timerable: WisdomTimerable){
         
+    }
+}
+
+
+class WisdomProtocolRootUIImage: UIImage, WisdomRegisterable {
+    
+    static func registerable() -> WisdomClassable {
+        return WisdomClassable(register: RightImageProtocol.self, conform: Self.self)
+    }
+}
+
+extension WisdomProtocolRootUIImage: WisdomRouterImageable {
+    
+    public static func routerImageable(param: String) -> UIImage? {
+        return UIImage(named: param)
     }
 }

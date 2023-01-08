@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3ED0A01E292C685B001F8755 /* WisdomProtocolRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A01D292C685B001F8755 /* WisdomProtocolRight.swift */; };
+		8107D100296AF48700792B1C /* WisdomProtocolRightVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8107D0FF296AF48700792B1C /* WisdomProtocolRightVC.swift */; };
 		C764D6A6E9A16DA445335210 /* libPods-WisdomProtocolRight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 205A03C4AA3E05BB35C9F03C /* libPods-WisdomProtocolRight.a */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		205A03C4AA3E05BB35C9F03C /* libPods-WisdomProtocolRight.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WisdomProtocolRight.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ED0A01A292C685B001F8755 /* libWisdomProtocolRight.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libWisdomProtocolRight.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ED0A01D292C685B001F8755 /* WisdomProtocolRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomProtocolRight.swift; sourceTree = "<group>"; };
+		8107D0FF296AF48700792B1C /* WisdomProtocolRightVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomProtocolRightVC.swift; sourceTree = "<group>"; };
 		9238FAC9364E2D296C889FB4 /* Pods-WisdomProtocolRight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocolRight.debug.xcconfig"; path = "../../WisdomProtocolDemo/Pods/Target Support Files/Pods-WisdomProtocolRight/Pods-WisdomProtocolRight.debug.xcconfig"; sourceTree = "<group>"; };
 		DC6272FD09B8403060AEF0DE /* Pods-WisdomProtocolRight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocolRight.release.xcconfig"; path = "../../WisdomProtocolDemo/Pods/Target Support Files/Pods-WisdomProtocolRight/Pods-WisdomProtocolRight.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				3ED0A01D292C685B001F8755 /* WisdomProtocolRight.swift */,
+				8107D0FF296AF48700792B1C /* WisdomProtocolRightVC.swift */,
 			);
 			path = WisdomProtocolRight;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8107D100296AF48700792B1C /* WisdomProtocolRightVC.swift in Sources */,
 				3ED0A01E292C685B001F8755 /* WisdomProtocolRight.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,7 +232,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -282,7 +286,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

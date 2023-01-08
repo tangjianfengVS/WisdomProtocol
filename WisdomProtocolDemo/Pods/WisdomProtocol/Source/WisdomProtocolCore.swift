@@ -18,15 +18,15 @@ struct WisdomProtocolCore {
     // MARK: registerProtocol protocol class
     private static func registerableConfig(register aProtocol: Protocol, conform aClass: AnyClass)->Protocol {
         let key = NSStringFromProtocol(aProtocol)
-        if !class_conformsToProtocol(aClass, aProtocol) {
-            print("❌[WisdomProtocol] register no conforming: "+key+"->"+NSStringFromClass(aClass)+"❌")
-            return aProtocol
-        }
+        //if !class_conformsToProtocol(aClass, aProtocol) {
+        //    print("❌[WisdomProtocol] register no conforming: "+key+"->"+NSStringFromClass(aClass)+"❌")
+        //    return aProtocol
+        //}
         if WisdomProtocolConfig[key] != nil {
             print("❌[WisdomProtocol] register redo conforming: "+key+"->"+NSStringFromClass(aClass)+"❌")
             return aProtocol
         }
-        //print("🐬[WisdomProtocol] register successful: "+key+"->"+NSStringFromClass(aClass)+"🐬")
+        print("🐬[WisdomProtocol] register successful: "+key+"->"+NSStringFromClass(aClass)+"🐬")
         WisdomProtocolConfig.updateValue(aClass, forKey: key)
         return aProtocol
     }
@@ -113,7 +113,7 @@ extension WisdomProtocolCore: WisdomProtocolable {
         let protocolKey = NSStringFromProtocol(Protocol)
         print("[WisdomProtocol] getClassable: "+protocolKey)
 
-        if let conformClass: AnyClass = WisdomProtocolConfig[protocolKey], conformClass.conforms(to: Protocol) {
+        if let conformClass: AnyClass = WisdomProtocolConfig[protocolKey] {
             return conformClass
         }
         return nil
@@ -129,6 +129,13 @@ extension WisdomProtocolCore: WisdomProtocolable {
     static func getControlable(from Protocol: Protocol)->UIViewController.Type? {
         if let conformClass = getClassable(from: Protocol), let conformController = conformClass as? UIViewController.Type {
             return conformController
+        }
+        return nil
+    }
+    
+    static func getImageable(from Protocol: Protocol)->UIImage.Type?{
+        if let conformClass = getClassable(from: Protocol), let conformImage = conformClass as? UIImage.Type {
+            return conformImage
         }
         return nil
     }
@@ -156,6 +163,14 @@ extension WisdomProtocolCore: WisdomProtocolRouterable{
         if let classable = Self.getControlable(from: Protocol), classable.conforms(to: WisdomRouterControlable.self),
            let controlable = classable as? WisdomRouterControlable.Type {
             return controlable
+        }
+        return nil
+    }
+    
+    static func getRouterImageable(from Protocol: Protocol)->WisdomRouterImageable.Type?{
+        if let classable = Self.getImageable(from: Protocol), classable.conforms(to: WisdomRouterImageable.self),
+           let imageable = classable as? WisdomRouterImageable.Type {
+            return imageable
         }
         return nil
     }

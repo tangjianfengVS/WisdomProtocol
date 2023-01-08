@@ -16,6 +16,7 @@
 		3ED0A068292CD13A001F8755 /* WisdomProtocolConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A063292CD13A001F8755 /* WisdomProtocolConfig.swift */; };
 		3ED0A06C292CE2AD001F8755 /* libWisdomProtocolLeft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ED0A06B292CE2AD001F8755 /* libWisdomProtocolLeft.a */; };
 		6596C9D8218F6C43490D638B /* Pods_WisdomProtocolDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 429AABE2760F715C2FA81DA6 /* Pods_WisdomProtocolDemo.framework */; };
+		8107D102296AF4C100792B1C /* libWisdomProtocolRight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8107D101296AF4C100792B1C /* libWisdomProtocolRight.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		3ED0A06B292CE2AD001F8755 /* libWisdomProtocolLeft.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libWisdomProtocolLeft.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		429AABE2760F715C2FA81DA6 /* Pods_WisdomProtocolDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WisdomProtocolDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		508893CDDD8D95A2DAEEBC3B /* Pods-WisdomProtocolDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocolDemo.release.xcconfig"; path = "Target Support Files/Pods-WisdomProtocolDemo/Pods-WisdomProtocolDemo.release.xcconfig"; sourceTree = "<group>"; };
+		8107D101296AF4C100792B1C /* libWisdomProtocolRight.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libWisdomProtocolRight.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDC40C934D569F8F981C6B27 /* Pods-WisdomProtocolDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomProtocolDemo.debug.xcconfig"; path = "Target Support Files/Pods-WisdomProtocolDemo/Pods-WisdomProtocolDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -41,6 +43,7 @@
 			files = (
 				6596C9D8218F6C43490D638B /* Pods_WisdomProtocolDemo.framework in Frameworks */,
 				3ED0A06C292CE2AD001F8755 /* libWisdomProtocolLeft.a in Frameworks */,
+				8107D102296AF4C100792B1C /* libWisdomProtocolRight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +53,7 @@
 		13514903281FCF0B53776266 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8107D101296AF4C100792B1C /* libWisdomProtocolRight.a */,
 				3ED0A06B292CE2AD001F8755 /* libWisdomProtocolLeft.a */,
 				429AABE2760F715C2FA81DA6 /* Pods_WisdomProtocolDemo.framework */,
 			);

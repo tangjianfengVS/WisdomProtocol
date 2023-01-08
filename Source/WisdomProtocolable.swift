@@ -41,6 +41,8 @@ protocol WisdomProtocolable {
     static func getViewable(from Protocol: Protocol)->UIView.Type?
 
     static func getControlable(from Protocol: Protocol)->UIViewController.Type?
+    
+    static func getImageable(from Protocol: Protocol)->UIImage.Type?
 }
 
 protocol WisdomProtocolRouterable {
@@ -50,6 +52,8 @@ protocol WisdomProtocolRouterable {
     static func getRouterViewable(from Protocol: Protocol)->WisdomRouterViewable.Type?
 
     static func getRouterControlable(from Protocol: Protocol)->WisdomRouterControlable.Type?
+    
+    static func getRouterImageable(from Protocol: Protocol)->WisdomRouterImageable.Type?
 }
 
 protocol WisdomProtocolCreateable {

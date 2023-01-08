@@ -71,3 +71,20 @@ import UIKit
     @discardableResult
     @objc optional static func routerViewable(superview: UIView?, param: Any?, returnClosure: ((Any)->(Any))?)->Self
 }
+
+
+// MARK: - Router UIImage Protocol
+@objc public protocol WisdomRouterImageable where Self: UIImage {
+
+    // MARK: Param - String
+    @discardableResult
+    @objc optional static func routerImageable(param: String)->UIImage?
+
+    // MARK: Param - String, ((Any)->Void)?
+    @discardableResult
+    @objc optional static func routerImageable(param: String, closure: ((Any)->Void)?)->UIImage?
+
+    // MARK: Param - String, ((Any)->(Any))?
+    @discardableResult
+    @objc optional static func routerImageable(param: String, returnClosure: ((Any)->(Any))?)->UIImage
+}
