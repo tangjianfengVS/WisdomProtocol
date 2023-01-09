@@ -92,6 +92,10 @@ import UIKit
 
 // MARK: - Router Bundle Protocol
 @objc public protocol WisdomRouterBundleable where Self: Bundle {
+    
+    // MARK: Bundle.main
+    @discardableResult
+    @objc optional static func routerBundleable()->Bundle
 
     // MARK: Param - String, String
     @discardableResult
