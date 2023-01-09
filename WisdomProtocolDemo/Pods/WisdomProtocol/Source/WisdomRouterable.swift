@@ -86,5 +86,5 @@ import UIKit
 
     // MARK: Param - String, ((Any)->(Any))?
     @discardableResult
-    @objc optional static func routerImageable(param: String, returnClosure: ((Any)->(Any))?)->UIImage
+    @objc optional static func routerImageable(param: String, returnClosure: ((Any)->(Any))?)->UIImage?
 }
