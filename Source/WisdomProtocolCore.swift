@@ -26,7 +26,7 @@ struct WisdomProtocolCore {
             print("❌[WisdomProtocol] register redo conforming: "+key+"->"+NSStringFromClass(aClass)+"❌")
             return aProtocol
         }
-        print("🐬[WisdomProtocol] register successful: "+key+"->"+NSStringFromClass(aClass)+"🐬")
+        //print("🐬[WisdomProtocol] register successful: "+key+"->"+NSStringFromClass(aClass)+"🐬")
         WisdomProtocolConfig.updateValue(aClass, forKey: key)
         return aProtocol
     }
