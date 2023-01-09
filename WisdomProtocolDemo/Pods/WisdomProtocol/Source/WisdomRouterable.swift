@@ -88,3 +88,20 @@ import UIKit
     @discardableResult
     @objc optional static func routerImageable(param: String, returnClosure: ((Any)->(Any))?)->UIImage?
 }
+
+
+// MARK: - Router Bundle Protocol
+@objc public protocol WisdomRouterBundleable where Self: Bundle {
+
+    // MARK: Param - String, String
+    @discardableResult
+    @objc optional static func routerBundleable(resource: String, ofType: String)->Bundle?
+
+    // MARK: Param - String, String, ((Any)->Void)?
+    @discardableResult
+    @objc optional static func routerBundleable(resource: String, ofType: String, closure: ((Any)->Void)?)->Bundle?
+
+    // MARK: Param - String, String, ((Any)->(Any))?
+    @discardableResult
+    @objc optional static func routerBundleable(resource: String, ofType: String, returnClosure: ((Any)->(Any))?)->Bundle?
+}

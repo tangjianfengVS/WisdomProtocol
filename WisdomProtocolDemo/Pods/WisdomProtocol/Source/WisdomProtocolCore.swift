@@ -139,6 +139,13 @@ extension WisdomProtocolCore: WisdomProtocolable {
         }
         return nil
     }
+    
+    static func getBundleable(from Protocol: Protocol)->Bundle.Type?{
+        if let conformClass = getClassable(from: Protocol), let conformImage = conformClass as? Bundle.Type {
+            return conformImage
+        }
+        return nil
+    }
 }
 
 extension WisdomProtocolCore: WisdomProtocolRouterable{
@@ -171,6 +178,14 @@ extension WisdomProtocolCore: WisdomProtocolRouterable{
         if let classable = Self.getImageable(from: Protocol), classable.conforms(to: WisdomRouterImageable.self),
            let imageable = classable as? WisdomRouterImageable.Type {
             return imageable
+        }
+        return nil
+    }
+    
+    static func getRouterBundleable(from Protocol: Protocol)->WisdomRouterBundleable.Type?{
+        if let classable = Self.getBundleable(from: Protocol), classable.conforms(to: WisdomRouterBundleable.self),
+           let bundleable = classable as? WisdomRouterBundleable.Type {
+            return bundleable
         }
         return nil
     }

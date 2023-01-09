@@ -63,6 +63,11 @@ extension WisdomProtocol: WisdomProtocolable {
     @objc public static func getImageable(from Protocol: Protocol)->UIImage.Type?{
         return WisdomProtocolCore.getImageable(from: Protocol)
     }
+
+    // MARK: Get Bundle.Type From Protocol
+    @objc public static func getBundleable(from Protocol: Protocol)->Bundle.Type?{
+        return WisdomProtocolCore.getBundleable(from: Protocol)
+    }
 }
 
 // * Router Protocol *
@@ -86,6 +91,11 @@ extension WisdomProtocol: WisdomProtocolRouterable {
     // MARK: Get Router UIImage.Type From Protocol
     @objc public static func getRouterImageable(from Protocol: Protocol)->WisdomRouterImageable.Type?{
         return WisdomProtocolCore.getRouterImageable(from: Protocol)
+    }
+    
+    // MARK: Get Router Bundle.Type From Protocol
+    @objc public static func getRouterBundleable(from Protocol: Protocol)->WisdomRouterBundleable.Type?{
+        return WisdomProtocolCore.getRouterBundleable(from: Protocol)
     }
 }
 
