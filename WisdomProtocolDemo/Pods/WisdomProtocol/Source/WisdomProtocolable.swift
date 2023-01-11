@@ -58,6 +58,8 @@ protocol WisdomProtocolRouterable {
     static func getRouterImageable(from Protocol: Protocol)->WisdomRouterImageable.Type?
     
     static func getRouterBundleable(from Protocol: Protocol)->WisdomRouterBundleable.Type?
+    
+    static func getRouterNibable(from Protocol: Protocol)->WisdomRouterNibable.Type?
 }
 
 protocol WisdomProtocolCreateable {

@@ -18,10 +18,6 @@ struct WisdomProtocolCore {
     // MARK: registerProtocol protocol class
     private static func registerableConfig(register aProtocol: Protocol, conform aClass: AnyClass)->Protocol {
         let key = NSStringFromProtocol(aProtocol)
-        //if !class_conformsToProtocol(aClass, aProtocol) {
-        //    print("❌[WisdomProtocol] register no conforming: "+key+"->"+NSStringFromClass(aClass)+"❌")
-        //    return aProtocol
-        //}
         if WisdomProtocolConfig[key] != nil {
             print("❌[WisdomProtocol] register redo conforming: "+key+"->"+NSStringFromClass(aClass)+"❌")
             return aProtocol
@@ -186,6 +182,14 @@ extension WisdomProtocolCore: WisdomProtocolRouterable{
         if let classable = Self.getBundleable(from: Protocol), classable.conforms(to: WisdomRouterBundleable.self),
            let bundleable = classable as? WisdomRouterBundleable.Type {
             return bundleable
+        }
+        return nil
+    }
+    
+    static func getRouterNibable(from Protocol: Protocol)->WisdomRouterNibable.Type?{
+        if let classable = Self.getBundleable(from: Protocol), classable.conforms(to: WisdomRouterNibable.self),
+           let nibable = classable as? WisdomRouterNibable.Type {
+            return nibable
         }
         return nil
     }

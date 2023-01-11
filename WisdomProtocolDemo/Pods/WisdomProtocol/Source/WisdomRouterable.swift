@@ -109,3 +109,20 @@ import UIKit
     @discardableResult
     @objc optional static func routerBundleable(resource: String, ofType: String, returnClosure: ((Any)->(Any))?)->Bundle?
 }
+
+
+// MARK: - Router UINib Protocol
+@objc public protocol WisdomRouterNibable where Self: Bundle  {
+
+    // MARK: Param - String, Any?, [UINib.OptionsKey: Any]?
+    @discardableResult
+    @objc optional static func routerNibable(name: String, owner: Any?, options: [UINib.OptionsKey: Any]?)->[Any]?
+
+    // MARK: Param - String, Any?, [UINib.OptionsKey: Any]?, ((Any)->Void)?
+    @discardableResult
+    @objc optional static func routerNibable(name: String, owner: Any?, options: [UINib.OptionsKey: Any]?, closure: ((Any)->Void)?)->[Any]?
+
+    // MARK: Param - String, Any?, [UINib.OptionsKey: Any]?, ((Any)->(Any))?
+    @discardableResult
+    @objc optional static func routerNibable(name: String, owner: Any?, options: [UINib.OptionsKey: Any]?, returnClosure: ((Any)->(Any))?)->[Any]?
+}

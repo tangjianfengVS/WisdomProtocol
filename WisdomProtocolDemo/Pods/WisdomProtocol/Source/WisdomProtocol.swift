@@ -97,6 +97,11 @@ extension WisdomProtocol: WisdomProtocolRouterable {
     @objc public static func getRouterBundleable(from Protocol: Protocol)->WisdomRouterBundleable.Type?{
         return WisdomProtocolCore.getRouterBundleable(from: Protocol)
     }
+    
+    // MARK: Get Router UINib.Type From Protocol
+    @objc public static func getRouterNibable(from Protocol: Protocol)->WisdomRouterNibable.Type?{
+        return WisdomProtocolCore.getRouterNibable(from: Protocol)
+    }
 }
 
 // * Binary Bit Value(value==1) Protocol *
