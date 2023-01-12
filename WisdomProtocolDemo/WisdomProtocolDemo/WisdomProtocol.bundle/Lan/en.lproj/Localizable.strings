@@ -1,0 +1,274 @@
+/* 
+  Localizable.strings
+  SSAOutClassRoom
+
+  Created by guanyi on 2022/3/5.
+  
+*/
+
+"发个言～" = "Send messages";
+"当前没有消息" = "No messages in current list";
+"发送" = "Send";
+"我" = "Me";
+"老师" = "TCH";
+"学生" = "STU";
+"老师进入教室" = "Teacher join room";
+"老师离开教室" = "Teacher leave room";
+"您已进入教室" = "You have entered the classroom";
+"您已离开教室" = "You have left the classroom";
+"结课" = "Class is over";
+"开课" = "Class is begin";
+
+"系统发现设备环境异常，暂时限制登录" = "The system finds that the device environment is abnormal and temporarily restricts the login";
+"课程正在进行中，你要退出吗?" = "The course is in progress, do you want to withdraw?";
+"你的账号已在其他设备登录观看直播，如非本人操作请尽快修改密码" = "Your account has been logged in on other devices to watch the live broadcast. If you do not operate it yourself, please change your password as soon as possible";
+"你正在使用移动流量 是否继续上课?" = "Are you using mobile data to continue the class?";
+"正在进入课堂" = "Entering the classroom";
+"进入课堂失败" = "Failed to enter the classroom";
+"课程即将开始…" = "Class readying...";
+"当前无网络，请检查网络设置" = "There is currently no network, please check the network settings";
+"重新加载" = "Reload";
+"本节课已结束" = "Class is over";
+"课后记得复习巩固课堂所学知识点哦" = "After class, remember to review and consolidate the knowledge points learned in class.";
+"退出课堂" = "Quit the class";
+"稍后上课" = "Class later";
+"继续上课" = "Continue the class";
+"我知道了" = "I know";
+
+"查看全部发言" = "Show all messages";
+"只看老师发言" = "Only show teacher's messages";
+"老师暂时离开了教室~" = "The teacher temporarily left the classroom~";
+
+"cancel" = "Cancel";
+"done" = "Comfirm";
+"save" = "Save";
+"submit" = "Submit";
+"appointment_ok" = "OK";
+
+"classroom_classtest" = "Trial Class";
+"classroom_classtrue" = "Regular Class";
+"classroom_classdebug" = "Debugging class";
+"classroom_timetostart" = "Before class starts";
+"classroom_teacher_coming" = "The teacher is here, so the game is about to be closed!";
+"classroom_coming_close" = "Automatic shutdown";
+"classroom_help_online" = "Help Online Corner";
+"classroom_inputmsg" = "Chat in here";
+"classroom_cpu_utilization" = "CPU utilization";
+"classroom_memoryusage" = "Memory usage";
+"classroom_memory" = "Memory";
+"classroom_network_delay" = "Network delay time";
+"classroom_router_delay" = "Routing delay value";
+"classroom_checkrighttips" = "Click the refresh button ";
+"classroom_checkrightrefresh" = "when network latency issues come";
+"classroom_netbest_des" = "Your network status is very good, please concentrate on class";
+"classroom_netgood_des" = "Your network status is good, please concentrate on class";
+"classroom_plase_close_other" = "Please turn off mobile phones, computers, TVs and other devices that are using the same network";
+"classroom_base" = "Excellent";
+"classroom_good" = "Good";
+"classroom_bad" = "Bad";
+"classroom_useredge" = "You are using mobile data";
+"classroom_routerbase" = "Your router is in good condition, please concentrate on class";
+"classroom_routergood" = "Your router is in good condition, please concentrate on class";
+"classroom_routerbad" = "Please get close to the router and avoid wall obstruction, or restart the router";
+"classroom_no_network" = "No network";
+"classroom_no_network_line" = "No network connection currently";
+"classroom_net_bad_des" = "Please approach the router and avoid any obstacles, or restart the router";
+"classroom_relay_startrouter" = "Resetting the modem or  router";
+"classroom_memorybase" = "Your memory status is very good, please concentrate on class";
+"classroom_memorygood" = "Your memory status is good, please concentrate on class";
+"classroom_memorybad" = "Please close other background applications, or change to a better-configured device";
+"classroom_cpubase" = "Your CPU status is very good, please concentrate on class";
+"classroom_cpugood" = "Your CPU status is good, please concentrate on class";
+"classroom_cpubad" = "Please close other background applications, or change to a better-configured device";
+"classroom_feedback" = "Feedback";
+"classroom_devicegood" = "Class equipment is operating normally";
+"classroom_continue_feedback" = "The system has detected that all your devices are normal. Do you have any other questions that need feedback?";
+"classroom_exit_feedback" = "Exit feedback";
+"classroom_goon_feedback" = "Continue feedback";
+
+"classroom_know" = "Got it";
+"classroom_downmore" = "Your login operation is too frequent. Please wait a while and try again.";
+"classroom_isover" = "The course is over. Please leave the class and take a break.";
+"classroom_loginerror" = "Invalid information, please log in again.";
+"classroom_relogin" = "Re-login";
+"classroom_phoneerror" = "The phone number is not valid, please log in again.";
+"classroom_phone_notsame" = "Your phone number does not match the course, please contact the course consultant.";
+"classroom_sf_error" = "Your class identity information is incorrect, please exit the class and re-enter.";
+"classroom_cannot_findyou" = "The system could not find your role identity information. Please try again.";
+"classroom_retry" = "Retry";
+"classroom_no_auth" = "You do not have permission, please contact technical support.";
+"classroom_notyou_lesson" = "This course does not match you, please contact the course consultant.";
+"classroom_account_logged" = "Your account is logged in elsewhere";
+"classroom_enterclassroom_failed" = "Failed to enter the classroom, please exit and try again.";
+"classroom_error" = "Mistake";
+"classroom_exit" = "Quit";
+"classroom_getaddress_failed" = "Failed to obtain class address, please exit and try again";
+"classroom_tips" = "hint";
+"classroom_teacher_upload_video" = "The teacher uploaded a video";
+"classroom_network_error" = "The network is abnormal, please check the network settings";
+"classroom_network_connection" = "Classroom is connecting, please wait for a second...";
+"classroom_upgrade_version" = "In order for you to enjoy better audio and video services, please upgrade to the latest version before coming to class!";
+"classroom_upgrade_already" = "Successfully upgraded to the latest version! But the audio and video channels of your teacher or classmates are not compatible. Please contact the technical support staff through the online help and describe the above reasons!";
+"classroom_donot_auth_tips" = "Please allow \"AirClass\" to access the microphone and camera in the \"Settings-Privacy-\" of the device.";
+"classroom_networkispoor" = "Your network is poor, the video resolution has been reduced, and you can’t view your classmates";
+"classroom_system_detected" = "The system detects that the device is occupied, please clear all background programs and re-enter the classroom";
+"classroom_authfailed" = "Authentication failed";
+"classroom_connection_notsmooth" = "The connection is not smooth, please click on the upper right corner to refresh the classroom to try";
+"classroom_teacher_busy" = "The teacher is busy, please raise your hand later";
+"classroom_courseware_failed" = "Failed to obtain courseware information, please exit and try again";
+"classroom_true_exit_tips" = "Are you sure to leave the classroom?";
+"classroom_exitroom" = "Quit";
+"classroom_exitroom_over" = "Exit class";
+"classroom_extering_exit_tips" = "You're entering the class, are you sure to exit?";
+"classroom_justrefreshed" = "Just refreshed, please try again later";
+"classroom_coursewarescreen" = "There is a courseware screen on stage, so you can’t upload pictures";
+"classroom_donot_enter_background" = "Please do not enter the backstage during class so as not to affect class";
+"classroom_review" = "Review again";
+"classroom_lessonend" = "The class is over";
+"classroom_knowledge_learned_tips" = "Please remember to review what we learned and consolidate the knowledge points after class";
+"classroom_load_teacher" = "Hold on, class is going to begin";
+"classroom_entering_classroom" = "Entering the classroom...";
+"classroom_device_full" = "Device storage space is insufficient \n Clean up the storage space and try again ~";
+"classroom_srorage_space" = "View storage space";
+"classroom_enter_access" = "Enter immediately";
+"classroom_enter_class_failed" = "Failed to enter the classroom";
+"classroom_recoming_class" = "Please re-enter";
+"classroom_download_coursefailed" = "Playback failed \n Please click the button below to retry ~";
+"classroom_redownload" = "Reload";
+"classroom_content_open" = "Wonderful content to open...";
+"classroom_wait_download" = "Please wait while course playback is downloading ";
+"classroom_device_lag_tips" = "The device is stuck. Please exit the app and open it again";
+"low_version" = "system version is low";
+"classroom_late_5" = "late for more than 5 minutes";
+"classroom_classisover_cannotenter" = "Class is over, can't enter class";
+"classroom_absenteeism" = "absenteeism";
+"classroom_classalreadyover" = "Class is over";
+"classroom_toolate" = "too late";
+"classroom_toolate_notenter" = "late for too long, can't enter the classroom";
+"classroom_tool_disable" = "Toolbar has been disabled by the teacher";
+"classroom_tool_enable" = "The toolbar has been enabled by the teacher";
+"classroom_welcom_online" = "Welcome to AirClass online classroom";
+"classroom_no_chat" = "No chat record";
+"classroom_new_msg" = "Message";
+"classroom_chat_max" = "You can enter up to 100 words";
+"classroom_chat_send" = "Send";
+"classroom_chat_systommsg" = "System";
+"classroom_chat_endchat" = "End chat";
+"classroom_chat_student" = "Student";
+"classroom_chat_teacher" = "Teacher";
+"classroom_chat_charge" = "Charge";
+"classroom_chat_technical" = "Technical";
+"classroom_chat_all" = "All";
+"classroom_wait_teacher_upload" = "Waiting for teacher to upload courseware";
+"classroom_wait_courseware_download" = "Download courseware...";
+"classroom_pausing" = "Paused";
+"classroom_countdown" = "Be careful. The timer is started.";
+
+"classroom_sys_version_warn" = "System version is too low，please update";
+"classroom_sys_version_update" = "Update";
+
+
+
+"auth_open_now" = "Open now";
+"auth_screentime" = "【Screen usage time】";
+"auth_general_accessrestriction" = "【General】-【Access Restrictions】";
+"auth_mic_close" = "You have enabled microphone permission restrictions";
+"auth_camera_close" = "You have enabled camera permission restrictions";
+"auth_micandcamera_close" = "You have enabled camera and microphone permission restrictions";
+"auth_toset" = "Please in【Settings】";
+"auth_open_mic" = "Open microphone permissions";
+"auth_open_camera" = "Turn on camera permissions";
+"auth_open_micandcamera" = "Turn on camera and microphone permissions";
+"auth_plase_open_mic" = "Please go to ”Settings-AirClass-Turn on the microphone switch”";
+"auth_plase_open_camera" = "Please go to ”Settings-AirClass-Turn on the camera switch”";
+"auth_plase_open_cameraandmic" = "Please go to ”Settings-AirClass-Turn on the microphone and camera switch”";
+
+"me" = "Me";
+"teacher" = "Teacher";
+"no_records" = "No records";
+"no_class_hours" = "There are no remaining lessons at present";
+"no_class_details" = "No data";
+"mine_totalhours" = "Total available lessons is ";
+"mine_remaining_lessons" = "Remaining lessons";
+"mine_isfrozen" = "is frozen";
+"mine_classhours_unit_hour" = "h";
+"mine_classhours_unit_minute" = "min";
+"mine_classhours_detail_all" = "All";
+"mine_classhours_detail_completed" = "Lesson completed";
+"mine_classhours_detail_refund" = "Lesson refund";
+"mine_classhours_detail_frozenunfrozen" = "Frozen & Unfrozen";
+"mine_classhours_detail_other" = "Other";
+"mine_classhours_teacher" = "Teacher";
+"mine_classhours_classtime" = "Class time";
+"mine_classhours_time" = "Time";
+
+"feedback_cannot_heartea" = "Teacher audio unhearable";
+"feedback_nosound_course" = "Courseware audio unhearable";
+"feedback_sound_bad" = "The audio is intermittent";
+"feedback_cannot_seetea" = "No teacher video";
+"feedback_teavideo_stuck" = "Teacher video is choppy";
+"feedback_notsee_course" = "Unable to see courseware";
+"feedback_course_caton" = "Courseware stuck";
+"feedback_cannot_operate" = "Unable to operate courseware";
+"feedback_chooseproblem" = "Please select the problem you encountered";
+"feedback_sound_pro" = "Audio";
+"feedback_video_pro" = "Video";
+"feedback_course_pro" = "Courseware";
+"feedback_submitend_tips" = "After submitting the problem, the technical teacher will enter the classroom to solve it within 5 minutes.";
+"feedback_submit_pro" = "Submit";
+"feedback_text_placeholder" = "Please describe the problem in 5 words at least";
+"feedback_submit_ing" = "submitting...";
+"feedback_submit_end" = "Question submitted";
+"feedback_submit_endtips" = "The technical teacher will enter the classroom within 3-5 minutes\n to help solve the above problems encountered";
+"feedback_submit_failed" = "Submission failed, please resubmit";
+"feedback_problem_textlength_tips" = "The number of words exceeds the limit";
+"feedback_detail_link" = "The online help is currently in progress, please communicate with the technical teacher in the chat area~";
+
+"ACCourse_unit_day" = "d";
+"ACCourse_unit_hour" = "h";
+"ACCourse_unit_minute" = "m";
+"ACCourse_unit_second" = "s";
+"ACCourse_today" = "Today";
+"ACCourse_monday" = "Mon.";
+"ACCourse_tuesday" = "Tue.";
+"ACCourse_wednesday" = "Wed.";
+"ACCourse_thursday" = "Thu.";
+"ACCourse_friday" = "Fri.";
+"ACCourse_saturday" = "Sat.";
+"ACCourse_sunday" = "Sun.";
+
+"ACCourse_list" = "Schedule";
+"ACCourse_calendar" = "Calendar";
+"ACCourse_waiting" = "Pending Courses";
+"ACCourse_already" = "Completed";
+"ACCourse_view_all" = "View All";
+"ACCourse_experience" = "Trial Class";
+"ACCourse_enter_class" = "Enter";
+"ACCourse_enter_zoom_class" = "Launch ZOOM";
+"ACCourse_courseware" = "Courseware";
+"ACCourse_replay" = "Replay";
+"ACCourse_report" = "Report";
+"ACCourse_teacher_leave" = "Teacher leaves, please wait";
+"ACCourse_teacher_coming" = "The teacher is coming";
+"ACCourse_in_class" = "In Class";
+"ACCourse_generate_playback" = "Replay is generating";
+"ACCourse_cancel" = "Cancelled";
+"ACCourse_time_before_class" = "Start in";
+"ACCourse_classes" = "classes";
+"ACCourse_empty" = "No Courses";
+
+"ACCourse_rtc_me" = "me";
+"ACCourse_class_refreshed" = "Just refreshed, please try later";
+
+"AC_Tips" = "Tips";
+"AC_OK" = "OK";
+"ACCourse_ZOOM_Tips_Content" = "For courses marked as ZOOM, Click \"Launch ZOOM\" and you will be redirected to ZOOM for the lesson.";
+
+"ACNetwork_error" = "The network is abnormal, please check the network settings";
+
+"evaluate_lesson" = "Trial class";
+"formal_lesson" = "Regular Class";
+"debug_lesson" = "Debugging class";
+
+"WisdomProtocol" = "WisdomProtocol E";
+"路由" = "->Router->";

@@ -15,6 +15,8 @@ struct WisdomProtocolCore {
     
     private static var WisdomTimerConfig: [String:WisdomTimerModel] = [:]
     
+    private static var WisdomLanguageBundle: Bundle?
+    
     // MARK: registerProtocol protocol class
     private static func registerableConfig(register aProtocol: Protocol, conform aClass: AnyClass)->Protocol {
         let key = NSStringFromProtocol(aProtocol)
@@ -45,7 +47,7 @@ extension WisdomProtocolCore: WisdomProtocolRegisterable{
             return
         }
         WisdomProtocolCore.WisdomRegisterState = 1
-        WisdomProtocolCrashRegister()
+        WisdomCrashRegister()
         UIViewController.trackingRegister()
     
         let start = CFAbsoluteTimeGetCurrent()
@@ -380,7 +382,7 @@ extension WisdomProtocolCore: WisdomTimerFormatable {
 }
 
 //MARK: - Crash Register
-fileprivate func WisdomProtocolCrashRegister(){
+fileprivate func WisdomCrashRegister(){
     signal(SIGINT,  SignalHandler)
     signal(SIGTRAP, SignalHandler)//nil值的非可选类型/一个失败的强制类型转换
     signal(SIGABRT, SignalHandler)//调用abort函数生成的信号
@@ -515,5 +517,105 @@ extension WisdomProtocolCore: WisdomBinaryBitValueable {
             return true
         }
         return false
+    }
+}
+
+extension WisdomProtocolCore: WisdomLanguageCoreable {
+    
+    private static var WisdomLanguageState: WisdomLanguageStatus?{
+        get {
+            if let languageable = UIApplication.shared.delegate as? WisdomRegisterLanguageable,
+               let languageKey = languageable.registerLanguageKey(), languageKey.count > 0 {
+                let languageValue = UserDefaults.standard.integer(forKey: languageKey)
+                if let state = WisdomLanguageStatus(rawValue: languageValue) {
+                    return state
+                }
+            }
+            return nil
+        }
+        
+        set {
+            if let languageable = UIApplication.shared.delegate as? WisdomRegisterLanguageable,
+               let languageKey = languageable.registerLanguageKey(), languageKey.count > 0 {
+                let value: NSInteger = newValue?.rawValue ?? 0
+                UserDefaults.standard.setValue(value, forKey: languageKey)
+                UserDefaults.standard.synchronize()
+            }
+        }
+    }
+    
+    private static func getLanguageBundle(languageable: WisdomRegisterLanguageable)->Bundle{
+        var languageState: WisdomLanguageStatus = .en
+        let currentState = WisdomLanguageState
+        if currentState==nil || currentState == .system {
+            let language = Locale.preferredLanguages.first ?? ""
+            print("language: "+language)
+            
+            for cases in WisdomLanguageStatus.allCases {
+                if language.hasPrefix(cases.fileName){
+                    languageState = cases
+                    break
+                }
+            }
+        }else if let state = currentState {
+            print("state: \(state.fileName)")
+            languageState = state
+        }
+        let bundle = languageable.registerLanguage(language: languageState)
+        return bundle
+    }
+    
+    static func getLocalizable(localizable: String)->String{
+        // unregisterLanguage
+        if let languageable = UIApplication.shared.delegate as? WisdomRegisterLanguageable  {
+            // set
+            if let bundle = WisdomLanguageBundle {
+                return bundle.localizedString(forKey: localizable, value: nil, table: nil)
+            }
+            // unset
+            let bundle = getLanguageBundle(languageable: languageable)
+            WisdomLanguageBundle = bundle
+            return bundle.localizedString(forKey: localizable, value: nil, table: nil)
+        }
+        return localizable
+    }
+    
+    static func getCurrentLanguage()->WisdomLanguageStatus?{
+        if let _ = UIApplication.shared.delegate as? WisdomRegisterLanguageable {
+            if let currentState = WisdomLanguageState {
+                return currentState
+            }else {
+                return .system
+            }
+        }
+        return nil
+    }
+    
+    static func updateLanguage(language: WisdomLanguageStatus)->Bool{
+        if let languageable = UIApplication.shared.delegate as? WisdomRegisterLanguageable {
+            if language == WisdomLanguageState {
+                return true
+            }
+            WisdomLanguageState = language
+            
+            let bundle = getLanguageBundle(languageable: languageable)
+            WisdomLanguageBundle = bundle
+            
+            languageable.registerLanguageUpdate(language: language)
+            return true
+        }
+        return false
+    }
+    
+    static func resetLanguage(){
+        if let languageable = UIApplication.shared.delegate as? WisdomRegisterLanguageable {
+            if WisdomLanguageState==nil {
+                return
+            }
+            WisdomLanguageState = nil
+            let bundle = getLanguageBundle(languageable: languageable)
+            WisdomLanguageBundle = bundle
+            languageable.registerLanguageUpdate(language: .system)
+        }
     }
 }

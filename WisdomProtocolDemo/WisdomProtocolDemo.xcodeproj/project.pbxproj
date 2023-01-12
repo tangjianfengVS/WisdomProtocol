@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3EBE9EAE296FAA7600E77231 /* WisdomProtocol.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EBE9EAD296FAA7600E77231 /* WisdomProtocol.bundle */; };
 		3ED0A04E292CD06F001F8755 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0A04D292CD06F001F8755 /* AppDelegate.swift */; };
 		3ED0A055292CD06F001F8755 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ED0A053292CD06F001F8755 /* Main.storyboard */; };
 		3ED0A057292CD070001F8755 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3ED0A056292CD070001F8755 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3EBE9EAD296FAA7600E77231 /* WisdomProtocol.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WisdomProtocol.bundle; sourceTree = "<group>"; };
 		3ED0A04A292CD06F001F8755 /* WisdomProtocolDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WisdomProtocolDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ED0A04D292CD06F001F8755 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3ED0A054292CD06F001F8755 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				3ED0A056292CD070001F8755 /* Assets.xcassets */,
 				3ED0A058292CD070001F8755 /* LaunchScreen.storyboard */,
 				3ED0A05B292CD070001F8755 /* Info.plist */,
+				3EBE9EAD296FAA7600E77231 /* WisdomProtocol.bundle */,
 			);
 			path = WisdomProtocolDemo;
 			sourceTree = "<group>";
@@ -146,6 +149,9 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				ja,
+				"zh-Hans-CN",
 			);
 			mainGroup = 3ED0A041292CD06F001F8755;
 			productRefGroup = 3ED0A04B292CD06F001F8755 /* Products */;
@@ -164,6 +170,7 @@
 			files = (
 				3ED0A05A292CD070001F8755 /* LaunchScreen.storyboard in Resources */,
 				3ED0A057292CD070001F8755 /* Assets.xcassets in Resources */,
+				3EBE9EAE296FAA7600E77231 /* WisdomProtocol.bundle in Resources */,
 				3ED0A055292CD06F001F8755 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

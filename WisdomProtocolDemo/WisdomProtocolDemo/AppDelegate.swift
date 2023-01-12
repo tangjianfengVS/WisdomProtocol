@@ -49,3 +49,78 @@ extension AppDelegate: WisdomTrackingable {
         print("[WisdomProtocol] catchTracking viewDidDisappear: \(controller)"+" appearTime: \(appearTime)"+" title: "+title)
     }
 }
+
+extension AppDelegate: WisdomRegisterLanguageable {
+    
+    func registerLanguageKey()->String? {
+        return "registerLanguageKey"
+    }
+    
+    func registerLanguage(language: WisdomLanguageStatus)->Bundle {
+        let bundlePath = (Bundle.main.path(forResource: "WisdomProtocol", ofType: "bundle") ?? "")
+        var path = bundlePath+"/Lan/"+language.file_lproj
+        var bundle: Bundle?
+        switch language {
+        case .system:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            bundle = Bundle.init(path: path)
+        case .en:
+            bundle = Bundle.init(path: path)
+        case .zh_Hans:
+            bundle = Bundle.init(path: path)
+        case .zh_Hant:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            bundle = Bundle.init(path: path)
+        case .zh_Hant_HK:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            bundle = Bundle.init(path: path)
+        case .zh_Hant_TW:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            bundle = Bundle.init(path: path)
+        case .fr:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            bundle = Bundle.init(path: path)
+        case .de:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            bundle = Bundle.init(path: path)
+        case .it:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            bundle = Bundle.init(path: path)
+        case .ja:
+            bundle = Bundle.init(path: path)
+        case .ko:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            bundle = Bundle.init(path: path)
+        case .pt_PT:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            bundle = Bundle.init(path: path)
+        case .ru:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            bundle = Bundle.init(path: path)
+        case .es:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            bundle = Bundle.init(path: path)
+        case .nl:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            bundle = Bundle.init(path: path)
+        case .th:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            bundle = Bundle.init(path: path)
+        case .ar:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            bundle = Bundle.init(path: path)
+        }
+        return bundle ?? Bundle.main
+    }
+    
+    func registerLanguageUpdate(language: WisdomLanguageStatus) {
+        var navVC = UINavigationController()
+        
+        // MARK: WisdomRouterControlable 路由 -> 控制器
+        let vcClass = WisdomProtocol.getRouterControlable(from: RootProtocol.self)
+        if let rootVC = vcClass?.routerControlable?(rootVC: nil, param: nil) {
+            navVC = UINavigationController(rootViewController: rootVC)
+        }
+        self.window?.rootViewController = navVC
+    }
+}

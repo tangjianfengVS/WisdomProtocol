@@ -19,11 +19,13 @@ class WisdomProtocolRootVC: UIViewController, WisdomRegisterable, WisdomProtocol
         return WisdomClassable(register: WisdomProtocolRootProtocol.self, conform: Self.self)
     }
 
-    let list = [["WisdomRouterControlable 控制器路由协议"],
-                ["WisdomRouterViewable UIView路由协议"],
+    let list = [["WisdomRouterControlable 控制器"+"路由".localizable+"协议"],
+                ["WisdomRouterViewable UIView"+"路由".localizable+"协议"],
                 //["WisdomRouterClassable Class路由协议"],
-                ["WisdomRouterParamable 参数路由协议"],
-                ["WisdomRouterImageable UIImage路由协议"]]
+                ["WisdomRouterParamable 参数"+"路由".localizable+"协议"],
+                ["WisdomRouterImageable UIImage"+"路由".localizable+"协议"],
+                ["WisdomLanguageable Language"+"路由".localizable+"协议",
+                 "WisdomLanguageable Language"+"路由".localizable+"重置协议"]]
     
     lazy var tableView : UITableView = {
         let tableVi = UITableView(frame: CGRect.zero, style: .grouped)
@@ -42,14 +44,14 @@ class WisdomProtocolRootVC: UIViewController, WisdomRegisterable, WisdomProtocol
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         self.edgesForExtendedLayout = UIRectEdge.bottom
-        title = "WisdomProtocol"
+        title = "WisdomProtocol".localizable
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
         
-        //startDownTimer(totalTime: 30)
+        startDownTimer(totalTime: 30)
     }
 }
 
@@ -90,7 +92,7 @@ extension WisdomProtocolRootVC : UITableViewDataSource {
     }
 }
 
-extension WisdomProtocolRootVC: UITableViewDelegate {
+extension WisdomProtocolRootVC: UITableViewDelegate, WisdomLanguageable {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
@@ -133,6 +135,19 @@ extension WisdomProtocolRootVC: UITableViewDelegate {
                 _=vcClass?.routerControlable?(rootVC: self, param: nil)
             default: break
             }
+        case 4:
+            switch indexPath.row {
+            case 0:
+                let lan = Self.getCurrentLanguage()
+                print(lan)
+                let res = Self.updateLanguage(language: lan == .en ? .zh_Hans : .en)
+                print(res)
+                let res_lan = Self.getCurrentLanguage()
+                print(res_lan)
+            case 1:
+                Self.resetLanguage()
+            default: break
+            }
         default: break
         }
     }
@@ -154,9 +169,9 @@ extension WisdomProtocolRootVC: WisdomTimerable {
     func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable){
         print("WisdomProtocolRootVC timerDid: \(currentTime)")
     }
-    
+
     func timerable(timerEnd timerable: WisdomTimerable){
-        
+
     }
 }
 

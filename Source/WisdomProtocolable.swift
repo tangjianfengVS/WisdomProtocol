@@ -112,3 +112,14 @@ protocol WisdomBinaryBitValueable {
 
     static func isBinaryable(value: NSInteger, caseBitable: NSInteger)->Bool
 }
+
+protocol WisdomLanguageCoreable {
+    
+    static func getLocalizable(localizable: String)->String
+
+    static func getCurrentLanguage()->WisdomLanguageStatus?
+    
+    static func updateLanguage(language: WisdomLanguageStatus)->Bool
+    
+    static func resetLanguage()
+}
