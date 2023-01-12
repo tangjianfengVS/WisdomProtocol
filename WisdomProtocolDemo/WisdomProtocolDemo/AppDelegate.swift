@@ -78,36 +78,40 @@ extension AppDelegate: WisdomRegisterLanguageable {
             path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
             bundle = Bundle.init(path: path)
         case .fr:
-            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
             bundle = Bundle.init(path: path)
         case .de:
-            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
             bundle = Bundle.init(path: path)
         case .it:
-            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
             bundle = Bundle.init(path: path)
         case .ja:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
             bundle = Bundle.init(path: path)
         case .ko:
-            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
             bundle = Bundle.init(path: path)
         case .pt_PT:
-            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
             bundle = Bundle.init(path: path)
         case .ru:
-            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
             bundle = Bundle.init(path: path)
         case .es:
-            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
             bundle = Bundle.init(path: path)
         case .nl:
-            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
             bundle = Bundle.init(path: path)
         case .th:
-            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
             bundle = Bundle.init(path: path)
         case .ar:
-            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
+            bundle = Bundle.init(path: path)
+        case .uk:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
             bundle = Bundle.init(path: path)
         }
         return bundle ?? Bundle.main

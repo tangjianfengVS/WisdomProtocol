@@ -119,6 +119,8 @@ protocol WisdomLanguageCoreable {
 
     static func getCurrentLanguage()->WisdomLanguageStatus?
     
+    static func getSystemLanguage()->String
+    
     static func updateLanguage(language: WisdomLanguageStatus)->Bool
     
     static func resetLanguage()

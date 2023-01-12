@@ -548,17 +548,17 @@ extension WisdomProtocolCore: WisdomLanguageCoreable {
         var languageState: WisdomLanguageStatus = .en
         let currentState = WisdomLanguageState
         if currentState==nil || currentState == .system {
-            let language = Locale.preferredLanguages.first ?? ""
-            print("language: "+language)
+            let systemLanguage = getSystemLanguage()
+            print("[WisdomProtocol] systemLanguage: "+systemLanguage)
             
             for cases in WisdomLanguageStatus.allCases {
-                if language.hasPrefix(cases.fileName){
+                if systemLanguage.hasPrefix(cases.fileName){
                     languageState = cases
                     break
                 }
             }
         }else if let state = currentState {
-            print("state: \(state.fileName)")
+            print("[WisdomProtocol] currentLanguage: \(state.fileName)")
             languageState = state
         }
         let bundle = languageable.registerLanguage(language: languageState)
@@ -589,6 +589,10 @@ extension WisdomProtocolCore: WisdomLanguageCoreable {
             }
         }
         return nil
+    }
+    
+    static func getSystemLanguage()->String{
+        return Locale.preferredLanguages.first ?? ""
     }
     
     static func updateLanguage(language: WisdomLanguageStatus)->Bool{

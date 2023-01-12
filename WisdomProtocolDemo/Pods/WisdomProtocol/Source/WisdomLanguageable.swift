@@ -43,6 +43,8 @@ import UIKit
     case th
     /// 阿拉伯语
     case ar
+    /// 乌克兰
+    case uk
     
     // 文件名称/File name
     public var fileName: String {
@@ -82,6 +84,8 @@ import UIKit
                 return "th"
             case .ar:
                 return "ar-001"
+            case .uk:
+                return "uk"
             }
         }
     }
@@ -97,8 +101,15 @@ import UIKit
 extension WisdomLanguageable {
     
     // MARK: return - WisdomLanguageStatus?
+    // Gets the language type of the setting
     public static func getCurrentLanguage()->WisdomLanguageStatus?{
         return WisdomProtocolCore.getCurrentLanguage()
+    }
+    
+    // MARK: return - String
+    // Gets the language type of the System
+    public static func getSystemLanguage()->String{
+        return WisdomProtocolCore.getSystemLanguage()
     }
     
     // MARK: Param - WisdomLanguageStatus, return - Bool
