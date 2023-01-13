@@ -50,42 +50,24 @@ import UIKit
     public var fileName: String {
         get {
             switch self {
-            case .system:
-                return "system"
-            case .en:
-                return "en"
-            case .zh_Hans:
-                return "zh-Hans"
-            case .zh_Hant:
-                return "zh-Hant"
-            case .zh_Hant_HK:
-                return "zh-Hant-HK"
-            case .zh_Hant_TW:
-                return "zh-Hant-TW"
-            case .fr:
-                return "fr"
-            case .de:
-                return "de"
-            case .it:
-                return "it"
-            case .ja:
-                return "ja"
-            case .ko:
-                return "ko"
-            case .pt_PT:
-                return "pt-PT"
-            case .ru:
-                return "ru"
-            case .es:
-                return "es"
-            case .nl:
-                return "nl"
-            case .th:
-                return "th"
-            case .ar:
-                return "ar-001"
-            case .uk:
-                return "uk"
+            case .system:  return "system"
+            case .en:      return "en"
+            case .zh_Hans: return "zh-Hans"
+            case .zh_Hant: return "zh-Hant"
+            case .zh_Hant_HK: return "zh-Hant-HK"
+            case .zh_Hant_TW: return "zh-Hant-TW"
+            case .fr:    return "fr"
+            case .de:    return "de"
+            case .it:    return "it"
+            case .ja:    return "ja"
+            case .ko:    return "ko"
+            case .pt_PT: return "pt-PT"
+            case .ru:    return "ru"
+            case .es:    return "es"
+            case .nl:    return "nl"
+            case .th:    return "th"
+            case .ar:    return "ar-001"
+            case .uk:    return "uk"
             }
         }
     }
