@@ -10,7 +10,7 @@
 #endif
 #endif
 
-#import "WisdomProtocolRegister.h"
+#import "Register.h"
 
 FOUNDATION_EXPORT double WisdomProtocolVersionNumber;
 FOUNDATION_EXPORT const unsigned char WisdomProtocolVersionString[];

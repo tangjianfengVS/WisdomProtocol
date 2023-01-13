@@ -1,5 +1,5 @@
 //
-//  WisdomProtocolRegister.h
+//  Register.h
 //  WisdomProtocol
 //
 //  Created by tangjianfeng on 2021/12/17.

@@ -1,11 +1,11 @@
 //
-//  WisdomProtocolRegister.m
+//  Register.m
 //  WisdomProtocol
 //
 //  Created by tangjianfeng on 2021/12/17.
 //
 
-#import "WisdomProtocolRegister.h"
+#import "Register.h"
 #import <objc/runtime.h>
 #import <mach-o/dyld.h>
 

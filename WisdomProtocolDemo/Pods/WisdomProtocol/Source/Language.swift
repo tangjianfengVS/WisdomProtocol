@@ -1,5 +1,5 @@
 //
-//  WisdomLanguageable.swift
+//  Language.swift
 //  Pods
 //
 //  Created by 汤建锋 on 2023/1/12.
@@ -121,7 +121,7 @@ extension WisdomLanguageable {
     
     // MARK: Reset Language
     public static func resetLanguage(){
-        return WisdomProtocolCore.resetLanguage()
+        WisdomProtocolCore.resetLanguage()
     }
 }
 

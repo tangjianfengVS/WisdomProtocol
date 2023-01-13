@@ -1,1 +1,0 @@
-../../../WisdomProtocol/Source/WisdomProtocolRegister.h
