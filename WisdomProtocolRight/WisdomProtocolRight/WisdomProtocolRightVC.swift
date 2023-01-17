@@ -44,6 +44,13 @@ class WisdomProtocolRightVC: UIViewController, WisdomRegisterable, WisdomProtoco
         btn.backgroundColor = .black
         btn.setTitle("Router Image", for: .normal)
         btn.addTarget(self, action: #selector(clickRouterImage), for: .touchUpInside)
+        
+        let b = Bundle.able(projectClass: self.classForCoder,
+                            resource: "WisdomProtocolRight",
+                            ofType: "bundle",
+                            fileName: "Lan/"+WisdomLanguageStatus.en.file_lproj,
+                            inDirectory: "libWisdomProtocolRight.a")
+        print(b)
     }
     
     @objc private func clickRouterImage(){

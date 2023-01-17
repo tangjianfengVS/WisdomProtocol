@@ -146,6 +146,19 @@ extension WisdomProtocolCore: WisdomProtocolable {
     }
 }
 
+extension WisdomProtocolCore: WisdomBundleCoreable {
+        
+    static func able(projectClass: AnyClass?, resource: String ,ofType: String, fileName: String, inDirectory: String?)->Bundle?{
+        let b = projectClass != nil ? Bundle.init(for: projectClass!) : Bundle.main
+        var bundlePath = b.path(forResource: resource, ofType: ofType, inDirectory: inDirectory) ?? ""
+        if !bundlePath.hasSuffix("/") && !fileName.hasPrefix("/") {
+            bundlePath.append(contentsOf: "/")
+        }
+        let bundle = Bundle.init(path: bundlePath+fileName)
+        return bundle
+    }
+}
+
 extension WisdomProtocolCore: WisdomProtocolRouterable{
     
     static func getRouterClassable(from Protocol: Protocol)->WisdomRouterClassable.Type?{

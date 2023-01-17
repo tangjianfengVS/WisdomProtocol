@@ -170,3 +170,16 @@ extension String: WisdomTimerFormatable {
     }
 }
 
+// * Create Bundle Value *
+extension Bundle: WisdomBundleCoreable {
+    
+    // MARK: Create Bundle Param - AnyClass?, String, String, String, String?
+    // projectName: Bundle Module Class Name
+    // resource:    Bundle Name
+    // ofType:      Bundle Type Name
+    // filePath:    File Name
+    // inDirectory: Framework Name
+    @objc public static func able(projectClass: AnyClass?=nil, resource: String ,ofType: String, fileName: String, inDirectory: String?=nil)->Bundle?{
+        return WisdomProtocolCore.able(projectClass: projectClass, resource: resource, ofType: ofType, fileName: fileName, inDirectory: inDirectory)
+    }
+}

@@ -26,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		205A03C4AA3E05BB35C9F03C /* libPods-WisdomProtocolRight.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WisdomProtocolRight.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EBCF6C82976321200FD84C4 /* WisdomProtocolRight.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WisdomProtocolRight.bundle; sourceTree = "<group>"; };
 		3ED0A01A292C685B001F8755 /* libWisdomProtocolRight.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libWisdomProtocolRight.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ED0A01D292C685B001F8755 /* WisdomProtocolRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomProtocolRight.swift; sourceTree = "<group>"; };
 		8107D0FF296AF48700792B1C /* WisdomProtocolRightVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomProtocolRightVC.swift; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 			children = (
 				3ED0A01D292C685B001F8755 /* WisdomProtocolRight.swift */,
 				8107D0FF296AF48700792B1C /* WisdomProtocolRightVC.swift */,
+				3EBCF6C82976321200FD84C4 /* WisdomProtocolRight.bundle */,
 			);
 			path = WisdomProtocolRight;
 			sourceTree = "<group>";

@@ -65,9 +65,15 @@ extension AppDelegate: WisdomRegisterLanguageable {
             path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
             bundle = Bundle.init(path: path)
         case .en:
-            bundle = Bundle.init(path: path)
+            bundle = Bundle.able(projectClass: classForCoder,
+                                 resource: "WisdomProtocol",
+                                 ofType: "bundle",
+                                 fileName: "Lan/"+WisdomLanguageStatus.en.file_lproj)
         case .zh_Hans:
-            bundle = Bundle.init(path: path)
+            bundle = Bundle.able(projectClass: classForCoder,
+                                 resource: "WisdomProtocol",
+                                 ofType: "bundle",
+                                 fileName: "Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj)
         case .zh_Hant:
             path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
             bundle = Bundle.init(path: path)

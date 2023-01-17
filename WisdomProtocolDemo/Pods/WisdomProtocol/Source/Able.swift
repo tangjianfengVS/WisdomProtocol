@@ -125,3 +125,8 @@ protocol WisdomLanguageCoreable {
     
     static func resetLanguage()
 }
+
+protocol WisdomBundleCoreable {
+    
+    static func able(projectClass: AnyClass?, resource: String, ofType: String, fileName: String, inDirectory: String?)->Bundle?
+}
