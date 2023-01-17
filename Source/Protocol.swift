@@ -179,7 +179,7 @@ extension Bundle: WisdomBundleCoreable {
     // ofType:      Bundle Type Name
     // filePath:    File Name
     // inDirectory: Framework Name
-    @objc public static func able(projectClass: AnyClass?=nil, resource: String ,ofType: String, fileName: String, inDirectory: String?=nil)->Bundle?{
+    @objc public static func able(projectClass: AnyClass?=nil, resource: String, ofType: String, fileName: String, inDirectory: String?=nil)->Bundle?{
         return WisdomProtocolCore.able(projectClass: projectClass, resource: resource, ofType: ofType, fileName: fileName, inDirectory: inDirectory)
     }
 }
