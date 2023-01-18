@@ -77,8 +77,24 @@ import UIKit
 }
 
 
-// MARK: Languageable
-@objc public protocol WisdomLanguageable {}
+// MARK: Languageable. < No need to implement >
+@objc public protocol WisdomLanguageable {
+    
+    // MARK: return - WisdomLanguageModel.WisdomLanguageStatus?
+    // Gets the language type of the setting
+    //@objc optional static func getCurrentLanguage()->WisdomLanguageStatus?
+    
+    // MARK: return - String
+    // Gets the language type of the System
+    @objc optional static func getSystemLanguage()->String
+    
+    // MARK: Param - WisdomLanguageStatus, return - Bool
+    // Update Language
+    @objc optional static func updateLanguage(language: WisdomLanguageStatus)->Bool
+    
+    // MARK: Reset Language
+    @objc optional static func resetLanguage()
+}
 
 extension WisdomLanguageable {
     
@@ -88,20 +104,15 @@ extension WisdomLanguageable {
         return WisdomProtocolCore.getCurrentLanguage()
     }
     
-    // MARK: return - String
-    // Gets the language type of the System
     public static func getSystemLanguage()->String{
         return WisdomProtocolCore.getSystemLanguage()
     }
     
-    // MARK: Param - WisdomLanguageStatus, return - Bool
-    // Update Language
     @discardableResult
     public static func updateLanguage(language: WisdomLanguageStatus)->Bool{
         return WisdomProtocolCore.updateLanguage(language: language)
     }
     
-    // MARK: Reset Language
     public static func resetLanguage(){
         WisdomProtocolCore.resetLanguage()
     }

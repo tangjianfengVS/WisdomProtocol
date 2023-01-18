@@ -14,39 +14,49 @@ import UIKit
     
     // MARK: Class Param - UInt, WisdomTimerable
     // * Timer task in progress, current time
-    func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable)
+    @objc func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable)
     
     // MARK: Class Param - WisdomTimerable
     // * Example End a scheduled task
-    func timerable(timerEnd timerable: WisdomTimerable)
+    @objc func timerable(timerEnd timerable: WisdomTimerable)
+    
+    // MARK: Class Param - NSInteger. < No need to implement >
+    // * Start a forward timer task, start the forward time point
+    @objc optional func startForwardTimer(startTime: UInt)
+    
+    // MARK: Class Param - NSInteger. < No need to implement >
+    // * Start a countdown timer task, start the total time countdown
+    @objc optional func startDownTimer(totalTime: UInt)
+    
+    // MARK: Class Timer - suspend. < No need to implement >
+    //@objc optional func suspendTimer()
+    
+    // MARK: Class Timer - resume. < No need to implement >
+    //@objc optional func resumeTimer()
+    
+    // MARK: Class Timer - destroy. < No need to implement >
+    // Destruction/Release timer task
+    @objc optional func destroyTimer()
 }
 
 extension WisdomTimerable {
     
-    // MARK: Class Param - NSInteger
-    // * Start a forward timer task, start the forward time point
     public func startForwardTimer(startTime: UInt){
         WisdomProtocolCore.startForwardTimer(able: self, startTime: startTime)
     }
     
-    // MARK: Class Param - NSInteger
-    // * Start a countdown timer task, start the total time countdown
     public func startDownTimer(totalTime: UInt){
         WisdomProtocolCore.startDownTimer(able: self, totalTime: totalTime)
     }
     
-    // MARK: Class Timer - suspend
     //public func suspendTimer(){
     //    WisdomProtocolCore.suspendTimer(able: self)
     //}
     
-    // MARK: Class Timer - resume
     //public func resumeTimer(){
     //    WisdomProtocolCore.resumeTimer(able: self)
     //}
     
-    // MARK: Class Timer - destroy
-    // Destruction/Release timer task
     public func destroyTimer(){
         WisdomProtocolCore.destroyTimer(able: self)
     }
