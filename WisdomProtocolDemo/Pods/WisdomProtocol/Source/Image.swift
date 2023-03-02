@@ -9,12 +9,13 @@ import UIKit
 
 fileprivate let WisdomImageCache = NSCache<AnyObject, AnyObject>()
 
+fileprivate var WisdomTrackingImages: [WisdomWeakable<UIImageView>]?
 
 extension UIImageView {
     
     private struct WisdomLoadImage{ static var imageName = "WisdomLoadImage.imageName" }
     
-    private var loadImageName: String {
+    fileprivate var loadImageName: String {
         set { objc_setAssociatedObject(self, &WisdomLoadImage.imageName, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
         get { return objc_getAssociatedObject(self, &WisdomLoadImage.imageName) as? String ?? "" }
     }
@@ -47,6 +48,12 @@ extension WisdomProtocolCore {
     
     // save
     static func save(image: UIImage, imageName: String){
+        if Thread.isMainThread, WisdomTrackingImages?.count ?? 0 > 0 {
+            updateImage()
+        }else if WisdomTrackingImages?.count ?? 0 > 0 {
+            DispatchQueue.main.async { updateImage() }
+        }
+        
         DispatchQueue.global().async {
             let res_imageName = imageName.replacingOccurrences(of: "/", with: "")
             if res_imageName.isEmpty {
@@ -66,6 +73,18 @@ extension WisdomProtocolCore {
             }catch {
                 print(error)
             }
+        }
+        
+        func updateImage(){
+            WisdomTrackingImages = WisdomTrackingImages?.compactMap({ weakable in
+                if let imageView = weakable.able {
+                    if !imageView.loadImageName.isEmpty, imageView.loadImageName == imageName.replacingOccurrences(of: "/", with: "") {
+                        imageView.image = image
+                    }
+                    return weakable
+                }
+                return nil
+            })
         }
     }
     
@@ -101,5 +120,22 @@ extension WisdomProtocolCore {
                 }
             }
         }
+    }
+    
+    static func imageTrackingable(imageView: UIImageView){
+        if WisdomTrackingImages == nil {
+            WisdomTrackingImages = []
+        }
+        Self.imageMissingable(imageView: imageView)
+        WisdomTrackingImages?.append(WisdomWeakable(able: imageView))
+    }
+    
+    static func imageMissingable(imageView: UIImageView) {
+        WisdomTrackingImages = WisdomTrackingImages?.compactMap({ weakable in
+            if let able = weakable.able, able != imageView {
+                return weakable
+            }
+            return nil
+        })
     }
 }

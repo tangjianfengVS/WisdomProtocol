@@ -207,6 +207,20 @@ extension UIImageView {
     @objc public func loadImageCache(imageName: String, placeholderImage: UIImage?=nil) {
         loadImageable(imageName: imageName, placeholderImage: placeholderImage)
     }
+    
+    // MARK: Tracking save Image in Memory Cache / Disk Cache, Paired use
+    // Tracking UIImage ‘@objc public func saveable(imageName: String)’ method, update icon
+    // 当有图片本地缓存, 调用 UIImage ‘@objc public func saveable(imageName: String)’ 方法时，对跟踪图片控件，刷新图片
+    @objc public func trackingImageable() {
+        WisdomProtocolCore.imageTrackingable(imageView: self)
+    }
+    
+    // MARK: Missing save Image in Memory Cache / Disk Cache, Paired use
+    // Make UIImage ‘@objc public func trackingImageable()’ method Missing
+    // 使对跟踪图片控件刷新失效，失效设置 UIImage ‘@objc public func saveable(imageName: String)’ 方法
+    @objc public func missingImageable() {
+        WisdomProtocolCore.imageMissingable(imageView: self)
+    }
 }
 
 
