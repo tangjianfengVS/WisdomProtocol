@@ -198,19 +198,19 @@ extension Bundle: WisdomBundleCoreable {
 }
 
 
-// * Load Image in Memory Cache/Disk Cache *
+// * Load Image in Memory/Disk Cache *
 extension UIImageView {
     
     // MARK: Load Image in Memory Cache / Disk Cache
-    // imageName:        Image Name (historical save Memory Cache/Disk Cache)
-    // placeholderImage: Placeholder picture (Memory Cache/Disk Cache no Image)
+    // imageName:        Image Name (historical save Memory/Disk Cache)
+    // placeholderImage: Placeholder picture (Memory/Disk Cache no Image)
     @objc public func loadImageCache(imageName: String, placeholderImage: UIImage?=nil) {
         loadImageable(imageName: imageName, placeholderImage: placeholderImage)
     }
 }
 
 
-// * Save/Load Image in Memory Cache/Disk Cache *
+// * Save/Load Image in Memory/Disk Cache *
 extension UIImage {
     
     // MARK: Save Image in Memory Cache / Disk Cache

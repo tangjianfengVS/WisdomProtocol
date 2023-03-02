@@ -21,7 +21,7 @@ extension UIImageView {
 
     func loadImageable(imageName: String, placeholderImage: UIImage?=nil) {
         image = nil
-        let res_imageName = imageName.components(separatedBy: "/").last ?? ""
+        let res_imageName = imageName.replacingOccurrences(of: "/", with: "")
         loadImageName = res_imageName
         if res_imageName.isEmpty {
             image = placeholderImage
@@ -48,7 +48,7 @@ extension WisdomProtocolCore {
     // save
     static func save(image: UIImage, imageName: String){
         DispatchQueue.global().async {
-            let res_imageName = imageName.components(separatedBy: "/").last ?? ""
+            let res_imageName = imageName.replacingOccurrences(of: "/", with: "")
             if res_imageName.isEmpty {
                 return
             }
@@ -71,16 +71,17 @@ extension WisdomProtocolCore {
     
     // load
     static func load(imageName: String, imageClosure: @escaping (UIImage,String)->(), emptyClosure: @escaping ()->()){
-        if imageName.isEmpty {
+        let res_imageName = imageName.replacingOccurrences(of: "/", with: "")
+        if res_imageName.isEmpty {
             emptyClosure()
             return
         }
         
-        if let image = WisdomImageCache.object(forKey: imageName as AnyObject) as? UIImage {
+        if let image = WisdomImageCache.object(forKey: res_imageName as AnyObject) as? UIImage {
             imageClosure(image, imageName)
         }else {
             DispatchQueue.global().async {
-                let imageURL = URL(fileURLWithPath: ImageCachePath+imageName) as CFURL
+                let imageURL = URL(fileURLWithPath: ImageCachePath+res_imageName) as CFURL
                 let options = [
                     kCGImageSourceCreateThumbnailFromImageAlways: true,
                     kCGImageSourceCreateThumbnailWithTransform: true,
@@ -91,9 +92,9 @@ extension WisdomProtocolCore {
                 var image: UIImage?
                 if let source: CGImageSource = CGImageSourceCreateWithURL(imageURL, nil),
                    let imageRef: CGImage = CGImageSourceCreateThumbnailAtIndex(source, 0, options) {
-                    let image_res: UIImage = UIImage(cgImage: imageRef)
-                    image = image_res
-                    WisdomImageCache.setObject(image_res, forKey: imageName as AnyObject)
+                    let res_image: UIImage = UIImage(cgImage: imageRef)
+                    image = res_image
+                    WisdomImageCache.setObject(res_image, forKey: res_imageName as AnyObject)
                 }
                 DispatchQueue.main.async {
                     image == nil ? emptyClosure() : imageClosure(image!, imageName)
