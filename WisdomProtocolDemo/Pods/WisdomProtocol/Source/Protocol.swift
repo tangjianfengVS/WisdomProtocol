@@ -13,7 +13,7 @@ import UIKit
     override init() {}
 }
 
-extension WisdomProtocol: WisdomProtocolRegisterable{
+extension WisdomProtocol: WisdomProtocolRegisterable {
     
     @objc static func registerable(){
         WisdomProtocolCore.registerable()
@@ -28,8 +28,10 @@ extension WisdomProtocol: WisdomProtocolRegisterable{
     }
 }
 
+
 // * Create Protocol *
-extension WisdomProtocol: WisdomProtocolCreateable{
+// Initialize the defined protocol using a string
+extension WisdomProtocol: WisdomProtocolCreateable {
     
     // MARK: Create Protocol From Protocol Name: String
     @objc public static func create(protocolName: String)->Protocol? {
@@ -42,6 +44,9 @@ extension WisdomProtocol: WisdomProtocolCreateable{
     }
 }
 
+
+// * Gets AnyClass / UIView.Type / UIViewController.Type / UIImage.Type / Bundle.Type *
+// Gets the type of the registered binding protocol
 extension WisdomProtocol: WisdomProtocolable {
     
     // MARK: Get AnyClass From Protocol
@@ -70,7 +75,10 @@ extension WisdomProtocol: WisdomProtocolable {
     }
 }
 
+
 // * Router Protocol *
+// Gets Router WisdomRouterClassable.Type / WisdomRouterViewable.Type / WisdomRouterControlable.Type
+// Gets Router WisdomRouterImageable.Type / WisdomRouterBundleable.Type / WisdomRouterNibable.Type
 extension WisdomProtocol: WisdomProtocolRouterable {
 
     // MARK: Get Router AnyClass From Protocol
@@ -104,7 +112,9 @@ extension WisdomProtocol: WisdomProtocolRouterable {
     }
 }
 
+
 // * Binary Bit Value(value==1) Protocol *
+// Gets the value of the specified binary bit
 extension WisdomProtocol: WisdomBinaryBitValueable {
     
     // MARK: return - [NSInteger]
@@ -125,6 +135,7 @@ extension WisdomProtocol: WisdomBinaryBitValueable {
         return WisdomProtocolCore.isBinaryable(value: value, caseBitable: caseBitable)
     }
 }
+
 
 // * NSString Timer Value *
 extension NSString: WisdomTimerFormatable {
@@ -148,6 +159,7 @@ extension NSString: WisdomTimerFormatable {
     }
 }
 
+
 // * String Timer Value *
 extension String: WisdomTimerFormatable {
     
@@ -170,6 +182,7 @@ extension String: WisdomTimerFormatable {
     }
 }
 
+
 // * Create Bundle Value *
 extension Bundle: WisdomBundleCoreable {
     
@@ -181,5 +194,36 @@ extension Bundle: WisdomBundleCoreable {
     // inDirectory: Framework Name
     @objc public static func able(projectClass: AnyClass?=nil, resource: String, ofType: String, fileName: String, inDirectory: String?=nil)->Bundle?{
         return WisdomProtocolCore.able(projectClass: projectClass, resource: resource, ofType: ofType, fileName: fileName, inDirectory: inDirectory)
+    }
+}
+
+
+// * Load Image in Memory Cache/Disk Cache *
+extension UIImageView {
+    
+    // MARK: Load Image in Memory Cache / Disk Cache
+    // imageName:        Image Name (historical save Memory Cache/Disk Cache)
+    // placeholderImage: Placeholder picture (Memory Cache/Disk Cache no Image)
+    @objc public func loadImageCache(imageName: String, placeholderImage: UIImage?=nil) {
+        loadImageable(imageName: imageName, placeholderImage: placeholderImage)
+    }
+}
+
+
+// * Save/Load Image in Memory Cache/Disk Cache *
+extension UIImage {
+    
+    // MARK: Save Image in Memory Cache / Disk Cache
+    // imageName: Image Name
+    @objc public func saveable(imageName: String) {
+        WisdomProtocolCore.save(image: self, imageName: imageName)
+    }
+    
+    // MARK: Load Image in Memory Cache / Disk Cache
+    // imageName:    Image Name
+    // imageClosure: (UIImage,String)->() (has UIImage)
+    // emptyClosure: ()->()               (no UIImage)
+    @objc public static func loadable(imageName: String, imageClosure: @escaping (UIImage,String)->(), emptyClosure: @escaping ()->()){
+        WisdomProtocolCore.load(imageName: imageName, imageClosure: imageClosure, emptyClosure: emptyClosure)
     }
 }
