@@ -122,15 +122,15 @@ extension WisdomProtocolCore {
         }
     }
     
-    static func imageTrackingable(imageView: UIImageView){
+    static func trackImageable(imageView: UIImageView){
         if WisdomTrackingImages == nil {
             WisdomTrackingImages = []
         }
-        Self.imageMissingable(imageView: imageView)
+        Self.missImageable(imageView: imageView)
         WisdomTrackingImages?.append(WisdomWeakable(able: imageView))
     }
     
-    static func imageMissingable(imageView: UIImageView) {
+    static func missImageable(imageView: UIImageView) {
         WisdomTrackingImages = WisdomTrackingImages?.compactMap({ weakable in
             if let able = weakable.able, able != imageView {
                 return weakable

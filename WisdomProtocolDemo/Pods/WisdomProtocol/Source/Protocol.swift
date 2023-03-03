@@ -204,22 +204,22 @@ extension UIImageView {
     // MARK: Load Image in Memory Cache / Disk Cache
     // imageName:        Image Name (historical save Memory/Disk Cache)
     // placeholderImage: Placeholder picture (Memory/Disk Cache no Image)
-    @objc public func loadImageCache(imageName: String, placeholderImage: UIImage?=nil) {
+    @objc public func loadingImageable(imageName: String, placeholderImage: UIImage?=nil) {
         loadImageable(imageName: imageName, placeholderImage: placeholderImage)
     }
     
     // MARK: Tracking save Image in Memory Cache / Disk Cache, Paired use
-    // Tracking UIImage ‘@objc public func saveable(imageName: String)’ method, update icon
-    // 当有图片本地缓存, 调用 UIImage ‘@objc public func saveable(imageName: String)’ 方法时，对跟踪图片控件，刷新图片
+    // Tracking UIImage ‘@objc public func saveingable(imageName: String)’ method, update icon
+    // 当有图片本地缓存, 调用 UIImage ‘@objc public func saveingable(imageName: String)’ 方法时，对跟踪图片控件，刷新图片
     @objc public func trackingImageable() {
-        WisdomProtocolCore.imageTrackingable(imageView: self)
+        WisdomProtocolCore.trackImageable(imageView: self)
     }
     
     // MARK: Missing save Image in Memory Cache / Disk Cache, Paired use
     // Make UIImage ‘@objc public func trackingImageable()’ method Missing
-    // 使对跟踪图片控件刷新失效，失效设置 UIImage ‘@objc public func saveable(imageName: String)’ 方法
+    // 使对跟踪图片控件刷新失效，失效设置 UIImage ‘@objc public func saveingable(imageName: String)’ 方法
     @objc public func missingImageable() {
-        WisdomProtocolCore.imageMissingable(imageView: self)
+        WisdomProtocolCore.missImageable(imageView: self)
     }
 }
 
@@ -229,7 +229,7 @@ extension UIImage {
     
     // MARK: Save Image in Memory Cache / Disk Cache
     // imageName: Image Name
-    @objc public func saveable(imageName: String) {
+    @objc public func saveingable(imageName: String) {
         WisdomProtocolCore.save(image: self, imageName: imageName)
     }
     
@@ -237,7 +237,7 @@ extension UIImage {
     // imageName:    Image Name
     // imageClosure: (UIImage,String)->() (has UIImage)
     // emptyClosure: ()->()               (no UIImage)
-    @objc public static func loadable(imageName: String, imageClosure: @escaping (UIImage,String)->(), emptyClosure: @escaping ()->()){
+    @objc public static func loadingable(imageName: String, imageClosure: @escaping (UIImage,String)->(), emptyClosure: @escaping ()->()){
         WisdomProtocolCore.load(imageName: imageName, imageClosure: imageClosure, emptyClosure: emptyClosure)
     }
 }
