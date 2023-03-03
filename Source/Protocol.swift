@@ -208,6 +208,13 @@ extension UIImageView {
         loadImageable(imageName: imageName, placeholderImage: placeholderImage)
     }
     
+    // MARK: Load Image in Network / Memory Cache / Disk Cache
+    // imageUrl:         Image Url (historical save Memory/Disk Cache, if not, network download)
+    // placeholderImage: Placeholder picture (Memory/Disk Cache no Image)
+    @objc public func loadingImageable(imageUrl: String, placeholderImage: UIImage?=nil) {
+        loadImageable(imageUrl: imageUrl, placeholderImage: placeholderImage)
+    }
+    
     // MARK: Tracking save Image in Memory Cache / Disk Cache, Paired use
     // Tracking UIImage ‘@objc public func saveingable(imageName: String)’ method, update icon
     // 当有图片本地缓存, 调用 UIImage ‘@objc public func saveingable(imageName: String)’ 方法时，对跟踪图片控件，刷新图片

@@ -38,6 +38,49 @@ extension UIImageView {
             }
         }
     }
+    
+    func loadImageable(imageUrl: String, placeholderImage: UIImage?=nil) {
+        image = nil
+        let res_imageName = imageUrl.replacingOccurrences(of: "/", with: "")
+        loadImageName = res_imageName
+        if res_imageName.isEmpty {
+            image = placeholderImage
+            return
+        }
+        WisdomProtocolCore.load(imageName: res_imageName) { [weak self] (image, image_name) in
+            if let myself = self, image_name == myself.loadImageName {
+                myself.image = image
+            }
+        } emptyClosure: {
+            if let url = URL(string: imageUrl) {
+                let downloadTask = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                    if let imageData = data, let image = UIImage(data: imageData) {
+                        WisdomProtocolCore.save(image: image, imageName: res_imageName)
+                        
+                        let url = response?.url?.absoluteString.replacingOccurrences(of: "/", with: "")
+                        DispatchQueue.main.async { [weak self] in
+                            if let myself = self, url == myself.loadImageName {
+                                myself.image = image
+                            }
+                        }
+                    }else {
+                        setPlaceholderImage()
+                    }
+                })
+                downloadTask.resume()
+            }else {
+                setPlaceholderImage()
+            }
+        }
+        
+        func setPlaceholderImage(){
+            DispatchQueue.main.async { [weak self] in
+                if let myself = self, myself.image == nil {
+                    myself.image = placeholderImage
+                }
+            }
+        }
+    }
 }
 
 extension WisdomProtocolCore {
