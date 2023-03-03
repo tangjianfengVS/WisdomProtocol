@@ -33,7 +33,7 @@ extension UIImageView {
                 myself.image = image
             }
         } emptyClosure: { [weak self] in
-            if let myself = self, myself.loadImageName.isEmpty {
+            if let myself = self, myself.image == nil {
                 myself.image = placeholderImage
             }
         }
