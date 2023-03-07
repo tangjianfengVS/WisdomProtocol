@@ -27,6 +27,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         self.window?.rootViewController = navVC
         self.window?.makeKeyAndVisible()
+        
+        
+        let list = RCProductFuncModel.decodable(list: [["tag": "start", "name": "启动", "id": "1622428828402884610", "type": "String"],
+                                                       ["tag": "close", "name": "关闭", "id": "1622428895281061890", "type": "Bool"],
+                                                       ["tag": "fortification", "name": "设防", "id": "1622429012155342850", "type": "String"],
+                                                       ["tag": "disarm", "name": "解防", "id": "1622429116534792193", "type": "String"],
+                                                       ["type": "String", "tag": "carSearch", "name": "寻车", "id": "1622429271522713601"],
+                                                       ["type": "String", "tag": "cushionLock", "name": "坐垫锁", "id": "1622429426120564737"],
+                                                       ["type": "String", "tag": "physicalExamination", "name": "体检", "id": "1622429669012709378"],
+                                                       ["type": "String", "tag": "NFC", "name": "近场通信", "id": "1622429868401532929"],
+                                                       ["type": "String", "tag": "senselessUnlocking", "name": "无感解锁", "id": "1622430030825955329"],
+                                                       ["type": "String", "tag": "antiTheftSensitivity", "name": "防盗器灵敏度", "id": "1622430192763838465"],
+                                                       ["type": "String", "tag": "muteArming", "name": "静音设防", "id": "1622430348489957377"],
+                                                       ["type": "String", "tag": "sensingDistance", "name": "感应距离", "id": "1622430481805910018"]])
+        let jsons = list.ableJsons()
         return true
     }
 
@@ -133,4 +148,41 @@ extension AppDelegate: WisdomRegisterLanguageable {
         }
         self.window?.rootViewController = navVC
     }
+}
+
+
+
+enum RCProductFuncStauts: String, Codable, WisdomCodingable {
+    case start = "start"
+    case close = "close"
+    case openDoor = "openDoor"
+    case lockDoor = "lockDoor"
+    case fortification = "fortification" // 设防
+    case disarm = "disarm" // 解防
+    case carSearch = "carSearch"
+    case cushionLock = "cushionLock" // 坐垫锁
+    
+    case totalMileage = "totalMileage" // 总里程
+    case farthestDistance = "farthestDistance" // 续航里程
+    case physicalExamination = "physicalExamination" // 体检
+    
+    case NFC = "NFC" // 近场通信
+    case HIDBind = "HIDBind" // 本机绑定
+    case senselessUnlocking = "senselessUnlocking" // 无感解锁
+    case sensingDistance = "sensingDistance" // 感应距离
+    
+    case antiTheftSensitivity = "antiTheftSensitivity" // 防盗器灵敏度
+    case muteArming = "muteArming"
+    case automaticLight = "automaticLight" // 自动开启大灯
+
+    case batteryTemperature = "batteryTemperature" // 电池温度
+    case currentVoltage = "currentVoltage" // 当前电压
+    case batteryLevel = "batteryLevel" // 电池电量
+}
+
+struct RCProductFuncModel: Codable, WisdomCodingable {
+    
+    private(set) var tag: RCProductFuncStauts?
+    
+    private(set) var name: String?
 }

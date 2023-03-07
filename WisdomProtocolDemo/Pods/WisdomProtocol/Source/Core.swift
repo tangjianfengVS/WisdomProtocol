@@ -212,6 +212,7 @@ extension WisdomProtocolCore: WisdomProtocolRouterable{
 
 extension WisdomProtocolCore: WisdomCodingCoreable {
     
+    // Any to T
     static func decodable<T>(_ type: T.Type, value: Any)->T? where T: Decodable{
         guard let data = try? JSONSerialization.data(withJSONObject: value) else {
             return nil
@@ -221,6 +222,7 @@ extension WisdomProtocolCore: WisdomCodingCoreable {
         return try? decoder.decode(type, from: data)
     }
     
+    // [[String:Any]] to [T]
     static func decodable<T>(_ type: T.Type, list: [[String:Any]])->[T] where T: Decodable{
         let result: [T] = list.compactMap { value in
             let able = Self.decodable(type, value: value)
@@ -230,6 +232,7 @@ extension WisdomProtocolCore: WisdomCodingCoreable {
         return result
     }
     
+    // Json to T
     static func jsonable<T>(_ type: T.Type, json: String)->T? where T: Decodable{
         let decoder = JSONDecoder()
         decoder.nonConformingFloatDecodingStrategy = .convertFromString(positiveInfinity: "+Infinity", negativeInfinity: "-Infinity", nan: "NaN")
@@ -239,6 +242,7 @@ extension WisdomProtocolCore: WisdomCodingCoreable {
         return able
     }
     
+    // Jsons to [T]
     static func jsonable<T>(_ type: T.Type, jsons: String)->[T] where T: Decodable{
         guard let jsonsData = jsons.data(using: .utf8) else {
             return []
@@ -249,6 +253,7 @@ extension WisdomProtocolCore: WisdomCodingCoreable {
         return decodable(type, list: result)
     }
     
+    // T to String
     static func ableJson<T>(_ able: T)->String? where T: Encodable{
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
@@ -258,6 +263,7 @@ extension WisdomProtocolCore: WisdomCodingCoreable {
         return String(data: data, encoding: .utf8)
     }
     
+    // T to [String:Any]
     static func ableEncod<T>(_ able: T)->[String:Any]? where T: Encodable{
         if let jsonString = ableJson(able){
             guard let jsonData = jsonString.data(using: .utf8) else {
@@ -271,6 +277,7 @@ extension WisdomProtocolCore: WisdomCodingCoreable {
         return nil
     }
     
+    // [T] to [[String:Any]]
     static func ableEncod<T>(ables: [T])->[[String:Any]] where T: Encodable{
         let result: [[String:Any]] = ables.compactMap { able in
             let dict = Self.ableEncod(able)
@@ -278,6 +285,18 @@ extension WisdomProtocolCore: WisdomCodingCoreable {
             return dict
         }
         return result
+    }
+    
+    // [T] to Jsons
+    static func ableJsons<T>(ables: [T])->String? where T: Encodable{
+        let result: [[String:Any]] = Self.ableEncod(ables: ables)
+        if !JSONSerialization.isValidJSONObject(result) {
+            return nil
+        }
+        if let data = try? JSONSerialization.data(withJSONObject: result, options: []), let JSONString = NSString(data:data as Data,encoding: String.Encoding.utf8.rawValue) as String? {
+            return JSONString
+        }
+        return nil
     }
 }
 
