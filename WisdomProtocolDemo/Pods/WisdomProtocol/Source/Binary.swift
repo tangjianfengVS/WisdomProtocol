@@ -8,6 +8,12 @@
 import UIKit
 
 
+// ------------------------- Binary Bit ------------------------- //
+// (1). Binary data processing                                    //
+// (2). Binary data specifies whether the value of the bit is 1   //
+// (3). ‘NSInteger’ 如果是十进制数，内部会先转成二进制                   //
+// -------------------------------------------------------------- //
+
 // MARK: Swift 'enum' to binary 'Bit' Protocol
 public protocol WisdomBinaryBitable where Self: CaseIterable {
     

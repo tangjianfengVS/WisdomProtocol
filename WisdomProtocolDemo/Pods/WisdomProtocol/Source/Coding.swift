@@ -8,10 +8,10 @@
 import UIKit
 
 // ---------------------- Decod Code ---------------------- //
-// (1). '[String: Any]'   decod to       'Model'
-// (2). '[[String: Any]]' list decod to  '[Model]' list
-// (3). 'String'          json decod to  'Model'
-// (4). 'String'          jsons decod to '[Model]' list
+// (1). '[String: Any]'   decod to       'Model'            //
+// (2). '[[String: Any]]' list decod to  '[Model]' list     //
+// (3). 'String'          json decod to  'Model'            //
+// (4). 'String'          jsons decod to '[Model]' list     //
 // -------------------------------------------------------- //
 
 // MARK: Swift Class/NSObject/Value to coding/decoding Protocol
@@ -46,10 +46,10 @@ extension WisdomCodingable where Self: Decodable {
 
 
 // ---------------------- Encod Code ---------------------- //
-// (1). 'Model'   encod to  'String'
-// (2). 'Model'   encod to  '[String:Any]'
-// (3). '[Model]' encod to  '[[String:Any]]'
-// (4). '[Model]' encod to  'String' jsons
+// (1). 'Model'   encod to  'String'                        //
+// (2). 'Model'   encod to  '[String:Any]'                  //
+// (3). '[Model]' encod to  '[[String:Any]]'                //
+// (4). '[Model]' encod to  'String' jsons                  //
 // -------------------------------------------------------- //
 
 extension WisdomCodingable where Self: Encodable {
