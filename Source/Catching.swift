@@ -8,6 +8,16 @@
 import UIKit
 
 
+// ------------------------------- Crashing ------------------------------- //
+// (1). 'WisdomCrashingable' program crash protocol, restriction ‘UIApplicationDelegate’
+//
+// (2). 'WisdomTrackingable' program tracking protocol, restriction ‘UIApplicationDelegate’
+//      - 1> '@objc func catchTracking(viewDidAppear controller: UIViewController.Type, title: String)'
+//           * Controller will display
+//      - 2> '@objc optional func catchTracking(viewDidDisappear controller: UIViewController.Type, appearTime: NSInteger, title: String)'
+//           * Controller is going to disappear
+// ------------------------------------------------------------------------ //
+
 @objc public protocol WisdomCrashingable where Self: UIApplicationDelegate {
     
     // MARK: Catch Crashing Param - String

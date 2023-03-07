@@ -7,6 +7,13 @@
 
 import UIKit
 
+// ---------------------- Decod Code ---------------------- //
+// (1). '[String: Any]'   decod to       'Model'            //
+// (2). '[[String: Any]]' list decod to  '[Model]' list     //
+// (3). 'String'          json decod to  'Model'            //
+// (4). 'String'          jsons decod to '[Model]' list     //
+// -------------------------------------------------------- //
+
 // MARK: Swift Class/NSObject/Value to coding/decoding Protocol
 public protocol WisdomCodingable {}
 
@@ -37,6 +44,13 @@ extension WisdomCodingable where Self: Decodable {
     }
 }
 
+// ---------------------- Encod Code ---------------------- //
+// (1). 'Model'   encod to  'String'                        //
+// (2). 'Model'   encod to  '[String:Any]'                  //
+// (3). '[Model]' encod to  '[[String:Any]]'                //
+// (4). '[Model]' encod to  'String' jsons                  //
+// -------------------------------------------------------- //
+
 extension WisdomCodingable where Self: Encodable {
     
     // MARK: return - String?
@@ -58,5 +72,11 @@ public extension Array where Element: WisdomCodingable&Encodable {
     // swift model list to dictionary list, use 'Encodable' protocol
     func ableEncod()->[[String:Any]]{
         return WisdomProtocolCore.ableEncod(ables: self)
+    }
+    
+    // MARK: return - String?
+    // swift model list to jsons string, use 'Encodable' protocol
+    func ableJsons()->String?{
+        return WisdomProtocolCore.ableJsons(ables: self)
     }
 }

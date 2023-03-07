@@ -7,6 +7,11 @@
 
 import UIKit
 
+// ----------------------- Class Binding --------------------------- //
+// (1). 'Protocol' 'AnyClass' binding                                //
+// (2). 'AnyClass' Need to abide by the 'Protocol'                   //
+// ----------------------------------------------------------------- //
+
 // MARK: - Register Class Protocol
 @objc public final class WisdomClassable: NSObject {
     
@@ -20,6 +25,11 @@ import UIKit
         super.init()
     }
 }
+
+// ----------------------- Register able --------------------------- //
+// (1). Router 'Protocol' 'AnyClass' binding                         //
+// (2). If there is compliance, will be actively called              //
+// ----------------------------------------------------------------- //
 
 // MARK: - Register Protocol
 @objc public protocol WisdomRegisterable {
