@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                        ["type": "String", "tag": "muteArming", "name": "静音设防", "id": "1622430348489957377"],
                                                        ["type": "String", "tag": "sensingDistance", "name": "感应距离", "id": "1622430481805910018"]])
         let jsons = list.ableJsons()
+        print(jsons ?? "")
         return true
     }
 

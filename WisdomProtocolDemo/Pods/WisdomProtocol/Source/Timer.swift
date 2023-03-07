@@ -7,14 +7,14 @@
 
 import UIKit
 
-// ----------------------------------------- Timer ----------------------------------------- //
-// * Add a timer/countdown function to the object                                            //
-// (1). 'timerable(timerDid currentTime: UInt, timerable: WisdomTimerable)' timer did change //
-// (2). 'timerable(timerEnd timerable: WisdomTimerable)'                    timer end        //
-// (3). 'startForwardTimer(startTime: UInt)'                                start timing     //
-// (4). 'startDownTimer(totalTime: UInt)'                                   start countdown  //
-// (5). 'destroyTimer()'                                                    destroy timer    //
-// ----------------------------------------------------------------------------------------- //
+// ----------------------------------------- Timer ------------------------------------------ //
+// * Add a timer/countdown function to the object                                             //
+// (1). 'timerable(timerDid currentTime: UInt, timerable: WisdomTimerable)': timer did change //
+// (2). 'timerable(timerEnd timerable: WisdomTimerable)'                   : timer end        //
+// (3). 'startForwardTimer(startTime: UInt)'                               : start timing     //
+// (4). 'startDownTimer(totalTime: UInt)'                                  : start countdown  //
+// (5). 'destroyTimer()'                                                   : destroy timer    //
+// ------------------------------------------------------------------------------------------ //
 
 // MARK: Class Timerable Protocol
 // * Support for objective-c/Swift Class

@@ -44,7 +44,6 @@ extension WisdomCodingable where Self: Decodable {
     }
 }
 
-
 // ---------------------- Encod Code ---------------------- //
 // (1). 'Model'   encod to  'String'                        //
 // (2). 'Model'   encod to  '[String:Any]'                  //

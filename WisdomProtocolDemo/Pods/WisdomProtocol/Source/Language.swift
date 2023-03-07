@@ -76,24 +76,17 @@ import UIKit
     public var file_lproj: String { return fileName+".lproj" }
 }
 
+// ---------------------------------------- Language ------------------------------------------------------- //
+// * Need basis 'WisdomLanguageStatus' 'file_lproj' mame/store the file                                      //
+// (1). 'static func getCurrentLanguage()->WisdomLanguageStatus?'          : the language currently set      //
+// (2). 'static func getSystemLanguage()->String'                          : the language of system Settings //
+// (3). 'static func updateLanguage(language: WisdomLanguageStatus)->Bool' : update the language             //
+// (4). 'static func resetLanguage()'                                      : reset the language              //
+// --------------------------------------------------------------------------------------------------------- //
 
 // MARK: Languageable. < No need to implement >
 @objc public protocol WisdomLanguageable {
     
-    // MARK: return - WisdomLanguageModel.WisdomLanguageStatus?
-    // Gets the language type of the setting
-    //@objc optional static func getCurrentLanguage()->WisdomLanguageStatus?
-    
-    // MARK: return - String
-    // Gets the language type of the System
-    @objc optional static func getSystemLanguage()->String
-    
-    // MARK: Param - WisdomLanguageStatus, return - Bool
-    // Update Language
-    @objc optional static func updateLanguage(language: WisdomLanguageStatus)->Bool
-    
-    // MARK: Reset Language
-    @objc optional static func resetLanguage()
 }
 
 extension WisdomLanguageable {
@@ -104,19 +97,32 @@ extension WisdomLanguageable {
         return WisdomProtocolCore.getCurrentLanguage()
     }
     
+    // MARK: return - String
+    // Gets the language type of the System
     public static func getSystemLanguage()->String{
         return WisdomProtocolCore.getSystemLanguage()
     }
     
+    // MARK: Param - WisdomLanguageStatus, return - Bool
+    // Update Language
     @discardableResult
     public static func updateLanguage(language: WisdomLanguageStatus)->Bool{
         return WisdomProtocolCore.updateLanguage(language: language)
     }
     
+    // MARK: Reset Language
     public static func resetLanguage(){
         WisdomProtocolCore.resetLanguage()
     }
 }
+
+
+// ---------------------------------------- Register Language ---------------------------------------------------- //
+// * Need register language 'UIApplicationDelegate'                                                                //
+// (1). 'func registerLanguageKey()->String?'                           : gets save data key                       //
+// (2). 'func registerLanguage(language: WisdomLanguageStatus)->Bundle' : gets resources by 'WisdomLanguageStatus' //
+// (3). 'func registerLanguageUpdate(language: WisdomLanguageStatus)'   : language Switch callback                 //
+// --------------------------------------------------------------------------------------------------------------- //
 
 // MARK: Language Registerable
 @objc public protocol WisdomRegisterLanguageable where Self: UIApplicationDelegate {
