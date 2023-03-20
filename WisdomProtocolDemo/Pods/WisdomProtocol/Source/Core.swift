@@ -411,6 +411,41 @@ extension WisdomProtocolCore: WisdomTimerFormatable {
     static func timeFormat(seconds: UInt, format: String)->String{
         return getH_M_S_Format(seconds: seconds, format: format)
     }
+    
+    static func versionisHighVersion(masterVersion: String, compareVersion: String)->Bool?{
+        var master_versions: [NSInteger] = []
+        var compare_versions: [NSInteger] = []
+        for tag in masterVersion.components(separatedBy: ".") {
+            if let value = NSInteger(tag) {
+                master_versions.append(value)
+            }else {
+                return nil
+            }
+        }
+        for tag in compareVersion.components(separatedBy: ".") {
+            if let value = NSInteger(tag) {
+                compare_versions.append(value)
+            }else {
+                return nil
+            }
+        }
+        if master_versions.isEmpty || compare_versions.isEmpty {
+            return nil
+        }
+        let numDiff = master_versions.count - compare_versions.count
+        if numDiff < 0 {
+            master_versions.append(contentsOf: Array(repeating: 0, count: -numDiff))
+        } else if numDiff > 0 {
+            compare_versions.append(contentsOf: Array(repeating: 0, count: numDiff))
+        }
+        for i in 0..<master_versions.count {
+            let diff = master_versions[i] - compare_versions[i]
+            if diff != 0 {
+                return diff < 0 ? false : true
+            }
+        }
+        return false
+    }
 }
 
 //MARK: - Crash Register

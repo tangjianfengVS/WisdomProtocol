@@ -183,6 +183,17 @@ extension String: WisdomTimerFormatable {
 }
 
 
+// * String Version Compare *
+extension String {
+    
+    // MARK: version Compare Version, is high version
+    // version: version String
+    public func isHighVersion(version: String)->Bool?{
+        return WisdomProtocolCore.versionisHighVersion(masterVersion: self, compareVersion: version)
+    }
+}
+
+
 // * Create Bundle Value *
 extension Bundle: WisdomBundleCoreable {
     
