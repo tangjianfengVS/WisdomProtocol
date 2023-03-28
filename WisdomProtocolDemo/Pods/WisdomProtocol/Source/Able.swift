@@ -2,40 +2,11 @@
 //  Able.swift
 //  WisdomProtocol
 //
-//  Created by 汤建锋 on 2022/11/14.
+//  Created by tangjianfeng on 2022/11/14.
 //
 
 import UIKit
 
-// ----------------------- Class Binding --------------------------- //
-// (1). 'Protocol' 'AnyClass' binding                                //
-// (2). 'AnyClass' Need to abide by the 'Protocol'                   //
-// ----------------------------------------------------------------- //
-
-// MARK: - Register Class Protocol
-@objc public final class WisdomClassable: NSObject {
-    
-    @objc public let registerProtocol: Protocol
-
-    @objc public let conformClass: AnyClass
-    
-    @objc public init(register Protocol: Protocol, conform Class: AnyClass) {
-        self.registerProtocol = Protocol
-        self.conformClass = Class
-        super.init()
-    }
-}
-
-// ----------------------- Register able --------------------------- //
-// (1). Router 'Protocol' 'AnyClass' binding                         //
-// (2). If there is compliance, will be actively called              //
-// ----------------------------------------------------------------- //
-
-// MARK: - Register Protocol
-@objc public protocol WisdomRegisterable {
-
-    @objc static func registerable()->WisdomClassable
-}
 
 protocol WisdomProtocolRegisterable {
 

@@ -2,7 +2,7 @@
 //  TimerModel.swift
 //  WisdomProtocol
 //
-//  Created by 汤建锋 on 2022/11/24.
+//  Created by tangjianfeng on 2022/11/24.
 //
 
 import UIKit
