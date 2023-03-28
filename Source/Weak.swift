@@ -2,7 +2,7 @@
 //  Weak.swift
 //  WisdomProtocol
 //
-//  Created by 汤建锋 on 2023/3/2.
+//  Created by tangjianfeng on 2023/3/2.
 //
 
 import Foundation

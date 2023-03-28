@@ -2,7 +2,7 @@
 //  Core.swift
 //  WisdomProtocol
 //
-//  Created by 汤建锋 on 2022/11/14.
+//  Created by tangjianfeng on 2022/11/14.
 //
 
 import UIKit
