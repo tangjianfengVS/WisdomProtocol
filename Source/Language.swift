@@ -117,7 +117,7 @@ extension WisdomLanguageable {
 }
 
 
-// ---------------------------------------- Register Language ---------------------------------------------------- //
+// ---------------------------------------- Language Register ---------------------------------------------------- //
 // * Need register language 'UIApplicationDelegate'                                                                //
 // (1). 'func registerLanguageKey()->String?'                           : gets save data key                       //
 // (2). 'func registerLanguage(language: WisdomLanguageStatus)->Bundle' : gets resources by 'WisdomLanguageStatus' //
@@ -125,7 +125,7 @@ extension WisdomLanguageable {
 // --------------------------------------------------------------------------------------------------------------- //
 
 // MARK: Language Registerable
-@objc public protocol WisdomRegisterLanguageable where Self: UIApplicationDelegate {
+@objc public protocol WisdomLanguageRegisterable where Self: UIApplicationDelegate {
     
     // MARK: return - String?
     // Get the 'String' local save language key
