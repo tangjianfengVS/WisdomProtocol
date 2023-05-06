@@ -591,7 +591,7 @@ extension WisdomProtocolCore: WisdomLanguageCoreable {
     
     private static var WisdomLanguageState: WisdomLanguageStatus?{
         get {
-            if let languageable = UIApplication.shared.delegate as? WisdomRegisterLanguageable,
+            if let languageable = UIApplication.shared.delegate as? WisdomLanguageRegisterable,
                let languageKey = languageable.registerLanguageKey(), languageKey.count > 0 {
                 let languageValue = UserDefaults.standard.integer(forKey: languageKey)
                 if let state = WisdomLanguageStatus(rawValue: languageValue) {
@@ -602,7 +602,7 @@ extension WisdomProtocolCore: WisdomLanguageCoreable {
         }
         
         set {
-            if let languageable = UIApplication.shared.delegate as? WisdomRegisterLanguageable,
+            if let languageable = UIApplication.shared.delegate as? WisdomLanguageRegisterable,
                let languageKey = languageable.registerLanguageKey(), languageKey.count > 0 {
                 let value: NSInteger = newValue?.rawValue ?? 0
                 UserDefaults.standard.setValue(value, forKey: languageKey)
@@ -611,7 +611,7 @@ extension WisdomProtocolCore: WisdomLanguageCoreable {
         }
     }
     
-    private static func getLanguageBundle(languageable: WisdomRegisterLanguageable)->Bundle{
+    private static func getLanguageBundle(languageable: WisdomLanguageRegisterable)->Bundle{
         var languageState: WisdomLanguageStatus = .en
         let currentState = WisdomLanguageState
         if currentState==nil || currentState == .system {
@@ -634,7 +634,7 @@ extension WisdomProtocolCore: WisdomLanguageCoreable {
     
     static func getLocalizable(localizable: String)->String{
         // unregisterLanguage
-        if let languageable = UIApplication.shared.delegate as? WisdomRegisterLanguageable  {
+        if let languageable = UIApplication.shared.delegate as? WisdomLanguageRegisterable  {
             // set
             if let bundle = WisdomLanguageBundle {
                 return bundle.localizedString(forKey: localizable, value: nil, table: nil)
@@ -648,7 +648,7 @@ extension WisdomProtocolCore: WisdomLanguageCoreable {
     }
     
     static func getCurrentLanguage()->WisdomLanguageStatus?{
-        if let _ = UIApplication.shared.delegate as? WisdomRegisterLanguageable {
+        if let _ = UIApplication.shared.delegate as? WisdomLanguageRegisterable {
             if let currentState = WisdomLanguageState {
                 return currentState
             }else {
@@ -663,7 +663,7 @@ extension WisdomProtocolCore: WisdomLanguageCoreable {
     }
     
     static func updateLanguage(language: WisdomLanguageStatus)->Bool{
-        if let languageable = UIApplication.shared.delegate as? WisdomRegisterLanguageable {
+        if let languageable = UIApplication.shared.delegate as? WisdomLanguageRegisterable {
             if language == WisdomLanguageState {
                 return true
             }
@@ -679,7 +679,7 @@ extension WisdomProtocolCore: WisdomLanguageCoreable {
     }
     
     static func resetLanguage(){
-        if let languageable = UIApplication.shared.delegate as? WisdomRegisterLanguageable {
+        if let languageable = UIApplication.shared.delegate as? WisdomLanguageRegisterable {
             if WisdomLanguageState==nil {
                 return
             }
