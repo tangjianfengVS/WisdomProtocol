@@ -17,6 +17,11 @@ struct WisdomProtocolCore {
     
     private static var WisdomLanguageBundle: Bundle?
     
+    private(set) static var WisdomReachability: WisdomNetworkReachability?
+    
+    private static var WisdomReachabilityListens: [WisdomWeakable<WisdomNetworkReachabilityable>]?
+    
+    
     // MARK: registerProtocol protocol class
     private static func registerableConfig(register aProtocol: Protocol, conform aClass: AnyClass)->Protocol {
         let key = NSStringFromProtocol(aProtocol)
@@ -687,6 +692,68 @@ extension WisdomProtocolCore: WisdomLanguageCoreable {
             let bundle = getLanguageBundle(languageable: languageable)
             WisdomLanguageBundle = bundle
             languageable.registerLanguageUpdate(language: .system)
+        }
+    }
+}
+
+extension WisdomProtocolCore: WisdomNetworkReachabilityCoreable {
+    
+    static func startReachabilityListening(able: WisdomNetworkReachabilityable){
+        if Thread.isMainThread {
+            startListening()
+        }else {
+            DispatchQueue.main.async { startListening() }
+        }
+        
+        func startListening(){
+            if WisdomReachabilityListens==nil{
+                WisdomReachabilityListens = []
+            }
+            
+            WisdomReachabilityListens?.append(WisdomWeakable(able: able))
+            
+            if WisdomReachability==nil {
+                WisdomReachability = WisdomNetworkReachability()
+                WisdomReachability?.startListening(onUpdatePerforming: { reachabilityState in
+                    DispatchQueue.main.async { setListener(reachabilityState: reachabilityState) }
+                })
+            }
+        }
+        
+        func setListener(reachabilityState: WisdomNetworkReachabilityStatus){
+            WisdomReachabilityListens = WisdomReachabilityListens?.compactMap({ weakListener in
+                if let listener = weakListener.able {
+                    listener.networkReachability(didChange: reachabilityState)
+                    return weakListener
+                }
+                return nil
+            })
+        }
+    }
+    
+    static func stopReachabilityListening(able: WisdomNetworkReachabilityable){
+        if Thread.isMainThread {
+            stopListening()
+        }else {
+            DispatchQueue.main.async { stopListening() }
+        }
+        
+        func stopListening(){
+            let reachabilityable = WisdomWeakable(able: able)
+            WisdomReachabilityListens = WisdomReachabilityListens?.compactMap({ weakListener in
+                if let _ = weakListener.able{
+                    if weakListener == reachabilityable {
+                        return nil
+                    }
+                    return weakListener
+                }
+                return nil
+            })
+            
+            if WisdomReachabilityListens?.count == 0 {
+                WisdomReachability?.stopListening()
+                WisdomReachability = nil
+            }
         }
     }
 }

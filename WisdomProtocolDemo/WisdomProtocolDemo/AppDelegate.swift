@@ -66,7 +66,7 @@ extension AppDelegate: WisdomTrackingable {
     }
 }
 
-extension AppDelegate: WisdomRegisterLanguageable {
+extension AppDelegate: WisdomLanguageRegisterable {
     
     func registerLanguageKey()->String? {
         return "registerLanguageKey"

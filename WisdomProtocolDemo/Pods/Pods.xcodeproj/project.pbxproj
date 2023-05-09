@@ -42,6 +42,8 @@
 		3D05CD921DA348387E82340EF946DE89 /* ConstraintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7E93C07BD14C53FF907FA0FBDFFE05 /* ConstraintRelation.swift */; };
 		3D909AB7674EE6CDF4D8751ECA859A18 /* ConstraintLayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6C1D980C5C4501F242B789874FB13B /* ConstraintLayoutSupport.swift */; };
 		3DD99F9896A5F18047ED8E886A17C3C3 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC078646C7FB6AABBF9947E6571F074 /* Language.swift */; };
+		3EC252142A09D87100DA9A97 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC252132A09D87100DA9A97 /* Reachability.swift */; };
+		3EC252152A09D87100DA9A97 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC252132A09D87100DA9A97 /* Reachability.swift */; };
 		40DB1A50FC5FEE3938242B927B10F0EA /* ConstraintConstantTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD25438C23D5EFFE6F52CB702469960 /* ConstraintConstantTarget.swift */; };
 		428DFF1895D5CC6A6ADB1D384D7F8B69 /* ConstraintPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B0003C76223D181FCA8350D017D23 /* ConstraintPriority.swift */; };
 		460AB1A5FDB57C3DB1FCE9EB8303D299 /* ConstraintMakerFinalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0C714EF49D299A8B8F2F93F0C4EE37 /* ConstraintMakerFinalizable.swift */; };
@@ -195,6 +197,7 @@
 		378D6C682BCFB9D0BD95CEE6608F7245 /* Pods-WisdomProtocolRight */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-WisdomProtocolRight"; path = "libPods-WisdomProtocolRight.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		397792D456487A19A3A4BCE491B35E4F /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Source/ConstraintItem.swift; sourceTree = "<group>"; };
 		3A5A8C8138E2C37FA7351B8362AA2EEE /* ConstraintInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsets.swift; path = Source/ConstraintInsets.swift; sourceTree = "<group>"; };
+		3EC252132A09D87100DA9A97 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Source/Reachability.swift; sourceTree = "<group>"; };
 		3F2812A65182BD08186F9A1DF673DA06 /* ConstraintDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = Source/ConstraintDSL.swift; sourceTree = "<group>"; };
 		405D3CF728679EBB11FFBADA0FA355E3 /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = Source/Debugging.swift; sourceTree = "<group>"; };
 		451F9C0E8B586D8603FD66415D6660BF /* Core.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Core.swift; path = Source/Core.swift; sourceTree = "<group>"; };
@@ -235,7 +238,7 @@
 		97C4D100481A864E8BF19DDA2CF39D0F /* Pods-WisdomProtocolDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WisdomProtocolDemo-dummy.m"; sourceTree = "<group>"; };
 		983ABF2C8941521F81AA6878CF657CB9 /* Protocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Protocol.swift; path = Source/Protocol.swift; sourceTree = "<group>"; };
 		9A78EE103DF28B2CD54B6A672AF3174A /* ConstraintLayoutGuide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuide.swift; path = Source/ConstraintLayoutGuide.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A1DDEB2BC26BE34DABBFA7DB342ADD72 /* Image.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Image.swift; path = Source/Image.swift; sourceTree = "<group>"; };
 		A9EA9BA9C0ACD2A4A2D6AF920DADB980 /* SnapKit-framework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SnapKit-framework.release.xcconfig"; sourceTree = "<group>"; };
 		ABCB3F622AA603702059312F10328010 /* Pods-WisdomProtocolRight-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WisdomProtocolRight-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -373,9 +376,9 @@
 				2B099802732F430B3766498D2729359B /* Timer.swift */,
 				7DA9F541F316689BB955E6CD39A6A270 /* TimerModel.swift */,
 				F3C24DDAD34740A4C1FB190ADE3F5359 /* Weak.swift */,
+				3EC252132A09D87100DA9A97 /* Reachability.swift */,
 				FB2425CC49238EFAD3BCF7E514DC2C91 /* Support Files */,
 			);
-			name = WisdomProtocol;
 			path = WisdomProtocol;
 			sourceTree = "<group>";
 		};
@@ -432,7 +435,6 @@
 				5918B64A646F7D2F78241D457C65DA1D /* UILayoutSupport+Extensions.swift */,
 				99FD81C440E71231E5868E85F0E9C65B /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -870,6 +872,7 @@
 				32695EA1472D0CA0E218C715A3B918F9 /* Image.swift in Sources */,
 				3DD99F9896A5F18047ED8E886A17C3C3 /* Language.swift in Sources */,
 				BCD7680CD1ACE136C16E8DE4536E87B9 /* Protocol.swift in Sources */,
+				3EC252142A09D87100DA9A97 /* Reachability.swift in Sources */,
 				9BC0CEAE26B0C25E332E1F69DBA6FF39 /* Register.m in Sources */,
 				5EFC8F4139409D60E596821D12736023 /* Router.swift in Sources */,
 				2A0B26972B5AB4CAEB598D9EB0DB85B5 /* Timer.swift in Sources */,
@@ -933,6 +936,7 @@
 				1BAE595092EF227888AAA222F8E96A7A /* Image.swift in Sources */,
 				EDB28ACA836429FEED99A90D238994F8 /* Language.swift in Sources */,
 				92388F0C42C137A7847F519372DC03F4 /* Protocol.swift in Sources */,
+				3EC252152A09D87100DA9A97 /* Reachability.swift in Sources */,
 				E63C7AB808BE80C336FC0ABD56E2510E /* Register.m in Sources */,
 				D18F68C0614AAF0A97108D05BD10D905 /* Router.swift in Sources */,
 				F0FAFF59A65374F34FF83A86B6036341 /* Timer.swift in Sources */,

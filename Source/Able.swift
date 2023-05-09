@@ -111,3 +111,10 @@ protocol WisdomBundleCoreable {
     
     static func able(projectClass: AnyClass?, resource: String, ofType: String, fileName: String, inDirectory: String?)->Bundle?
 }
+
+protocol WisdomNetworkReachabilityCoreable {
+    
+    static func startReachabilityListening(able: WisdomNetworkReachabilityable)
+    
+    static func stopReachabilityListening(able: WisdomNetworkReachabilityable)
+}

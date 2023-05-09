@@ -52,6 +52,13 @@ class WisdomProtocolRootVC: UIViewController, WisdomRegisterable, WisdomProtocol
         }
         
         startDownTimer(totalTime: 30)
+        
+        startReachabilityListening()
+        
+        let reachabilityState = WisdomNetworkReachabilityStatus.currentNetworkReachabilityState
+        
+        let cur_reachabilityState = WisdomNetworkReachabilityStatus.isCurrentReachableOnEthernetOrWiFi
+        print("")
     }
 }
 
@@ -187,5 +194,13 @@ extension WisdomProtocolRootUIImage: WisdomRouterImageable {
     
     public static func routerImageable(param: String) -> UIImage? {
         return UIImage(named: param)
+    }
+}
+
+
+extension WisdomProtocolRootVC: WisdomNetworkReachabilityable {
+    
+    func networkReachability(didChange currentState: WisdomNetworkReachabilityStatus) {
+        print(currentState)
     }
 }
