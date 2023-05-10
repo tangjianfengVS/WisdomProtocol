@@ -728,6 +728,12 @@ extension WisdomProtocolCore: WisdomNetworkReachabilityCoreable {
                 }
                 return nil
             })
+            
+            if WisdomReachabilityListens==nil||WisdomReachabilityListens?.count==0 {
+                WisdomReachabilityListens = nil
+                WisdomReachability?.stopListening()
+                WisdomReachability = nil
+            }
         }
     }
     
@@ -750,7 +756,8 @@ extension WisdomProtocolCore: WisdomNetworkReachabilityCoreable {
                 return nil
             })
             
-            if WisdomReachabilityListens?.count == 0 {
+            if WisdomReachabilityListens==nil||WisdomReachabilityListens?.count==0 {
+                WisdomReachabilityListens = nil
                 WisdomReachability?.stopListening()
                 WisdomReachability = nil
             }
