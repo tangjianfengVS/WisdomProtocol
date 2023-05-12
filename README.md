@@ -43,13 +43,11 @@
 
    -> 协议实现：
   
-    // MARK: Class Timerable Protocol
+     // MARK: Class Timerable Protocol
     
-  
-    // * Support for objective-c/Swift Class
+     // * Support for objective-c/Swift Class
     
-  
-    @objc public protocol WisdomTimerable {
+     @objc public protocol WisdomTimerable {
     
     
        // MARK: Class Param - UInt, WisdomTimerable
