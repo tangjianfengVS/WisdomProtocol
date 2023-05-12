@@ -47,17 +47,17 @@
      // * Support for objective-c/Swift Class
      @objc public protocol WisdomTimerable {
     
-     // MARK: Class Param - UInt, WisdomTimerable
+         // MARK: Class Param - UInt, WisdomTimerable
         
-     // * Timer task in progress, current time
+         // * Timer task in progress, current time
         
-     @objc func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable)
+         @objc func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable)
      
-     // MARK: Class Param - WisdomTimerable
+         // MARK: Class Param - WisdomTimerable
         
-     // * Example End a scheduled task
+         // * Example End a scheduled task
         
-     @objc func timerable(timerEnd timerable: WisdomTimerable)
+         @objc func timerable(timerEnd timerable: WisdomTimerable)
   
      }
 
