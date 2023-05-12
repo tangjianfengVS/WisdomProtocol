@@ -175,15 +175,31 @@
      3. 模型数组 转 字典数组
      
      4. 模型数组 转Json
+     
+   -> 模型数据 案例：
+   
+     // 必须继承 Codable 协议
+     struct RCProductFuncModel: Codable, WisdomCodingable {
+    
+         private(set) var tag: RCProductFuncStauts?
+    
+         private(set) var name: String?
+     }
+     
+     // 转模型
+     let product = RCProductFuncModel.jsonable(jsons: ".....") 
+     
+     // 等等
+   
 
-【优势/特点】
--> 只支持 Swift 类，枚举，struct 的 编/解码；
--> 内部 编/解码 实现，使用的 Swift原生Coding协议，所以不需要担心稳定性和兼容性；
+   【优势/特点】
+    -> 只支持 Swift 类，枚举，struct 的 编/解码；
+    -> 内部 编/解码 实现，使用的 Swift原生Coding协议，所以不需要担心稳定性和兼容性；
 
--> 解析流程中添加了断言处理：
-assert(able != nil, "decodable failure: \(value)")
-调试环境，断言 便于即时发现不合格数据，即时检测；
-如果不需要，可以注释此处断言代码；
+    -> 解析流程中添加了断言处理：
+    assert(able != nil, "decodable failure: \(value)")
+    调试环境，断言 便于即时发现不合格数据，即时检测；
+    如果不需要，可以注释此处断言代码；
 
 
 
