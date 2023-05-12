@@ -71,11 +71,13 @@
      
          public func startForwardTimer(startTime: UInt)
          
+         
          // MARK: Class Param - NSInteger.  No need to implement 
           
          // * Start a countdown timer task, start the total time countdown
      
          public func startDownTimer(totalTime: UInt)
+         
          
          // MARK: Class Timer - destroy.  No need to implement 
           
