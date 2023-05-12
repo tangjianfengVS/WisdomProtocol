@@ -225,7 +225,8 @@
          @objc func catchCrashing(crash: String)
      }
 
-     说明：崩溃跟踪，同时支持OC和Swift 语言崩溃场景抓取。
+     说明：
+     崩溃跟踪，同时支持OC和Swift 语言崩溃场景抓取。
 
    2). 控制器展示跟踪协议：
    
@@ -244,7 +245,9 @@
          // - title: String
          @objc optional func catchTracking(viewDidDisappear controller: UIViewController.Type, appearTime: NSInteger, title: String)
      }
-     说明：控制器将要隐藏协议回调中，会带过来时间参数，为当前控制器所展示的时长。
+     
+     说明：
+     控制器将要隐藏协议回调中，会带过来时间参数，为当前控制器所展示的时长。
 
    3). 协议使用案例：
    
