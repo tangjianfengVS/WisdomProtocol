@@ -272,6 +272,75 @@
 
 
 
+# 【4】图片 缓存/加载
+
+   1). UIImage 本地缓存 和 本地加载 扩展：
+   
+     // * Save/Load Image in Memory/Disk Cache *
+     extension UIImage {
+    
+         // MARK: Save Image in Memory Cache / Disk Cache
+         // imageName: Image Name
+         @objc public func saveingable(imageName: String) 
+    
+         // MARK: Load Image in Memory Cache / Disk Cache
+         // imageName:    Image Name
+         // imageClosure: (UIImage,String)->() (has UIImage)
+         // emptyClosure: ()->()               (no UIImage)
+         @objc public static func loadingable(imageName: String, imageClosure: @escaping (UIImage,String)->(), emptyClosure: @escaping ()->())
+     }
+
+--> UIImage 本地缓存 案例：
+
+UIImage().saveingable(imageName: “本地缓存图片名称”)
+
+--> UIImage 本地加载 案例：
+UIImage.loadingable(imageName: “本地缓存图片名称” ) { image, imageName in
+  // 获取到本地缓存到图片              
+} emptyClosure: {
+  // 本地没有缓存的图片 
+}
+
+说明：
+1.图片本地缓存为沙盒缓存，如果app内存吃紧，缓存图片会被清除。
+2.图片获取缓存过程：内存缓存 -> 磁盘缓存。
+
+2). UIImageView本地缓存 和 网络加载 扩展：
+extension UIImageView {
+    
+    // MARK: Load Image in Memory Cache / Disk Cache
+    // imageName:        Image Name (historical save Memory/Disk Cache)
+    // placeholderImage: Placeholder picture (Memory/Disk Cache no Image)
+    @objc public func loadingImageable(imageName: String, placeholderImage: UIImage?=nil)
+    
+    // MARK: Load Image in Network / Memory Cache / Disk Cache
+    // imageUrl:         Image Url (historical save Memory/Disk Cache, if not, network download)
+    // placeholderImage: Placeholder picture (Memory/Disk Cache no Image)
+    @objc public func loadingImageable(imageUrl: String, placeholderImage: UIImage?=nil)
+}
+
+说明：
+--> 第一种，根据 imageName 只在本地缓存中加载图片；
+--> 第二种，先本地加载缓存图片，在没有的情况，继续根据 imageUrl 进行网络下载，下载完成做本地缓存；
+
+3). UIImageView图片动态跟踪 扩展：
+extension UIImageView {
+ 
+    // MARK: Tracking save Image in Memory Cache / Disk Cache, Paired use
+    // Tracking UIImage ‘@objc public func saveingable(imageName: String)’ method, update icon
+    // 当有图片本地缓存, 调用 UIImage ‘@objc public func saveingable(imageName: String)’ 方法时，对跟踪图片控件，刷新图片
+    @objc public func trackingImageable()
+    
+    // MARK: Missing save Image in Memory Cache / Disk Cache, Paired use
+    // Make UIImage ‘@objc public func trackingImageable()’ method Missing
+    // 使对跟踪图片控件刷新失效，失效设置 UIImage ‘@objc public func saveingable(imageName: String)’ 方法
+    @objc public func missingImageable()
+}
+
+说明：
+--> ‘func trackingImageable()’: 对本地图片缓存任务，进行监听，b并重新刷新之前UIImageView加载失败的图片；
+--> ‘func missingImageable()’:  使 ‘func trackingImageable()’监听任务失效；
+
 
 
 如果您热衷于iOS/swift开发，是一位热爱学习进步的童鞋，欢迎来一起研究/讨论 开发中遇到的问题。联系QQ：497609288 。
