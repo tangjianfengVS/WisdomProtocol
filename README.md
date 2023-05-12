@@ -14,7 +14,7 @@
 
     1). 定时器功能
   
-    2). 模型数据: 编/解码
+    2). 模型: 编/解码
   
     3). 程序信息跟踪
   
@@ -98,9 +98,9 @@
      -> 定时任务过程中，app前后台状态切换，会对定时数产生的影响，已妥善计算处理，放心使用；
 
 
-# 【2】模型数据 编/解码
+# 【2】模型 编/解码
 
-   -> 模型数据 编/解码 继承主协议：
+   -> 模型 编/解码 继承主协议：
    
      // MARK: Swift Class/NSObject/Value to coding/decoding Protocol
      public protocol WisdomCodingable {}
@@ -109,7 +109,7 @@
      继承编/解码协议 对象，拥有对模型和数据编/解吗的能力，且支持集合，结构体，枚举类型。下面具体介绍协议的几个方法API。
 
 
-   -> 模型数据 几种解码场景：
+   -> 模型 几种解码场景：
    
      extension WisdomCodingable where Self: Decodable {
      
@@ -140,7 +140,7 @@
      
      4. Json 转 模型数组
 
-   -> 模型数据 几种编码场景：
+   -> 模型 几种编码场景：
 
      extension WisdomCodingable where Self: Encodable {
     
@@ -153,7 +153,7 @@
          public func ableEncod()->[String:Any]?{}
      }
 
-   -> 模型数据 集合编码场景：
+   -> 模型 集合编码场景：
    
      public extension Array where Element: WisdomCodingable&Encodable {
      
@@ -176,7 +176,7 @@
      
      4. 模型数组 转Json
      
-   -> 模型数据 案例：
+   -> 模型 案例：
    
      // 必须继承 Codable 和 WisdomCodingable 协议
      struct RCProductFuncModel: Codable, WisdomCodingable {
