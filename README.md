@@ -252,17 +252,16 @@
    3). 协议使用案例：
    
      extension AppDelegate: WisdomCrashingable {
-    
+         //崩溃跟踪
          func catchCrashing(crash: String) {
-             //  crash 崩溃溃消息
+         //  crash 崩溃消息
          }
      }
-
+     
      extension AppDelegate: WisdomTrackingable {
-    
          //页面跟踪
          func catchTracking(viewDidAppear controller: UIViewController.Type, title: String) {
-             //  controller/title 跟踪消息
+         //  controller/title 页面展示消息
          }
      }
      
