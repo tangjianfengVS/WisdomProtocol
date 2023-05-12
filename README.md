@@ -100,7 +100,8 @@
 
 # 【2】模型数据 编/解码
 
-   -> 编/解码 继承主协议
+   -> 编/解码 继承主协议：
+   
      // MARK: Swift Class/NSObject/Value to coding/decoding Protocol
      public protocol WisdomCodingable {}
      
