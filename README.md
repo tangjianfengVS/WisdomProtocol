@@ -197,9 +197,10 @@
     -> 内部 编/解码 实现，使用的 Swift原生Coding协议，所以不需要担心稳定性和兼容性；
 
     -> 解析流程中添加了断言处理：
-    assert(able != nil, "decodable failure: \(value)")
-    调试环境，断言 便于即时发现不合格数据，即时检测；
-    如果不需要，可以注释此处断言代码；
+    
+     assert(able != nil, "decodable failure: \(value)")
+     调试环境，断言 便于即时发现不合格数据，即时检测；
+     如果不需要，可以注释此处断言代码；
 
 
 
