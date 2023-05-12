@@ -147,7 +147,7 @@
          // MARK: return - String?
          // swift model to json string, use 'Encodable' protocol
          public func ableJson()->String?{}
-    
+         
          // MARK: return - [String:Any]?
          // swift model to dictionary, use 'Encodable' protocol
          public func ableEncod()->[String:Any]?{}
