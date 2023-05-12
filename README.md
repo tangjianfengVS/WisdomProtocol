@@ -112,7 +112,7 @@
    -> 模型数据 几种解码场景：
    
      extension WisdomCodingable where Self: Decodable {
-    
+     
          // MARK: Param - [String: Any], return - Self?
          // swift dictionary to dictionary model, use 'Decodable' protocol
          public static func decodable(value: [String: Any])->Self?{}
