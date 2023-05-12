@@ -296,18 +296,20 @@
      UIImage().saveingable(imageName: “本地缓存图片名称”)
 
    --> UIImage 本地加载 案例：
+   
      UIImage.loadingable(imageName: “本地缓存图片名称” ) { image, imageName in
         // 获取到本地缓存到图片              
      } emptyClosure: {
         // 本地没有缓存的图片 
      }
 
-说明：
-1.图片本地缓存为沙盒缓存，如果app内存吃紧，缓存图片会被清除。
-2.图片获取缓存过程：内存缓存 -> 磁盘缓存。
+   说明：
+   -> 图片本地缓存为沙盒缓存，如果app内存吃紧，缓存图片会被清除。
+   -> 图片获取缓存过程：内存缓存 -> 磁盘缓存。
 
-2). UIImageView本地缓存 和 网络加载 扩展：
-extension UIImageView {
+   2). UIImageView本地缓存 和 网络加载 扩展：
+   
+   extension UIImageView {
     
     // MARK: Load Image in Memory Cache / Disk Cache
     // imageName:        Image Name (historical save Memory/Disk Cache)
@@ -318,11 +320,11 @@ extension UIImageView {
     // imageUrl:         Image Url (historical save Memory/Disk Cache, if not, network download)
     // placeholderImage: Placeholder picture (Memory/Disk Cache no Image)
     @objc public func loadingImageable(imageUrl: String, placeholderImage: UIImage?=nil)
-}
+   }
 
-说明：
---> 第一种，根据 imageName 只在本地缓存中加载图片；
---> 第二种，先本地加载缓存图片，在没有的情况，继续根据 imageUrl 进行网络下载，下载完成做本地缓存；
+   说明：
+   -> 第一种，根据 imageName 只在本地缓存中加载图片；
+   -> 第二种，先本地加载缓存图片，在没有的情况，继续根据 imageUrl 进行网络下载，下载完成做本地缓存；
 
 3). UIImageView图片动态跟踪 扩展：
 extension UIImageView {
