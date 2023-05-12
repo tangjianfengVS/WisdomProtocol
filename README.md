@@ -278,11 +278,11 @@
    
      // * Save/Load Image in Memory/Disk Cache *
      extension UIImage {
-    
+     
          // MARK: Save Image in Memory Cache / Disk Cache
          // imageName: Image Name
          @objc public func saveingable(imageName: String) 
-    
+         
          // MARK: Load Image in Memory Cache / Disk Cache
          // imageName:    Image Name
          // imageClosure: (UIImage,String)->() (has UIImage)
@@ -290,16 +290,17 @@
          @objc public static func loadingable(imageName: String, imageClosure: @escaping (UIImage,String)->(), emptyClosure: @escaping ()->())
      }
 
---> UIImage 本地缓存 案例：
+   --> UIImage 本地缓存 案例：
+     
+     // 按照 imageName 保存
+     UIImage().saveingable(imageName: “本地缓存图片名称”)
 
-UIImage().saveingable(imageName: “本地缓存图片名称”)
-
---> UIImage 本地加载 案例：
-UIImage.loadingable(imageName: “本地缓存图片名称” ) { image, imageName in
-  // 获取到本地缓存到图片              
-} emptyClosure: {
-  // 本地没有缓存的图片 
-}
+   --> UIImage 本地加载 案例：
+     UIImage.loadingable(imageName: “本地缓存图片名称” ) { image, imageName in
+        // 获取到本地缓存到图片              
+     } emptyClosure: {
+        // 本地没有缓存的图片 
+     }
 
 说明：
 1.图片本地缓存为沙盒缓存，如果app内存吃紧，缓存图片会被清除。
