@@ -65,20 +65,19 @@
 
      extension WisdomTimerable {
      
-    
-         // MARK: Class Param - NSInteger.  No need to implement 
+     // MARK: Class Param - NSInteger.  No need to implement 
           
          // * Start a forward timer task, start the forward time point
      
          public func startForwardTimer(startTime: UInt){}
     
-         // MARK: Class Param - NSInteger.  No need to implement 
+    // MARK: Class Param - NSInteger.  No need to implement 
           
          // * Start a countdown timer task, start the total time countdown
      
          public func startDownTimer(totalTime: UInt)
     
-         // MARK: Class Timer - destroy.  No need to implement 
+    // MARK: Class Timer - destroy.  No need to implement 
           
          // Destruction/Release timer task
      
