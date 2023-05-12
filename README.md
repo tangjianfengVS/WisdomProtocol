@@ -140,7 +140,7 @@
      
      4. Json 转 模型数组
 
--> 几种编码场景：
+   -> 模型数据 几种编码场景：
 
     extension WisdomCodingable where Self: Encodable {
     
