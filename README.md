@@ -64,6 +64,7 @@
     
 
      extension WisdomTimerable {
+     
     
           // MARK: Class Param - NSInteger. < No need to implement >
           
@@ -82,6 +83,7 @@
           // Destruction/Release timer task
      
           public func destroyTimer(){}
+          
      }
 
    -> 支持 从指定时间开始累积计时 和 总时间的倒计时
