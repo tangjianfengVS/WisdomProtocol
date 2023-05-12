@@ -204,7 +204,61 @@
 
 
 
+# 【3】程序信息跟踪
 
+   目前支持跟踪功能：
+   -> 1. 崩溃信息的跟踪；
+   -> 2. 控制器的 显示/掩藏 状态跟踪，和显示时间统计；
+   -> 3. 协议限制 条件对象：UIApplicationDelegate
+     protocol WisdomCrashingable where Self: UIApplicationDelegate
+
+   1). 崩溃跟踪协议
+   
+     @objc public protocol WisdomCrashingable where Self: UIApplicationDelegate {
+    
+         // MARK: Catch Crashing Param - String
+         // Swift object type, this parameter is valid in the relase environment but invalid in the debug environment
+         // objective-c object type, both debug and relase environments are supported
+         @objc func catchCrashing(crash: String)
+     }
+
+     说明：崩溃跟踪，同时支持OC和Swift 语言崩溃场景抓取。
+
+   2). 控制器展示跟踪协议
+     @objc public protocol WisdomTrackingable where Self: UIApplicationDelegate {
+    
+         // MARK: Catch Controller Tracking Param - String, String
+         // UIViewController Catch Tracking 'viewDidAppear'
+         // - controller: UIViewController.Type
+         // - title: String
+         @objc func catchTracking(viewDidAppear controller: UIViewController.Type, title: String)
+    
+         // MARK: Catch Controller Tracking Param - String, String
+         // UIViewController Catch Tracking 'viewDidDisappear'
+         // - controller: UIViewController.Type
+         // - appearTime: NSInteger
+         // - title: String
+         @objc optional func catchTracking(viewDidDisappear controller: UIViewController.Type, appearTime: NSInteger, title: String)
+     }
+     说明：控制器将要隐藏协议回调中，会带过来时间参数，为当前控制器所展示的时长。
+
+   3). 协议使用案例
+     extension AppDelegate: WisdomCrashingable {
+    
+         func catchCrashing(crash: String) {
+             //  crash 崩溃溃消息
+         }
+     }
+
+extension AppDelegate: WisdomTrackingable {
+    
+    //页面跟踪
+    func catchTracking(viewDidAppear controller: UIViewController.Type, title: String) {
+        RCLog.info(text: "vc: \(controller) title: "+title)
+    }
+}
+上面案例为：崩溃消息监听；
+下面案例为：控制器展示状态监听，这里只实现了展示协议；
 
 
 
