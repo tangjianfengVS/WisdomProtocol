@@ -215,7 +215,7 @@
    -> 3. 协议限制 条件对象：UIApplicationDelegate
      protocol WisdomCrashingable where Self: UIApplicationDelegate
 
-   1). 崩溃跟踪协议
+   1). 崩溃跟踪协议：
    
      @objc public protocol WisdomCrashingable where Self: UIApplicationDelegate {
      
@@ -227,7 +227,8 @@
 
      说明：崩溃跟踪，同时支持OC和Swift 语言崩溃场景抓取。
 
-   2). 控制器展示跟踪协议
+   2). 控制器展示跟踪协议：
+   
      @objc public protocol WisdomTrackingable where Self: UIApplicationDelegate {
      
          // MARK: Catch Controller Tracking Param - String, String
@@ -245,7 +246,8 @@
      }
      说明：控制器将要隐藏协议回调中，会带过来时间参数，为当前控制器所展示的时长。
 
-   3). 协议使用案例
+   3). 协议使用案例：
+   
      extension AppDelegate: WisdomCrashingable {
     
          func catchCrashing(crash: String) {
@@ -253,15 +255,17 @@
          }
      }
 
-extension AppDelegate: WisdomTrackingable {
+     extension AppDelegate: WisdomTrackingable {
     
-    //页面跟踪
-    func catchTracking(viewDidAppear controller: UIViewController.Type, title: String) {
-        RCLog.info(text: "vc: \(controller) title: "+title)
-    }
-}
-上面案例为：崩溃消息监听；
-下面案例为：控制器展示状态监听，这里只实现了展示协议；
+         //页面跟踪
+         func catchTracking(viewDidAppear controller: UIViewController.Type, title: String) {
+             //  controller/title 跟踪消息
+         }
+     }
+     
+   上面案例为：崩溃消息监听；
+   
+   下面案例为：控制器展示状态监听，这里只实现了展示协议；
 
 
 
