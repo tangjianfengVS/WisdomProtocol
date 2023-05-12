@@ -178,11 +178,10 @@
      
    -> 模型数据 案例：
    
-     // 必须继承 Codable 协议
+     // 必须继承 Codable 和 WisdomCodingable 协议
      struct RCProductFuncModel: Codable, WisdomCodingable {
     
          private(set) var tag: RCProductFuncStauts?
-    
          private(set) var name: String?
      }
      // 转模型
