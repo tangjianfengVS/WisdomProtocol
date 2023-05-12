@@ -20,9 +20,6 @@ Function Description:
 
 6. WisdomProtocol sdk: Support statistical tracking 'UIViewController' 'viewDidAppear(_:)/viewDidDisappear(_:)' page display time and duration statistics protocol.
 
-
-
-
 # WisdomProtocol
 WisdomProtocol是一个智能协议 sdk。
 
@@ -44,6 +41,74 @@ github 集成: pod 'WisdomProtocol'
 5. WisdomProtocol sdk: 支持捕捉跟踪 'objective-c/Swift Class' 发生运行崩溃错误时，日志跟踪，捕捉协议。
 
 6. WisdomProtocol sdk: 支持统计跟踪 'UIViewController' 'viewDidAppear(_:)/viewDidDisappear(_:)' 页面展示时机和时长 统计协议。
+
+
+1.简介
+   WisdomProtocol：一款iOS 面向协议 编程框架，Swift特别版。在开发中，以遵守实现 对应协议，即可得到 相应能力 的理念，来定义一批定制的协议，通过他们绑定实现定制的功能和需求。
+  协议功能 支持 如下列表。
+  
+2.协议功能支持
+  1). 定时器功能
+  2). 模型数据: 编/解码
+  3). 程序信息跟踪
+  4). 图片: 加载/缓存
+  5). 多语言切换
+  6). 网络连接状态变化
+  7). 7大路由器
+
+3.功能详情
+
+（1）--------------- 定时器功能 ---------------
+
+  -> 定时协议
+     @objc public protocol WisdomTimerable
+     简介：
+     继承定时协议 对象，拥有开启计时的能力，且不用管理内部定时器的生命周期。下面具体介绍协议的几个方法API。
+
+  -> 协议实现
+  // MARK: Class Timerable Protocol
+  // * Support for objective-c/Swift Class
+  @objc public protocol WisdomTimerable {
+    
+     // MARK: Class Param - UInt, WisdomTimerable
+     // * Timer task in progress, current time
+     @objc func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable)
+    
+     // MARK: Class Param - WisdomTimerable
+     // * Example End a scheduled task
+     @objc func timerable(timerEnd timerable: WisdomTimerable)
+  }
+
+  -> 支持 Swift / OC 类遵守，且协议简单明了
+  -> 支持 每秒任务状态更新回调 和 定时任务结束状态回调
+
+  extension WisdomTimerable {
+    
+     // MARK: Class Param - NSInteger. < No need to implement >
+     // * Start a forward timer task, start the forward time point
+     public func startForwardTimer(startTime: UInt){}
+    
+     // MARK: Class Param - NSInteger. < No need to implement >
+     // * Start a countdown timer task, start the total time countdown
+     public func startDownTimer(totalTime: UInt){}
+    
+     // MARK: Class Timer - destroy. < No need to implement >
+     // Destruction/Release timer task
+     public func destroyTimer(){}
+  }
+
+  -> 支持 从指定时间开始累积计时 和 总时间的倒计时
+  -> 支持 主动摧毁运行中的定时任务
+
+  -> 支持功能：
+  public func startForwardTimer(startTime: UInt)
+  * 累积计时
+  public func startDownTimer(totalTime: UInt)
+  * 倒计时
+
+  【优势/特点】
+  -> 开发者无需关心，定时任务的创建和销毁。对于销毁，内部会即时销毁，包括任务结束即时销毁，包括启动任务对象销毁，也会即时销毁定时任务；
+  -> 定时任务过程中，app前后台状态切换，会对定时数产生的影响，已妥善计算处理，放心使用；
 
 
 ## Routing Protocol/路由协议篇
