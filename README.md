@@ -116,7 +116,7 @@
          // MARK: Param - [String: Any], return - Self?
          // swift dictionary to dictionary model, use 'Decodable' protocol
          public static func decodable(value: [String: Any])->Self?{}
-    
+         
          // MARK: Param - [String: Any], return - [Self]
          // swift dictionary list to dictionary model list, use 'Decodable' protocol
          public static func decodable(list: [[String: Any]])->[Self]{}
