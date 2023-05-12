@@ -54,7 +54,6 @@
          // MARK: Class Param - WisdomTimerable
          // * Example End a scheduled task
          @objc func timerable(timerEnd timerable: WisdomTimerable)
-  
      }
 
    -> 定时任务说明：
