@@ -207,8 +207,11 @@
 # 【3】程序信息跟踪
 
    目前支持跟踪功能：
+   
    -> 1. 崩溃信息的跟踪；
+   
    -> 2. 控制器的 显示/掩藏 状态跟踪，和显示时间统计；
+   
    -> 3. 协议限制 条件对象：UIApplicationDelegate
      protocol WisdomCrashingable where Self: UIApplicationDelegate
 
