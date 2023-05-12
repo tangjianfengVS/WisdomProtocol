@@ -141,40 +141,40 @@
      4. Json 转 模型数组
 
 -> 几种编码场景：
-extension WisdomCodingable where Self: Encodable {
-    
-    // MARK: return - String?
-    // swift model to json string, use 'Encodable' protocol
-    public func ableJson()->String?{
-        return WisdomProtocolCore.ableJson(self)
-    }
-    
-    // MARK: return - [String:Any]?
-    // swift model to dictionary, use 'Encodable' protocol
-    public func ableEncod()->[String:Any]?{
-        return WisdomProtocolCore.ableEncod(self)
-    }
-}
 
--> 集合编码场景：
-public extension Array where Element: WisdomCodingable&Encodable {
+    extension WisdomCodingable where Self: Encodable {
     
-    // MARK: return - [[String:Any]]
-    // swift model list to dictionary list, use 'Encodable' protocol
-    func ableEncod()->[[String:Any]]{
-        return WisdomProtocolCore.ableEncod(ables: self)
-    }
+         // MARK: return - String?
+         // swift model to json string, use 'Encodable' protocol
+         public func ableJson()->String?{}
     
-    // MARK: return - String?
-    // swift model list to jsons string, use 'Encodable' protocol
-    func ableJsons()->String?{
-        return WisdomProtocolCore.ableJsons(ables: self)
+         // MARK: return - [String:Any]?
+         // swift model to dictionary, use 'Encodable' protocol
+         public func ableEncod()->[String:Any]?{}
     }
-}
-编码 上到下顺序：1. 模型 转 Json  
-2. 模型 转 字典 
-3. 模型数组 转 字典数组
-4. 模型数组 转Json
+
+   -> 集合编码场景：
+   
+     public extension Array where Element: WisdomCodingable&Encodable {
+     
+         // MARK: return - [[String:Any]]
+         // swift model list to dictionary list, use 'Encodable' protocol
+         func ableEncod()->[[String:Any]]{}
+     
+         // MARK: return - String?
+         // swift model list to jsons string, use 'Encodable' protocol
+         func ableJsons()->String?{}
+     }
+     
+     编码 上到下顺序：
+     
+     1. 模型 转 Json  
+     
+     2. 模型 转 字典 
+     
+     3. 模型数组 转 字典数组
+     
+     4. 模型数组 转Json
 
 【优势/特点】
 -> 只支持 Swift 类，枚举，struct 的 编/解码；
