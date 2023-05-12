@@ -100,7 +100,7 @@
 
 # 【2】模型数据 编/解码
 
-   -> 编/解码 继承主协议：
+   -> 模型数据 编/解码 继承主协议：
    
      // MARK: Swift Class/NSObject/Value to coding/decoding Protocol
      public protocol WisdomCodingable {}
@@ -109,37 +109,36 @@
      继承编/解码协议 对象，拥有对模型和数据编/解吗的能力，且支持集合，结构体，枚举类型。下面具体介绍协议的几个方法API。
 
 
--> 几种解码场景：
-extension WisdomCodingable where Self: Decodable {
+   -> 模型数据 几种解码场景：
+   
+     extension WisdomCodingable where Self: Decodable {
     
-    // MARK: Param - [String: Any], return - Self?
-    // swift dictionary to dictionary model, use 'Decodable' protocol
-    public static func decodable(value: [String: Any])->Self?{
-        return WisdomProtocolCore.decodable(Self.self, value: value)
-    }
+         // MARK: Param - [String: Any], return - Self?
+         // swift dictionary to dictionary model, use 'Decodable' protocol
+         public static func decodable(value: [String: Any])->Self?{}
     
-    // MARK: Param - [String: Any], return - [Self]
-    // swift dictionary list to dictionary model list, use 'Decodable' protocol
-    public static func decodable(list: [[String: Any]])->[Self]{
-        return WisdomProtocolCore.decodable(Self.self, list: list)
-    }
+         // MARK: Param - [String: Any], return - [Self]
+         // swift dictionary list to dictionary model list, use 'Decodable' protocol
+         public static func decodable(list: [[String: Any]])->[Self]{}
     
-    // MARK: Param - String, return - Self?
-    // swift json string to model, use 'Decodable' protocol
-    public static func jsonable(json: String)->Self?{
-        return WisdomProtocolCore.jsonable(Self.self, json: json)
-    }
+         // MARK: Param - String, return - Self?
+         // swift json string to model, use 'Decodable' protocol
+         public static func jsonable(json: String)->Self?{}
     
-    // MARK: Param - String, return - [Self]
-    // swift jsons string to model list, use 'Decodable' protocol
-    public static func jsonable(jsons: String)->[Self]{
-        return WisdomProtocolCore.jsonable(Self.self, jsons: jsons)
-    }
-}
-解码 上到下顺序：1. 字典 转 模型 
-2. 字典数组 转 模型数组 
-3. Json 转 模型 
-4. Json 转 模型数组
+         // MARK: Param - String, return - [Self]
+         // swift jsons string to model list, use 'Decodable' protocol
+         public static func jsonable(jsons: String)->[Self]{}
+     }
+     
+     解码 上到下顺序：
+     
+     1. 字典 转 模型 
+
+     2. 字典数组 转 模型数组 
+     
+     3. Json 转 模型 
+     
+     4. Json 转 模型数组
 
 -> 几种编码场景：
 extension WisdomCodingable where Self: Encodable {
