@@ -208,14 +208,15 @@
 
    目前支持跟踪功能：
    
-   -> 1. 崩溃信息的跟踪；
+     1. 崩溃信息的跟踪；
    
-   -> 2. 控制器的 显示/掩藏 状态跟踪，和显示时间统计；
+     2. 控制器的 显示/掩藏 状态跟踪，和显示时间统计；
    
-   -> 3. 协议限制 条件对象：UIApplicationDelegate
-     protocol WisdomCrashingable where Self: UIApplicationDelegate
+     3. 协议限制 条件对象：UIApplicationDelegate
      
-   -> 4. OC 和Swift 语言崩溃场景抓取不一样，但是 WisdomProtocol 同时都支持
+         protocol WisdomCrashingable where Self: UIApplicationDelegate
+     
+     4. OC 和Swift 语言崩溃场景抓取不一样，但是 WisdomProtocol 同时都支持
 
    1). 崩溃跟踪协议：
    
@@ -298,13 +299,14 @@
    --> UIImage 本地加载 案例：
    
      UIImage.loadingable(imageName: “本地缓存图片名称” ) { image, imageName in
-        // 获取到本地缓存到图片              
+       // 获取到本地缓存到图片
      } emptyClosure: {
-        // 本地没有缓存的图片 
+       // 本地没有缓存的图片 
      }
 
    说明：
    -> 图片本地缓存为沙盒缓存，如果app内存吃紧，缓存图片会被清除。
+   
    -> 图片获取缓存过程：内存缓存 -> 磁盘缓存。
 
    2). UIImageView本地缓存 和 网络加载 扩展：
@@ -328,6 +330,7 @@
 
 
    3). UIImageView图片动态跟踪 扩展：
+   
      extension UIImageView {
      
          // MARK: Tracking save Image in Memory Cache / Disk Cache, Paired use
