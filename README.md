@@ -98,6 +98,100 @@
      -> 定时任务过程中，app前后台状态切换，会对定时数产生的影响，已妥善计算处理，放心使用；
 
 
+# 【2】模型数据 编/解码
+
+   -> 编/解码 继承主协议
+     // MARK: Swift Class/NSObject/Value to coding/decoding Protocol
+     public protocol WisdomCodingable {}
+     
+     简介：
+     继承编/解码协议 对象，拥有对模型和数据编/解吗的能力，且支持集合，结构体，枚举类型。下面具体介绍协议的几个方法API。
+
+
+-> 几种解码场景：
+extension WisdomCodingable where Self: Decodable {
+    
+    // MARK: Param - [String: Any], return - Self?
+    // swift dictionary to dictionary model, use 'Decodable' protocol
+    public static func decodable(value: [String: Any])->Self?{
+        return WisdomProtocolCore.decodable(Self.self, value: value)
+    }
+    
+    // MARK: Param - [String: Any], return - [Self]
+    // swift dictionary list to dictionary model list, use 'Decodable' protocol
+    public static func decodable(list: [[String: Any]])->[Self]{
+        return WisdomProtocolCore.decodable(Self.self, list: list)
+    }
+    
+    // MARK: Param - String, return - Self?
+    // swift json string to model, use 'Decodable' protocol
+    public static func jsonable(json: String)->Self?{
+        return WisdomProtocolCore.jsonable(Self.self, json: json)
+    }
+    
+    // MARK: Param - String, return - [Self]
+    // swift jsons string to model list, use 'Decodable' protocol
+    public static func jsonable(jsons: String)->[Self]{
+        return WisdomProtocolCore.jsonable(Self.self, jsons: jsons)
+    }
+}
+解码 上到下顺序：1. 字典 转 模型 
+2. 字典数组 转 模型数组 
+3. Json 转 模型 
+4. Json 转 模型数组
+
+-> 几种编码场景：
+extension WisdomCodingable where Self: Encodable {
+    
+    // MARK: return - String?
+    // swift model to json string, use 'Encodable' protocol
+    public func ableJson()->String?{
+        return WisdomProtocolCore.ableJson(self)
+    }
+    
+    // MARK: return - [String:Any]?
+    // swift model to dictionary, use 'Encodable' protocol
+    public func ableEncod()->[String:Any]?{
+        return WisdomProtocolCore.ableEncod(self)
+    }
+}
+
+-> 集合编码场景：
+public extension Array where Element: WisdomCodingable&Encodable {
+    
+    // MARK: return - [[String:Any]]
+    // swift model list to dictionary list, use 'Encodable' protocol
+    func ableEncod()->[[String:Any]]{
+        return WisdomProtocolCore.ableEncod(ables: self)
+    }
+    
+    // MARK: return - String?
+    // swift model list to jsons string, use 'Encodable' protocol
+    func ableJsons()->String?{
+        return WisdomProtocolCore.ableJsons(ables: self)
+    }
+}
+编码 上到下顺序：1. 模型 转 Json  
+2. 模型 转 字典 
+3. 模型数组 转 字典数组
+4. 模型数组 转Json
+
+【优势/特点】
+-> 只支持 Swift 类，枚举，struct 的 编/解码；
+-> 内部 编/解码 实现，使用的 Swift原生Coding协议，所以不需要担心稳定性和兼容性；
+
+-> 解析流程中添加了断言处理：
+assert(able != nil, "decodable failure: \(value)")
+调试环境，断言 便于即时发现不合格数据，即时检测；
+如果不需要，可以注释此处断言代码；
+
+
+
+
+
+
+
+
 ## Routing Protocol/路由协议篇
 ## Routing protocol is the core function of WisdomProtocol. The following describes how to use it/路由协议是 WisdomProtocol 核心功能，以下为您介绍如何去使用
 
