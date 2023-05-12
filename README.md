@@ -76,13 +76,13 @@
           
          // * Start a countdown timer task, start the total time countdown
      
-         public func startDownTimer(totalTime: UInt){}
+         public func startDownTimer(totalTime: UInt)
     
          // MARK: Class Timer - destroy. < No need to implement >
           
          // Destruction/Release timer task
      
-         public func destroyTimer(){}
+         public func destroyTimer()
      }
 
    -> 支持 从指定时间开始累积计时 和 总时间的倒计时
