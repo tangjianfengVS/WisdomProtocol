@@ -142,7 +142,7 @@
 
    -> 模型数据 几种编码场景：
 
-    extension WisdomCodingable where Self: Encodable {
+     extension WisdomCodingable where Self: Encodable {
     
          // MARK: return - String?
          // swift model to json string, use 'Encodable' protocol
@@ -151,7 +151,7 @@
          // MARK: return - [String:Any]?
          // swift model to dictionary, use 'Encodable' protocol
          public func ableEncod()->[String:Any]?{}
-    }
+     }
 
    -> 模型数据 集合编码场景：
    
