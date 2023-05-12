@@ -62,7 +62,6 @@
      
      2.支持 每秒任务状态更新回调 和 定时任务结束状态回调
     
-
      extension WisdomTimerable {
      
          // MARK: Class Param - NSInteger.  No need to implement 
@@ -78,9 +77,9 @@
          public func destroyTimer()
      }
 
-   -> 支持 从指定时间开始累积计时 和 总时间的倒计时
+     * 支持 从指定时间开始累积计时 和 总时间的倒计时
   
-   -> 支持 主动摧毁运行中的定时任务
+     * 支持 主动摧毁运行中的定时任务
 
    -> 支持功能：
   
