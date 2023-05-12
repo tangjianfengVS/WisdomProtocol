@@ -120,11 +120,11 @@
          // MARK: Param - [String: Any], return - [Self]
          // swift dictionary list to dictionary model list, use 'Decodable' protocol
          public static func decodable(list: [[String: Any]])->[Self]{}
-    
+         
          // MARK: Param - String, return - Self?
          // swift json string to model, use 'Decodable' protocol
          public static func jsonable(json: String)->Self?{}
-    
+         
          // MARK: Param - String, return - [Self]
          // swift jsons string to model list, use 'Decodable' protocol
          public static func jsonable(jsons: String)->[Self]{}
