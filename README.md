@@ -47,19 +47,24 @@
      // * Support for objective-c/Swift Class
      @objc public protocol WisdomTimerable {
     
-               // MARK: Class Param - UInt, WisdomTimerable
-               // * Timer task in progress, current time
-               @objc func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable)
+        // MARK: Class Param - UInt, WisdomTimerable
+        
+        // * Timer task in progress, current time
+        
+        @objc func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable)
      
-               // MARK: Class Param - WisdomTimerable
-               // * Example End a scheduled task
-               @objc func timerable(timerEnd timerable: WisdomTimerable)
+        // MARK: Class Param - WisdomTimerable
+        
+        // * Example End a scheduled task
+        
+        @objc func timerable(timerEnd timerable: WisdomTimerable)
   
      }
 
-   说明：
-   -> 支持 Swift / OC 类遵守，且协议简单明了
-   -> 支持 每秒任务状态更新回调 和 定时任务结束状态回调
+     说明：
+     -> 支持 Swift / OC 类遵守，且协议简单明了
+     
+     -> 支持 每秒任务状态更新回调 和 定时任务结束状态回调
     
 
      extension WisdomTimerable {
