@@ -185,10 +185,8 @@
     
          private(set) var name: String?
      }
-     
      // 转模型
      let product = RCProductFuncModel.jsonable(jsons: ".....") 
-     
      // 等等
    
 
