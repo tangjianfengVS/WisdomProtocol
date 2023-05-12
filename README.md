@@ -32,7 +32,7 @@
 
 # WisdomProtocol【1】定时器功能
 
-   -> 定时主协议：
+   -> 定时继承主协议：
   
      @objc public protocol WisdomTimerable
      
@@ -41,7 +41,7 @@
      继承定时协议 对象，拥有开启计时的能力，且不用管理内部定时器的生命周期。下面具体介绍协议的几个方法API。
      
 
-   -> 定时协议实现：
+   -> 定时功能协议：
   
      // MARK: Class Timerable Protocol
     
@@ -49,30 +49,24 @@
     
      @objc public protocol WisdomTimerable {
     
-    
-       // MARK: Class Param - UInt, WisdomTimerable
+         // MARK: Class Param - UInt, WisdomTimerable
+  
+         // * Timer task in progress, current time
      
-     
-       // * Timer task in progress, current time
-     
-     
-       @objc func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable)
+         @objc func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable)
      
     
-       // MARK: Class Param - WisdomTimerable
+         // MARK: Class Param - WisdomTimerable
      
+         // * Example End a scheduled task
      
-       // * Example End a scheduled task
-     
-     
-       @objc func timerable(timerEnd timerable: WisdomTimerable)
+         @objc func timerable(timerEnd timerable: WisdomTimerable)
      
      }
 
-
+     说明：
      -> 支持 Swift / OC 类遵守，且协议简单明了
-    
-  
+   
      -> 支持 每秒任务状态更新回调 和 定时任务结束状态回调
     
 
