@@ -214,6 +214,8 @@
    
    -> 3. 协议限制 条件对象：UIApplicationDelegate
      protocol WisdomCrashingable where Self: UIApplicationDelegate
+     
+   -> 4. OC 和Swift 语言崩溃场景抓取不一样，但是 WisdomProtocol 同时都支持
 
    1). 崩溃跟踪协议：
    
