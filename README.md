@@ -48,15 +48,11 @@
      @objc public protocol WisdomTimerable {
     
          // MARK: Class Param - UInt, WisdomTimerable
-        
          // * Timer task in progress, current time
-        
          @objc func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable)
      
          // MARK: Class Param - WisdomTimerable
-        
          // * Example End a scheduled task
-        
          @objc func timerable(timerEnd timerable: WisdomTimerable)
   
      }
