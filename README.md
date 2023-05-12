@@ -1,36 +1,36 @@
 # WisdomProtocol
 
-1.简介：
+  一.简介：
 
-   WisdomProtocol：一款iOS 面向协议 编程框架，Swift特别版。
+  WisdomProtocol：一款iOS 面向协议 编程框架，Swift特别版。
    
-   在开发中，以遵守实现 对应协议，即可得到 相应能力 的理念，来定义一批定制的协议，通过他们绑定实现定制的功能和需求。
+  在开发中，以遵守实现 对应协议，即可得到 相应能力 的理念，来定义一批定制的协议，通过他们绑定实现定制的功能和需求。
    
-   协议功能 支持 如下列表。
+  协议功能 支持 如下列表。
    
   
-2.协议功能支持：
+  二.协议功能支持：
 
-  1). 定时器功能
+    1). 定时器功能
   
-  2). 模型数据: 编/解码
+    2). 模型数据: 编/解码
   
-  3). 程序信息跟踪
+    3). 程序信息跟踪
   
-  4). 图片: 加载/缓存
+    4). 图片: 加载/缓存
   
-  5). 多语言切换
+    5). 多语言切换
   
-  6). 网络连接状态变化
+    6). 网络连接状态变化
   
-  7). 7大路由器
+    7). 7大路由器
   
 
-3.功能详情：
+  三.功能详情：
 
-#【1】定时器功能
+# WisdomProtocol【1】定时器功能
 
-  -> 定时主协议
+   -> 定时主协议：
   
      @objc public protocol WisdomTimerable
      
@@ -39,54 +39,64 @@
      继承定时协议 对象，拥有开启计时的能力，且不用管理内部定时器的生命周期。下面具体介绍协议的几个方法API。
      
 
-  -> 协议实现
+   -> 协议实现：
   
-  // MARK: Class Timerable Protocol
+    // MARK: Class Timerable Protocol
+    
   
-  // * Support for objective-c/Swift Class
+    // * Support for objective-c/Swift Class
+    
   
-  @objc public protocol WisdomTimerable {
+    @objc public protocol WisdomTimerable {
+    
     
-     // MARK: Class Param - UInt, WisdomTimerable
+       // MARK: Class Param - UInt, WisdomTimerable
      
-     // * Timer task in progress, current time
      
-     @objc func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable)
+       // * Timer task in progress, current time
+     
+     
+       @objc func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable)
+     
     
-     // MARK: Class Param - WisdomTimerable
+       // MARK: Class Param - WisdomTimerable
      
-     // * Example End a scheduled task
      
-     @objc func timerable(timerEnd timerable: WisdomTimerable)
+       // * Example End a scheduled task
      
-  }
+     
+       @objc func timerable(timerEnd timerable: WisdomTimerable)
+     
+    }
 
 
-  -> 支持 Swift / OC 类遵守，且协议简单明了
+    -> 支持 Swift / OC 类遵守，且协议简单明了
+    
   
-  -> 支持 每秒任务状态更新回调 和 定时任务结束状态回调
+    -> 支持 每秒任务状态更新回调 和 定时任务结束状态回调
+    
 
-  extension WisdomTimerable {
+    extension WisdomTimerable {
     
-     // MARK: Class Param - NSInteger. < No need to implement >
+       // MARK: Class Param - NSInteger. < No need to implement >
      
-     // * Start a forward timer task, start the forward time point
+       // * Start a forward timer task, start the forward time point
      
-     public func startForwardTimer(startTime: UInt){}
+       public func startForwardTimer(startTime: UInt){}
     
-     // MARK: Class Param - NSInteger. < No need to implement >
+       // MARK: Class Param - NSInteger. < No need to implement >
      
-     // * Start a countdown timer task, start the total time countdown
+       // * Start a countdown timer task, start the total time countdown
      
-     public func startDownTimer(totalTime: UInt){}
+       public func startDownTimer(totalTime: UInt){}
     
-     // MARK: Class Timer - destroy. < No need to implement >
+       // MARK: Class Timer - destroy. < No need to implement >
      
-     // Destruction/Release timer task
+       // Destruction/Release timer task
      
-     public func destroyTimer(){}
+       public func destroyTimer(){}
      
-  }
+    }
 
   -> 支持 从指定时间开始累积计时 和 总时间的倒计时
   
