@@ -41,7 +41,7 @@
      继承定时协议 对象，拥有开启计时的能力，且不用管理内部定时器的生命周期。下面具体介绍协议的几个方法API。
      
 
-   -> 协议实现：
+   -> 定时协议实现：
   
      // MARK: Class Timerable Protocol
     
@@ -67,16 +67,16 @@
      
        @objc func timerable(timerEnd timerable: WisdomTimerable)
      
-    }
+     }
 
 
-    -> 支持 Swift / OC 类遵守，且协议简单明了
+     -> 支持 Swift / OC 类遵守，且协议简单明了
     
   
-    -> 支持 每秒任务状态更新回调 和 定时任务结束状态回调
+     -> 支持 每秒任务状态更新回调 和 定时任务结束状态回调
     
 
-    extension WisdomTimerable {
+     extension WisdomTimerable {
     
        // MARK: Class Param - NSInteger. < No need to implement >
      
@@ -96,27 +96,27 @@
      
        public func destroyTimer(){}
      
-    }
+     }
 
-  -> 支持 从指定时间开始累积计时 和 总时间的倒计时
+     -> 支持 从指定时间开始累积计时 和 总时间的倒计时
   
-  -> 支持 主动摧毁运行中的定时任务
+     -> 支持 主动摧毁运行中的定时任务
 
-  -> 支持功能：
+     -> 支持功能：
   
-  public func startForwardTimer(startTime: UInt)
+     public func startForwardTimer(startTime: UInt)
   
-  * 累积计时
+     * 累积计时
   
-  public func startDownTimer(totalTime: UInt)
+     public func startDownTimer(totalTime: UInt)
   
-  * 倒计时
+     * 倒计时
 
   【优势/特点】
   
-  -> 开发者无需关心，定时任务的创建和销毁。对于销毁，内部会即时销毁，包括任务结束即时销毁，包括启动任务对象销毁，也会即时销毁定时任务；
+     -> 开发者无需关心，定时任务的创建和销毁。对于销毁，内部会即时销毁，包括任务结束即时销毁，包括启动任务对象销毁，也会即时销毁定时任务；
   
-  -> 定时任务过程中，app前后台状态切换，会对定时数产生的影响，已妥善计算处理，放心使用；
+     -> 定时任务过程中，app前后台状态切换，会对定时数产生的影响，已妥善计算处理，放心使用；
 
 
 ## Routing Protocol/路由协议篇
