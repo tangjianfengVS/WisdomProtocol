@@ -65,23 +65,20 @@
 
      extension WisdomTimerable {
     
-         // MARK: Class Param - NSInteger. < No need to implement >
+          // MARK: Class Param - NSInteger. < No need to implement >
+          // * Start a forward timer task, start the forward time point
      
-         // * Start a forward timer task, start the forward time point
-     
-         public func startForwardTimer(startTime: UInt){}
+          public func startForwardTimer(startTime: UInt){}
     
-         // MARK: Class Param - NSInteger. < No need to implement >
+          // MARK: Class Param - NSInteger. < No need to implement >
+          // * Start a countdown timer task, start the total time countdown
      
-         // * Start a countdown timer task, start the total time countdown
-     
-         public func startDownTimer(totalTime: UInt){}
+          public func startDownTimer(totalTime: UInt){}
     
-         // MARK: Class Timer - destroy. < No need to implement >
+          // MARK: Class Timer - destroy. < No need to implement >
+          // Destruction/Release timer task
      
-         // Destruction/Release timer task
-     
-         public func destroyTimer(){}
+          public func destroyTimer(){}
      }
 
    -> 支持 从指定时间开始累积计时 和 总时间的倒计时
