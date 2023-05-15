@@ -401,9 +401,11 @@
      @objc public protocol WisdomLanguageRegisterable where Self: UIApplicationDelegate
 
      说明：
-     --> 在使用多语言主协议功能前，需要实现 多语言功能注册 协议，如果未实现多语言注册协议，多语言主协议功能 不可用；
+     
+     -> 在使用多语言主协议功能前，需要实现 多语言功能注册 协议，如果未实现多语言注册协议，多语言主协议功能 不可用；
 
-     --> WisdomLanguageRegisterabl限制 UIApplicationDelegate 实现；
+     -> WisdomLanguageRegisterabl限制 UIApplicationDelegate 实现；
+
 
    -> 具体功能注册：
    
@@ -424,6 +426,7 @@
     }
 
    说明：
+   
    --> registerLanguageKey():本地保存语言设置类型的key，每次保存/获取本地设置，会调用。设置nil 不做本地缓存;
 
    --> registerLanguage(language: WisdomLanguageStatus)->Bundle:根据WisdomLanguageStatus获取多语言资源Bundle;
@@ -451,7 +454,7 @@
          // Update Language
          @discardableResult
          public static func updateLanguage(language: WisdomLanguageStatus)->Bool
-    
+         
          // MARK: Reset Language
          public static func resetLanguage()
     }
@@ -474,7 +477,7 @@
          func registerLanguageKey()->String? {
              return "Language"
          }
-    
+         
          func registerLanguage(language: WisdomLanguageStatus)->Bundle {
              let bundlePath = (Bundle.main.path(forResource: "RainbowStone", ofType: "bundle") ?? "")
              var path = bundlePath+"/Lan/"+language.file_lproj
@@ -489,13 +492,13 @@
              }
              return bundle ?? Bundle.main
          }
-    
+         
          func registerLanguageUpdate(language: WisdomLanguageStatus) {
-              // 语言切换回调
+             // 语言切换回调
          }
      }
      
-     说明：
+   说明：
      --> 案例只设置了 中/英 文切换；
      
      --> 根据参数 WisdomLanguageStatus 类型，返回对应的Bundle类型；
