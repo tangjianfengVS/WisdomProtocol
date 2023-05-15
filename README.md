@@ -351,6 +351,155 @@
 
 
 
+# 【5】多语言切换
+   1). 多语言支持种类 枚举：
+   
+     @objc public enum WisdomLanguageStatus: Int
+     
+   -> 具体类型：
+   
+     /// 跟随系统语言
+     case system=1
+     /// 英语
+     case en
+     /// 简体中文
+     case zh_Hans
+     /// 繁体中文
+     case zh_Hant
+     /// 繁体中文(香港特别行政区)
+     case zh_Hant_HK
+     /// 繁体中文(中国台湾省)
+     case zh_Hant_TW
+     /// 法语
+     case fr
+     /// 德语
+     case de
+     /// 意大利语
+     case it
+     /// 日语
+     case ja
+     /// 韩语
+     case ko
+     /// 葡萄牙语
+     case pt_PT
+     /// 俄语
+     case ru
+     /// 西班牙语
+     case es
+     /// 荷兰语
+     case nl
+     /// 泰语
+     case th
+     /// 阿拉伯语
+     case ar
+     /// 乌克兰
+     case uk
+
+   2). 多语言功能注册 协议：
+   
+     // MARK: Language Registerable
+     @objc public protocol WisdomLanguageRegisterable where Self: UIApplicationDelegate
+
+     说明：
+     --> 在使用多语言主协议功能前，需要实现 多语言功能注册 协议，如果未实现多语言注册协议，多语言主协议功能 不可用；
+
+     -->WisdomLanguageRegisterabl限制 UIApplicationDelegate 实现；
+
+-> 具体功能注册：
+// MARK: Language Registerable
+@objc public protocol WisdomLanguageRegisterable where Self: UIApplicationDelegate {
+    
+    // MARK: return - String?
+    // Get the 'String' local save language key
+    @objc func registerLanguageKey()->String?
+    
+    // MARK: Param - WisdomLanguageStatus, return - Bundle
+    // Get the ‘Bundle’ based on the type
+    @objc func registerLanguage(language: WisdomLanguageStatus)->Bundle
+    
+    // MARK: Param - WisdomLanguageStatus
+    // Current Language Update
+    @objc func registerLanguageUpdate(language: WisdomLanguageStatus)
+}
+
+说明：
+--> registerLanguageKey():本地保存语言设置类型的key，每次保存/获取本地设置，会调用。设置nil 不做本地缓存;
+
+--> registerLanguage(language: WisdomLanguageStatus)->Bundle:根据WisdomLanguageStatus获取多语言资源Bundle;
+
+--> registerLanguageUpdate(language: WisdomLanguageStatus):更新当前设置的语言类型 WisdomLanguageStatus 时调用;
+
+3). 多语言功能主 协议：
+@objc public protocol WisdomLanguageable
+
+-> 具体功能：
+extension WisdomLanguageable {
+    
+    // MARK: return - WisdomLanguageStatus?
+    // Gets the language type of the setting
+    public static func getCurrentLanguage()->WisdomLanguageStatus?
+    
+    // MARK: return - String
+    // Gets the language type of the System
+    public static func getSystemLanguage()->String
+    
+    // MARK: Param - WisdomLanguageStatus, return - Bool
+    // Update Language
+    @discardableResult
+    public static func updateLanguage(language: WisdomLanguageStatus)->Bool
+    
+    // MARK: Reset Language
+    public static func resetLanguage()
+}
+
+说明：
+--> getCurrentLanguage():获取当前设置的语言类型 WisdomLanguageStatus，未设置 为nil;
+
+--> getSystemLanguage():获取当前系统的语言类型 WisdomLanguageStatus;
+
+--> updateLanguage(language: WisdomLanguageStatus):更新当前系统的语言类型 WisdomLanguageStatus;
+
+--> resetLanguage():重置当前系统的语言类型 WisdomLanguageStatus，设置为nil;
+
+4). 多语言协议注册案例：
+extension AppDelegate: WisdomLanguageRegisterable {
+    
+    func registerLanguageKey()->String? {
+        return "Language"
+    }
+    
+    func registerLanguage(language: WisdomLanguageStatus)->Bundle {
+        let bundlePath = (Bundle.main.path(forResource: "RainbowStone", ofType: "bundle") ?? "")
+        var path = bundlePath+"/Lan/"+language.file_lproj
+        var bundle: Bundle?
+        switch language {
+        case .zh_Hans, .zh_Hant, .zh_Hant_HK, .zh_Hant_TW:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+            bundle = Bundle.init(path: path)
+            MJRefreshConfig.default.languageCode = WisdomLanguageStatus.zh_Hans.fileName
+        default:
+            path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
+            bundle = Bundle.init(path: path)
+            MJRefreshConfig.default.languageCode = WisdomLanguageStatus.en.fileName
+        }
+        return bundle ?? Bundle.main
+    }
+    
+    func registerLanguageUpdate(language: WisdomLanguageStatus) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LanguageChangeNC") , object: nil)
+    }
+}
+说明：
+--> 案例只设置了 中/英 文切换；
+--> 根据参数 WisdomLanguageStatus 类型，返回对应的Bundle类型；
+
+5). 多语言协议使用案例：
+
+class RCUpdate: WisdomLanguageable
+说明：
+--> 继承 WisdomLanguageable 协议的对象，即拥有了获取当前语言设置信息的功能，和设置切换当前语言的功能；
+
+
 如果您热衷于iOS/swift开发，是一位热爱学习进步的童鞋，欢迎来一起研究/讨论 开发中遇到的问题。联系QQ：497609288 。
 请给予我支持，我会继续我的创作。
 
