@@ -345,9 +345,9 @@
      }
 
      说明：
-     -> ‘func trackingImageable()’: 对本地图片缓存任务，进行监听，b并重新刷新之前UIImageView加载失败的图片；
+     -> ‘func trackingImageable()’: 设置对本地图片缓存任务，进行监听，并重新刷新之前UIImageView加载失败的图片；
      
-     -> ‘func missingImageable()’:  使 ‘func trackingImageable()’监听任务失效；
+     -> ‘func missingImageable()’:  使 ‘func trackingImageable()’监听任务失效，不再刷新之前UIImageView加载失败的图片；
 
 
 
