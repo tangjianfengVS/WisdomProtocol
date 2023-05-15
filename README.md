@@ -403,17 +403,17 @@
      说明：
      --> 在使用多语言主协议功能前，需要实现 多语言功能注册 协议，如果未实现多语言注册协议，多语言主协议功能 不可用；
 
-     -->WisdomLanguageRegisterabl限制 UIApplicationDelegate 实现；
+     --> WisdomLanguageRegisterabl限制 UIApplicationDelegate 实现；
 
    -> 具体功能注册：
    
      // MARK: Language Registerable
      @objc public protocol WisdomLanguageRegisterable where Self: UIApplicationDelegate {
-    
+     
          // MARK: return - String?
          // Get the 'String' local save language key
          @objc func registerLanguageKey()->String?
-    
+     
          // MARK: Param - WisdomLanguageStatus, return - Bundle
          // Get the ‘Bundle’ based on the type
          @objc func registerLanguage(language: WisdomLanguageStatus)->Bundle
@@ -421,7 +421,7 @@
          // MARK: Param - WisdomLanguageStatus
          // Current Language Update
          @objc func registerLanguageUpdate(language: WisdomLanguageStatus)
-     }
+    }
 
    说明：
    --> registerLanguageKey():本地保存语言设置类型的key，每次保存/获取本地设置，会调用。设置nil 不做本地缓存;
@@ -429,14 +429,16 @@
    --> registerLanguage(language: WisdomLanguageStatus)->Bundle:根据WisdomLanguageStatus获取多语言资源Bundle;
 
    --> registerLanguageUpdate(language: WisdomLanguageStatus):更新当前设置的语言类型 WisdomLanguageStatus 时调用;
+   
 
    3). 多语言功能主 协议：
    
-     @objc public protocol WisdomLanguageable
+    @objc public protocol WisdomLanguageable
 
    -> 具体功能：
-     extension WisdomLanguageable {
-    
+   
+    extension WisdomLanguageable {
+    
          // MARK: return - WisdomLanguageStatus?
          // Gets the language type of the setting
          public static func getCurrentLanguage()->WisdomLanguageStatus?
@@ -452,7 +454,7 @@
     
          // MARK: Reset Language
          public static func resetLanguage()
-     }
+    }
 
    说明：
    --> getCurrentLanguage():获取当前设置的语言类型 WisdomLanguageStatus，未设置 为nil;
@@ -462,6 +464,7 @@
    --> updateLanguage(language: WisdomLanguageStatus):更新当前系统的语言类型 WisdomLanguageStatus;
 
    --> resetLanguage():重置当前系统的语言类型 WisdomLanguageStatus，设置为nil;
+   
 
    4). 多语言协议注册案例：
    
