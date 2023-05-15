@@ -446,7 +446,7 @@
          // MARK: return - String
          // Gets the language type of the System
          public static func getSystemLanguage()->String
-    
+         
          // MARK: Param - WisdomLanguageStatus, return - Bool
          // Update Language
          @discardableResult
@@ -457,13 +457,14 @@
     }
 
    说明：
-   --> getCurrentLanguage():获取当前设置的语言类型 WisdomLanguageStatus，未设置 为nil;
+   
+    -> getCurrentLanguage():                           获取当前设置的语言类型 WisdomLanguageStatus，未设置 为nil;
 
-   --> getSystemLanguage():获取当前系统的语言类型 WisdomLanguageStatus;
+    -> getSystemLanguage():                            获取当前系统的语言类型 WisdomLanguageStatus;
 
-   --> updateLanguage(language: WisdomLanguageStatus):更新当前系统的语言类型 WisdomLanguageStatus;
+    -> updateLanguage(language: WisdomLanguageStatus): 更新当前系统的语言类型 WisdomLanguageStatus;
 
-   --> resetLanguage():重置当前系统的语言类型 WisdomLanguageStatus，设置为nil;
+    -> resetLanguage():                                重置当前系统的语言类型 WisdomLanguageStatus，设置为nil;
    
 
    4). 多语言协议注册案例：
