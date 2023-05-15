@@ -405,93 +405,96 @@
 
      -->WisdomLanguageRegisterabl限制 UIApplicationDelegate 实现；
 
--> 具体功能注册：
-// MARK: Language Registerable
-@objc public protocol WisdomLanguageRegisterable where Self: UIApplicationDelegate {
+   -> 具体功能注册：
+   
+     // MARK: Language Registerable
+     @objc public protocol WisdomLanguageRegisterable where Self: UIApplicationDelegate {
     
-    // MARK: return - String?
-    // Get the 'String' local save language key
-    @objc func registerLanguageKey()->String?
+         // MARK: return - String?
+         // Get the 'String' local save language key
+         @objc func registerLanguageKey()->String?
     
-    // MARK: Param - WisdomLanguageStatus, return - Bundle
-    // Get the ‘Bundle’ based on the type
-    @objc func registerLanguage(language: WisdomLanguageStatus)->Bundle
+         // MARK: Param - WisdomLanguageStatus, return - Bundle
+         // Get the ‘Bundle’ based on the type
+         @objc func registerLanguage(language: WisdomLanguageStatus)->Bundle
     
-    // MARK: Param - WisdomLanguageStatus
-    // Current Language Update
-    @objc func registerLanguageUpdate(language: WisdomLanguageStatus)
-}
+         // MARK: Param - WisdomLanguageStatus
+         // Current Language Update
+         @objc func registerLanguageUpdate(language: WisdomLanguageStatus)
+     }
 
-说明：
---> registerLanguageKey():本地保存语言设置类型的key，每次保存/获取本地设置，会调用。设置nil 不做本地缓存;
+   说明：
+   --> registerLanguageKey():本地保存语言设置类型的key，每次保存/获取本地设置，会调用。设置nil 不做本地缓存;
 
---> registerLanguage(language: WisdomLanguageStatus)->Bundle:根据WisdomLanguageStatus获取多语言资源Bundle;
+   --> registerLanguage(language: WisdomLanguageStatus)->Bundle:根据WisdomLanguageStatus获取多语言资源Bundle;
 
---> registerLanguageUpdate(language: WisdomLanguageStatus):更新当前设置的语言类型 WisdomLanguageStatus 时调用;
+   --> registerLanguageUpdate(language: WisdomLanguageStatus):更新当前设置的语言类型 WisdomLanguageStatus 时调用;
 
-3). 多语言功能主 协议：
-@objc public protocol WisdomLanguageable
+   3). 多语言功能主 协议：
+   
+     @objc public protocol WisdomLanguageable
 
--> 具体功能：
-extension WisdomLanguageable {
+   -> 具体功能：
+     extension WisdomLanguageable {
     
-    // MARK: return - WisdomLanguageStatus?
-    // Gets the language type of the setting
-    public static func getCurrentLanguage()->WisdomLanguageStatus?
+         // MARK: return - WisdomLanguageStatus?
+         // Gets the language type of the setting
+         public static func getCurrentLanguage()->WisdomLanguageStatus?
     
-    // MARK: return - String
-    // Gets the language type of the System
-    public static func getSystemLanguage()->String
+         // MARK: return - String
+         // Gets the language type of the System
+         public static func getSystemLanguage()->String
     
-    // MARK: Param - WisdomLanguageStatus, return - Bool
-    // Update Language
-    @discardableResult
-    public static func updateLanguage(language: WisdomLanguageStatus)->Bool
+         // MARK: Param - WisdomLanguageStatus, return - Bool
+         // Update Language
+         @discardableResult
+         public static func updateLanguage(language: WisdomLanguageStatus)->Bool
     
-    // MARK: Reset Language
-    public static func resetLanguage()
-}
+         // MARK: Reset Language
+         public static func resetLanguage()
+     }
 
-说明：
---> getCurrentLanguage():获取当前设置的语言类型 WisdomLanguageStatus，未设置 为nil;
+   说明：
+   --> getCurrentLanguage():获取当前设置的语言类型 WisdomLanguageStatus，未设置 为nil;
 
---> getSystemLanguage():获取当前系统的语言类型 WisdomLanguageStatus;
+   --> getSystemLanguage():获取当前系统的语言类型 WisdomLanguageStatus;
 
---> updateLanguage(language: WisdomLanguageStatus):更新当前系统的语言类型 WisdomLanguageStatus;
+   --> updateLanguage(language: WisdomLanguageStatus):更新当前系统的语言类型 WisdomLanguageStatus;
 
---> resetLanguage():重置当前系统的语言类型 WisdomLanguageStatus，设置为nil;
+   --> resetLanguage():重置当前系统的语言类型 WisdomLanguageStatus，设置为nil;
 
-4). 多语言协议注册案例：
-extension AppDelegate: WisdomLanguageRegisterable {
+   4). 多语言协议注册案例：
+   
+     extension AppDelegate: WisdomLanguageRegisterable {
     
-    func registerLanguageKey()->String? {
-        return "Language"
-    }
+         func registerLanguageKey()->String? {
+             return "Language"
+         }
     
-    func registerLanguage(language: WisdomLanguageStatus)->Bundle {
-        let bundlePath = (Bundle.main.path(forResource: "RainbowStone", ofType: "bundle") ?? "")
-        var path = bundlePath+"/Lan/"+language.file_lproj
-        var bundle: Bundle?
-        switch language {
-        case .zh_Hans, .zh_Hant, .zh_Hant_HK, .zh_Hant_TW:
-            path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
-            bundle = Bundle.init(path: path)
-            MJRefreshConfig.default.languageCode = WisdomLanguageStatus.zh_Hans.fileName
-        default:
-            path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
-            bundle = Bundle.init(path: path)
-            MJRefreshConfig.default.languageCode = WisdomLanguageStatus.en.fileName
-        }
-        return bundle ?? Bundle.main
-    }
+         func registerLanguage(language: WisdomLanguageStatus)->Bundle {
+             let bundlePath = (Bundle.main.path(forResource: "RainbowStone", ofType: "bundle") ?? "")
+             var path = bundlePath+"/Lan/"+language.file_lproj
+             var bundle: Bundle?
+             switch language {
+             case .zh_Hans, .zh_Hant, .zh_Hant_HK, .zh_Hant_TW:
+                 path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+                 bundle = Bundle.init(path: path)
+             default:
+                 path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
+                 bundle = Bundle.init(path: path)
+             }
+             return bundle ?? Bundle.main
+         }
     
-    func registerLanguageUpdate(language: WisdomLanguageStatus) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LanguageChangeNC") , object: nil)
-    }
-}
-说明：
---> 案例只设置了 中/英 文切换；
---> 根据参数 WisdomLanguageStatus 类型，返回对应的Bundle类型；
+         func registerLanguageUpdate(language: WisdomLanguageStatus) {
+              // 语言切换回调
+         }
+     }
+     
+     说明：
+     --> 案例只设置了 中/英 文切换；
+     
+     --> 根据参数 WisdomLanguageStatus 类型，返回对应的Bundle类型；
 
 5). 多语言协议使用案例：
 
