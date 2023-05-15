@@ -37,7 +37,6 @@
      @objc public protocol WisdomTimerable
      
      简介：
-     
      继承定时协议 对象，拥有开启计时的能力，且不用管理内部定时器的生命周期。下面具体介绍协议的几个方法API。
      
 
@@ -59,7 +58,6 @@
    -> 定时任务说明：
    
      1.支持 Swift / OC 类遵守，且协议简单明了
-     
      2.支持 每秒任务状态更新回调 和 定时任务结束状态回调
     
      extension WisdomTimerable {
@@ -78,23 +76,17 @@
      }
 
      * 支持 从指定时间开始累积计时 和 总时间的倒计时
-  
      * 支持 主动摧毁运行中的定时任务
 
    -> 支持功能：
   
-     public func startForwardTimer(startTime: UInt)
+     * 累积计时： public func startForwardTimer(startTime: UInt)
+     * 倒计时：   public func startDownTimer(totalTime: UInt)
   
-     * 累积计时
-  
-     public func startDownTimer(totalTime: UInt)
-  
-     * 倒计时
 
   【优势/特点】
-  
+
      -> 开发者无需关心，定时任务的创建和销毁。对于销毁，内部会即时销毁，包括任务结束即时销毁，包括启动任务对象销毁，也会即时销毁定时任务；
-  
      -> 定时任务过程中，app前后台状态切换，会对定时数产生的影响，已妥善计算处理，放心使用；
 
 
@@ -209,11 +201,8 @@
    目前支持跟踪功能：
    
      1. 崩溃信息的跟踪；
-   
      2. 控制器的 显示/掩藏 状态跟踪，和显示时间统计；
-   
      3. 协议限制 条件对象：UIApplicationDelegate
-     
          protocol WisdomCrashingable where Self: UIApplicationDelegate
      
      4. OC 和Swift 语言崩溃场景抓取不一样，但是 WisdomProtocol 同时都支持
@@ -306,7 +295,6 @@
 
      说明：
      -> 图片本地缓存为沙盒缓存，如果app内存吃紧，缓存图片会被清除。
-   
      -> 图片获取缓存过程：内存缓存 -> 磁盘缓存。
 
    2). UIImageView本地缓存 和 网络加载 扩展：
@@ -325,7 +313,6 @@
 
      说明：
      -> 第一种，根据 imageName 只在本地缓存中加载图片；
-   
      -> 第二种，先本地加载缓存图片，在没有的情况，继续根据 imageUrl 进行网络下载，下载完成做本地缓存；
 
 
@@ -346,7 +333,6 @@
 
      说明：
      -> ‘func trackingImageable()’: 设置对本地图片缓存任务，进行监听，并重新刷新之前UIImageView加载失败的图片；
-     
      -> ‘func missingImageable()’:  使 ‘func trackingImageable()’监听任务失效，不再刷新之前UIImageView加载失败的图片；
 
 
@@ -464,36 +450,35 @@
 
    4). 多语言协议注册案例：
    
-     extension AppDelegate: WisdomLanguageRegisterable {
-    
+    extension AppDelegate: WisdomLanguageRegisterable {
+    
          func registerLanguageKey()->String? {
-             return "Language"
+            return "Language"
          }
-         
+    
          func registerLanguage(language: WisdomLanguageStatus)->Bundle {
-             let bundlePath = (Bundle.main.path(forResource: "RainbowStone", ofType: "bundle") ?? "")
-             var path = bundlePath+"/Lan/"+language.file_lproj
-             var bundle: Bundle?
-             switch language {
-             case .zh_Hans, .zh_Hant, .zh_Hant_HK, .zh_Hant_TW:
-                 path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
-                 bundle = Bundle.init(path: path)
-             default:
-                 path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
-                 bundle = Bundle.init(path: path)
-             }
-             return bundle ?? Bundle.main
+            let bundlePath = (Bundle.main.path(forResource: "RainbowStone", ofType: "bundle") ?? "")
+            var path = bundlePath+"/Lan/"+language.file_lproj
+            var bundle: Bundle?
+            switch language {
+            case .zh_Hans, .zh_Hant, .zh_Hant_HK, .zh_Hant_TW:
+               path = bundlePath+"/Lan/"+WisdomLanguageStatus.zh_Hans.file_lproj
+               bundle = Bundle.init(path: path)
+            default:
+               path = bundlePath+"/Lan/"+WisdomLanguageStatus.en.file_lproj
+               bundle = Bundle.init(path: path)
+            }
+            return bundle ?? Bundle.main
          }
-         
+    
          func registerLanguageUpdate(language: WisdomLanguageStatus) {
-             // 语言切换回调
+            // 语言切换回调
          }
-     }
+    }
      
-   说明：
-     --> 案例只设置了 中/英 文切换；
-     
-     --> 根据参数 WisdomLanguageStatus 类型，返回对应的Bundle类型；
+    说明：
+     -> 案例只设置了 中/英 文切换；
+     -> 根据参数 WisdomLanguageStatus 类型，返回对应的Bundle类型；
 
 5). 多语言协议使用案例：
 
