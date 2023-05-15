@@ -401,9 +401,7 @@
      @objc public protocol WisdomLanguageRegisterable where Self: UIApplicationDelegate
 
      说明：
-     
      -> 在使用多语言主协议功能前，需要实现 多语言功能注册 协议，如果未实现多语言注册协议，多语言主协议功能 不可用；
-
      -> WisdomLanguageRegisterabl限制 UIApplicationDelegate 实现；
 
 
@@ -419,18 +417,15 @@
          // MARK: Param - WisdomLanguageStatus, return - Bundle
          // Get the ‘Bundle’ based on the type
          @objc func registerLanguage(language: WisdomLanguageStatus)->Bundle
-    
+         
          // MARK: Param - WisdomLanguageStatus
          // Current Language Update
          @objc func registerLanguageUpdate(language: WisdomLanguageStatus)
     }
 
-   说明：
-   
-    -> registerLanguageKey():    本地保存语言设置类型的key，每次保存/获取本地设置，会调用。设置nil 不做本地缓存;
-
+    说明：
+    -> registerLanguageKey():              本地保存语言设置类型的key，每次保存/获取本地设置，会调用。设置nil 不做本地缓存;
     -> registerLanguage(language: WisdomLanguageStatus)->Bundle:  根据WisdomLanguageStatus获取多语言资源Bundle;
-
     -> registerLanguageUpdate(language: WisdomLanguageStatus):    更新当前设置的语言类型 WisdomLanguageStatus 时调用;
    
 
