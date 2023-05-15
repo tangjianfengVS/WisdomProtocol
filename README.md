@@ -427,16 +427,17 @@
 
    说明：
    
-   --> registerLanguageKey():本地保存语言设置类型的key，每次保存/获取本地设置，会调用。设置nil 不做本地缓存;
+    -> registerLanguageKey():    本地保存语言设置类型的key，每次保存/获取本地设置，会调用。设置nil 不做本地缓存;
 
-   --> registerLanguage(language: WisdomLanguageStatus)->Bundle:根据WisdomLanguageStatus获取多语言资源Bundle;
+    -> registerLanguage(language: WisdomLanguageStatus)->Bundle:  根据WisdomLanguageStatus获取多语言资源Bundle;
 
-   --> registerLanguageUpdate(language: WisdomLanguageStatus):更新当前设置的语言类型 WisdomLanguageStatus 时调用;
+    -> registerLanguageUpdate(language: WisdomLanguageStatus):    更新当前设置的语言类型 WisdomLanguageStatus 时调用;
    
 
    3). 多语言功能主 协议：
    
     @objc public protocol WisdomLanguageable
+    
 
    -> 具体功能：
    
