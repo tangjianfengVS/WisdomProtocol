@@ -441,7 +441,7 @@
          // MARK: return - WisdomLanguageStatus?
          // Gets the language type of the setting
          public static func getCurrentLanguage()->WisdomLanguageStatus?
-    
+         
          // MARK: return - String
          // Gets the language type of the System
          public static func getSystemLanguage()->String
@@ -455,14 +455,10 @@
          public static func resetLanguage()
     }
 
-   说明：
-   
+    说明：
     -> getCurrentLanguage():                           获取当前设置的语言类型 WisdomLanguageStatus，未设置 为nil;
-
     -> getSystemLanguage():                            获取当前系统的语言类型 WisdomLanguageStatus;
-
     -> updateLanguage(language: WisdomLanguageStatus): 更新当前系统的语言类型 WisdomLanguageStatus;
-
     -> resetLanguage():                                重置当前系统的语言类型 WisdomLanguageStatus，设置为nil;
    
 
