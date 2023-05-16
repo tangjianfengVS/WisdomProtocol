@@ -493,7 +493,7 @@
 
    1). 网络状态 枚举：
    
-   @objc public enum WisdomNetworkReachabilityStatus: NSInteger {
+    @objc public enum WisdomNetworkReachabilityStatus: NSInteger {
    
          /// It is unknown whether the network is reachable.
          case unknown=0
@@ -502,7 +502,7 @@
          /// 蜂窝网络
          case cellular
          /// 以太网/WiFicase ethernetOrWiFi
-   }
+    }
 
    2). 获取当前网络状态信息：
    
