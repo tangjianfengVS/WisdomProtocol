@@ -491,7 +491,92 @@
      
 # 【6】网络连接状态监听
 
+   1). 网络状态 枚举：
+    @objc public enum WisdomNetworkReachabilityStatus: NSInteger
 
+   -> 具体状态：
+   
+    /// It is unknown whether the network is reachable.
+    case unknown=0
+    /// The network is not reachable.
+    case notReachable
+    /// 蜂窝网络
+    case cellular
+    /// 以太网/WiFi
+    case ethernetOrWiFi
+
+   2). 获取当前网络状态信息：
+   
+    extension WisdomNetworkReachabilityStatus {
+    
+         // MARK: get 'currentNetworkReachabilityState: WisdomNetworkReachabilityStatus'
+         public static var currentNetworkReachabilityState: WisdomNetworkReachabilityStatus
+    
+         // MARK: Whether the network is available network: 'cellular / ethernetOrWiFi'
+         public static var isCurrentReachable: Bool 
+    
+         // MARK: Whether the current network is a cellular network: 'cellular'
+         public static var isCurrentReachableOnCellular: Bool 
+    
+         // MARK: Whether the current network is Ethernet / WiFi network: 'ethernetOrWiFi'
+         public static var isCurrentReachableOnEthernetOrWiFi: Bool
+    }
+    
+    说明：
+    -> currentNetworkReachabilityState: 获取当前网络状态；
+    -> isCurrentReachable:              当前网络状态是否有网（蜂窝网络或者以太网或者Wi-Fi）;
+    -> isCurrentReachableOnCellular:       当前网络状态是否是 蜂窝网络;
+    -> isCurrentReachableOnEthernetOrWiFi: 当前网络状态是否是 以太网或者Wi-Fi;
+
+   3). 网络状态主协议：
+   
+    @objc public protocol WisdomNetworkReachabilityable {
+    
+         // MARK: networkReachability 'WisdomNetworkReachabilityStatus' - didChange
+         // * network reachability did change
+         @objc func networkReachability(didChange currentState: WisdomNetworkReachabilityStatus)
+    }
+
+    说明：
+    -> 需要监听网络状态变化，对象必须继承此协议，并实现协议方法;
+    -> 对象继承协议完成好，就可以去 开启/关闭 监听；
+
+   4). 网络状态监听 开启/关闭：
+   
+    extension WisdomNetworkReachabilityable {
+    
+         // MARK: self start 'WisdomNetworkReachabilityStatus' Listening. < No need to implement >
+         public func startReachabilityListening()
+    
+         // MARK: self stop 'WisdomNetworkReachabilityStatus' Listening. < No need to implement >
+         public func stopReachabilityListening()
+    }
+
+   5). 网络状态监听 案例：
+
+    class RCMsgUser: WisdomNetworkReachabilityable {
+    
+    init(userId: String) {
+        self.userId = userId
+
+         // 开启网络监听
+        startReachabilityListening()
+    }
+
+deinit {
+     // 释放，停止网络监听
+        stopReachabilityListening()
+    }
+
+// 网络状态变化回调
+func networkReachability(didChange currentState: WisdomNetworkReachabilityStatus) {
+       
+    }
+    }
+
+    说明：
+    -> 网络状态监听，使用比较简单；
+    -> 内部实现，网络状态对象不会频繁创建，会复用；
 
 
 
