@@ -493,18 +493,16 @@
 
    1). 网络状态 枚举：
    
-    @objc public enum WisdomNetworkReachabilityStatus: NSInteger
-
-   -> 具体状态：
+   @objc public enum WisdomNetworkReachabilityStatus: NSInteger {
    
-    /// It is unknown whether the network is reachable.
-    case unknown=0
-    /// The network is not reachable.
-    case notReachable
-    /// 蜂窝网络
-    case cellular
-    /// 以太网/WiFi
-    case ethernetOrWiFi
+         /// It is unknown whether the network is reachable.
+         case unknown=0
+         /// The network is not reachable.
+         case notReachable
+         /// 蜂窝网络
+         case cellular
+         /// 以太网/WiFicase ethernetOrWiFi
+   }
 
    2). 获取当前网络状态信息：
    
@@ -558,20 +556,19 @@
     class RCMsgUser: WisdomNetworkReachabilityable {
     
          init(userId: String) {
-            self.userId = userId
-            // 开启网络监听
-            startReachabilityListening()
-        }
-
+            // 开启网络监听
+            startReachabilityListening()
+         }
+         
          deinit {
             // 释放，停止网络监听
-            stopReachabilityListening()
+            stopReachabilityListening()
          }
-
+         
          // 网络状态变化回调
          func networkReachability(didChange currentState: WisdomNetworkReachabilityStatus) {
-       
-         }
+         
+         }
     }
 
     说明：
