@@ -554,7 +554,6 @@
    5). 网络状态监听 案例：
 
     class RCMsgUser: WisdomNetworkReachabilityable {
-    
          init(userId: String) {
             // 开启网络监听
             startReachabilityListening()
