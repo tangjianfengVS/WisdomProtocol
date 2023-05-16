@@ -492,6 +492,7 @@
 # 【6】网络连接状态监听
 
    1). 网络状态 枚举：
+   
     @objc public enum WisdomNetworkReachabilityStatus: NSInteger
 
    -> 具体状态：
@@ -508,16 +509,16 @@
    2). 获取当前网络状态信息：
    
     extension WisdomNetworkReachabilityStatus {
-    
+    
          // MARK: get 'currentNetworkReachabilityState: WisdomNetworkReachabilityStatus'
          public static var currentNetworkReachabilityState: WisdomNetworkReachabilityStatus
-    
+         
          // MARK: Whether the network is available network: 'cellular / ethernetOrWiFi'
          public static var isCurrentReachable: Bool 
-    
+         
          // MARK: Whether the current network is a cellular network: 'cellular'
          public static var isCurrentReachableOnCellular: Bool 
-    
+         
          // MARK: Whether the current network is Ethernet / WiFi network: 'ethernetOrWiFi'
          public static var isCurrentReachableOnEthernetOrWiFi: Bool
     }
@@ -531,7 +532,7 @@
    3). 网络状态主协议：
    
     @objc public protocol WisdomNetworkReachabilityable {
-    
+    
          // MARK: networkReachability 'WisdomNetworkReachabilityStatus' - didChange
          // * network reachability did change
          @objc func networkReachability(didChange currentState: WisdomNetworkReachabilityStatus)
@@ -544,10 +545,10 @@
    4). 网络状态监听 开启/关闭：
    
     extension WisdomNetworkReachabilityable {
-    
+    
          // MARK: self start 'WisdomNetworkReachabilityStatus' Listening. < No need to implement >
          public func startReachabilityListening()
-    
+    
          // MARK: self stop 'WisdomNetworkReachabilityStatus' Listening. < No need to implement >
          public func stopReachabilityListening()
     }
@@ -556,22 +557,21 @@
 
     class RCMsgUser: WisdomNetworkReachabilityable {
     
-    init(userId: String) {
-        self.userId = userId
+         init(userId: String) {
+            self.userId = userId
+            // 开启网络监听
+            startReachabilityListening()
+        }
 
-         // 开启网络监听
-        startReachabilityListening()
-    }
+         deinit {
+            // 释放，停止网络监听
+            stopReachabilityListening()
+         }
 
-deinit {
-     // 释放，停止网络监听
-        stopReachabilityListening()
-    }
-
-// 网络状态变化回调
-func networkReachability(didChange currentState: WisdomNetworkReachabilityStatus) {
+         // 网络状态变化回调
+         func networkReachability(didChange currentState: WisdomNetworkReachabilityStatus) {
        
-    }
+         }
     }
 
     说明：
