@@ -566,13 +566,13 @@
          
          // 网络状态变化回调
          func networkReachability(didChange currentState: WisdomNetworkReachabilityStatus) {
-         
+             // 监听网络变化，想做的事情
          }
     }
 
     说明：
-    -> 网络状态监听，使用比较简单；
-    -> 内部实现，网络状态对象不会频繁创建，会复用；
+    -> 网络状态监听，使用比较简单，同时支持 OC 和 Swift；
+    -> 性能方面，内部实现，网络状态对象不会频繁创建，会复用对象功能；
 
 
 
