@@ -55,9 +55,9 @@ class WisdomProtocolRootVC: UIViewController, WisdomRegisterable, WisdomProtocol
         
         startReachabilityListening()
         
-        let reachabilityState = WisdomNetworkReachabilityStatus.currentNetworkReachabilityState
+        let reachabilityState = WisdomNetworkReachabilityStatus.current
         
-        let cur_reachabilityState = WisdomNetworkReachabilityStatus.isCurrentReachableOnEthernetOrWiFi
+        let cur_reachabilityState = WisdomNetworkReachabilityStatus.isCurrentOnEthernetOrWiFi
         print("")
     }
 }

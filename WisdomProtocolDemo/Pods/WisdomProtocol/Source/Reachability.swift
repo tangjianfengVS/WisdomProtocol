@@ -53,9 +53,9 @@ extension WisdomNetworkReachabilityable {
 
 extension WisdomNetworkReachabilityStatus {
     
-    // MARK: get 'currentNetworkReachabilityState: WisdomNetworkReachabilityStatus'
-    public static var currentNetworkReachabilityState: WisdomNetworkReachabilityStatus {
-        return WisdomNetworkReachability.currentNetworkReachabilityState
+    // MARK: get 'current': WisdomNetworkReachabilityStatus
+    public static var current: WisdomNetworkReachabilityStatus {
+        return WisdomNetworkReachability.current
     }
     
     // MARK: Whether the network is available network: 'cellular / ethernetOrWiFi'
@@ -64,13 +64,13 @@ extension WisdomNetworkReachabilityStatus {
     }
     
     // MARK: Whether the current network is a cellular network: 'cellular'
-    public static var isCurrentReachableOnCellular: Bool {
-        return WisdomNetworkReachability.isCurrentReachableOnCellular
+    public static var isCurrentOnCellular: Bool {
+        return WisdomNetworkReachability.isCurrentOnCellular
     }
     
     // MARK: Whether the current network is Ethernet / WiFi network: 'ethernetOrWiFi'
-    public static var isCurrentReachableOnEthernetOrWiFi: Bool {
-        return WisdomNetworkReachability.isCurrentReachableOnEthernetOrWiFi
+    public static var isCurrentOnEthernetOrWiFi: Bool {
+        return WisdomNetworkReachability.isCurrentOnEthernetOrWiFi
     }
 }
 
@@ -172,7 +172,7 @@ class WisdomNetworkReachability {
 
 extension WisdomNetworkReachability {
     
-    static var currentNetworkReachabilityState: WisdomNetworkReachabilityStatus {
+    static var current: WisdomNetworkReachabilityStatus {
         if WisdomProtocolCore.WisdomReachability != nil {
             return WisdomProtocolCore.WisdomReachability?.currentNetworkReachabilityState ?? .unknown
         }
@@ -198,22 +198,22 @@ extension WisdomNetworkReachability {
     }
     
     static var isCurrentReachable: Bool{
-        let current = WisdomNetworkReachability.currentNetworkReachabilityState
+        let current = WisdomNetworkReachability.current
         if current == .ethernetOrWiFi || current == .cellular {
             return true
         }
         return false
     }
     
-    static var isCurrentReachableOnCellular: Bool {
-        if WisdomNetworkReachability.currentNetworkReachabilityState == .cellular {
+    static var isCurrentOnCellular: Bool {
+        if WisdomNetworkReachability.current == .cellular {
             return true
         }
         return false
     }
     
-    static var isCurrentReachableOnEthernetOrWiFi: Bool {
-        if WisdomNetworkReachability.currentNetworkReachabilityState == .ethernetOrWiFi {
+    static var isCurrentOnEthernetOrWiFi: Bool {
+        if WisdomNetworkReachability.current == .ethernetOrWiFi {
             return true
         }
         return false
