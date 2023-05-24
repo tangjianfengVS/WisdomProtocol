@@ -522,10 +522,10 @@
     }
     
     说明：
-    -> currentNetworkReachabilityState: 获取当前网络状态；
-    -> isCurrentReachable:              当前网络状态是否有网（蜂窝网络或者以太网或者Wi-Fi）;
-    -> isCurrentReachableOnCellular:       当前网络状态是否是 蜂窝网络;
-    -> isCurrentReachableOnEthernetOrWiFi: 当前网络状态是否是 以太网或者Wi-Fi;
+    -> current:                   获取当前网络状态；
+    -> isCurrentReachable:        当前网络状态是否有网（蜂窝网络或者以太网或者Wi-Fi）;
+    -> isCurrentOnCellular:       当前网络状态是否是 蜂窝网络;
+    -> isCurrentOnEthernetOrWiFi: 当前网络状态是否是 以太网或者Wi-Fi;
 
    3). 网络状态主协议：
    
