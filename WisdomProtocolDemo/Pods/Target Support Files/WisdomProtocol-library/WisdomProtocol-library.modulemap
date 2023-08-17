@@ -1,6 +1,0 @@
-module WisdomProtocol {
-  umbrella header "WisdomProtocol-library-umbrella.h"
-
-  export *
-  module * { export * }
-}
