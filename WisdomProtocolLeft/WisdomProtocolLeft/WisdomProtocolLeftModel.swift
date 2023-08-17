@@ -6,37 +6,37 @@
 //
 
 import UIKit
-import WisdomProtocol
-
-class WisdomProtocolLeftModel: Codable, WisdomCodingable {
-    
-    var bgColor: String?
-    
-    var textColor: String?
-    
-    var codeColor: String?
-}
-
-extension WisdomProtocolLeftModel: WisdomTimerable {
-
-    func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable){
-        print("WisdomProtocolLeftModel timerDid: \(currentTime)")
-    }
-
-    func timerable(timerEnd timerable: WisdomTimerable){
-
-    }
-}
-
-
-struct WisdomProtocolLeftRawModel: Codable, WisdomCodingable {
-    
-    var bgColor: String?
-    
-    var textColor: String?
-    
-    var codeColor: String?
-}
+//import WisdomProtocol
+//
+//class WisdomProtocolLeftModel: Codable, WisdomCodingable {
+//
+//    var bgColor: String?
+//
+//    var textColor: String?
+//
+//    var codeColor: String?
+//}
+//
+//extension WisdomProtocolLeftModel: WisdomTimerable {
+//
+//    func timerable(timerDid currentTime: UInt, timerable: WisdomTimerable){
+//        print("WisdomProtocolLeftModel timerDid: \(currentTime)")
+//    }
+//
+//    func timerable(timerEnd timerable: WisdomTimerable){
+//
+//    }
+//}
+//
+//
+//struct WisdomProtocolLeftRawModel: Codable, WisdomCodingable {
+//
+//    var bgColor: String?
+//
+//    var textColor: String?
+//
+//    var codeColor: String?
+//}
 
 //extension WisdomProtocolLeftRawModel: WisdomSwiftTimerable {
 //
