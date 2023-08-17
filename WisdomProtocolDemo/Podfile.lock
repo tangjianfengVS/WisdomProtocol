@@ -1,16 +1,20 @@
 PODS:
   - SnapKit (4.2.0)
+  - WisdomProtocol (0.1.6)
 
 DEPENDENCIES:
   - SnapKit
+  - WisdomProtocol (= 0.1.6)
 
 SPEC REPOS:
   trunk:
     - SnapKit
+    - WisdomProtocol
 
 SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  WisdomProtocol: 0488e3ba7765d85cd10dddde6b4a45e805e9f6e7
 
-PODFILE CHECKSUM: eceb71831c9c12b36b75c4a27124d5f5953d4585
+PODFILE CHECKSUM: bc858226ebba3c8f1d44d2704d346103b41fc71a
 
 COCOAPODS: 1.12.1
