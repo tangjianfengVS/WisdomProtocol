@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name      = 'WisdomProtocol'
-  s.version   = '0.1.7'
+  s.version   = '0.1.8'
   s.license   = { :type => "MIT", :file => "LICENSE" }
   s.authors   = { 'tangjianfeng' => '497609288@qq.com' }
   s.homepage  = 'https://github.com/tangjianfengVS/WisdomProtocol'
@@ -25,9 +25,9 @@ Pod::Spec.new do |s|
     ss.source_files = 'Source/Core/*.swift', 'Source/Core/*.{h,m}'
   end
 
-  #s.subspec 'Router' do |ss|
-  #  ss.dependency 'WisdomProtocol/Core'
-  #  ss.source_files = 'Source/Router/*.swift', 'Source/Router/*.{h,m}'
-  #end
+  s.subspec 'Router' do |ss|
+    ss.dependency 'WisdomProtocol/Core'
+    ss.source_files = 'Source/Router/*.swift', 'Source/Router/*.{h,m}'
+  end
 
 end
