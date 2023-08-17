@@ -25,9 +25,9 @@ Pod::Spec.new do |s|
     ss.source_files = 'Source/Core/*.swift', 'Source/Core/*.{h,m}'
   end
 
-  s.subspec 'Router' do |ss|
-    ss.dependency 'WisdomProtocol/Core'
-    ss.source_files = 'Source/Router/*.swift', 'Source/Router/*.{h,m}'
-  end
+  #s.subspec 'Router' do |ss|
+  #  ss.dependency 'WisdomProtocol/Core'
+  #  ss.source_files = 'Source/Router/*.swift', 'Source/Router/*.{h,m}'
+  #end
 
 end
