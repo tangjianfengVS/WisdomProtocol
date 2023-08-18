@@ -27,6 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
         self.window?.rootViewController = navVC
         self.window?.makeKeyAndVisible()
+        
+#if swift(>=5.5.0)
+print("swift(>=5.5.0)")
+#else
+print("swift版本不满足要求")
+#endif
+print("")
 //
 //
 //        let list = RCProductFuncModel.decodable(list: [["tag": "start", "name": "启动", "id": "1622428828402884610", "type": "String"],
