@@ -7,109 +7,91 @@
 
 import UIKit
 
-
-class WisdomTimerBaseModel {
+class WisdomTimerTask {
     
-    fileprivate let isDown: Bool
-
-    fileprivate var currentTime: UInt=0
+    let isDown: Bool
     
-    fileprivate let destroyClosure: ()->()
+    var currentTime: UInt
     
-    //fileprivate var isSusspended = false
-
-    fileprivate var timer: DispatchSourceTimer?
+    private(set) weak var able: WisdomTimerable?
     
-    fileprivate var historyTime: CFAbsoluteTime?
-    
-    init(currentTime: UInt, isDown: Bool, destroyClosure: @escaping ()->()){
-        self.currentTime = currentTime
+    init(isDown: Bool, able: WisdomTimerable, startTime: UInt) {
         self.isDown = isDown
+        self.able = able
+        self.currentTime = startTime
+    }
+}
+
+class WisdomTimerModel {
+    
+    private var timer: DispatchSourceTimer?
+    
+    private var tasks: [String:WisdomTimerTask] = [:]
+    
+    private var historyTime: CFAbsoluteTime?
+    
+    private let destroyClosure: ()->()
+    
+    init(task: WisdomTimerTask, key: String, destroyClosure: @escaping ()->()) {
         self.destroyClosure = destroyClosure
-        
+        tasks[key] = task
         timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
         timer?.schedule(deadline: .now(), repeating: 1.0)
         timer?.setEventHandler { [weak self] in
-            if self?.isDown == false {
-                self?.startAddTimer()
-            }else if self?.isDown == true {
-                self?.startDownTimer()
-            }
+            self?.timerDid()
         }
         timer?.resume()
         NotificationCenter.default.addObserver(self, selector:#selector(becomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(becomeDeath), name: UIApplication.willResignActiveNotification, object: nil)
     }
-}
-
-extension WisdomTimerBaseModel {
     
-    @objc fileprivate func startAddTimer() {}
+    func appendTask(task: WisdomTimerTask, key: String) {
+        tasks[key] = task
+    }
     
-    @objc fileprivate func startDownTimer() {}
-    
-    @objc private func becomeDeath(noti:Notification){
-        if let sourceTimer = timer {
-            sourceTimer.suspend()
-            historyTime = CFAbsoluteTimeGetCurrent()
-        }else {
-            destroy()
+    func destroyTask(key: String) {
+        tasks.removeValue(forKey: key)
+        
+        if tasks.values.count==0 {
             destroyClosure()
         }
     }
-
-    @objc fileprivate func becomeActive(noti:Notification){
-        //if let curTime = historyTime {
-        //    let poor = CFAbsoluteTimeGetCurrent()-curTime
-        //    if isDown {
-        //        currentTime = currentTime-NSInteger(poor)
-        //    }else {
-        //        currentTime = currentTime+NSInteger(poor)
-        //    }
-        //    historyTime = nil
-        //}
+    
+    private func timerDid() {
+        for task in tasks {
+            if task.value.isDown {
+                downTimer(task: task.value, key: task.key)
+            }else {
+                addTimer(task: task.value, key: task.key)
+            }
+        }
+        if tasks.values.count==0 {
+            destroyClosure()
+        }
     }
     
-    //@objc func suspend() {
-    //    if let sourceTimer = timer {
-    //        if !isSusspended {
-    //            sourceTimer.suspend()
-    //        }
-    //        isSusspended = true
-    //    }else {
-    //        destroy()
-    //        destroyClosure()
-    //    }
-    //}
-    
-    //@objc func resume() {
-    //    if let sourceTimer = timer {
-    //        if isSusspended {
-    //            sourceTimer.resume()
-    //            isSusspended = false
-    //        }
-    //    }else {
-    //        destroy()
-    //        destroyClosure()
-    //    }
-    //}
-    
-    @objc func destroy() {
-        timer?.cancel()
-        timer = nil
-        historyTime = nil
-        NotificationCenter.default.removeObserver(self)
+    private func addTimer(task: WisdomTimerTask, key: String) {
+        if let timerable = task.able {
+            timerable.timerable(timerDid: task.currentTime, timerable: timerable)
+            task.currentTime += 1
+        }else {
+            tasks.removeValue(forKey: key)
+        }
     }
-}
-
-
-final class WisdomTimerModel: WisdomTimerBaseModel {
     
-    private weak var able: WisdomTimerable?
-    
-    init(able: WisdomTimerable, currentTime: UInt, isDown: Bool, destroyClosure: @escaping ()->()){
-        self.able = able
-        super.init(currentTime: currentTime, isDown: isDown, destroyClosure: destroyClosure)
+    private func downTimer(task: WisdomTimerTask, key: String) {
+        if let timerable = task.able {
+            if task.currentTime>0 {
+                timerable.timerable(timerDid: task.currentTime, timerable: timerable)
+                task.currentTime -= 1
+            }else {
+                timerable.timerable(timerDid: 0, timerable: timerable)
+                timerable.timerable(timerEnd: timerable)
+                tasks.removeValue(forKey: key)
+            }
+        }else {
+            tasks.removeValue(forKey: key)
+        }
     }
     
     deinit {
@@ -120,63 +102,60 @@ final class WisdomTimerModel: WisdomTimerBaseModel {
 
 extension WisdomTimerModel {
     
-    fileprivate override func startAddTimer() {
-        if let timerable = able {
-            timerable.timerable(timerDid: currentTime, timerable: timerable)
-            currentTime += 1
+    @objc private func becomeDeath(noti:Notification) {
+        if let sourceTimer = timer {
+            sourceTimer.suspend()
+            historyTime = CFAbsoluteTimeGetCurrent()
         }else {
-            destroy()
+            tasks.removeAll()
             destroyClosure()
         }
     }
-    
-    fileprivate override func startDownTimer() {
-        if let timerable = able {
-            if currentTime>0 {
-                timerable.timerable(timerDid: currentTime, timerable: timerable)
-                currentTime -= 1
+
+    @objc private func becomeActive(noti:Notification) {
+        if let curTime = historyTime {   // check historyTime
+            if let sourceTimer = timer { // check timer: no destroy
+                let poor = CFAbsoluteTimeGetCurrent()-curTime
+                if poor>=1 {
+                    for task in tasks {
+                        if let timerable = task.value.able { // check timerable: no remove
+                            if task.value.isDown {           // isDown
+                                if task.value.currentTime<=UInt(poor) { // isDown: end
+                                    timerable.timerable(timerDid: 0, timerable: timerable)
+                                    timerable.timerable(timerEnd: timerable)
+                                    tasks.removeValue(forKey: task.key)
+                                }else { // isDown: next
+                                    let currentTime = task.value.currentTime-UInt(poor)
+                                    task.value.currentTime = currentTime
+                                    timerable.timerable(timerDid: task.value.currentTime, timerable: timerable)
+                                    task.value.currentTime -= 1
+                                }
+                            }else { // addTimer
+                                task.value.currentTime = task.value.currentTime+UInt(poor)
+                                timerable.timerable(timerDid: task.value.currentTime, timerable: timerable)
+                                task.value.currentTime += 1
+                            }
+                        }else {
+                            tasks.removeValue(forKey: task.key)
+                        }
+                    }
+                }
+                historyTime = nil
+                sourceTimer.resume()
             }else {
-                timerable.timerable(timerDid: 0, timerable: timerable)
-                timerable.timerable(timerEnd: timerable)
-                destroy()
+                tasks.removeAll()
                 destroyClosure()
             }
-        }else {
-            destroy()
-            destroyClosure()
         }
-    }
-
-    fileprivate override func becomeActive(noti:Notification){
-        if let timerable = able, let sourceTimer = timer, let curTime = historyTime {
-            let poor = CFAbsoluteTimeGetCurrent()-curTime
-            if poor>=1 {
-                if isDown {
-                    currentTime = currentTime-UInt(poor)
-                    if currentTime<=0 {
-                        timerable.timerable(timerDid: 0, timerable: timerable)
-                        timerable.timerable(timerEnd: timerable)
-                        destroy()
-                        destroyClosure()
-                    }else {
-                        timerable.timerable(timerDid: currentTime, timerable: timerable)
-                    }
-                }else {
-                    currentTime = currentTime+UInt(poor)
-                    timerable.timerable(timerDid: currentTime, timerable: timerable)
-                }
-            }
-            historyTime = nil
-            sourceTimer.resume()
-        }else {
-            destroy()
+        if tasks.values.count==0 {
             destroyClosure()
         }
     }
     
-    @objc override func destroy() {
-        super.destroy()
-        able = nil
+    func destroy() {
+        timer?.cancel()
+        timer = nil
+        historyTime = nil
+        NotificationCenter.default.removeObserver(self)
     }
 }
-

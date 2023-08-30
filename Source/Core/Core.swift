@@ -11,7 +11,7 @@ class WisdomProtocolCore {
 
     private static var WisdomRegisterState: Int = 0
     
-    private static var WisdomTimerConfig: [String:WisdomTimerModel] = [:]
+    private static var WisdomTimer: WisdomTimerModel?
     
     private static var WisdomLanguageBundle: Bundle?
     
@@ -173,14 +173,14 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         func taskTimer(){
             let key = getTimerableKey(able: able)
             if key.count > 0 {
-                if let historyable = WisdomTimerConfig[key] {
-                    historyable.destroy()
-                    WisdomTimerConfig.removeValue(forKey: key)
+                if WisdomTimer==nil{
+                    WisdomTimer=WisdomTimerModel(task: WisdomTimerTask(isDown: false, able: able, startTime: startTime), key: key) {
+                        WisdomTimer?.destroy()
+                        WisdomTimer=nil
+                    }
+                }else {
+                    WisdomTimer!.appendTask(task: WisdomTimerTask(isDown: false, able: able, startTime: startTime), key: key)
                 }
-                let timer = WisdomTimerModel(able: able, currentTime: startTime, isDown: false) {
-                    WisdomTimerConfig.removeValue(forKey: key)
-                }
-                WisdomTimerConfig[key]=timer
             }
         }
     }
@@ -194,14 +194,14 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         func taskTimer(){
             let key = getTimerableKey(able: able)
             if key.count > 0 {
-                if let historyable = WisdomTimerConfig[key] {
-                    historyable.destroy()
-                    WisdomTimerConfig.removeValue(forKey: key)
+                if WisdomTimer==nil{
+                    WisdomTimer=WisdomTimerModel(task: WisdomTimerTask(isDown: true, able: able, startTime: totalTime), key: key) {
+                        WisdomTimer?.destroy()
+                        WisdomTimer=nil
+                    }
+                }else {
+                    WisdomTimer!.appendTask(task: WisdomTimerTask(isDown: true, able: able, startTime: totalTime), key: key)
                 }
-                let timer = WisdomTimerModel(able: able, currentTime: totalTime, isDown: true) {
-                    WisdomTimerConfig.removeValue(forKey: key)
-                }
-                WisdomTimerConfig[key]=timer
             }
         }
     }
@@ -214,8 +214,8 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         }
         func taskTimer(){
             let key = getTimerableKey(able: able)
-            if key.count > 0, let _ = WisdomTimerConfig[key] {
-                //historyable.suspend()
+            if key.count > 0 {
+                
             }
         }
     }
@@ -228,8 +228,8 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         }
         func taskTimer(){
             let key = getTimerableKey(able: able)
-            if key.count > 0, let _ = WisdomTimerConfig[key] {
-                //historyable.resume()
+            if key.count > 0 {
+                
             }
         }
     }
@@ -242,9 +242,8 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         }
         func taskTimer(){
             let key = getTimerableKey(able: able)
-            if key.count > 0, let historyable = WisdomTimerConfig[key] {
-                historyable.destroy()
-                WisdomTimerConfig.removeValue(forKey: key)
+            if key.count > 0 {
+                WisdomTimer?.destroyTask(key: key)
             }
         }
     }
