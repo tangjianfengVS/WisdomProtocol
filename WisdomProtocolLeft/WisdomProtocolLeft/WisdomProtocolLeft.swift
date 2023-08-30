@@ -6,13 +6,13 @@
 //
 
 import Foundation
-//import WisdomProtocol
-//
-//class WisdomProtocolLeft {
-//
-//}
-//
-//public let LeftVCProtocol: Protocol = {
-//    return WisdomProtocol.registerable(classable: WisdomClassable(register: WisdomProtocolLeftVCProtocol.self, conform: WisdomProtocolLeftVC.self))
-//}()
+import WisdomProtocol
+
+class WisdomProtocolLeft {
+
+}
+
+public let LeftVCProtocol: Protocol = {
+    return WisdomProtocol.registerable(classable: WisdomClassable(register: WisdomProtocolLeftVCProtocol.self, conform: WisdomProtocolLeftVC.self))
+}()
 
