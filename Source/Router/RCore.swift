@@ -50,9 +50,9 @@ extension WisdomProtocolCore {
         func register(types: UnsafeMutablePointer<AnyClass>, begin: Int, end: Int) {
             protocolQueue.async {
                 for index in begin ..< end {
-                    if class_conformsToProtocol(types[index], WisdomRegisterable.self) {
-                        if let ableClass = (types[index] as? WisdomRegisterable.Type)?.registerable() {
-                            _=registerableConfig(register: ableClass.registerProtocol, conform: ableClass.conformClass)
+                    if class_conformsToProtocol(types[index], WisdomRouterRegisterable.self) {
+                        if let classable: AnyClass = types[index] as? AnyClass, let aProtocol = (classable as? WisdomRouterRegisterable.Type)?.registerable() {
+                            _=registerableConfig(register: aProtocol, conform: classable)
                         }
                     }
                 }
@@ -65,8 +65,8 @@ extension WisdomProtocolCore {
         }
     }
     
-    static func registerable(classable: WisdomClassable)->Protocol{
-        return registerableConfig(register: classable.registerProtocol, conform: classable.conformClass)
+    static func registerable(from Protocol: Protocol, classable: AnyClass)->Protocol{
+        return registerableConfig(register: Protocol, conform: classable)
     }
 }
 
