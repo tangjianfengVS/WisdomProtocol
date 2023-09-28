@@ -13,10 +13,10 @@ import WisdomProtocolRight
 
 @objc protocol WisdomProtocolRootProtocol {}
 
-class WisdomProtocolRootVC: UIViewController, WisdomRegisterable, WisdomProtocolRootProtocol {
+class WisdomProtocolRootVC: UIViewController, WisdomRouterRegisterable {
 
-    static func registerable() -> WisdomClassable {
-        return WisdomClassable(register: WisdomProtocolRootProtocol.self, conform: Self.self)
+    static func registerable() -> Protocol {
+        return WisdomProtocolRootProtocol.self
     }
 
     let list = [["WisdomRouterControlable 控制器"+"路由".localizable+"协议"],
@@ -183,10 +183,10 @@ extension WisdomProtocolRootVC: WisdomTimerable {
 }
 
 
-class WisdomProtocolRootUIImage: UIImage, WisdomRegisterable {
+class WisdomProtocolRootUIImage: UIImage, WisdomRouterRegisterable {
 
-    static func registerable() -> WisdomClassable {
-        return WisdomClassable(register: RightImageProtocol.self, conform: Self.self)
+    static func registerable() -> Protocol {
+        return RightImageProtocol.self
     }
 }
 

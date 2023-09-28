@@ -11,14 +11,14 @@ import SnapKit
 
 @objc protocol WisdomProtocolRightProtocol {}
 
-class WisdomProtocolRightVC: UIViewController, WisdomRegisterable, WisdomProtocolRightProtocol  {
+class WisdomProtocolRightVC: UIViewController, WisdomRouterRegisterable, WisdomProtocolRightProtocol  {
 
     let imageView: UIImageView=UIImageView()
 
     let btn = UIButton()
 
-    static func registerable() -> WisdomClassable {
-        return WisdomClassable(register: WisdomProtocolRightProtocol.self, conform: self)
+    static func registerable() -> Protocol {
+        return WisdomProtocolRightProtocol.self
     }
 
     override func viewDidLoad() {

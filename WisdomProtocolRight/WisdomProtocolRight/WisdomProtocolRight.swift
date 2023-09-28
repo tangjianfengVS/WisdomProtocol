@@ -9,7 +9,7 @@ import WisdomProtocol
 
 
 public let RightVCProtocol: Protocol = {
-    return WisdomProtocol.registerable(classable: WisdomClassable(register: WisdomProtocolRightProtocol.self, conform: WisdomProtocolRightVC.self))
+    return WisdomProtocol.registerable(from: WisdomProtocolRightProtocol.self, classable: WisdomProtocolRightVC.self)
 }()
 
 public let RightImageProtocol: Protocol = RightImageable.self

@@ -11,10 +11,10 @@ import SnapKit
 
 @objc protocol WisdomProtocolLeftVCProtocol {}
 
-class WisdomProtocolLeftVC: UIViewController, WisdomRegisterable, WisdomProtocolLeftVCProtocol {
+class WisdomProtocolLeftVC: UIViewController, WisdomRouterRegisterable, WisdomProtocolLeftVCProtocol {
 
-    static func registerable() -> WisdomClassable {
-        return WisdomClassable(register: WisdomProtocolLeftVCProtocol.self, conform: Self.self)
+    static func registerable() -> Protocol {
+        return WisdomProtocolLeftVCProtocol.self
     }
 
     let sdkLabel = UILabel()
@@ -107,10 +107,10 @@ extension WisdomProtocolLeftVC: WisdomTimerable {
 
 @objc protocol WisdomProtocolLeftVIProtocol {}
 
-class WisdomProtocolLeftVI: UIView, WisdomRegisterable, WisdomProtocolLeftVIProtocol {
+class WisdomProtocolLeftVI: UIView, WisdomRouterRegisterable, WisdomProtocolLeftVIProtocol {
 
-    static func registerable() -> WisdomClassable {
-        return WisdomClassable(register: WisdomProtocolLeftVIProtocol.self, conform: Self.self)
+    static func registerable() -> Protocol {
+        return WisdomProtocolLeftVIProtocol.self
     }
 
     let titleLabel = UILabel()

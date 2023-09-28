@@ -10,12 +10,12 @@ import UIKit
 
 extension WisdomProtocol {
     
-    // MARK: Register Protocol: WisdomClassable
+    // MARK: Register Protocol: 'from Protocol: Protocol, classable: AnyClass'
     // * Need to ensure the timing of registration, the level must be the highest *
     //   用于 手动注册 或 静态库链接引用类。解决 WisdomProtocol 静态库链接注册类问题
     @discardableResult
-    @objc public static func registerable(classable: WisdomClassable)->Protocol{
-        return WisdomProtocolCore.registerable(classable: classable)
+    @objc public static func registerable(from Protocol: Protocol, classable: AnyClass)->Protocol{
+        return WisdomProtocolCore.registerable(from: Protocol, classable: classable)
     }
 }
 

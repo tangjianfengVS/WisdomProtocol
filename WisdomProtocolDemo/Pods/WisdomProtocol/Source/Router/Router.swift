@@ -14,29 +14,9 @@ import UIKit
 // ----------------------------------------------------------------- //
 
 // MARK: - Register Protocol
-@objc public protocol WisdomRegisterable {
+@objc public protocol WisdomRouterRegisterable {
 
-    @objc static func registerable()->WisdomClassable
-}
-
-
-// ----------------------- Class Binding --------------------------- //
-// (1). 'Protocol' 'AnyClass' binding                                //
-// (2). 'AnyClass' Need to abide by the 'Protocol'                   //
-// ----------------------------------------------------------------- //
-
-// MARK: - Register Class Protocol
-@objc public final class WisdomClassable: NSObject {
-    
-    @objc public let registerProtocol: Protocol
-
-    @objc public let conformClass: AnyClass
-    
-    @objc public init(register Protocol: Protocol, conform Class: AnyClass) {
-        self.registerProtocol = Protocol
-        self.conformClass = Class
-        super.init()
-    }
+    @objc static func registerable()->Protocol
 }
 
 
