@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 // ------------------------------- Crashing ------------------------------- //
 // (1). 'WisdomCrashingable' program crash protocol, restriction ‘UIApplicationDelegate’
 //

@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 // ------------------------- Binary Bit ------------------------- //
 // (1). Binary data processing                                    //
 // (2). Binary data specifies whether the value of the bit is 1   //
