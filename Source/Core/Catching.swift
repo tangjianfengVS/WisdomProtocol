@@ -8,16 +8,7 @@
 import UIKit
 
 
-// ------------------------------- Crashing ------------------------------- //
-// (1). 'WisdomCrashingable' program crash protocol, restriction ‘UIApplicationDelegate’
-//
-// (2). 'WisdomTrackingable' program tracking protocol, restriction ‘UIApplicationDelegate’
-//      - 1> '@objc func catchTracking(viewDidAppear controller: UIViewController.Type, title: String)'
-//           * Controller will display
-//      - 2> '@objc optional func catchTracking(viewDidDisappear controller: UIViewController.Type, appearTime: NSInteger, title: String)'
-//           * Controller is going to disappear
-// ------------------------------------------------------------------------ //
-
+// MARK: 'WisdomCrashingable' program crashing protocol, restriction ‘UIApplicationDelegate’
 @objc public protocol WisdomCrashingable where Self: UIApplicationDelegate {
     
     // MARK: Catch Crashing Param - String
@@ -26,6 +17,8 @@ import UIKit
     @objc func catchCrashing(crash: String)
 }
 
+
+// MARK: 'WisdomTrackingable' program tracking protocol, restriction ‘UIApplicationDelegate’
 @objc public protocol WisdomTrackingable where Self: UIApplicationDelegate {
     
     // MARK: Catch Controller Tracking Param - String, String
@@ -43,3 +36,12 @@ import UIKit
 }
 
 
+// MARK: 'WisdomFPSTrackingable' program FPS tracking protocol, restriction ‘UIApplicationDelegate’
+@objc public protocol WisdomFPSTrackingable where Self: UIApplicationDelegate {
+    
+    // MARK: Catch FPS Tracking Param - Double, String
+    // Main thread Tracking kartun FPS
+    // - currentValue fps: Double
+    // - description: String
+    @objc func catchFPSTracking(currentValue fps: Double, description: String)
+}
