@@ -73,6 +73,13 @@ extension AppDelegate: WisdomTrackingable {
     }
 }
 
+extension AppDelegate: WisdomFPSTrackingable {
+
+    func catchFPSTracking(currentValue fps: Double, description: String) {
+        print("FPS: \(fps) \(description)")
+    }
+}
+
 extension AppDelegate: WisdomLanguageRegisterable {
 
     func registerLanguageKey()->String? {

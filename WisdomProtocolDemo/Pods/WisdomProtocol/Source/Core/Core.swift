@@ -19,6 +19,8 @@ class WisdomProtocolCore {
     
     private static var WisdomReachabilityListens: [WisdomWeakable<WisdomNetworkReachabilityable>]?
     
+    static var WisdomFPSer: WisdomFPS?
+    
     private static func getTimerableKey(able: WisdomTimerable&AnyObject)->String {
         let bit = "\(unsafeBitCast(able, to: Int64.self))"
         print("[WisdomProtocol] getTimerableKey: "+bit)
@@ -35,6 +37,7 @@ class WisdomProtocolCore {
         }
         WisdomProtocolCore.WisdomRegisterState = 1
         WisdomCrashRegister()
+        WisdomProtocolCore.trackingRegister()
         UIViewController.trackingRegister()
         
         let selector = NSSelectorFromString("registerRouterable")
@@ -346,6 +349,17 @@ fileprivate func UncaughtExceptionHandler(exception: NSException) {
         crash = crash.appendingFormat("slideAdress:0x%0x\r\n", wisdom_calculate())
         crash += "\r\n\r\n name:\(name) \r\n reason:\(String(describing: reason)) \r\n \(arr.joined(separator: "\r\n")) \r\n\r\n"
         crashable.catchCrashing(crash: "*NSException*"+crash)
+    }
+}
+
+extension WisdomProtocolCore {
+    
+    fileprivate static func trackingRegister(){
+    #if DEBUG
+        WisdomFPSer = WisdomFPS()
+    #else
+
+    #endif
     }
 }
 
