@@ -18,8 +18,7 @@ Pod::Spec.new do |s|
   # s.tvos.deployment_target = ''
 
   #s.source_files  = 'Source/*.swift', 'Source/*.{h,m}'
-
-  s.dependency "PLCrashReporter", "1.10.2"
+  #s.dependency "PLCrashReporter", "1.10.2"
 
   s.default_subspecs = 'Core'
 
