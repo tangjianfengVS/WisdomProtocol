@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name      = 'WisdomProtocol'
-  s.version   = '0.2.1'
+  s.version   = '0.2.2'
   s.license   = { :type => "MIT", :file => "LICENSE" }
   s.authors   = { 'tangjianfeng' => '497609288@qq.com' }
   s.homepage  = 'https://github.com/tangjianfengVS/WisdomProtocol'
@@ -18,6 +18,8 @@ Pod::Spec.new do |s|
   # s.tvos.deployment_target = ''
 
   #s.source_files  = 'Source/*.swift', 'Source/*.{h,m}'
+
+  s.dependency "PLCrashReporter", "1.10.2"
 
   s.default_subspecs = 'Core'
 

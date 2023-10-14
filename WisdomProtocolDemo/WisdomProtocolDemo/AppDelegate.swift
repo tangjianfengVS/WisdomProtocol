@@ -75,8 +75,19 @@ extension AppDelegate: WisdomTrackingable {
 
 extension AppDelegate: WisdomFPSTrackingable {
 
-    func catchFPSTracking(currentValue fps: Double, description: String) {
+    func catchFPSTracking(currentMain fps: Double, description: String) {
         print("FPS: \(fps) \(description)")
+    }
+}
+
+extension AppDelegate: WisdomFluecyTrackingable {
+
+    func getCatchFluecyTime(description: String) -> TimeInterval {
+        return 2
+    }
+    
+    func catchFluecyTracking(currentMain info: String) {
+        print("")
     }
 }
 

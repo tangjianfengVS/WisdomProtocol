@@ -27,6 +27,8 @@ target 'WisdomProtocolDemo' do
   pod 'SnapKit'
   
   pod 'WisdomProtocol/Router', "0.2.1"
+  
+  #pod 'PLCrashReporter', "1.10.2"
 
 end
 

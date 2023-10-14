@@ -19,7 +19,11 @@ class WisdomProtocolCore {
     
     private static var WisdomReachabilityListens: [WisdomWeakable<WisdomNetworkReachabilityable>]?
     
-    static var WisdomFPSer: WisdomFPS?
+    private static var WisdomFPSer: WisdomFPS?
+    
+    private static var WisdomFluecyer: WisdomFluecy?
+    
+    static var WisdomProtocolConfig: [String:AnyClass] = [:]
     
     private static func getTimerableKey(able: WisdomTimerable&AnyObject)->String {
         let bit = "\(unsafeBitCast(able, to: Int64.self))"
@@ -357,9 +361,20 @@ extension WisdomProtocolCore {
     fileprivate static func trackingRegister(){
     #if DEBUG
         WisdomFPSer = WisdomFPS()
-    #else
-
     #endif
+        WisdomFluecyer = WisdomFluecy(timeout: 1.5)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+5) {
+            if (UIApplication.shared.delegate as? WisdomFPSTrackingable)==nil{
+                WisdomProtocolCore.WisdomFPSer=nil
+            }
+            
+            WisdomProtocolCore.WisdomFluecyer?.stopMonitoring()
+            WisdomProtocolCore.WisdomFluecyer=nil
+            if let able = UIApplication.shared.delegate as? WisdomFluecyTrackingable {
+                WisdomFluecyer = WisdomFluecy(timeout: able.getCatchFluecyTime(description: "Monitor the holdup, minimum duration"))
+            }
+        }
     }
 }
 

@@ -17,13 +17,6 @@ class WisdomFPS {
     init() {
         link = CADisplayLink(target: fpsProxy, selector: #selector(fpsProxy.fpsInfoCaculate(sender:)))
         link?.add(to: .main, forMode: .common)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+5) { [weak self] in
-            if (UIApplication.shared.delegate as? WisdomFPSTrackingable)==nil{
-                WisdomProtocolCore.WisdomFPSer=nil
-                self?.link?.invalidate()
-                self?.link = nil
-            }
-        }
     }
 
     deinit {
@@ -46,7 +39,7 @@ class WisdomFPSProxy {
         let duration = sender.timestamp-lastTime
         if duration>=1 {
             let fps = Double(frameCount)/duration
-            (UIApplication.shared.delegate as? WisdomFPSTrackingable)?.catchFPSTracking(currentValue: ceil(fps), description: "Debug valid, Release invalid")
+            (UIApplication.shared.delegate as? WisdomFPSTrackingable)?.catchFPSTracking(currentMain: ceil(fps), description: "Debug valid, Release invalid")
             frameCount = 0
             lastTime = sender.timestamp
         }
