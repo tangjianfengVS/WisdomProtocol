@@ -55,38 +55,38 @@ print("")
 
 }
 
-extension AppDelegate: WisdomCrashingable {
+extension AppDelegate: WisdomCrashCatchingable {
 
-    func catchCrashing(crash: String) {
-        print("[WisdomCrashable] catchCrashable\n"+crash)
+    func crashCatching(crash: String) {
+        print("[WisdomCrashable] crashCatching\n"+crash)
     }
 }
 
-extension AppDelegate: WisdomTrackingable {
+extension AppDelegate: WisdomTrackCatchingable {
 
-    func catchTracking(viewDidAppear controller: UIViewController.Type, title: String) {
+    func trackCatching(viewDidAppear controller: UIViewController.Type, title: String) {
         print("[WisdomProtocol] catchTracking viewDidAppear: \(controller)"+" title: "+title)
     }
 
-    func catchTracking(viewDidDisappear controller: UIViewController.Type, appearTime: NSInteger, title: String) {
+    func trackCatching(viewDidDisappear controller: UIViewController.Type, appearTime: NSInteger, title: String) {
         print("[WisdomProtocol] catchTracking viewDidDisappear: \(controller)"+" appearTime: \(appearTime)"+" title: "+title)
     }
 }
 
-extension AppDelegate: WisdomFPSTrackingable {
+extension AppDelegate: WisdomFPSCatchingable {
 
-    func catchFPSTracking(currentMain fps: Double, description: String) {
+    func fpsCatching(currentMain fps: Double, description: String) {
         print("FPS: \(fps) \(description)")
     }
 }
 
-extension AppDelegate: WisdomFluecyTrackingable {
+extension AppDelegate: WisdomFluecyCatchingable {
 
-    func getCatchFluecyTime(description: String) -> TimeInterval {
+    func getFluecyCatchTime(description: String) -> TimeInterval {
         return 2
     }
     
-    func catchFluecyTracking(currentMain info: String) {
+    func fluecyCatching(currentMain info: String) {
         print("")
     }
 }

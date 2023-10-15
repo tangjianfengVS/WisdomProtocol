@@ -8,58 +8,58 @@
 import UIKit
 
 
-// MARK: 'WisdomCrashingable' program crashing protocol, restriction ‘UIApplicationDelegate’
+// MARK: 'WisdomCrashCatchingable' program crash catching protocol, restriction ‘UIApplicationDelegate’
 // 崩溃日志捕捉
-@objc public protocol WisdomCrashingable where Self: UIApplicationDelegate {
+@objc public protocol WisdomCrashCatchingable where Self: UIApplicationDelegate {
     
-    // MARK: Catch Crashing Param - String
+    // MARK: Crash Catching Param - String
     // Swift object type, this parameter is valid in the relase environment but invalid in the debug environment
     // objective-c object type, both debug and relase environments are supported
-    @objc func catchCrashing(crash: String)
+    @objc func crashCatching(crash: String)
 }
 
 
-// MARK: 'WisdomTrackingable' program tracking protocol, restriction ‘UIApplicationDelegate’
+// MARK: 'WisdomTrackCatchingable' program track catching protocol, restriction ‘UIApplicationDelegate’
 // UIViewController 展示统计日志捕捉
-@objc public protocol WisdomTrackingable where Self: UIApplicationDelegate {
+@objc public protocol WisdomTrackCatchingable where Self: UIApplicationDelegate {
     
-    // MARK: Catch Controller Tracking Param - String, String
-    // UIViewController Catch Tracking 'viewDidAppear'
+    // MARK: Track Catching Controller Param - String, String
+    // UIViewController Catch Controller 'viewDidAppear'
     // - controller: UIViewController.Type
     // - title: String
-    @objc func catchTracking(viewDidAppear controller: UIViewController.Type, title: String)
+    @objc func trackCatching(viewDidAppear controller: UIViewController.Type, title: String)
     
-    // MARK: Catch Controller Tracking Param - String, String
-    // UIViewController Catch Tracking 'viewDidDisappear'
+    // MARK: Track Catching Controller Param - String, String
+    // UIViewController Catch Controller 'viewDidDisappear'
     // - controller: UIViewController.Type
     // - appearTime: NSInteger
     // - title: String
-    @objc optional func catchTracking(viewDidDisappear controller: UIViewController.Type, appearTime: NSInteger, title: String)
+    @objc optional func trackCatching(viewDidDisappear controller: UIViewController.Type, appearTime: NSInteger, title: String)
 }
 
 
-// MARK: 'WisdomFPSTrackingable' program FPS tracking protocol, restriction ‘UIApplicationDelegate’
+// MARK: 'WisdomFPSCatchingable' program fps catching protocol, restriction ‘UIApplicationDelegate’
 // 主线程界面 FPS 刷新帧率日志捕捉
-@objc public protocol WisdomFPSTrackingable where Self: UIApplicationDelegate {
+@objc public protocol WisdomFPSCatchingable where Self: UIApplicationDelegate {
     
-    // MARK: Catch FPS Tracking Param - Double, String
-    // Main thread Tracking FPS
+    // MARK: FPS Catching Param - Double, String
+    // Main thread Catching FPS
     // - currentMain fps: Double
     // - description: String
-    @objc func catchFPSTracking(currentMain fps: Double, description: String)
+    @objc func fpsCatching(currentMain fps: Double, description: String)
 }
 
 
-// MARK: 'WisdomFluecyTrackingable' program Fluecy tracking protocol, restriction ‘UIApplicationDelegate’
+// MARK: 'WisdomFluecyCatchingable' program fluecy catching protocol, restriction ‘UIApplicationDelegate’
 // 主线程卡顿具体信息日志捕捉
-@objc public protocol WisdomFluecyTrackingable where Self: UIApplicationDelegate {
+@objc public protocol WisdomFluecyCatchingable where Self: UIApplicationDelegate {
     
-    // MARK: Catch Fluecy Tracking Param - Double, String
+    // MARK: Fluecy Catching Param - Double, String
     // - description: String
-    @objc func getCatchFluecyTime(description: String)->TimeInterval
+    @objc func getFluecyCatchTime(description: String)->TimeInterval
     
-    // MARK: Catch Fluecy Tracking Param - Double, String
-    // Main thread Tracking Fluecy
+    // MARK: Fluecy Catching Param - Double, String
+    // Main thread Catching Fluecy
     // - currentMain info: String
-    @objc func catchFluecyTracking(currentMain info: String)
+    @objc func fluecyCatching(currentMain info: String)
 }

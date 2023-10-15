@@ -331,20 +331,20 @@ fileprivate func WisdomCrashRegister(){
 }
 
 fileprivate func SignalHandler(signal: Int32)->Void{
-    if let crashable = UIApplication.shared.delegate as? WisdomCrashingable{
+    if let crashable = UIApplication.shared.delegate as? WisdomCrashCatchingable{
         var mstr = String()
         mstr += "Stack:\n"
         //append slide adress
         mstr = mstr.appendingFormat("slideAdress:0x%0x\r\n", wisdom_calculate())
         //append error info
         for symbol in Thread.callStackSymbols { mstr = mstr.appendingFormat("%@\r\n", symbol) }
-        crashable.catchCrashing(crash: "*SignalHandler*"+mstr)
+        crashable.crashCatching(crash: "*SignalHandler*"+mstr)
         exit(signal)
     }
 }
 
 fileprivate func UncaughtExceptionHandler(exception: NSException) {
-    if let crashable = UIApplication.shared.delegate as? WisdomCrashingable{
+    if let crashable = UIApplication.shared.delegate as? WisdomCrashCatchingable{
         let arr = exception.callStackSymbols
         let reason = exception.reason
         let name = exception.name.rawValue
@@ -352,7 +352,7 @@ fileprivate func UncaughtExceptionHandler(exception: NSException) {
         crash += "Stack:\n"
         crash = crash.appendingFormat("slideAdress:0x%0x\r\n", wisdom_calculate())
         crash += "\r\n\r\n name:\(name) \r\n reason:\(String(describing: reason)) \r\n \(arr.joined(separator: "\r\n")) \r\n\r\n"
-        crashable.catchCrashing(crash: "*NSException*"+crash)
+        crashable.crashCatching(crash: "*NSException*"+crash)
     }
 }
 
@@ -365,14 +365,14 @@ extension WisdomProtocolCore {
         WisdomFluecyer = WisdomFluecy(timeout: 1.5)
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+5) {
-            if (UIApplication.shared.delegate as? WisdomFPSTrackingable)==nil{
+            if (UIApplication.shared.delegate as? WisdomFPSCatchingable)==nil{
                 WisdomProtocolCore.WisdomFPSer=nil
             }
             
             WisdomProtocolCore.WisdomFluecyer?.stopMonitoring()
             WisdomProtocolCore.WisdomFluecyer=nil
-            if let able = UIApplication.shared.delegate as? WisdomFluecyTrackingable {
-                WisdomFluecyer = WisdomFluecy(timeout: able.getCatchFluecyTime(description: "Monitor the holdup, minimum duration"))
+            if let able = UIApplication.shared.delegate as? WisdomFluecyCatchingable {
+                WisdomFluecyer = WisdomFluecy(timeout: able.getFluecyCatchTime(description: "Monitor the holdup, minimum duration"))
             }
         }
     }
@@ -400,21 +400,21 @@ extension UIViewController {
     
     @objc fileprivate func wisdom_viewDidAppear(_ animated: Bool) {
         wisdom_viewDidAppear(animated)
-        if let trackingable = UIApplication.shared.delegate as? WisdomTrackingable,
+        if let trackingable = UIApplication.shared.delegate as? WisdomTrackCatchingable,
            let controller = classForCoder as? UIViewController.Type {
             var cur_title = title ?? ""
             if cur_title.isEmpty {
                 cur_title = navigationItem.title ?? ""
             }
             wisdom_appearTime = "\(NSInteger(CFAbsoluteTimeGetCurrent()))"
-            trackingable.catchTracking(viewDidAppear: controller, title: cur_title)
+            trackingable.trackCatching(viewDidAppear: controller, title: cur_title)
         }
     }
     
     @objc fileprivate func wisdom_viewDidDisappear(_ animated: Bool) {
         wisdom_viewDidDisappear(animated)
-        if let trackingable = UIApplication.shared.delegate as? WisdomTrackingable,
-           let trackingFunc = trackingable.catchTracking,
+        if let trackingable = UIApplication.shared.delegate as? WisdomTrackCatchingable,
+           let trackingFunc = trackingable.trackCatching,
            let controller = classForCoder as? UIViewController.Type {
             var cur_title = title ?? ""
             if cur_title.isEmpty {

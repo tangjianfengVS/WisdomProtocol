@@ -39,7 +39,7 @@ class WisdomFPSProxy {
         let duration = sender.timestamp-lastTime
         if duration>=1 {
             let fps = Double(frameCount)/duration
-            (UIApplication.shared.delegate as? WisdomFPSTrackingable)?.catchFPSTracking(currentMain: ceil(fps), description: "Debug valid, Release invalid")
+            (UIApplication.shared.delegate as? WisdomFPSCatchingable)?.fpsCatching(currentMain: ceil(fps), description: "Debug valid, Release invalid")
             frameCount = 0
             lastTime = sender.timestamp
         }
