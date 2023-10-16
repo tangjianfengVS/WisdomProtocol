@@ -7,6 +7,7 @@
 
 import UIKit
 import WisdomProtocol
+import RCBacktrace
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -86,8 +87,8 @@ extension AppDelegate: WisdomFluecyCatchingable {
         return 2
     }
     
-    func fluecyCatching(currentMain info: String) {
-        print("")
+    func fluecyCatching(currentMain info: String, description: String) {
+        print(info)
     }
 }
 

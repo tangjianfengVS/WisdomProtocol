@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RCBacktrace
 
 class WisdomProtocolCore {
 
@@ -359,10 +360,20 @@ fileprivate func UncaughtExceptionHandler(exception: NSException) {
 extension WisdomProtocolCore {
     
     fileprivate static func trackingRegister(){
-    #if DEBUG
+        let isSimulator: Bool = {
+            var isSim = false
+            #if arch(i386) || arch(x86_64)
+                isSim = true
+            #endif
+            return isSim
+        }()
+        if isSimulator {
+            return
+        }
+        #if DEBUG
+        RCBacktrace.setup()
         WisdomFPSer = WisdomFPS()
-    #endif
-        WisdomFluecyer = WisdomFluecy(timeout: 1.5)
+        WisdomFluecyer = WisdomFluecy(timeout: 2)
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+5) {
             if (UIApplication.shared.delegate as? WisdomFPSCatchingable)==nil{
@@ -375,6 +386,7 @@ extension WisdomProtocolCore {
                 WisdomFluecyer = WisdomFluecy(timeout: able.getFluecyCatchTime(description: "Monitor the holdup, minimum duration"))
             }
         }
+        #endif
     }
 }
 

@@ -61,5 +61,5 @@ import UIKit
     // MARK: Fluecy Catching Param - Double, String
     // Main thread Catching Fluecy
     // - currentMain info: String
-    @objc func fluecyCatching(currentMain info: String)
+    @objc func fluecyCatching(currentMain info: String, description: String)
 }

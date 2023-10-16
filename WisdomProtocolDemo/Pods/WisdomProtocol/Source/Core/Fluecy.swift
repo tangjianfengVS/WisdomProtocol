@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RCBacktrace
 
 class WisdomFluecy {
     
@@ -35,27 +36,26 @@ class WisdomFluecy {
         
         let timeout = lxd_time_out_interval
         fluecyQueue.async { [weak self] in
-            //print("Thread.current\(Thread.current)")
             while self?.isMonitoring==true {
                 if self?.currentActivity == .beforeWaiting{
                     var timeOut = true
-                    //print("-0")
 
                     DispatchQueue.main.async {
                         timeOut = false
                         self?.semphore?.signal()
-                        //print("-1")
                     }
-
-                    //print("-2")
                     Thread.sleep(forTimeInterval: timeout)
-                    //print("-3")
                     if timeOut {
-                        print("-4 --- timeOut")
+                        var info="[Fluecy Info]"
+                        let symbols = RCBacktrace.callstack(.main)
+                        for symbol in symbols {
+                            info=info+"\n"+symbol.description
+                        }
+                        DispatchQueue.main.async {
+                            (UIApplication.shared.delegate as? WisdomFluecyCatchingable)?.fluecyCatching(currentMain: info, description: "Debug valid, Release invalid")
+                        }
                     }
-                    //print("-5")
                     self?.semphore?.wait()
-                    //print("-6")
                 }
             }
         }

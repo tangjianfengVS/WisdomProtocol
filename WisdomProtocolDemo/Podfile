@@ -8,7 +8,7 @@ target 'WisdomProtocolLeft' do
     
     pod 'SnapKit'
     
-    pod 'WisdomProtocol/Router', "0.2.2"
+    pod 'WisdomProtocol/Router', "0.2.3"
 end
 
 target 'WisdomProtocolRight' do
@@ -16,7 +16,7 @@ target 'WisdomProtocolRight' do
     
     pod 'SnapKit'
     
-    pod 'WisdomProtocol/Router', "0.2.2"
+    pod 'WisdomProtocol/Router', "0.2.3"
 end
 
 target 'WisdomProtocolDemo' do
@@ -26,9 +26,9 @@ target 'WisdomProtocolDemo' do
   # Pods for WisdomProtocolDemo
   pod 'SnapKit'
   
-  pod 'WisdomProtocol/Router', "0.2.2"
+  pod 'WisdomProtocol/Router', "0.2.3"
   
-  #pod 'PLCrashReporter', "1.10.2"
+#  pod 'RCBacktrace', '0.1.7'
 
 end
 
