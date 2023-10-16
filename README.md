@@ -264,7 +264,54 @@
 
    3). 主线程界面 FPS 刷新帧率日志捕捉协议：
 
+     @objc public protocol WisdomFPSCatchingable where Self: UIApplicationDelegate {
+     
+         // MARK: FPS Catching Param - Double, String
+         // Main thread Catching FPS
+         // - currentMain fps: Double
+         // - description: String
+         @objc func fpsCatching(currentMain fps: Double, description: String)
+     }
+
+     说明：
+     FPS 是监控的主线程卡顿值，只支持 Debug 环境监控，不支持 Release 环境监控，不支持模拟器。
+
+     协议使用案例：
+     extension AppDelegate: WisdomFPSCatchingable {
+         // 主线程 fps 时时监控
+         func fpsCatching(currentMain fps: Double, description: String) {
+         //   print("FPS: \(fps) \(description)")
+         }
+     }
+
    4). 主线程卡顿具体信息日志捕捉协议：
+   
+     @objc public protocol WisdomFluecyCatchingable where Self: UIApplicationDelegate {
+     
+         // MARK: Fluecy Catching Param - Double, String
+         // - description: String
+         @objc func getFluecyCatchTime(description: String)->TimeInterval
+    
+         // MARK: Fluecy Catching Param - Double, String
+         // Main thread Catching Fluecy
+         // - currentMain info: String
+         @objc func fluecyCatching(currentMain info: String, description: String)
+     }
+
+     说明：
+     先设置主线程捕获 卡顿时长，出现卡顿时并捕获，只支持 Debug 环境监控，不支持 Release 环境监控，不支持模拟器。
+
+     协议使用案例：
+     extension AppDelegate: WisdomFluecyCatchingable {
+
+         func getFluecyCatchTime(description: String) -> TimeInterval {
+            return 2 // 设置主线程捕获 卡顿时长
+         }
+    
+         func fluecyCatching(currentMain info: String, description: String) {
+         // print(info)
+         }
+     }
 
 
 # 【4】图片 缓存/加载
