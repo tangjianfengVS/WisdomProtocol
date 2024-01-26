@@ -8,9 +8,9 @@
    
     协议功能 支持 如下列表。
 
-    cocoapods 集成(不支持路由功能自动注册)：pod 'WisdomProtocol', '0.2.3'
+    cocoapods 集成(不支持路由功能自动注册)：pod 'WisdomProtocol', '0.2.4'
     
-    cocoapods 集成(支持路由功能自动注册) ：pod 'WisdomProtocol/Router', '0.2.3'
+    cocoapods 集成(支持路由功能自动注册) ：pod 'WisdomProtocol/Router', '0.2.4'
   
   
   二. 协议功能支持：
