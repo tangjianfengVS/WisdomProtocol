@@ -96,7 +96,7 @@ class WisdomTimerModel {
     
     deinit {
         destroy()
-        print("[WisdomProtocol] \(self) deinit")
+        print("[WisdomProtocol] WisdomTimerModel deinit")
     }
 }
 
@@ -154,9 +154,9 @@ extension WisdomTimerModel {
     
     func destroy() {
         timer?.cancel()
-        if timer != nil {
-            timer = nil
-        }
+//        if timer != nil {
+//            timer = nil
+//        }
         historyTime = nil
         NotificationCenter.default.removeObserver(self)
     }
