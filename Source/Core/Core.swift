@@ -250,7 +250,7 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         }
         func taskTimer(){
             let key = getTimerableKey(able: able)
-            if key.count > 0 {
+            if key.count > 0 && WisdomTimer != nil {
                 WisdomTimer?.destroyTask(key: key)
             }
         }
