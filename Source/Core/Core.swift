@@ -181,11 +181,7 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         func taskTimer(){
             let key = getTimerableKey(able: able)
             if key.count > 0 {
-                if WisdomTimer?.timer?.isCancelled == true {
-                    WisdomTimer = nil
-                }
-                
-                if WisdomTimer==nil{
+                if WisdomTimer==nil || WisdomTimer?.timer?.isCancelled == true {
                     WisdomTimer=WisdomTimerModel(task: WisdomTimerTask(isDown: false, able: able, startTime: startTime), key: key)
                 }else {
                     WisdomTimer!.appendTask(task: WisdomTimerTask(isDown: false, able: able, startTime: startTime), key: key)
@@ -203,11 +199,7 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         func taskTimer(){
             let key = getTimerableKey(able: able)
             if key.count > 0 {
-                if WisdomTimer?.timer?.isCancelled == true {
-                    WisdomTimer = nil
-                }
-                
-                if WisdomTimer==nil{
+                if WisdomTimer==nil || WisdomTimer?.timer?.isCancelled == true {
                     WisdomTimer=WisdomTimerModel(task: WisdomTimerTask(isDown: true, able: able, startTime: totalTime), key: key)
                 }else {
                     WisdomTimer!.appendTask(task: WisdomTimerTask(isDown: true, able: able, startTime: totalTime), key: key)
