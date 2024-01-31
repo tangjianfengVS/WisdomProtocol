@@ -152,9 +152,6 @@ extension WisdomTimerModel {
     
     func destroy() {
         timer?.cancel()
-        if timer != nil {
-            timer = nil
-        }
         historyTime = nil
         NotificationCenter.default.removeObserver(self)
     }

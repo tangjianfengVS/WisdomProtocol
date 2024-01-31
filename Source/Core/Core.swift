@@ -181,7 +181,7 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         func taskTimer(){
             let key = getTimerableKey(able: able)
             if key.count > 0 {
-                if WisdomTimer?.timer == nil {
+                if WisdomTimer?.timer?.isCancelled == true {
                     WisdomTimer = nil
                 }
                 
@@ -203,7 +203,7 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         func taskTimer(){
             let key = getTimerableKey(able: able)
             if key.count > 0 {
-                if WisdomTimer?.timer == nil {
+                if WisdomTimer?.timer?.isCancelled == true {
                     WisdomTimer = nil
                 }
                 
