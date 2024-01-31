@@ -22,18 +22,16 @@ class WisdomTimerTask {
     }
 }
 
+
 class WisdomTimerModel {
     
-    private var timer: DispatchSourceTimer?
+    private(set) var timer: DispatchSourceTimer?
     
     private var tasks: [String:WisdomTimerTask] = [:]
     
     private var historyTime: CFAbsoluteTime?
     
-    private let destroyClosure: ()->()
-    
-    init(task: WisdomTimerTask, key: String, destroyClosure: @escaping ()->()) {
-        self.destroyClosure = destroyClosure
+    init(task: WisdomTimerTask, key: String) {
         tasks[key] = task
         timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
         timer?.schedule(deadline: .now(), repeating: 1.0)
@@ -53,7 +51,7 @@ class WisdomTimerModel {
         tasks.removeValue(forKey: key)
         
         if tasks.values.count==0 {
-            destroyClosure()
+            destroy()
         }
     }
     
@@ -66,7 +64,7 @@ class WisdomTimerModel {
             }
         }
         if tasks.values.count==0 {
-            destroyClosure()
+            destroy()
         }
     }
     
@@ -96,7 +94,7 @@ class WisdomTimerModel {
     
     deinit {
         destroy()
-        print("[WisdomProtocol] WisdomTimerModel deinit")
+        print("[WisdomProtocol] \(self) deinit")
     }
 }
 
@@ -108,7 +106,8 @@ extension WisdomTimerModel {
             historyTime = CFAbsoluteTimeGetCurrent()
         }else {
             tasks.removeAll()
-            destroyClosure()
+            
+            destroy()
         }
     }
 
@@ -144,19 +143,18 @@ extension WisdomTimerModel {
                 sourceTimer.resume()
             }else {
                 tasks.removeAll()
-                destroyClosure()
             }
         }
         if tasks.values.count==0 {
-            destroyClosure()
+            destroy()
         }
     }
     
     func destroy() {
         timer?.cancel()
-//        if timer != nil {
-//            timer = nil
-//        }
+        if timer != nil {
+            timer = nil
+        }
         historyTime = nil
         NotificationCenter.default.removeObserver(self)
     }
