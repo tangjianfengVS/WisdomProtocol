@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name      = 'WisdomProtocol'
-  s.version   = '0.2.8'
+  s.version   = '0.2.9'
   s.license   = { :type => "MIT", :file => "LICENSE" }
   s.authors   = { 'tangjianfeng' => '497609288@qq.com' }
   s.homepage  = 'https://github.com/tangjianfengVS/WisdomProtocol'

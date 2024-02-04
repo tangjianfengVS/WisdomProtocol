@@ -93,7 +93,6 @@ class WisdomTimerModel {
     }
     
     deinit {
-        destroy()
         print("[WisdomProtocol] \(self) deinit")
     }
 }
@@ -101,8 +100,8 @@ class WisdomTimerModel {
 extension WisdomTimerModel {
     
     @objc private func becomeDeath(noti:Notification) {
-        if let sourceTimer = timer {
-            sourceTimer.suspend()
+        if timer != nil {
+            timer!.suspend()
             historyTime = CFAbsoluteTimeGetCurrent()
         }else {
             tasks.removeAll()
@@ -112,9 +111,9 @@ extension WisdomTimerModel {
     }
 
     @objc private func becomeActive(noti:Notification) {
-        if let curTime = historyTime {   // check historyTime
-            if let sourceTimer = timer { // check timer: no destroy
-                let poor = CFAbsoluteTimeGetCurrent()-curTime
+        if historyTime != nil {   // check historyTime
+            if timer != nil { // check timer: no destroy
+                let poor = CFAbsoluteTimeGetCurrent()-historyTime!
                 if poor>=1 {
                     for task in tasks {
                         if let timerable = task.value.able { // check timerable: no remove
@@ -139,8 +138,8 @@ extension WisdomTimerModel {
                         }
                     }
                 }
+                timer!.resume()
                 historyTime = nil
-                sourceTimer.resume()
             }else {
                 tasks.removeAll()
             }
@@ -150,8 +149,12 @@ extension WisdomTimerModel {
         }
     }
     
-    func destroy() {
+    fileprivate func destroy() {
         timer?.cancel()
+        if historyTime != nil {
+            timer?.resume()
+        }
+        timer = nil
         historyTime = nil
         NotificationCenter.default.removeObserver(self)
     }
