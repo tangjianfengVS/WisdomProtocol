@@ -101,7 +101,7 @@ extension WisdomTimerModel {
     
     @objc private func becomeDeath(noti:Notification) {
         if timer != nil {
-            timer!.suspend()
+            timer?.suspend()
             historyTime = CFAbsoluteTimeGetCurrent()
         }else {
             tasks.removeAll()
@@ -138,7 +138,7 @@ extension WisdomTimerModel {
                         }
                     }
                 }
-                timer!.resume()
+                timer?.resume()
                 historyTime = nil
             }else {
                 tasks.removeAll()
