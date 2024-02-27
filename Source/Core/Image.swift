@@ -39,17 +39,22 @@ extension UIImageView {
         }
     }
     
-    func loadImageable(imageUrl: String, placeholderImage: UIImage?=nil) {
+    func loadImageable(imageUrl: String,
+                       placeholderImage: UIImage?=nil,
+                       imageClosure: ((UIImage,String)->())?=nil,
+                       emptyClosure: (()->())?=nil) {
         image = nil
         let res_imageName = imageUrl.replacingOccurrences(of: "/", with: "")
         loadImageName = res_imageName
         if res_imageName.isEmpty {
             image = placeholderImage
+            emptyClosure?()
             return
         }
         WisdomProtocolCore.load(imageName: res_imageName) { [weak self] (image, image_name) in
             if let myself = self, image_name == myself.loadImageName {
                 myself.image = image
+                imageClosure?(image, imageUrl)
             }
         } emptyClosure: {
             if let url = URL(string: imageUrl) {
@@ -61,6 +66,7 @@ extension UIImageView {
                         DispatchQueue.main.async { [weak self] in
                             if let myself = self, url == myself.loadImageName {
                                 myself.image = image
+                                imageClosure?(image, imageUrl)
                             }
                         }
                     }else {
@@ -77,6 +83,7 @@ extension UIImageView {
             DispatchQueue.main.async { [weak self] in
                 if let myself = self, myself.image == nil {
                     myself.image = placeholderImage
+                    emptyClosure?()
                 }
             }
         }
