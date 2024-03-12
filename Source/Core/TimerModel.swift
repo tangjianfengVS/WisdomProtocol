@@ -113,7 +113,7 @@ extension WisdomTimerModel {
     @objc private func becomeActive(noti:Notification) {
         if historyTime != nil {   // check historyTime
             if timer != nil { // check timer: no destroy
-                let poor = CFAbsoluteTimeGetCurrent()-historyTime!
+                let poor = CFAbsoluteTimeGetCurrent()-historyTime!-1.5
                 if poor>=1 {
                     for task in tasks {
                         if let timerable = task.value.able { // check timerable: no remove

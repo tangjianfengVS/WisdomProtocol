@@ -156,7 +156,7 @@ extension WisdomProtocolCore {
                     kCGImageSourceCreateThumbnailWithTransform: true,
                     kCGImageSourceShouldCacheImmediately: true,
                     kCGImageSourceThumbnailMaxPixelSize: 500
-                ] as CFDictionary
+                ] as [CFString : Any] as CFDictionary
                 
                 var image: UIImage?
                 if let source: CGImageSource = CGImageSourceCreateWithURL(imageURL, nil),

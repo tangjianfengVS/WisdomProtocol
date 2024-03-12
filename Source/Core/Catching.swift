@@ -52,14 +52,14 @@ import UIKit
 
 // MARK: 'WisdomFluecyCatchingable' program fluecy catching protocol, restriction ‘UIApplicationDelegate’
 // 主线程卡顿具体信息日志捕捉
-@objc public protocol WisdomFluecyCatchingable where Self: UIApplicationDelegate {
-    
-    // MARK: Fluecy Catching Param - Double, String
-    // - description: String
-    @objc func getFluecyCatchTime(description: String)->TimeInterval
-    
-    // MARK: Fluecy Catching Param - Double, String
-    // Main thread Catching Fluecy
-    // - currentMain info: String
-    @objc func fluecyCatching(currentMain info: String, description: String)
-}
+//@objc public protocol WisdomFluecyCatchingable where Self: UIApplicationDelegate {
+//
+//    // MARK: Fluecy Catching Param - Double, String
+//    // - description: String
+//    @objc func getFluecyCatchTime(description: String)->TimeInterval
+//
+//    // MARK: Fluecy Catching Param - Double, String
+//    // Main thread Catching Fluecy
+//    // - currentMain info: String
+//    @objc func fluecyCatching(currentMain info: String, description: String)
+//}
