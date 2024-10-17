@@ -3,12 +3,13 @@
 
 workspace 'WisdomProtocolDemo.xcworkspace'
 
+
 target 'WisdomProtocolLeft' do
     project '../WisdomProtocolLeft/WisdomProtocolLeft.xcodeproj'
     
     pod 'SnapKit', '5.7.1'
     
-    pod 'WisdomProtocol', '0.3.2'
+    pod 'WisdomProtocol/Router', :path=>"../"
 end
 
 target 'WisdomProtocolRight' do
@@ -16,7 +17,7 @@ target 'WisdomProtocolRight' do
     
     pod 'SnapKit', '5.7.1'
     
-    pod 'WisdomProtocol', '0.3.2'
+    pod 'WisdomProtocol/Router', :path=>"../"
 end
 
 target 'WisdomProtocolDemo' do
@@ -26,7 +27,7 @@ target 'WisdomProtocolDemo' do
   # Pods for WisdomProtocolDemo
   pod 'SnapKit', '5.7.1'
   
-  pod 'WisdomProtocol', '0.3.2'#, :path => '../'
+  pod 'WisdomProtocol/Router', :path=>"../"
   
 #  pod 'RCBacktrace', '0.1.7'
 

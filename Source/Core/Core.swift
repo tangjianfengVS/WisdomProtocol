@@ -389,8 +389,8 @@ extension UIViewController {
     private struct WisdomController{ static var appearTime = "WisdomProtocolCore.appearTime" }
     
     private var wisdom_appearTime: String? {
-        set { objc_setAssociatedObject(self, &WisdomController.appearTime, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
-        get { return objc_getAssociatedObject(self, &WisdomController.appearTime) as? String }
+        set { objc_setAssociatedObject(self, WisdomController.appearTime, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
+        get { return objc_getAssociatedObject(self, WisdomController.appearTime) as? String }
     }
     
     fileprivate static func trackingRegister() {
