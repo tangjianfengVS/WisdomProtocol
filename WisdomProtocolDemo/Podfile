@@ -1,22 +1,22 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+ platform :ios, '12.0'
 
 workspace 'WisdomProtocolDemo.xcworkspace'
 
 target 'WisdomProtocolLeft' do
     project '../WisdomProtocolLeft/WisdomProtocolLeft.xcodeproj'
     
-    pod 'SnapKit'
+    pod 'SnapKit', '5.7.1'
     
-    pod 'WisdomProtocol/Router', "0.2.4"
+    pod 'WisdomProtocol', '0.3.2'
 end
 
 target 'WisdomProtocolRight' do
     project '../WisdomProtocolRight/WisdomProtocolRight.xcodeproj'
     
-    pod 'SnapKit'
+    pod 'SnapKit', '5.7.1'
     
-    pod 'WisdomProtocol/Router', "0.2.4"
+    pod 'WisdomProtocol', '0.3.2'
 end
 
 target 'WisdomProtocolDemo' do
@@ -24,9 +24,9 @@ target 'WisdomProtocolDemo' do
   use_frameworks!
 
   # Pods for WisdomProtocolDemo
-  pod 'SnapKit'
+  pod 'SnapKit', '5.7.1'
   
-  pod 'WisdomProtocol/Router', "0.2.4"
+  pod 'WisdomProtocol', '0.3.2'#, :path => '../'
   
 #  pod 'RCBacktrace', '0.1.7'
 

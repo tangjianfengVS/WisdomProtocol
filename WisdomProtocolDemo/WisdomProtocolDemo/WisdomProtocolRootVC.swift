@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 import WisdomProtocol
-import WisdomProtocolRight
+//import WisdomProtocolRight
 
 
 @objc protocol WisdomProtocolRootProtocol {}

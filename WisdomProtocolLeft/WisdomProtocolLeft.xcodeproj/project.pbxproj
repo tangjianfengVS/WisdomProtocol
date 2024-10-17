@@ -305,6 +305,7 @@
 			baseConfigurationReference = CBA9DCFB89202ECFB154CBC3 /* Pods-WisdomProtocolLeft.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -318,6 +319,7 @@
 			baseConfigurationReference = F873DC8B1C2C38C056E831FC /* Pods-WisdomProtocolLeft.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

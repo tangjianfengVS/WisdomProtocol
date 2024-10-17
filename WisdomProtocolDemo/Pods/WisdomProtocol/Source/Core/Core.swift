@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import RCBacktrace
+//import RCBacktrace
 
 class WisdomProtocolCore {
 
@@ -22,7 +22,7 @@ class WisdomProtocolCore {
     
     private static var WisdomFPSer: WisdomFPS?
     
-    private static var WisdomFluecyer: WisdomFluecy?
+    //private static var WisdomFluecyer: WisdomFluecy?
     
     static var WisdomProtocolConfig: [String:AnyClass] = [:]
     
@@ -181,11 +181,8 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         func taskTimer(){
             let key = getTimerableKey(able: able)
             if key.count > 0 {
-                if WisdomTimer==nil{
-                    WisdomTimer=WisdomTimerModel(task: WisdomTimerTask(isDown: false, able: able, startTime: startTime), key: key) {
-                        WisdomTimer?.destroy()
-                        WisdomTimer=nil
-                    }
+                if WisdomTimer==nil || WisdomTimer?.timer == nil {
+                    WisdomTimer=WisdomTimerModel(task: WisdomTimerTask(isDown: false, able: able, startTime: startTime), key: key)
                 }else {
                     WisdomTimer!.appendTask(task: WisdomTimerTask(isDown: false, able: able, startTime: startTime), key: key)
                 }
@@ -202,11 +199,8 @@ extension WisdomProtocolCore: WisdomTimerCoreable {
         func taskTimer(){
             let key = getTimerableKey(able: able)
             if key.count > 0 {
-                if WisdomTimer==nil{
-                    WisdomTimer=WisdomTimerModel(task: WisdomTimerTask(isDown: true, able: able, startTime: totalTime), key: key) {
-                        WisdomTimer?.destroy()
-                        WisdomTimer=nil
-                    }
+                if WisdomTimer==nil || WisdomTimer?.timer == nil {
+                    WisdomTimer=WisdomTimerModel(task: WisdomTimerTask(isDown: true, able: able, startTime: totalTime), key: key)
                 }else {
                     WisdomTimer!.appendTask(task: WisdomTimerTask(isDown: true, able: able, startTime: totalTime), key: key)
                 }
@@ -371,20 +365,20 @@ extension WisdomProtocolCore {
             return
         }
         #if DEBUG
-        RCBacktrace.setup()
+        //RCBacktrace.setup()
         WisdomFPSer = WisdomFPS()
-        WisdomFluecyer = WisdomFluecy(timeout: 2)
+        //WisdomFluecyer = WisdomFluecy(timeout: 2)
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+5) {
             if (UIApplication.shared.delegate as? WisdomFPSCatchingable)==nil{
                 WisdomProtocolCore.WisdomFPSer=nil
             }
             
-            WisdomProtocolCore.WisdomFluecyer?.stopMonitoring()
-            WisdomProtocolCore.WisdomFluecyer=nil
-            if let able = UIApplication.shared.delegate as? WisdomFluecyCatchingable {
-                WisdomFluecyer = WisdomFluecy(timeout: able.getFluecyCatchTime(description: "Monitor the holdup, minimum duration"))
-            }
+            //WisdomProtocolCore.WisdomFluecyer?.stopMonitoring()
+            //WisdomProtocolCore.WisdomFluecyer=nil
+            //if let able = UIApplication.shared.delegate as? WisdomFluecyCatchingable {
+            //    WisdomFluecyer = WisdomFluecy(timeout: able.getFluecyCatchTime(description: "Monitor the holdup, minimum duration"))
+            //}
         }
         #endif
     }

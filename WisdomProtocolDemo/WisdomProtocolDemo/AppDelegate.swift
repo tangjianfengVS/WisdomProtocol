@@ -7,7 +7,7 @@
 
 import UIKit
 import WisdomProtocol
-import RCBacktrace
+//import RCBacktrace
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -81,16 +81,16 @@ extension AppDelegate: WisdomFPSCatchingable {
     }
 }
 
-extension AppDelegate: WisdomFluecyCatchingable {
-
-    func getFluecyCatchTime(description: String) -> TimeInterval {
-        return 2
-    }
-    
-    func fluecyCatching(currentMain info: String, description: String) {
-        print(info)
-    }
-}
+//extension AppDelegate: WisdomFluecyCatchingable {
+//
+//    func getFluecyCatchTime(description: String) -> TimeInterval {
+//        return 2
+//    }
+//    
+//    func fluecyCatching(currentMain info: String, description: String) {
+//        print(info)
+//    }
+//}
 
 extension AppDelegate: WisdomLanguageRegisterable {
 

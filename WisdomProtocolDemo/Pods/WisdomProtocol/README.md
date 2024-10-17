@@ -8,9 +8,9 @@
    
     协议功能 支持 如下列表。
 
-    cocoapods 集成(不支持路由功能)：pod 'WisdomProtocol', '0.2.0'
+    cocoapods 集成(不支持路由功能自动注册)：pod 'WisdomProtocol', '0.2.4'
     
-    cocoapods 集成(支持路由功能) ：pod 'WisdomProtocol/Router', '0.2.0'
+    cocoapods 集成(支持路由功能自动注册) ：pod 'WisdomProtocol/Router', '0.2.4'
   
   
   二. 协议功能支持：
@@ -19,7 +19,7 @@
   
     2). 模型: 编/解码
   
-    3). 程序信息跟踪（崩溃日志，控制器展示统计）
+    3). 程序信息跟踪捕获（崩溃日志，控制器展示时间统计，主线程卡顿fps值 和 卡顿监控详情捕获）
   
     4). 图片: 本地，网络加载/缓存
   
@@ -83,7 +83,7 @@
    -> 支持功能：
   
      * 累积计时： public func startForwardTimer(startTime: UInt)
-     * 倒计时：   public func startDownTimer(totalTime: UInt)
+     * 倒计时：  public func startDownTimer(totalTime: UInt)
   
 
   【优势/特点】
@@ -196,72 +196,122 @@
      如果不需要，可以注释此处断言代码；
 
 
-
-
-# 【3】程序信息跟踪
+# 【3】程序信息跟踪捕获
 
    目前支持跟踪功能：
    
-     1. 崩溃信息的跟踪；
-     2. 控制器的 显示/掩藏 状态跟踪，和显示时间统计；
+     1. 崩溃信息的跟踪捕获；
+     2. OC 和Swift 语言崩溃场景抓取不一样，但是 WisdomProtocol 同时都支持；
      3. 协议限制 条件对象：UIApplicationDelegate
-         protocol WisdomCrashingable where Self: UIApplicationDelegate
+         例如：
+         protocol WisdomCrashCatchingable where Self: UIApplicationDelegate
+     4. 控制器的 显示/掩藏 状态跟踪，和显示时间统计；
+     5. 主线程卡顿fps值 和 卡顿监控详情捕获；
      
-     4. OC 和Swift 语言崩溃场景抓取不一样，但是 WisdomProtocol 同时都支持
-
    1). 崩溃跟踪协议：
    
-     @objc public protocol WisdomCrashingable where Self: UIApplicationDelegate {
+     @objc public protocol WisdomCrashCatchingable where Self: UIApplicationDelegate {
      
-         // MARK: Catch Crashing Param - String
+         // MARK: Crash Catching Param - String
          // Swift object type, this parameter is valid in the relase environment but invalid in the debug environment
          // objective-c object type, both debug and relase environments are supported
-         @objc func catchCrashing(crash: String)
+         @objc func crashCatching(crash: String)
      }
 
      说明：
      崩溃跟踪，同时支持OC和Swift 语言崩溃场景抓取。
 
+     协议使用案例：
+     extension AppDelegate: WisdomCrashCatchingable {
+         //崩溃跟踪
+         func crashCatching(crash: String) {
+         //  crash 崩溃消息
+         }
+     }
+
    2). 控制器展示跟踪协议：
    
-     @objc public protocol WisdomTrackingable where Self: UIApplicationDelegate {
+     @objc public protocol WisdomTrackCatchingable where Self: UIApplicationDelegate {
      
-         // MARK: Catch Controller Tracking Param - String, String
-         // UIViewController Catch Tracking 'viewDidAppear'
+         // MARK: Track Catching Controller Param - String, String
+         // UIViewController Catch Controller 'viewDidAppear'
          // - controller: UIViewController.Type
          // - title: String
-         @objc func catchTracking(viewDidAppear controller: UIViewController.Type, title: String)
+         @objc func trackCatching(viewDidAppear controller: UIViewController.Type, title: String)
      
-         // MARK: Catch Controller Tracking Param - String, String
-         // UIViewController Catch Tracking 'viewDidDisappear'
+         // MARK: Track Catching Controller Param - String, String
+         // UIViewController Catch Controller 'viewDidDisappear'
          // - controller: UIViewController.Type
          // - appearTime: NSInteger
          // - title: String
-         @objc optional func catchTracking(viewDidDisappear controller: UIViewController.Type, appearTime: NSInteger, title: String)
+         @objc optional func trackCatching(viewDidDisappear controller: UIViewController.Type, appearTime: NSInteger, title: String)
      }
      
      说明：
      控制器将要隐藏协议回调中，会带过来时间参数，为当前控制器所展示的时长。
 
-   3). 协议使用案例：
-   
-     extension AppDelegate: WisdomCrashingable {
-         //崩溃跟踪
-         func catchCrashing(crash: String) {
-         //  crash 崩溃消息
-         }
-     }
-     
-     extension AppDelegate: WisdomTrackingable {
+     协议使用案例：
+     extension AppDelegate: WisdomTrackCatchingable {
          //页面跟踪
-         func catchTracking(viewDidAppear controller: UIViewController.Type, title: String) {
+         func trackCatching(viewDidAppear controller: UIViewController.Type, title: String) {
          //  controller/title 页面展示消息
          }
-     }
-     
-     上面案例为：崩溃消息监听；
-     下面案例为：控制器展示状态监听，这里只实现了展示协议；
 
+         @objc optional func trackCatching(viewDidDisappear controller: UIViewController.Type, appearTime: NSInteger, title: String) {
+         //  controller/title 页面隐藏消息，appearTime 展示到隐藏，中间统计时间
+         }
+     }
+
+   3). 主线程界面 FPS 刷新帧率日志捕捉协议：
+
+     @objc public protocol WisdomFPSCatchingable where Self: UIApplicationDelegate {
+     
+         // MARK: FPS Catching Param - Double, String
+         // Main thread Catching FPS
+         // - currentMain fps: Double
+         // - description: String
+         @objc func fpsCatching(currentMain fps: Double, description: String)
+     }
+
+     说明：
+     FPS 是监控的主线程卡顿值，只支持 Debug 环境监控，不支持 Release 环境监控，不支持模拟器。
+
+     协议使用案例：
+     extension AppDelegate: WisdomFPSCatchingable {
+         // 主线程 fps 时时监控
+         func fpsCatching(currentMain fps: Double, description: String) {
+         //   print("FPS: \(fps) \(description)")
+         }
+     }
+
+   4). 主线程卡顿具体信息日志捕捉协议：
+   
+     @objc public protocol WisdomFluecyCatchingable where Self: UIApplicationDelegate {
+     
+         // MARK: Fluecy Catching Param - Double, String
+         // - description: String
+         @objc func getFluecyCatchTime(description: String)->TimeInterval
+    
+         // MARK: Fluecy Catching Param - Double, String
+         // Main thread Catching Fluecy
+         // - currentMain info: String
+         @objc func fluecyCatching(currentMain info: String, description: String)
+     }
+
+     说明：
+     先设置主线程捕获 卡顿时长，出现卡顿时并捕获，只支持 Debug 环境监控，不支持 Release 环境监控，不支持模拟器。
+
+     协议使用案例：
+     extension AppDelegate: WisdomFluecyCatchingable {
+
+         func getFluecyCatchTime(description: String) -> TimeInterval {
+            return 2 // 设置主线程捕获 卡顿时长
+         }
+    
+         func fluecyCatching(currentMain info: String, description: String) {
+         // print(info)
+         }
+     }
 
 
 # 【4】图片 缓存/加载
