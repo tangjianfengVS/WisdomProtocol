@@ -23,20 +23,34 @@ public protocol WisdomBinaryBitable where Self: CaseIterable {
 extension WisdomBinaryBitable {
     
     // MARK: return - [CaseIterable&WisdomBinaryBitable]
-    // get Binarierable all bit values when value==1 width: NSInteger
-    // 根据十进制数值：value: NSInteger，获取枚举类型包括的值数组
+    // The rightmost binary value is 1
+    // 1. Convert a decimal value to a binary value
+    // 2. Combine with your own enumeration class to get an array of values included in the enumeration type
+    // 二进制数值 最右边 为 1
+    // 1.先将 十进制数值 转成 二进制数值
+    // 2.再结合 自己的枚举类，获取 枚举类型 包括的 值数组
     public static func getBinaryable(value: NSInteger)->[Self]{
         return WisdomProtocolCore.getBinaryable(value: value, type: self)
     }
     
     // MARK: return - Bool
-    // get Binarierable a bit value when value==1 width: NSInteger
+    // The rightmost binary value is 1
+    // 1. Convert a decimal value to a binary value
+    // 2. Combine the enumeration type to determine whether the specified bit of the binary value is 1 or 0, and return it as a Bool value
+    // 二进制数值 最右边 为 1
+    // 1.先将 十进制数值 转成 二进制数值
+    // 2.再结合 枚举类型，判断 二进制数值 指定位， 是否是 1 或者 0，以 Bool 值返回
     public static func isBinaryable(value: NSInteger, state: Self)->Bool{
         return WisdomProtocolCore.isBinaryable(value: value, state: state)
     }
     
     // MARK: return - Bool
-    // get Binarierable self value when value==1 width: NSInteger
+    // The rightmost binary value is 1
+    // 1. Convert a decimal value to a binary value
+    // 2. Combined with its own enumeration type, determine whether the specified bit of the binary value is 1 or 0, and return it as a Bool value
+    // 二进制数值 最右边 为 1
+    // 1.先将 十进制数值 转成 二进制数值
+    // 2.再结合 自己的枚举类型，判断 二进制数值 指定位， 是否是 1 或者 0，以 Bool 值返回
     public func isBinaryable(value: NSInteger)->Bool{
         return WisdomProtocolCore.isBinaryable(value: value, state: self)
     }
