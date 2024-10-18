@@ -27,7 +27,9 @@
   
     6). 网络连接状态监听
   
-    7). 7大路由器
+    7). 十进制转二进制：二进制 绑定枚举，二进制 指定位判断 1或者0
+    
+    8). 7大路由器
   
 
   三. 功能详情：
@@ -625,6 +627,50 @@
     说明：
     -> 网络状态监听，使用比较简单，同时支持 OC 和 Swift；
     -> 性能方面，内部实现，网络状态对象不会频繁创建，会复用对象功能；
+    
+    
+    
+# 【7】十进制转二进制
+
+   1). 协议 :
+   
+    // MARK: Swift 'enum' to binary 'Bit' Protocol
+    public protocol WisdomBinaryBitable where Self: CaseIterable {
+    
+         var bitRawValue: NSInteger { get }
+    }
+
+   2). 二进制 绑定枚举：
+   
+    // MARK: return - [CaseIterable&WisdomBinaryBitable]
+    // The rightmost binary value is 1
+    // 1. Convert a decimal value to a binary value
+    // 2. Combine with your own enumeration class to get an array of values included in the enumeration type
+    // 二进制数值 最右边 为 1
+    // 1.先将 十进制数值 转成 二进制数值
+    // 2.再结合 自己的枚举类，获取 枚举类型 包括的 值数组
+    public static func getBinaryable(value: NSInteger)->[Self]
+
+   3). 二进制 指定位判断 1或者0：
+    
+    // MARK: return - Bool
+    // The rightmost binary value is 1
+    // 1. Convert a decimal value to a binary value
+    // 2. Combine the enumeration type to determine whether the specified bit of the binary value is 1 or 0, and return it as a Bool value
+    // 二进制数值 最右边 为 1
+    // 1.先将 十进制数值 转成 二进制数值
+    // 2.再结合 枚举类型，判断 二进制数值 指定位， 是否是 1 或者 0，以 Bool 值返回
+    public static func isBinaryable(value: NSInteger, state: Self)->Bool
+    
+    // MARK: return - Bool
+    // The rightmost binary value is 1
+    // 1. Convert a decimal value to a binary value
+    // 2. Combined with its own enumeration type, determine whether the specified bit of the binary value is 1 or 0, and return it as a Bool value
+    // 二进制数值 最右边 为 1
+    // 1.先将 十进制数值 转成 二进制数值
+    // 2.再结合 自己的枚举类型，判断 二进制数值 指定位， 是否是 1 或者 0，以 Bool 值返回
+    public func isBinaryable(value: NSInteger)->Bool
+    
 
 
 
